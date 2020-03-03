@@ -34,26 +34,28 @@
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.pEmplyee = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cmbDepartment = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.btAddEmployee = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btAddToSchedule = new System.Windows.Forms.Button();
+            this.dtpShiftDate = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbSalary = new System.Windows.Forms.TextBox();
+            this.tbSupervisor = new System.Windows.Forms.TextBox();
+            this.tbWorkLocation = new System.Windows.Forms.TextBox();
+            this.tbEmailAddress = new System.Windows.Forms.TextBox();
+            this.btSearchEmployee = new System.Windows.Forms.Button();
             this.tbPhoneNumber = new System.Windows.Forms.TextBox();
+            this.cmbDepartment = new System.Windows.Forms.ComboBox();
+            this.tbStartDay = new System.Windows.Forms.TextBox();
+            this.btAddEmployee = new System.Windows.Forms.Button();
+            this.tbFunction = new System.Windows.Forms.TextBox();
+            this.tbAddress = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.btlogoutE = new System.Windows.Forms.Button();
             this.btStockE = new System.Windows.Forms.Button();
             this.btStatisticsE = new System.Windows.Forms.Button();
             this.btEmployeeE = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btAddToSchedule = new System.Windows.Forms.Button();
-            this.dtpShiftDate = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbShift = new System.Windows.Forms.ComboBox();
             this.tbItemID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pStatistics = new System.Windows.Forms.Panel();
@@ -75,14 +77,8 @@
             this.tbItemIDRestock = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btCheckAvailability = new System.Windows.Forms.Button();
-            this.cmbDepartmentInfo = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.btSearchEmployee = new System.Windows.Forms.Button();
-            this.tbNameInfo = new System.Windows.Forms.TextBox();
             this.pLogin.SuspendLayout();
             this.pEmplyee.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.pStatistics.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -137,103 +133,180 @@
             // 
             this.pEmplyee.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pEmplyee.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pEmplyee.BackgroundImage")));
-            this.pEmplyee.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pEmplyee.Controls.Add(this.cmbDepartmentInfo);
-            this.pEmplyee.Controls.Add(this.label14);
-            this.pEmplyee.Controls.Add(this.label13);
+            this.pEmplyee.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pEmplyee.Controls.Add(this.textBox1);
+            this.pEmplyee.Controls.Add(this.label1);
+            this.pEmplyee.Controls.Add(this.comboBox1);
+            this.pEmplyee.Controls.Add(this.btAddToSchedule);
+            this.pEmplyee.Controls.Add(this.dtpShiftDate);
+            this.pEmplyee.Controls.Add(this.label4);
+            this.pEmplyee.Controls.Add(this.tbSalary);
+            this.pEmplyee.Controls.Add(this.tbSupervisor);
+            this.pEmplyee.Controls.Add(this.tbWorkLocation);
+            this.pEmplyee.Controls.Add(this.tbEmailAddress);
             this.pEmplyee.Controls.Add(this.btSearchEmployee);
-            this.pEmplyee.Controls.Add(this.tbNameInfo);
-            this.pEmplyee.Controls.Add(this.label12);
-            this.pEmplyee.Controls.Add(this.label11);
-            this.pEmplyee.Controls.Add(this.cmbDepartment);
-            this.pEmplyee.Controls.Add(this.label10);
-            this.pEmplyee.Controls.Add(this.label9);
-            this.pEmplyee.Controls.Add(this.label8);
-            this.pEmplyee.Controls.Add(this.textBox7);
-            this.pEmplyee.Controls.Add(this.btAddEmployee);
-            this.pEmplyee.Controls.Add(this.textBox6);
             this.pEmplyee.Controls.Add(this.tbPhoneNumber);
+            this.pEmplyee.Controls.Add(this.cmbDepartment);
+            this.pEmplyee.Controls.Add(this.tbStartDay);
+            this.pEmplyee.Controls.Add(this.btAddEmployee);
+            this.pEmplyee.Controls.Add(this.tbFunction);
+            this.pEmplyee.Controls.Add(this.tbAddress);
             this.pEmplyee.Controls.Add(this.tbName);
             this.pEmplyee.Controls.Add(this.btlogoutE);
             this.pEmplyee.Controls.Add(this.btStockE);
             this.pEmplyee.Controls.Add(this.btStatisticsE);
             this.pEmplyee.Controls.Add(this.btEmployeeE);
-            this.pEmplyee.Controls.Add(this.groupBox3);
             this.pEmplyee.Location = new System.Drawing.Point(306, 15);
             this.pEmplyee.Margin = new System.Windows.Forms.Padding(0);
             this.pEmplyee.Name = "pEmplyee";
             this.pEmplyee.Size = new System.Drawing.Size(1015, 360);
             this.pEmplyee.TabIndex = 1;
             // 
-            // label12
+            // textBox1
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(101, 250);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(55, 20);
-            this.label12.TabIndex = 25;
-            this.label12.Text = "Name:";
+            this.textBox1.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.textBox1.Location = new System.Drawing.Point(725, 148);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(145, 33);
+            this.textBox1.TabIndex = 37;
             // 
-            // label11
+            // label1
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(101, 211);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(55, 20);
-            this.label11.TabIndex = 24;
-            this.label11.Text = "Name:";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Codec Warm Trial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(653, 197);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 21);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "SHIFT:";
+            this.label1.Visible = false;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(719, 192);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(151, 35);
+            this.comboBox1.TabIndex = 35;
+            // 
+            // btAddToSchedule
+            // 
+            this.btAddToSchedule.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btAddToSchedule.BackgroundImage")));
+            this.btAddToSchedule.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.btAddToSchedule.Location = new System.Drawing.Point(674, 283);
+            this.btAddToSchedule.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btAddToSchedule.Name = "btAddToSchedule";
+            this.btAddToSchedule.Size = new System.Drawing.Size(288, 35);
+            this.btAddToSchedule.TabIndex = 32;
+            this.btAddToSchedule.Text = "Add to schedule";
+            this.btAddToSchedule.UseVisualStyleBackColor = true;
+            // 
+            // dtpShiftDate
+            // 
+            this.dtpShiftDate.Font = new System.Drawing.Font("Coarse Rounded", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpShiftDate.Location = new System.Drawing.Point(664, 247);
+            this.dtpShiftDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpShiftDate.Name = "dtpShiftDate";
+            this.dtpShiftDate.Size = new System.Drawing.Size(298, 32);
+            this.dtpShiftDate.TabIndex = 34;
+            // 
+            // label4
+            // 
+            this.label4.AllowDrop = true;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Codec Warm Trial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(656, 155);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 21);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "NAME:";
+            this.label4.Visible = false;
+            // 
+            // tbSalary
+            // 
+            this.tbSalary.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.tbSalary.Location = new System.Drawing.Point(452, 255);
+            this.tbSalary.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbSalary.Name = "tbSalary";
+            this.tbSalary.Size = new System.Drawing.Size(145, 33);
+            this.tbSalary.TabIndex = 31;
+            // 
+            // tbSupervisor
+            // 
+            this.tbSupervisor.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.tbSupervisor.Location = new System.Drawing.Point(452, 218);
+            this.tbSupervisor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbSupervisor.Name = "tbSupervisor";
+            this.tbSupervisor.Size = new System.Drawing.Size(145, 33);
+            this.tbSupervisor.TabIndex = 30;
+            // 
+            // tbWorkLocation
+            // 
+            this.tbWorkLocation.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.tbWorkLocation.Location = new System.Drawing.Point(452, 180);
+            this.tbWorkLocation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbWorkLocation.Name = "tbWorkLocation";
+            this.tbWorkLocation.Size = new System.Drawing.Size(145, 33);
+            this.tbWorkLocation.TabIndex = 29;
+            // 
+            // tbEmailAddress
+            // 
+            this.tbEmailAddress.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.tbEmailAddress.Location = new System.Drawing.Point(452, 144);
+            this.tbEmailAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbEmailAddress.Name = "tbEmailAddress";
+            this.tbEmailAddress.Size = new System.Drawing.Size(145, 33);
+            this.tbEmailAddress.TabIndex = 28;
+            // 
+            // btSearchEmployee
+            // 
+            this.btSearchEmployee.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btSearchEmployee.BackgroundImage")));
+            this.btSearchEmployee.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.btSearchEmployee.Location = new System.Drawing.Point(434, 298);
+            this.btSearchEmployee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btSearchEmployee.Name = "btSearchEmployee";
+            this.btSearchEmployee.Size = new System.Drawing.Size(163, 35);
+            this.btSearchEmployee.TabIndex = 27;
+            this.btSearchEmployee.Text = "Search";
+            this.btSearchEmployee.UseVisualStyleBackColor = true;
+            // 
+            // tbPhoneNumber
+            // 
+            this.tbPhoneNumber.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.tbPhoneNumber.Location = new System.Drawing.Point(452, 105);
+            this.tbPhoneNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbPhoneNumber.Name = "tbPhoneNumber";
+            this.tbPhoneNumber.Size = new System.Drawing.Size(145, 33);
+            this.tbPhoneNumber.TabIndex = 26;
             // 
             // cmbDepartment
             // 
+            this.cmbDepartment.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
             this.cmbDepartment.FormattingEnabled = true;
             this.cmbDepartment.Location = new System.Drawing.Point(172, 164);
             this.cmbDepartment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbDepartment.Name = "cmbDepartment";
-            this.cmbDepartment.Size = new System.Drawing.Size(180, 28);
+            this.cmbDepartment.Size = new System.Drawing.Size(180, 35);
             this.cmbDepartment.TabIndex = 23;
             // 
-            // label10
+            // tbStartDay
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(44, 125);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(117, 20);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Phone number:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(58, 170);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(98, 20);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "Department:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(106, 78);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 20);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Name:";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(174, 247);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(178, 26);
-            this.textBox7.TabIndex = 19;
+            this.tbStartDay.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.tbStartDay.Location = new System.Drawing.Point(174, 247);
+            this.tbStartDay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbStartDay.Name = "tbStartDay";
+            this.tbStartDay.Size = new System.Drawing.Size(178, 33);
+            this.tbStartDay.TabIndex = 19;
             // 
             // btAddEmployee
             // 
+            this.btAddEmployee.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btAddEmployee.BackgroundImage")));
+            this.btAddEmployee.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
             this.btAddEmployee.Location = new System.Drawing.Point(174, 283);
             this.btAddEmployee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btAddEmployee.Name = "btAddEmployee";
@@ -242,34 +315,37 @@
             this.btAddEmployee.Text = "Add";
             this.btAddEmployee.UseVisualStyleBackColor = true;
             // 
-            // textBox6
+            // tbFunction
             // 
-            this.textBox6.Location = new System.Drawing.Point(172, 203);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(178, 26);
-            this.textBox6.TabIndex = 17;
+            this.tbFunction.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.tbFunction.Location = new System.Drawing.Point(172, 203);
+            this.tbFunction.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbFunction.Name = "tbFunction";
+            this.tbFunction.Size = new System.Drawing.Size(178, 33);
+            this.tbFunction.TabIndex = 17;
             // 
-            // tbPhoneNumber
+            // tbAddress
             // 
-            this.tbPhoneNumber.Location = new System.Drawing.Point(174, 122);
-            this.tbPhoneNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbPhoneNumber.Name = "tbPhoneNumber";
-            this.tbPhoneNumber.Size = new System.Drawing.Size(178, 26);
-            this.tbPhoneNumber.TabIndex = 16;
+            this.tbAddress.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.tbAddress.Location = new System.Drawing.Point(174, 122);
+            this.tbAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.Size = new System.Drawing.Size(178, 33);
+            this.tbAddress.TabIndex = 16;
             // 
             // tbName
             // 
+            this.tbName.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
             this.tbName.Location = new System.Drawing.Point(172, 78);
             this.tbName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(180, 26);
+            this.tbName.Size = new System.Drawing.Size(180, 33);
             this.tbName.TabIndex = 15;
             // 
             // btlogoutE
             // 
             this.btlogoutE.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btlogoutE.BackgroundImage")));
-            this.btlogoutE.Font = new System.Drawing.Font("Codec Cold Trial", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btlogoutE.Font = new System.Drawing.Font("Codec Cold Trial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btlogoutE.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btlogoutE.Location = new System.Drawing.Point(746, 54);
             this.btlogoutE.Margin = new System.Windows.Forms.Padding(1);
@@ -283,7 +359,7 @@
             // btStockE
             // 
             this.btStockE.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btStockE.BackgroundImage")));
-            this.btStockE.Font = new System.Drawing.Font("Codec Cold Trial", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btStockE.Font = new System.Drawing.Font("Codec Cold Trial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btStockE.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btStockE.Location = new System.Drawing.Point(736, 3);
             this.btStockE.Name = "btStockE";
@@ -295,7 +371,7 @@
             // btStatisticsE
             // 
             this.btStatisticsE.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btStatisticsE.BackgroundImage")));
-            this.btStatisticsE.Font = new System.Drawing.Font("Codec Cold Trial", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btStatisticsE.Font = new System.Drawing.Font("Codec Cold Trial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btStatisticsE.ForeColor = System.Drawing.SystemColors.Control;
             this.btStatisticsE.Location = new System.Drawing.Point(499, 49);
             this.btStatisticsE.Margin = new System.Windows.Forms.Padding(1);
@@ -319,59 +395,6 @@
             this.btEmployeeE.TabIndex = 3;
             this.btEmployeeE.Text = "Emplyee";
             this.btEmployeeE.UseVisualStyleBackColor = false;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.groupBox3.Controls.Add(this.btAddToSchedule);
-            this.groupBox3.Controls.Add(this.dtpShiftDate);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.cmbShift);
-            this.groupBox3.Location = new System.Drawing.Point(638, 105);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Size = new System.Drawing.Size(368, 206);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Schedule";
-            // 
-            // btAddToSchedule
-            // 
-            this.btAddToSchedule.Location = new System.Drawing.Point(56, 152);
-            this.btAddToSchedule.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btAddToSchedule.Name = "btAddToSchedule";
-            this.btAddToSchedule.Size = new System.Drawing.Size(288, 35);
-            this.btAddToSchedule.TabIndex = 5;
-            this.btAddToSchedule.Text = "Add to schedule";
-            this.btAddToSchedule.UseVisualStyleBackColor = true;
-            // 
-            // dtpShiftDate
-            // 
-            this.dtpShiftDate.Location = new System.Drawing.Point(46, 116);
-            this.dtpShiftDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dtpShiftDate.Name = "dtpShiftDate";
-            this.dtpShiftDate.Size = new System.Drawing.Size(298, 26);
-            this.dtpShiftDate.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(52, 59);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 20);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Shift:";
-            // 
-            // cmbShift
-            // 
-            this.cmbShift.FormattingEnabled = true;
-            this.cmbShift.Location = new System.Drawing.Point(108, 54);
-            this.cmbShift.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbShift.Name = "cmbShift";
-            this.cmbShift.Size = new System.Drawing.Size(180, 28);
-            this.cmbShift.TabIndex = 5;
             // 
             // tbItemID
             // 
@@ -500,6 +523,7 @@
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Stock/Employee info";
+            this.groupBox4.Visible = false;
             // 
             // lbResult
             // 
@@ -595,53 +619,6 @@
             this.btCheckAvailability.Text = "Check availability";
             this.btCheckAvailability.UseVisualStyleBackColor = true;
             // 
-            // cmbDepartmentInfo
-            // 
-            this.cmbDepartmentInfo.FormattingEnabled = true;
-            this.cmbDepartmentInfo.Location = new System.Drawing.Point(472, 201);
-            this.cmbDepartmentInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbDepartmentInfo.Name = "cmbDepartmentInfo";
-            this.cmbDepartmentInfo.Size = new System.Drawing.Size(145, 28);
-            this.cmbDepartmentInfo.TabIndex = 30;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(370, 205);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(98, 20);
-            this.label14.TabIndex = 29;
-            this.label14.Text = "Department:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(406, 144);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 20);
-            this.label13.TabIndex = 28;
-            this.label13.Text = "Name:";
-            // 
-            // btSearchEmployee
-            // 
-            this.btSearchEmployee.Location = new System.Drawing.Point(387, 261);
-            this.btSearchEmployee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btSearchEmployee.Name = "btSearchEmployee";
-            this.btSearchEmployee.Size = new System.Drawing.Size(230, 35);
-            this.btSearchEmployee.TabIndex = 27;
-            this.btSearchEmployee.Text = "Search";
-            this.btSearchEmployee.UseVisualStyleBackColor = true;
-            // 
-            // tbNameInfo
-            // 
-            this.tbNameInfo.Location = new System.Drawing.Point(472, 139);
-            this.tbNameInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbNameInfo.Name = "tbNameInfo";
-            this.tbNameInfo.Size = new System.Drawing.Size(145, 26);
-            this.tbNameInfo.TabIndex = 26;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -655,13 +632,10 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
-//            this.Load += new System.EventHandler(this.Form1_Load);
             this.pLogin.ResumeLayout(false);
             this.pLogin.PerformLayout();
             this.pEmplyee.ResumeLayout(false);
             this.pEmplyee.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.pStatistics.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -679,11 +653,6 @@
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.Panel pEmplyee;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btAddToSchedule;
-        private System.Windows.Forms.DateTimePicker dtpShiftDate;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmbShift;
         private System.Windows.Forms.TextBox tbItemID;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel pStatistics;
@@ -709,22 +678,24 @@
         private System.Windows.Forms.Button btStatisticsE;
         private System.Windows.Forms.Button btEmployeeE;
         private System.Windows.Forms.Button btlogoutE;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cmbDepartment;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox tbStartDay;
         private System.Windows.Forms.Button btAddEmployee;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox tbPhoneNumber;
+        private System.Windows.Forms.TextBox tbFunction;
+        private System.Windows.Forms.TextBox tbAddress;
         private System.Windows.Forms.TextBox tbName;
-        private System.Windows.Forms.ComboBox cmbDepartmentInfo;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btSearchEmployee;
-        private System.Windows.Forms.TextBox tbNameInfo;
+        private System.Windows.Forms.TextBox tbPhoneNumber;
+        private System.Windows.Forms.TextBox tbSupervisor;
+        private System.Windows.Forms.TextBox tbWorkLocation;
+        private System.Windows.Forms.TextBox tbEmailAddress;
+        private System.Windows.Forms.TextBox tbSalary;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btAddToSchedule;
+        private System.Windows.Forms.DateTimePicker dtpShiftDate;
+        private System.Windows.Forms.Label label4;
     }
 }
 
