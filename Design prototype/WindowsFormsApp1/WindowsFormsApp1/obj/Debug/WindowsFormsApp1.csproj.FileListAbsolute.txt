@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\crist\Desktop\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
 C:\Users\crist\Desktop\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
 C:\Users\crist\Desktop\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
@@ -7,3 +8,14 @@ C:\Users\crist\Desktop\mediabazaarproject\Design prototype\WindowsFormsApp1\Wind
 C:\Users\crist\Desktop\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
 C:\Users\crist\Desktop\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\crist\Desktop\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+=======
+C:\Users\Verg\Desktop\Media Bazaar Project\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\Verg\Desktop\Media Bazaar Project\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\Verg\Desktop\Media Bazaar Project\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\Verg\Desktop\Media Bazaar Project\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
+C:\Users\Verg\Desktop\Media Bazaar Project\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\Verg\Desktop\Media Bazaar Project\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Verg\Desktop\Media Bazaar Project\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\Verg\Desktop\Media Bazaar Project\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\Verg\Desktop\Media Bazaar Project\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+>>>>>>> 7949a8c6ad149f900862f1a952eafe20f27e1f69

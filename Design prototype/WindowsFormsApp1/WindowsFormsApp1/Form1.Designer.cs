@@ -59,7 +59,9 @@
             this.tbItemID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pStatistics = new System.Windows.Forms.Panel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btLogoutStats = new System.Windows.Forms.Button();
+            this.btStatisticsStats = new System.Windows.Forms.Button();
+            this.btEmployeeStats = new System.Windows.Forms.Button();
             this.btViewStatsOverall = new System.Windows.Forms.Button();
             this.btViewDepartmentStats = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -67,21 +69,16 @@
             this.btViewEmployeeStats = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.tbNameStats = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.lbResult = new System.Windows.Forms.ListBox();
-            this.btViewStock = new System.Windows.Forms.Button();
-            this.btViewEmployees = new System.Windows.Forms.Button();
             this.pStock = new System.Windows.Forms.Panel();
             this.btViewStockEmployee = new System.Windows.Forms.Button();
             this.btSendRestockRequest = new System.Windows.Forms.Button();
             this.tbItemIDRestock = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btCheckAvailability = new System.Windows.Forms.Button();
+            this.btStockControlStats = new System.Windows.Forms.Button();
             this.pLogin.SuspendLayout();
             this.pEmplyee.SuspendLayout();
             this.pStatistics.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.pStock.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -381,6 +378,7 @@
             this.btStatisticsE.TabIndex = 4;
             this.btStatisticsE.Text = "Statistics";
             this.btStatisticsE.UseVisualStyleBackColor = true;
+            this.btStatisticsE.Click += new System.EventHandler(this.btStatisticsE_Click);
             // 
             // btEmployeeE
             // 
@@ -417,143 +415,143 @@
             // pStatistics
             // 
             this.pStatistics.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pStatistics.Controls.Add(this.groupBox5);
-            this.pStatistics.Controls.Add(this.groupBox4);
+            this.pStatistics.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pStatistics.BackgroundImage")));
+            this.pStatistics.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pStatistics.Controls.Add(this.btStockControlStats);
+            this.pStatistics.Controls.Add(this.btLogoutStats);
+            this.pStatistics.Controls.Add(this.btStatisticsStats);
+            this.pStatistics.Controls.Add(this.btEmployeeStats);
+            this.pStatistics.Controls.Add(this.btViewStatsOverall);
+            this.pStatistics.Controls.Add(this.btViewDepartmentStats);
+            this.pStatistics.Controls.Add(this.label6);
+            this.pStatistics.Controls.Add(this.cmbDepartmentStats);
+            this.pStatistics.Controls.Add(this.btViewEmployeeStats);
+            this.pStatistics.Controls.Add(this.label5);
+            this.pStatistics.Controls.Add(this.tbNameStats);
             this.pStatistics.Location = new System.Drawing.Point(18, 384);
             this.pStatistics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pStatistics.Name = "pStatistics";
             this.pStatistics.Size = new System.Drawing.Size(814, 260);
             this.pStatistics.TabIndex = 2;
             // 
-            // groupBox5
+            // btLogoutStats
             // 
-            this.groupBox5.Controls.Add(this.btViewStatsOverall);
-            this.groupBox5.Controls.Add(this.btViewDepartmentStats);
-            this.groupBox5.Controls.Add(this.label6);
-            this.groupBox5.Controls.Add(this.cmbDepartmentStats);
-            this.groupBox5.Controls.Add(this.btViewEmployeeStats);
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.tbNameStats);
-            this.groupBox5.Location = new System.Drawing.Point(324, 26);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox5.Size = new System.Drawing.Size(463, 214);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Statistics";
+            this.btLogoutStats.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btLogoutStats.BackgroundImage")));
+            this.btLogoutStats.Font = new System.Drawing.Font("Codec Cold Trial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLogoutStats.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btLogoutStats.Location = new System.Drawing.Point(48, 199);
+            this.btLogoutStats.Margin = new System.Windows.Forms.Padding(1);
+            this.btLogoutStats.Name = "btLogoutStats";
+            this.btLogoutStats.Padding = new System.Windows.Forms.Padding(1);
+            this.btLogoutStats.Size = new System.Drawing.Size(192, 42);
+            this.btLogoutStats.TabIndex = 20;
+            this.btLogoutStats.Text = "Log Out";
+            this.btLogoutStats.UseVisualStyleBackColor = true;
+            // 
+            // btStatisticsStats
+            // 
+            this.btStatisticsStats.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btStatisticsStats.BackgroundImage")));
+            this.btStatisticsStats.Font = new System.Drawing.Font("Codec Cold Trial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btStatisticsStats.ForeColor = System.Drawing.SystemColors.Control;
+            this.btStatisticsStats.Location = new System.Drawing.Point(66, 100);
+            this.btStatisticsStats.Margin = new System.Windows.Forms.Padding(1);
+            this.btStatisticsStats.Name = "btStatisticsStats";
+            this.btStatisticsStats.Padding = new System.Windows.Forms.Padding(1);
+            this.btStatisticsStats.Size = new System.Drawing.Size(192, 42);
+            this.btStatisticsStats.TabIndex = 18;
+            this.btStatisticsStats.Text = "Statistics";
+            this.btStatisticsStats.UseVisualStyleBackColor = true;
+            // 
+            // btEmployeeStats
+            // 
+            this.btEmployeeStats.BackColor = System.Drawing.Color.White;
+            this.btEmployeeStats.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btEmployeeStats.BackgroundImage")));
+            this.btEmployeeStats.Font = new System.Drawing.Font("Codec Cold Trial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEmployeeStats.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btEmployeeStats.Location = new System.Drawing.Point(66, 46);
+            this.btEmployeeStats.Name = "btEmployeeStats";
+            this.btEmployeeStats.Padding = new System.Windows.Forms.Padding(2);
+            this.btEmployeeStats.Size = new System.Drawing.Size(189, 42);
+            this.btEmployeeStats.TabIndex = 17;
+            this.btEmployeeStats.Text = "Emplyee";
+            this.btEmployeeStats.UseVisualStyleBackColor = false;
             // 
             // btViewStatsOverall
             // 
-            this.btViewStatsOverall.Location = new System.Drawing.Point(239, 126);
+            this.btViewStatsOverall.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.btViewStatsOverall.Image = ((System.Drawing.Image)(resources.GetObject("btViewStatsOverall.Image")));
+            this.btViewStatsOverall.Location = new System.Drawing.Point(560, 162);
             this.btViewStatsOverall.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btViewStatsOverall.Name = "btViewStatsOverall";
             this.btViewStatsOverall.Size = new System.Drawing.Size(182, 54);
-            this.btViewStatsOverall.TabIndex = 9;
-            this.btViewStatsOverall.Text = "View stats overall";
+            this.btViewStatsOverall.TabIndex = 16;
+            this.btViewStatsOverall.Text = "View statistics overall";
             this.btViewStatsOverall.UseVisualStyleBackColor = true;
             // 
             // btViewDepartmentStats
             // 
-            this.btViewDepartmentStats.Location = new System.Drawing.Point(13, 126);
+            this.btViewDepartmentStats.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.btViewDepartmentStats.Image = ((System.Drawing.Image)(resources.GetObject("btViewDepartmentStats.Image")));
+            this.btViewDepartmentStats.Location = new System.Drawing.Point(334, 162);
             this.btViewDepartmentStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btViewDepartmentStats.Name = "btViewDepartmentStats";
             this.btViewDepartmentStats.Size = new System.Drawing.Size(182, 54);
-            this.btViewDepartmentStats.TabIndex = 8;
-            this.btViewDepartmentStats.Text = "View department stats";
+            this.btViewDepartmentStats.TabIndex = 15;
+            this.btViewDepartmentStats.Text = "View department statistics";
             this.btViewDepartmentStats.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 85);
+            this.label6.Font = new System.Drawing.Font("Codec Warm Trial", 10F);
+            this.label6.Location = new System.Drawing.Point(330, 121);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 20);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Department:";
+            this.label6.Size = new System.Drawing.Size(142, 22);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "DEPARTMENT:";
             // 
             // cmbDepartmentStats
             // 
+            this.cmbDepartmentStats.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
             this.cmbDepartmentStats.FormattingEnabled = true;
-            this.cmbDepartmentStats.Location = new System.Drawing.Point(115, 77);
+            this.cmbDepartmentStats.Location = new System.Drawing.Point(436, 113);
             this.cmbDepartmentStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbDepartmentStats.Name = "cmbDepartmentStats";
-            this.cmbDepartmentStats.Size = new System.Drawing.Size(180, 28);
-            this.cmbDepartmentStats.TabIndex = 6;
+            this.cmbDepartmentStats.Size = new System.Drawing.Size(180, 35);
+            this.cmbDepartmentStats.TabIndex = 13;
             // 
             // btViewEmployeeStats
             // 
-            this.btViewEmployeeStats.Location = new System.Drawing.Point(321, 29);
+            this.btViewEmployeeStats.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.btViewEmployeeStats.Image = ((System.Drawing.Image)(resources.GetObject("btViewEmployeeStats.Image")));
+            this.btViewEmployeeStats.Location = new System.Drawing.Point(642, 65);
             this.btViewEmployeeStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btViewEmployeeStats.Name = "btViewEmployeeStats";
             this.btViewEmployeeStats.Size = new System.Drawing.Size(112, 35);
-            this.btViewEmployeeStats.TabIndex = 3;
-            this.btViewEmployeeStats.Text = "View stats";
+            this.btViewEmployeeStats.TabIndex = 11;
+            this.btViewEmployeeStats.Text = "View statistics";
             this.btViewEmployeeStats.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 29);
+            this.label5.Font = new System.Drawing.Font("Codec Warm Trial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(361, 65);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Name:";
+            this.label5.Size = new System.Drawing.Size(71, 22);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "NAME:";
             // 
             // tbNameStats
             // 
-            this.tbNameStats.Location = new System.Drawing.Point(115, 29);
+            this.tbNameStats.Font = new System.Drawing.Font("Codec Warm Trial", 12F, System.Drawing.FontStyle.Bold);
+            this.tbNameStats.Location = new System.Drawing.Point(436, 65);
             this.tbNameStats.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbNameStats.Name = "tbNameStats";
-            this.tbNameStats.Size = new System.Drawing.Size(180, 26);
-            this.tbNameStats.TabIndex = 1;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.lbResult);
-            this.groupBox4.Controls.Add(this.btViewStock);
-            this.groupBox4.Controls.Add(this.btViewEmployees);
-            this.groupBox4.Location = new System.Drawing.Point(14, 23);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox4.Size = new System.Drawing.Size(286, 214);
-            this.groupBox4.TabIndex = 0;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Stock/Employee info";
-            this.groupBox4.Visible = false;
-            // 
-            // lbResult
-            // 
-            this.lbResult.FormattingEnabled = true;
-            this.lbResult.ItemHeight = 20;
-            this.lbResult.Location = new System.Drawing.Point(8, 104);
-            this.lbResult.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.lbResult.Name = "lbResult";
-            this.lbResult.Size = new System.Drawing.Size(239, 84);
-            this.lbResult.TabIndex = 5;
-            // 
-            // btViewStock
-            // 
-            this.btViewStock.Location = new System.Drawing.Point(11, 29);
-            this.btViewStock.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btViewStock.Name = "btViewStock";
-            this.btViewStock.Size = new System.Drawing.Size(114, 52);
-            this.btViewStock.TabIndex = 4;
-            this.btViewStock.Text = "View stock";
-            this.btViewStock.UseVisualStyleBackColor = true;
-            // 
-            // btViewEmployees
-            // 
-            this.btViewEmployees.Location = new System.Drawing.Point(133, 32);
-            this.btViewEmployees.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btViewEmployees.Name = "btViewEmployees";
-            this.btViewEmployees.Size = new System.Drawing.Size(114, 52);
-            this.btViewEmployees.TabIndex = 3;
-            this.btViewEmployees.Text = "View employees";
-            this.btViewEmployees.UseVisualStyleBackColor = true;
+            this.tbNameStats.Size = new System.Drawing.Size(180, 33);
+            this.tbNameStats.TabIndex = 10;
             // 
             // pStock
             // 
@@ -619,6 +617,18 @@
             this.btCheckAvailability.Text = "Check availability";
             this.btCheckAvailability.UseVisualStyleBackColor = true;
             // 
+            // btStockControlStats
+            // 
+            this.btStockControlStats.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btStockControlStats.BackgroundImage")));
+            this.btStockControlStats.Font = new System.Drawing.Font("Codec Cold Trial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btStockControlStats.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btStockControlStats.Location = new System.Drawing.Point(7, 149);
+            this.btStockControlStats.Name = "btStockControlStats";
+            this.btStockControlStats.Size = new System.Drawing.Size(279, 42);
+            this.btStockControlStats.TabIndex = 21;
+            this.btStockControlStats.Text = "Stock Control";
+            this.btStockControlStats.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -637,9 +647,7 @@
             this.pEmplyee.ResumeLayout(false);
             this.pEmplyee.PerformLayout();
             this.pStatistics.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
+            this.pStatistics.PerformLayout();
             this.pStock.ResumeLayout(false);
             this.pStock.PerformLayout();
             this.ResumeLayout(false);
@@ -656,18 +664,6 @@
         private System.Windows.Forms.TextBox tbItemID;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel pStatistics;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button btViewStatsOverall;
-        private System.Windows.Forms.Button btViewDepartmentStats;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cmbDepartmentStats;
-        private System.Windows.Forms.Button btViewEmployeeStats;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbNameStats;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ListBox lbResult;
-        private System.Windows.Forms.Button btViewStock;
-        private System.Windows.Forms.Button btViewEmployees;
         private System.Windows.Forms.Panel pStock;
         private System.Windows.Forms.Button btViewStockEmployee;
         private System.Windows.Forms.Button btSendRestockRequest;
@@ -696,6 +692,17 @@
         private System.Windows.Forms.Button btAddToSchedule;
         private System.Windows.Forms.DateTimePicker dtpShiftDate;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btViewStatsOverall;
+        private System.Windows.Forms.Button btViewDepartmentStats;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbDepartmentStats;
+        private System.Windows.Forms.Button btViewEmployeeStats;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbNameStats;
+        private System.Windows.Forms.Button btLogoutStats;
+        private System.Windows.Forms.Button btStatisticsStats;
+        private System.Windows.Forms.Button btEmployeeStats;
+        private System.Windows.Forms.Button btStockControlStats;
     }
 }
 
