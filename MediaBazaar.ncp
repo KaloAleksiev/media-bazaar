@@ -1,0 +1,125 @@
+<Project>
+  <Name>MediaBazaar</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Untitled</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>User</Name>
+        <Access>Public</Access>
+        <Location left="445" top="205" />
+        <Size width="249" height="156" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">String name</Member>
+        <Member type="Field">double salary</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>Department</Name>
+        <Access>Public</Access>
+        <Location left="1291" top="415" />
+        <Size width="162" height="146" />
+        <Collapsed>False</Collapsed>
+        <Value>Computers</Value>
+        <Value>Phones</Value>
+        <Value>TVs</Value>
+        <Value>VideoGames</Value>
+        <Value>Appliances</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>Administrator</Name>
+        <Access>Public</Access>
+        <Location left="10" top="415" />
+        <Size width="237" height="174" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void AddEmployee()</Member>
+        <Member type="Method">public Request ViewRestockRequest()</Member>
+        <Member type="Method">public void AssignToDep()</Member>
+        <Member type="Method">public void RemoveEmployee()</Member>
+        <Member type="Method">public void EditSchedule()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Manager</Name>
+        <Access>Public</Access>
+        <Location left="317" top="415" />
+        <Size width="216" height="174" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public List&lt;Stock&gt; ViewStock()</Member>
+        <Member type="Method">public List&lt;Employees&gt; ViewEmployees()</Member>
+        <Member type="Method">public string ViewEmployeeStats()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DepoWorker</Name>
+        <Access>Public</Access>
+        <Location left="607" top="415" />
+        <Size width="267" height="174" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void SendRestockRequest()</Member>
+        <Member type="Method">public List&lt;Stock&gt; ViewStock()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Employee</Name>
+        <Access>Public</Access>
+        <Location left="941" top="415" />
+        <Size width="290" height="174" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Department Department</Member>
+        <Member type="Method">public List&lt;Stock&gt; ViewStock()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ControlClass</Name>
+        <Access>Public</Access>
+        <Location left="459" top="27" />
+        <Size width="225" height="129" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="5" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="3" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="4" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="5">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
