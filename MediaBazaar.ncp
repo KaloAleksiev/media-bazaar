@@ -1,0 +1,200 @@
+<Project>
+  <Name>MediaBazaar</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Untitled</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>User</Name>
+        <Access>Public</Access>
+        <Location left="616" top="322" />
+        <Size width="249" height="156" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">String name</Member>
+        <Member type="Field">double salary</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>Department</Name>
+        <Access>Public</Access>
+        <Location left="1452" top="534" />
+        <Size width="162" height="146" />
+        <Collapsed>False</Collapsed>
+        <Value>Computers</Value>
+        <Value>Phones</Value>
+        <Value>TVs</Value>
+        <Value>VideoGames</Value>
+        <Value>Appliances</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>Administrator</Name>
+        <Access>Public</Access>
+        <Location left="148" top="534" />
+        <Size width="237" height="174" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void AddEmployee()</Member>
+        <Member type="Method">public Request ViewRestockRequest()</Member>
+        <Member type="Method">public void AssignToDep()</Member>
+        <Member type="Method">public void RemoveEmployee()</Member>
+        <Member type="Method">public void EditSchedule()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Manager</Name>
+        <Access>Public</Access>
+        <Location left="478" top="534" />
+        <Size width="216" height="174" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public List&lt;Stock&gt; ViewStock()</Member>
+        <Member type="Method">public List&lt;Employees&gt; ViewEmployees()</Member>
+        <Member type="Method">public string ViewEmployeeStats()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DepoWorker</Name>
+        <Access>Public</Access>
+        <Location left="768" top="534" />
+        <Size width="267" height="174" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void SendRestockRequest()</Member>
+        <Member type="Method">public List&lt;Stock&gt; ViewStock()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Employee</Name>
+        <Access>Public</Access>
+        <Location left="1102" top="534" />
+        <Size width="290" height="174" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Department Department</Member>
+        <Member type="Method">public List&lt;Stock&gt; ViewStock()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ControlClass</Name>
+        <Access>Public</Access>
+        <Location left="631" top="110" />
+        <Size width="225" height="129" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Item</Name>
+        <Access>Public</Access>
+        <Location left="1363" top="308" />
+        <Size width="245" height="129" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">int itemID</Member>
+        <Member type="Field">int amountInStock</Member>
+        <Member type="Field">string description</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Stock</Name>
+        <Access>Public</Access>
+        <Location left="1019" top="216" />
+        <Size width="211" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void AddItem()</Member>
+        <Member type="Method">public List&lt;Item&gt; GetItems()</Member>
+        <Member type="Method">publicItem GetItemById()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Schedule</Name>
+        <Access>Public</Access>
+        <Location left="272" top="91" />
+        <Size width="224" height="151" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Shift shift</Member>
+        <Member type="Field">DateTime date</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>Shift</Name>
+        <Access>Public</Access>
+        <Location left="51" top="91" />
+        <Size width="162" height="150" />
+        <Collapsed>False</Collapsed>
+        <Value>MORNING</Value>
+        <Value>EVENING</Value>
+        <Value>NOON</Value>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="5" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="3" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="4" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="1" second="5">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="7" second="8">
+        <Label>items</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="8" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="10" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="9" second="6">
+        <Label>Schedules</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartMultiplicity>*</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="0" second="6">
+        <Label>Users</Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartMultiplicity>*</StartMultiplicity>
+        <EndMultiplicity>1</EndMultiplicity>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
