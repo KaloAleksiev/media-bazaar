@@ -47,9 +47,9 @@ namespace WindowsFormsApp1
 
 
 
-            //  pEmplyee.Visible = true;
-            //pEmplyee.SetBounds(0, 0,1280, 800);
-            //btEmployeeE.SetBounds(150,7,150,30);
+            //pEmplyee.Visible = true;
+            //pEmplyee.SetBounds(0, 0, 1280, 800);
+            //btEmployeeE.SetBounds(150, 7, 150, 30);
             //btStatisticsE.SetBounds(400, 7, 150, 30);
             //btStockE.SetBounds(650, 7, 150, 30);
             //btlogoutE.SetBounds(900, 7, 150, 30);
