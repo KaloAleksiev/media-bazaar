@@ -28,3 +28,12 @@ C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\Design prototype\Wind
 C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
 C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\Verg\Desktop\Media Bazaar 101\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\Verg\Desktop\Media Bazaar 101\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\Verg\Desktop\Media Bazaar 101\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\Verg\Desktop\Media Bazaar 101\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
+C:\Users\Verg\Desktop\Media Bazaar 101\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\Verg\Desktop\Media Bazaar 101\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Verg\Desktop\Media Bazaar 101\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\Verg\Desktop\Media Bazaar 101\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\Verg\Desktop\Media Bazaar 101\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
