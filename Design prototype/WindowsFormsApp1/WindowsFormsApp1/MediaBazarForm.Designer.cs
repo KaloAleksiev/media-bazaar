@@ -153,7 +153,7 @@
             this.btStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.btStock.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btStock.Location = new System.Drawing.Point(489, 16);
-            this.btStock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btStock.Margin = new System.Windows.Forms.Padding(2);
             this.btStock.Name = "btStock";
             this.btStock.Size = new System.Drawing.Size(243, 34);
             this.btStock.TabIndex = 5;
@@ -184,7 +184,7 @@
             this.btEmployee.Location = new System.Drawing.Point(149, 16);
             this.btEmployee.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btEmployee.Name = "btEmployee";
-            this.btEmployee.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btEmployee.Padding = new System.Windows.Forms.Padding(1);
             this.btEmployee.Size = new System.Drawing.Size(163, 33);
             this.btEmployee.TabIndex = 3;
             this.btEmployee.Text = "EMPLOYEE";
@@ -224,7 +224,7 @@
             this.pEmplyee.Controls.Add(this.tbName);
             this.pEmplyee.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pEmplyee.Location = new System.Drawing.Point(200, 63);
-            this.pEmplyee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pEmplyee.Margin = new System.Windows.Forms.Padding(2);
             this.pEmplyee.Name = "pEmplyee";
             this.pEmplyee.Size = new System.Drawing.Size(627, 188);
             this.pEmplyee.TabIndex = 7;
@@ -514,7 +514,7 @@
             this.pStatistics.Controls.Add(this.label5);
             this.pStatistics.Controls.Add(this.tbNameStats);
             this.pStatistics.Location = new System.Drawing.Point(9, 257);
-            this.pStatistics.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pStatistics.Margin = new System.Windows.Forms.Padding(2);
             this.pStatistics.Name = "pStatistics";
             this.pStatistics.Size = new System.Drawing.Size(464, 148);
             this.pStatistics.TabIndex = 8;
@@ -525,7 +525,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
             this.listBox1.Location = new System.Drawing.Point(50, 105);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(341, 4);
             this.listBox1.TabIndex = 42;
@@ -614,7 +614,7 @@
             this.pStock.Controls.Add(this.tbItemID);
             this.pStock.Controls.Add(this.label3);
             this.pStock.Location = new System.Drawing.Point(478, 257);
-            this.pStock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pStock.Margin = new System.Windows.Forms.Padding(2);
             this.pStock.Name = "pStock";
             this.pStock.Size = new System.Drawing.Size(349, 148);
             this.pStock.TabIndex = 9;
@@ -630,6 +630,7 @@
             this.btViewStockEmployee.TabIndex = 26;
             this.btViewStockEmployee.Text = "View stock";
             this.btViewStockEmployee.UseVisualStyleBackColor = false;
+            this.btViewStockEmployee.Click += new System.EventHandler(this.btViewStockEmployee_Click);
             // 
             // btSendRestockRequest
             // 
@@ -642,6 +643,7 @@
             this.btSendRestockRequest.TabIndex = 29;
             this.btSendRestockRequest.Text = "Send restock request";
             this.btSendRestockRequest.UseVisualStyleBackColor = false;
+            this.btSendRestockRequest.Click += new System.EventHandler(this.btSendRestockRequest_Click);
             // 
             // tbItemIDRestock
             // 
@@ -671,6 +673,7 @@
             this.btCheckAvailability.TabIndex = 25;
             this.btCheckAvailability.Text = "Check availability";
             this.btCheckAvailability.UseVisualStyleBackColor = false;
+            this.btCheckAvailability.Click += new System.EventHandler(this.btCheckAvailability_Click);
             // 
             // tbItemID
             // 
@@ -694,7 +697,7 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(39, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(107, 60);
             this.pictureBox1.TabIndex = 10;

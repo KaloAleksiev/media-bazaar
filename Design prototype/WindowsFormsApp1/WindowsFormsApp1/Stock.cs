@@ -8,14 +8,15 @@ namespace WindowsFormsApp1
 {
     public class Stock
     {
-        private int id;
+        //private int id;
+        //Why do we need id for stock ?? - Alex
         private string name;
         List<Item> items;
 
-        public  Stock(int id, string name)
+        public Stock(string name)
         {
             items = new List<Item>();
-            this.id = id;
+            //this.id = id;
             this.name = name;
         }
 
@@ -39,6 +40,16 @@ namespace WindowsFormsApp1
                 }
             }
             return null;
+        }
+
+        public string GetStockInfo()
+        {
+            string returnStr = "";
+            foreach(Item i in items)
+            {
+                returnStr += $"{i.GetInfo()} \n";
+            }
+            return returnStr;
         }
 
 

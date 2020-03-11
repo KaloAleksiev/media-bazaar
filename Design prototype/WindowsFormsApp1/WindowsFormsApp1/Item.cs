@@ -10,6 +10,7 @@ namespace WindowsFormsApp1
     {
         private int id;
         private static int idSeeder = 1000;
+        //maybe the Seeder should be set based on the MAX_ID in the Database each time we start the app
         private string name;
         private string description;
         private int amountInStock;
@@ -46,6 +47,12 @@ namespace WindowsFormsApp1
             this.arLimit = arLimit;
             this.Id = idSeeder;
             idSeeder++;
+
+        }
+
+        public string GetInfo()
+        {
+            return $"{this.name}(ID - {this.Id}) - {this.description}: amount in stock:{this.amountInStock}";
         }
 
        

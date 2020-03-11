@@ -11,7 +11,8 @@ using System.Windows.Forms;
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
-    { 
+    {
+        private Stock s;
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +34,9 @@ namespace WindowsFormsApp1
             tbUsername.SetBounds(745,320,200,100);
             tbPassword.SetBounds(745, 373, 200, 100);
             btLogin.SetBounds(745, 405, 200, 30);
+
+            //variable initialization
+            s = new Stock("Stock");
         }
 
         private void btLogin_Click(object sender, EventArgs e)
@@ -173,6 +177,38 @@ namespace WindowsFormsApp1
            pLogin.BackgroundImage = Image.FromFile(".\\backgroundImages\\login.jpg");
          
         }
+
+        #region Stock
+        private void btCheckAvailability_Click(object sender, EventArgs e)
+        {           
+            try{
+                
+
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void btViewStockEmployee_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btSendRestockRequest_Click(object sender, EventArgs e)
+        {
+            try{
+                RestockRequestForm r = new RestockRequestForm(Convert.ToInt32(tbItemIDRestock.Text));
+                r.Show(this);
+            }
+            catch
+            {
+                MessageBox.Show("Please enter an Intager value for ID");
+            }
+           
+        }
+        #endregion
     }
-    
+
 }

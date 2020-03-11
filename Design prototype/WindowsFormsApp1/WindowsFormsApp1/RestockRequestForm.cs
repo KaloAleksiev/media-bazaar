@@ -12,9 +12,17 @@ namespace WindowsFormsApp1
 {
     public partial class RestockRequestForm : Form
     {
-        public RestockRequestForm()
+        private int ItemId;
+        public RestockRequestForm(int id)
         {
             InitializeComponent();
+            this.ItemId = id;
+            tbItemIDRestockForm.Text = ItemId.ToString();
+        }
+
+        private void btnSendRequest_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
