@@ -71,6 +71,7 @@
     <Compile Include="Schedule.cs" />
     <Compile Include="Shift.cs" />
     <Compile Include="ShiftType.cs" />
+    <Compile Include="Statistics.cs" />
     <Compile Include="Stock.cs" />
     <Compile Include="User.cs" />
     <EmbeddedResource Include="MediaBazarForm.resx">

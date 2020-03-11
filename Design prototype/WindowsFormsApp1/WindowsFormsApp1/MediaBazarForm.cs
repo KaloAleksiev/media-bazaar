@@ -104,7 +104,7 @@ namespace WindowsFormsApp1
 
         private void btStatistics_Click(object sender, EventArgs e)
         {
-            //Hides all panels and dispaly the only the Statistic panel
+            //Hides all panels and displays the only the Statistic panel
             pLogin.Visible = false;
             pEmplyee.Visible = false;
             pStatistics.Visible = true;
@@ -154,7 +154,7 @@ namespace WindowsFormsApp1
 
         private void btStock_Click(object sender, EventArgs e)
         {
-            //Hides all panels and dispaly the only the Stock Control panel
+            //Hides all panels and display the only the Stock Control panel
             pLogin.Visible = false;
             pEmplyee.Visible = false;
             pStatistics.Visible = false;
@@ -172,11 +172,6 @@ namespace WindowsFormsApp1
             pLogin.SetBounds(0, 0, 1280, 800);
            pLogin.BackgroundImage = Image.FromFile(".\\backgroundImages\\login.jpg");
          
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
         }
     }
     

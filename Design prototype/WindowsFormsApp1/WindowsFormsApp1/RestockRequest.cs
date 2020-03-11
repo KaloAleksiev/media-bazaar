@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class RestockRequest
+    public class RestockRequest
     {
         private int id;
         private static int idSeeder = 1000;
@@ -35,6 +35,11 @@ namespace WindowsFormsApp1
             this.date = date;
             this.Id = idSeeder;
             idSeeder++;
+        }
+
+        public string GetInfo()
+        {
+            return $"Restock Request {this.Id}, {this.item} x{this.amount}, made by {this.depotWorker} on {this.date}.";
         }
     }
 }
