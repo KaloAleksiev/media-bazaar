@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-   public  enum Department
+    public class ControlClass
     {
-        Computers,
-        Phones,
-        TVs,
-        VideoGames,
-        Appliances
+        public static List<User> users = new List<User>();
     }
 }

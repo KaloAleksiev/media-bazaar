@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrator.cs" />
+    <Compile Include="ControlClass.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="DepotWorker.cs" />
     <Compile Include="Employee.cs" />

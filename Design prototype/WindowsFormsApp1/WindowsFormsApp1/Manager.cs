@@ -6,8 +6,32 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class Manager
+    public class Manager : User
     {
         private int managerId;
+        public Manager(string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
+        {
+         
+        }
+        public Item[] ViewStock()
+        {
+            return Stock.items.ToArray();
+        }
+        public Employee[] ViewEmplyee()
+        {
+            List<Employee> emplyees = new List<Employee>();
+            foreach (Employee emplyee in ControlClass.users.OfType<Employee>())
+            {
+                emplyees.Add(emplyee);
+            }
+            return emplyees.ToArray();
+        }
+      
+        //public string ViewEmplyeeStats()
+        //{
+        //    string emplyeestats = "";
+        //    return emplyeestats;
+        //}
+
     }
 }

@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class Employee : User
+    public class Employee : User
     {
         private int empNumber;
         private Department department;
         private double salary;
-        private string phoneNumber;
         private DateTime startDate;
-        private string address;
+        public Employee(string firstName, string lastname, string email, string address, string phonenumber, Department department,double salary):base(firstName, lastname,email, address, phonenumber)
+        {
+            this.department = department;
+            this.salary = salary;
+        }
+        public Item[] ViewStock()
+        {
+            return Stock.items.ToArray();
+        }
     }
 }

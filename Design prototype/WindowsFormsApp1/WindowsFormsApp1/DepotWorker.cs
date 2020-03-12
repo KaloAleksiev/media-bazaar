@@ -11,5 +11,17 @@ namespace WindowsFormsApp1
         private int empNumber;
         private double salary;
         private DateTime startDate;
+        public DepotWorker(string firstName, string lastname, string email, string address, string phonenumber, double salary) : base(firstName, lastname, email, address, phonenumber)
+        {
+            this.salary = salary;
+        }
+        public Item[] ViewStock()
+        {
+            return Stock.items.ToArray();
+        }
+        public void SendRestockRequest(Item item, int amount, DepotWorker depotWorker, DateTime date)
+        {
+            RestockRequest request = new RestockRequest( item, amount, depotWorker, date);
+        }
     }
 }

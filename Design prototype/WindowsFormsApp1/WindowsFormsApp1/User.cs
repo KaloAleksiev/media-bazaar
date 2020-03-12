@@ -12,6 +12,17 @@ namespace WindowsFormsApp1
         private string firstName;
         private string lastName;
         private string email;
+        private string address;
         private string password;
+        private string phoneNumber;
+      public User(string firstName, string lastname, string email, string address, string phonenumber)
+        {
+            this.firstName = firstName;
+            this.lastName = lastname;
+            this.email = email;
+            this.address = address;
+            this.phoneNumber = phonenumber;
+        }
+         
     }
 }

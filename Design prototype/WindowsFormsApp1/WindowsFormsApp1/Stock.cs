@@ -11,7 +11,8 @@ namespace WindowsFormsApp1
         //private int id;
         //Why do we need id for stock ?? - Alex
         private string name;
-        List<Item> items;
+        //can we make th list static? - Cristina
+      public  static List<Item> items;
 
         public Stock(string name)
         {
