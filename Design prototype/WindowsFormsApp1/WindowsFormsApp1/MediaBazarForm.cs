@@ -170,6 +170,25 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void btSchedule_Click(object sender, EventArgs e)
+        {
+            DateTime dt = DateTime.Now;
+            int third = 1;
+            if (dt.Day > 0 && dt.Day <= 10)
+            { third = 1; }
+            else if (dt.Day > 10 && dt.Day <= 20)
+            { third = 2; }
+            else if (dt.Day > 20 && dt.Day <= 32)
+            { third = 3; }
+            CreateScheduleForm(dt.AddDays(-(dt.Day - 1) + 10 * (third - 1)), third);
+        }
+
+        public static void CreateScheduleForm(DateTime dt, int third)
+        {
+            ScheduleForm frm = new ScheduleForm(dt, third);
+            frm.Show();
+        }
     }
 
 }
