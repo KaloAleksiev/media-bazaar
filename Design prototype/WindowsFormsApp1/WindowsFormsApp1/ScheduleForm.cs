@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace WindowsFormsApp1
 {
@@ -14,6 +16,8 @@ namespace WindowsFormsApp1
     {
 
         //Button[,] arrayOfButtons;
+        string connStr = "";
+        SqlConnection conn;
         int b = 15;
         int posX = 15;
         int posY = 102;
@@ -29,6 +33,8 @@ namespace WindowsFormsApp1
         public ScheduleForm(DateTime dt, int third)
         {
             InitializeComponent();
+            //connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database = dbi427262; Pwd=parola1234;";
+            conn = new SqlConnection(connStr);
             this.dt = dt;
             dtL = dt;
             this.third = third;
@@ -42,9 +48,13 @@ namespace WindowsFormsApp1
             }
             else
             { dtL = dt.AddDays(10); }
+            if (dtL.Day == 1)
+            {
+                dtL = dtL.AddDays(-1);
+            }
             dynamicLabels = new List<Label>();
             dynamicButtons = new List<Button>();
-            lblMonth.Text = dt.ToString("dd-MM-yy") + "-" + dtL.ToString("dd-MM-yy");
+            lblMonth.Text = dt.ToString("dd.MM.yy") + "-" + dtL.ToString("dd.MM.yy");
             AlignAll();
             createSchedule(GetMonth(dt));
             //arrayOfButtons = new Button[a, b];
@@ -77,7 +87,19 @@ namespace WindowsFormsApp1
                     dynamicButton.BackColor = Color.White;
                     dynamicButton.ForeColor = Color.Black;
                     dynamicButton.FlatStyle = FlatStyle.Flat;
-                    dynamicButton.Text = "Click";
+
+                    //conn.Open();
+                    //SqlCommand getNPeople = new SqlCommand("SELECT COUNT(*) AS NofEmp FROM RA WHERE aEmail LIKE '" + tbEmail.Text + "'AND aPassword LIKE '" + tbPassword.Text + "'", conn);
+                    //SqlDataReader reader1 = getNPeople.ExecuteReader();
+                    //reader1.Read();
+                    int n = 1;
+
+                    if (j >= 0 && j < 3)
+                    { dynamicButton.Text = n + " / 1"; }
+                    else if (j >= 3 && j < 6)
+                    { dynamicButton.Text = n + " / 2"; }
+                    else if (j >=6 && j < b)
+                    { dynamicButton.Text = n + " / 3"; }
                     dynamicButton.Name = "i" + i + "j" + j;
                     dynamicButton.Font = new Font("Microsoft Sans Serif", 8);
                     dynamicButton.Click += new EventHandler(DynamicButton_Click);
@@ -142,14 +164,12 @@ namespace WindowsFormsApp1
             if (third == 3)
             { 
                 dt = dt.AddDays((int)GetMonth(dt) - 20);
-                if (dt.Day == 1)
-                { dt.AddDays(-1); }
             }
             else if (third == 2)
             {
                 dt = dt.AddDays(10);
                 if (dt.Day == 1)
-                { dt.AddDays(-1); }
+                { dt = dt.AddDays(-1); }
             }
             else { dt = dt.AddDays(10); }
             third++;
@@ -161,34 +181,34 @@ namespace WindowsFormsApp1
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
-            if (third == 3)
-            { 
-                dt = dt.AddDays(-((int)GetMonth(dt) - 20));
-                if (dt.Day == 30 || dt.Day == 31 || dt.Day == 28)
-                {
-                    dt.AddMonths(1);
-                    dt.AddDays(-dt.Day + 1);
-                }
-            }
-            else if (third == 2)
-            {
-                dt = dt.AddDays(-10);
-                if (dt.Day == 30 || dt.Day == 31 || dt.Day == 28)
-                { dt.AddDays(1); }
-            }
-            else
-            { 
-                dt = dt.AddDays(-10);
-                if (dt.Day == 30 || dt.Day == 31 || dt.Day == 28)
-                { dt.AddDays(1); }
-            }
-            if (dt.Month < 3 && dt.Year < 2021)
+            if (dt.Day == 1 && dt.Month == 3 && dt.Year == 2020)
             {
                 MessageBox.Show("No data for February 2020 and earlier.");
-                dt = dt.AddMonths(1);
+                //dt = dt.AddMonths(1);
             }
             else
             {
+                if (third == 3)
+                {
+                    dt = dt.AddDays(-((int)GetMonth(dt) - 20));
+                    if (dt.Day == 30 || dt.Day == 31 || dt.Day == 29)
+                    {
+                        //dt = dt.AddMonths(1);
+                        dt = dt.AddDays(-dt.Day + 1);
+                    }
+                }
+                else if (third == 2)
+                {
+                    dt = dt.AddDays(-10);
+                    if (dt.Day == 30 || dt.Day == 31 || dt.Day == 29)
+                    { dt = dt.AddDays(1); }
+                }
+                else
+                {
+                    dt = dt.AddDays(-10);
+                    if (dt.Day == 30 || dt.Day == 31 || dt.Day == 29)
+                    { dt = dt.AddDays(1); }
+                }
                 third--;
                 if (third == 0)
                 { third = 3; }
@@ -233,6 +253,7 @@ namespace WindowsFormsApp1
             lblMonth.Location = new Point(350, 9);
 
             int posYfixed = 50;
+
             List<Label> labels = new List<Label>();
             foreach (Control obj in Controls)
             {
