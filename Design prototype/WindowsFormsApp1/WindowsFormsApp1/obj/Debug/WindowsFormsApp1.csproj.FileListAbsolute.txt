@@ -19,3 +19,14 @@ C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\Design prototype\Wind
 C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.ScheduleForm.resources
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.RestockRequestForm.resources
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.ScheduleForm.resources
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
