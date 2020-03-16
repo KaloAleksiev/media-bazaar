@@ -128,34 +128,30 @@ namespace WindowsFormsApp1
             pStock.SetBounds(0, 50, 1280, 750);
 
             string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            SqlConnection conn = new SqlConnection(connStr);
+            MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
-            SqlCommand GetMAXitem = new SqlCommand("SELECT MAX(item_id) AS maxItem FROM item", conn);
-            SqlDataReader reader1 = GetMAXitem.ExecuteReader();
+            MySqlCommand GetMAXitem = new MySqlCommand("SELECT MAX(item_id) AS maxItem FROM item", conn);
+            MySqlDataReader reader1 = GetMAXitem.ExecuteReader();
             reader1.Read();
-            for (int i = 1; i <= (int)reader1["maxItem"]; i++)
+            int maxItem = (int)reader1["maxItem"];
+            reader1.Close();
+            for (int i = 1; i <= maxItem; i++)
             {
-                try
-                {
-                    SqlCommand GetAllItems = new SqlCommand("SELECT item_id AS id, name AS name, description AS desc, amount_in_stock AS inStock, auto_restock AS ar, ar_limit AS arl FROM item", conn);
-                    SqlDataReader reader2 = GetMAXitem.ExecuteReader();
-                    int itemId = Convert.ToInt32(reader2["id"]);
-                    string name = Convert.ToString(reader2["name"]);
-                    string desc = Convert.ToString(reader2["desc"]);
-                    int inStock = Convert.ToInt32(reader2["inStock"]);
-                    bool ar = Convert.ToBoolean(reader2["ar"]);
-                    int arl = Convert.ToInt32(reader2["arl"]);
+                MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id AS id, name AS name, description AS descr, amount_in_stock AS inStock, auto_restock AS ar, ar_limit AS arl FROM item;", conn);
+                MySqlDataReader reader2 = GetAllItems.ExecuteReader();
+                reader2.Read();
+                int itemId = Convert.ToInt32(reader2["id"]);
+                string name = Convert.ToString(reader2["name"]);
+                string desc = Convert.ToString(reader2["descr"]);
+                int inStock = Convert.ToInt32(reader2["inStock"]);
+                bool ar = Convert.ToBoolean(reader2["ar"]);
+                int arl = Convert.ToInt32(reader2["arl"]);
 
-                    Item item = new Item(itemId, name, desc, inStock, ar, arl);
-                    stock.AddItem(item);
-
-                }
-                catch
-                {
-                    MessageBox.Show("unsucc");
-                }
-                
+                Item item = new Item(itemId, name, desc, inStock, ar, arl);
+                stock.AddItem(item);
             }
+            conn.Close();
+        
         }
 
         private void btlogout_Click(object sender, EventArgs e)
@@ -170,14 +166,13 @@ namespace WindowsFormsApp1
 
         #region Stock
         private void btCheckAvailability_Click(object sender, EventArgs e)
-        {           
-            try{
-                
+        {
+            int idToCheck = Convert.ToInt32(tbItemID.Text);
 
-            }
-            catch
+            if (stock.GetItemById(idToCheck) != null)
             {
-
+                Item item = stock.GetItemById(idToCheck);
+                MessageBox.Show(item.GetInfo());
             }
         }
 
