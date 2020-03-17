@@ -7,17 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms;
-using System.Data.SqlClient;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {
     public partial class ScheduleForm : Form
     {
-
         //Button[,] arrayOfButtons;
-        string connStr = "";
-        SqlConnection conn;
         int b = 15;
         int posX = 15;
         int posY = 102;
@@ -29,12 +26,14 @@ namespace WindowsFormsApp1
         DateTime dt;
         DateTime dtL;
         int third = 1;
+        string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+        MySqlConnection conn;
 
         public ScheduleForm(DateTime dt, int third)
         {
             InitializeComponent();
-            //connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database = dbi427262; Pwd=parola1234;";
-            conn = new SqlConnection(connStr);
+
+            conn = new MySqlConnection(connStr);
             this.dt = dt;
             dtL = dt;
             this.third = third;
@@ -88,18 +87,45 @@ namespace WindowsFormsApp1
                     dynamicButton.ForeColor = Color.Black;
                     dynamicButton.FlatStyle = FlatStyle.Flat;
 
-                    //conn.Open();
-                    //SqlCommand getNPeople = new SqlCommand("SELECT COUNT(*) AS NofEmp FROM RA WHERE aEmail LIKE '" + tbEmail.Text + "'AND aPassword LIKE '" + tbPassword.Text + "'", conn);
-                    //SqlDataReader reader1 = getNPeople.ExecuteReader();
-                    //reader1.Read();
                     int n = 1;
 
                     if (j >= 0 && j < 3)
-                    { dynamicButton.Text = n + " / 1"; }
+                    {
+                        dynamicButton.Text = n + " / 1";
+                    }
                     else if (j >= 3 && j < 6)
                     { dynamicButton.Text = n + " / 2"; }
-                    else if (j >=6 && j < b)
-                    { dynamicButton.Text = n + " / 3"; }
+                    else if (j >= 6 && j < b)
+                    {
+                        DateTime dtDB = dt;
+                        int mnth = dtDB.Month;
+                        while (dt.Day != dtDB.Day)
+                        { dtDB.AddDays(1); }
+                        if (dtDB.Month != mnth)
+                        { dtDB.AddMonths(-1); }
+                        ShiftType st = ShiftType.Morning;
+                        if (j % 3 == 0)
+                        { st = ShiftType.Morning; }
+                        else if (j % 3 == 1)
+                        { st = ShiftType.Noon; }
+                        else if (j % 3 == 2)
+                        { st = ShiftType.Evening; }
+                        Department dep = Department.Phones;
+                        if (j >= 6 && j < 9)
+                        { dep = Department.Phones; }
+                        else if (j >= 9 && j < 12)
+                        { dep = Department.Computers; }
+                        else if (j >= 15 && j < b)
+                        { dep = Department.Phones; }
+                        MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_id) AS EN FROM shift_employee WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dtDB.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
+                        conn.Open();
+                        MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
+                        reader1.Read();
+                        n = Convert.ToInt32(reader1["EN"]);
+                        reader1.Close();
+                        conn.Close();
+                        dynamicButton.Text = n + " / 3";
+                    }
                     dynamicButton.Name = "i" + i + "j" + j;
                     dynamicButton.Font = new Font("Microsoft Sans Serif", 8);
                     dynamicButton.Click += new EventHandler(DynamicButton_Click);
