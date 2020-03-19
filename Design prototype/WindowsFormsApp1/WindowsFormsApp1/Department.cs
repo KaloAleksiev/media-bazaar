@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
         Computers,
         Phones,
         TVs,
-        VideoGames,
-        Appliances
+        Manager,
+        DepotWorker
     }
 }

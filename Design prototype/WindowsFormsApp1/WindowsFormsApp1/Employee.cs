@@ -12,11 +12,15 @@ namespace WindowsFormsApp1
         private Department department;
         private double salary;
         private DateTime startDate;
-        public Employee(string firstName, string lastname, string email, string address, string phonenumber, Department department,double salary):base(firstName, lastname,email, address, phonenumber)
+        public Employee(string firstName, string lastname, string email, string address, string phonenumber, Department department, double salary) : base(firstName, lastname, email, address, phonenumber)
         {
             this.department = department;
             this.salary = salary;
         }
+
+        public int Id
+        {get; set;}
+
         public Item[] ViewStock()
         {
             return Stock.items.ToArray();

@@ -15,6 +15,9 @@ namespace WindowsFormsApp1
         {
             this.salary = salary;
         }
+        public int Id
+        { get; set; }
+
         public Item[] ViewStock()
         {
             return Stock.items.ToArray();

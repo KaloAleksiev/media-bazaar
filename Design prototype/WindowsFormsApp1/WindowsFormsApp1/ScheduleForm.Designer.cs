@@ -52,6 +52,7 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.lblMonth = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.pShift = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label1
@@ -364,6 +365,13 @@
             this.label21.Text = "label21";
             this.label21.Visible = false;
             // 
+            // pShift
+            // 
+            this.pShift.Location = new System.Drawing.Point(50, 118);
+            this.pShift.Name = "pShift";
+            this.pShift.Size = new System.Drawing.Size(751, 284);
+            this.pShift.TabIndex = 24;
+            // 
             // ScheduleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -371,6 +379,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(852, 453);
+            this.Controls.Add(this.pShift);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.lblMonth);
             this.Controls.Add(this.btnNext);
@@ -429,5 +438,6 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Label lblMonth;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Panel pShift;
     }
 }
