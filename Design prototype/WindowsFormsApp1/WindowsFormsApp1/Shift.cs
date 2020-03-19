@@ -64,7 +64,7 @@ namespace WindowsFormsApp1
             {
                 table = "shift_depot";
                 MySqlCommand AddPersonToShiftDB = new MySqlCommand("INSERT INTO " + table + " (employee_id, shift_id) VALUES (@demployee_id, @shift_id)", conn);
-                AddPersonToShiftDB.Parameters.AddWithValue("@demployee_id", user.Id);
+                AddPersonToShiftDB.Parameters.AddWithValue("@demployee_id", user.EmpNumber);
                 AddPersonToShiftDB.Parameters.AddWithValue("@shift_id", this.shiftId);
                 conn.Open();
                 int j = AddPersonToShiftDB.ExecuteNonQuery();
@@ -75,7 +75,7 @@ namespace WindowsFormsApp1
             {
                 table = "shift_manager";
                 MySqlCommand AddPersonToShiftDB = new MySqlCommand("INSERT INTO " + table + " (employee_id, shift_id) VALUES (@demployee_id, @shift_id)", conn);
-                //AddPersonToShiftDB.Parameters.AddWithValue("@demployee_id", user.Id);
+                AddPersonToShiftDB.Parameters.AddWithValue("@employee_id", user.ManagerId);
                 AddPersonToShiftDB.Parameters.AddWithValue("@shift_id", this.shiftId);
                 conn.Open();
                 int j = AddPersonToShiftDB.ExecuteNonQuery();

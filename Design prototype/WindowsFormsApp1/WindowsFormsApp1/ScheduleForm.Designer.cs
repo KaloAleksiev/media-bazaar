@@ -52,7 +52,17 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.lblMonth = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.pShift = new System.Windows.Forms.Panel();
+            this.pShiftControl = new System.Windows.Forms.Panel();
+            this.lbAllEmp = new System.Windows.Forms.ListBox();
+            this.lbInShift = new System.Windows.Forms.ListBox();
+            this.lblInfo = new System.Windows.Forms.Label();
+            this.btnAddToShift = new System.Windows.Forms.Button();
+            this.btnRemoveFromShift = new System.Windows.Forms.Button();
+            this.btnConfirm = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.pShiftControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -365,12 +375,129 @@
             this.label21.Text = "label21";
             this.label21.Visible = false;
             // 
-            // pShift
+            // pShiftControl
             // 
-            this.pShift.Location = new System.Drawing.Point(50, 118);
-            this.pShift.Name = "pShift";
-            this.pShift.Size = new System.Drawing.Size(751, 284);
-            this.pShift.TabIndex = 24;
+            this.pShiftControl.Controls.Add(this.label23);
+            this.pShiftControl.Controls.Add(this.label22);
+            this.pShiftControl.Controls.Add(this.btnCancel);
+            this.pShiftControl.Controls.Add(this.btnConfirm);
+            this.pShiftControl.Controls.Add(this.btnRemoveFromShift);
+            this.pShiftControl.Controls.Add(this.btnAddToShift);
+            this.pShiftControl.Controls.Add(this.lblInfo);
+            this.pShiftControl.Controls.Add(this.lbInShift);
+            this.pShiftControl.Controls.Add(this.lbAllEmp);
+            this.pShiftControl.Location = new System.Drawing.Point(50, 157);
+            this.pShiftControl.Name = "pShiftControl";
+            this.pShiftControl.Size = new System.Drawing.Size(751, 284);
+            this.pShiftControl.TabIndex = 24;
+            // 
+            // lbAllEmp
+            // 
+            this.lbAllEmp.FormattingEnabled = true;
+            this.lbAllEmp.ItemHeight = 16;
+            this.lbAllEmp.Location = new System.Drawing.Point(16, 67);
+            this.lbAllEmp.Name = "lbAllEmp";
+            this.lbAllEmp.Size = new System.Drawing.Size(234, 196);
+            this.lbAllEmp.TabIndex = 25;
+            // 
+            // lbInShift
+            // 
+            this.lbInShift.FormattingEnabled = true;
+            this.lbInShift.ItemHeight = 16;
+            this.lbInShift.Location = new System.Drawing.Point(500, 67);
+            this.lbInShift.Name = "lbInShift";
+            this.lbInShift.Size = new System.Drawing.Size(234, 196);
+            this.lbInShift.TabIndex = 26;
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.BackColor = System.Drawing.Color.White;
+            this.lblInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.lblInfo.ForeColor = System.Drawing.Color.Black;
+            this.lblInfo.Location = new System.Drawing.Point(16, 12);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(718, 26);
+            this.lblInfo.TabIndex = 30;
+            this.lblInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // btnAddToShift
+            // 
+            this.btnAddToShift.BackColor = System.Drawing.Color.White;
+            this.btnAddToShift.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddToShift.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.btnAddToShift.ForeColor = System.Drawing.Color.Black;
+            this.btnAddToShift.Location = new System.Drawing.Point(308, 107);
+            this.btnAddToShift.Name = "btnAddToShift";
+            this.btnAddToShift.Size = new System.Drawing.Size(150, 27);
+            this.btnAddToShift.TabIndex = 31;
+            this.btnAddToShift.Text = "Add to shift";
+            this.btnAddToShift.UseVisualStyleBackColor = false;
+            // 
+            // btnRemoveFromShift
+            // 
+            this.btnRemoveFromShift.BackColor = System.Drawing.Color.White;
+            this.btnRemoveFromShift.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveFromShift.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.btnRemoveFromShift.ForeColor = System.Drawing.Color.Black;
+            this.btnRemoveFromShift.Location = new System.Drawing.Point(308, 150);
+            this.btnRemoveFromShift.Name = "btnRemoveFromShift";
+            this.btnRemoveFromShift.Size = new System.Drawing.Size(150, 27);
+            this.btnRemoveFromShift.TabIndex = 32;
+            this.btnRemoveFromShift.Text = "Remove from shift";
+            this.btnRemoveFromShift.UseVisualStyleBackColor = false;
+            // 
+            // btnConfirm
+            // 
+            this.btnConfirm.BackColor = System.Drawing.Color.White;
+            this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.btnConfirm.ForeColor = System.Drawing.Color.Black;
+            this.btnConfirm.Location = new System.Drawing.Point(308, 193);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(150, 27);
+            this.btnConfirm.TabIndex = 33;
+            this.btnConfirm.Text = "Confirm";
+            this.btnConfirm.UseVisualStyleBackColor = false;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.White;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.btnCancel.ForeColor = System.Drawing.Color.Black;
+            this.btnCancel.Location = new System.Drawing.Point(308, 236);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(150, 27);
+            this.btnCancel.TabIndex = 34;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            // 
+            // label22
+            // 
+            this.label22.BackColor = System.Drawing.Color.White;
+            this.label22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(50, 39);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(150, 26);
+            this.label22.TabIndex = 35;
+            this.label22.Text = "All employees:";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label23
+            // 
+            this.label23.BackColor = System.Drawing.Color.White;
+            this.label23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label23.ForeColor = System.Drawing.Color.Black;
+            this.label23.Location = new System.Drawing.Point(550, 39);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(150, 26);
+            this.label23.TabIndex = 36;
+            this.label23.Text = "On shift:";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // ScheduleForm
             // 
@@ -379,7 +506,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(852, 453);
-            this.Controls.Add(this.pShift);
+            this.Controls.Add(this.pShiftControl);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.lblMonth);
             this.Controls.Add(this.btnNext);
@@ -407,6 +534,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "ScheduleForm";
             this.Text = "ScheduleForm";
+            this.pShiftControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,6 +566,15 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Label lblMonth;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Panel pShift;
+        private System.Windows.Forms.Panel pShiftControl;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnConfirm;
+        private System.Windows.Forms.Button btnRemoveFromShift;
+        private System.Windows.Forms.Button btnAddToShift;
+        private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.ListBox lbInShift;
+        private System.Windows.Forms.ListBox lbAllEmp;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
     }
 }
