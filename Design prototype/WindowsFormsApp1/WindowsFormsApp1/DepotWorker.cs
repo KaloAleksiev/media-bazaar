@@ -8,12 +8,13 @@ namespace WindowsFormsApp1
 {
     public class DepotWorker : User
     {
-        private int empNumber;
-        private double salary;
+        public static int depoNumber;
+        public static double salary ;
         private DateTime startDate;
-        public DepotWorker(string firstName, string lastname, string email, string address, string phonenumber, double salary) : base(firstName, lastname, email, address, phonenumber)
+        public DepotWorker(string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
         {
-            this.salary = salary;
+            depoNumber++;
+            salary = 2000;
         }
         public Item[] ViewStock()
         {
@@ -23,5 +24,6 @@ namespace WindowsFormsApp1
         {
             RestockRequest request = new RestockRequest( item, amount, depotWorker, date);
         }
+
     }
 }

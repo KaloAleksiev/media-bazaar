@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-   public  enum Department
+   public enum Department
     {
         Computers,
         Phones,
-        TVs,
-        VideoGames,
-        Appliances
+        TVs
     }
 }
