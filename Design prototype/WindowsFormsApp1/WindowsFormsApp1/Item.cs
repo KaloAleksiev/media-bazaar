@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
             {
                 return this.id;
             }
-            private set 
+            private set
             {
                 this.id = value;
             }
@@ -50,16 +50,17 @@ namespace WindowsFormsApp1
             this.autoRestock = autoRestock;
             this.arLimit = arLimit;
             this.Id = id;
-            //this.Id = idSeeder;
-            //idSeeder++;
 
         }
 
         public string GetInfo()
         {
-            return $"{this.name}(ID - {this.Id}) - {this.description}: amount in stock:{this.amountInStock}";
+            return $"x{this.amountInStock} \t {this.name}";
         }
 
-       
+        public string GetDetailedInfo()
+        {
+            return $"x{this.amountInStock} \t {this.name} \t {this.description}";
+        }
     }
 }

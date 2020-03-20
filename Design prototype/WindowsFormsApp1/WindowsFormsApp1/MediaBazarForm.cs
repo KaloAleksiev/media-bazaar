@@ -153,7 +153,7 @@ namespace WindowsFormsApp1
 
         private void btStock_Click(object sender, EventArgs e)
         {
-            //Hides all panels and display the only the Stock Control panel
+            //Hides all panels and displays only the Stock Control panel
             pLogin.Visible = false;
             pEmplyee.Visible = false;
             pStatistics.Visible = false;
@@ -161,33 +161,27 @@ namespace WindowsFormsApp1
             pStock.SetBounds(0, 50, 1280, 750);
 
             string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            SqlConnection conn = new SqlConnection(connStr);
+            MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
-            SqlCommand GetMAXitem = new SqlCommand("SELECT MAX(item_id) AS maxItem FROM item", conn);
-            SqlDataReader reader1 = GetMAXitem.ExecuteReader();
-            reader1.Read();
-            for (int i = 1; i <= (int)reader1["maxItem"]; i++)
+
+            MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id AS id, name AS name, description AS descr, amount_in_stock AS inStock, auto_restock AS ar, ar_limit AS arl FROM item;", conn);
+            MySqlDataReader reader2 = GetAllItems.ExecuteReader();
+            while (reader2.Read())
             {
-                try
-                {
-                    SqlCommand GetAllItems = new SqlCommand("SELECT item_id AS id, name AS name, description AS desc, amount_in_stock AS inStock, auto_restock AS ar, ar_limit AS arl FROM item", conn);
-                    SqlDataReader reader2 = GetMAXitem.ExecuteReader();
-                    int itemId = Convert.ToInt32(reader2["id"]);
-                    string name = Convert.ToString(reader2["name"]);
-                    string desc = Convert.ToString(reader2["desc"]);
-                    int inStock = Convert.ToInt32(reader2["inStock"]);
-                    bool ar = Convert.ToBoolean(reader2["ar"]);
-                    int arl = Convert.ToInt32(reader2["arl"]);
+                int itemId = Convert.ToInt32(reader2["id"]);
+                string name = Convert.ToString(reader2["name"]);
+                string desc = Convert.ToString(reader2["descr"]);
+                int inStock = Convert.ToInt32(reader2["inStock"]);
+                bool ar = Convert.ToBoolean(reader2["ar"]);
+                int arl = Convert.ToInt32(reader2["arl"]);
+                Item item = new Item(itemId, name, desc, inStock, ar, arl);
+                stock.AddItem(item);
+            }
+            conn.Close();
 
-                    Item item = new Item(itemId, name, desc, inStock, ar, arl);
-                    stock.AddItem(item);
-
-                }
-                catch
-                {
-                    MessageBox.Show("unsucc");
-                }
-
+            for (int i = 0; i < stock.GetAllItems().Count; i++)
+            {
+                lbItems.Items.Add(stock.GetAllItems()[i].GetInfo());
             }
         }
 
@@ -279,19 +273,12 @@ namespace WindowsFormsApp1
         private void btSchedule_Click(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
-            int third = 1;
-            if (dt.Day > 0 && dt.Day <= 10)
-            { third = 1; }
-            else if (dt.Day > 10 && dt.Day <= 20)
-            { third = 2; }
-            else if (dt.Day > 20 && dt.Day <= 32)
-            { third = 3; }
-            CreateScheduleForm(dt.AddDays(-(dt.Day - 1) + 10 * (third - 1)), third);
+            CreateScheduleForm(dt);
         }
 
-        public static void CreateScheduleForm(DateTime dt, int third)
+        public static void CreateScheduleForm(DateTime dt)
         {
-            ScheduleForm frm = new ScheduleForm(dt, third);
+            ScheduleForm frm = new ScheduleForm(dt);
             frm.Show();
         }
 
