@@ -196,18 +196,7 @@ namespace WindowsFormsApp1
         }
 
         #region Stock
-        private void btCheckAvailability_Click(object sender, EventArgs e)
-        {
-            try
-            {
 
-
-            }
-            catch
-            {
-
-            }
-        }
 
         private void btViewStockEmployee_Click(object sender, EventArgs e)
         {
@@ -216,16 +205,8 @@ namespace WindowsFormsApp1
 
         private void btSendRestockRequest_Click(object sender, EventArgs e)
         {
-            try
-            {
-                RestockRequestForm r = new RestockRequestForm(Convert.ToInt32(tbItemIDRestock.Text));
-                r.Show(this);
-            }
-            catch
-            {
-                MessageBox.Show("Please enter an Intager value for ID");
-            }
-
+            RestockRequestForm r = new RestockRequestForm();
+            r.Show(this);
         }
         #endregion
 

@@ -55,3 +55,21 @@ C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\mediabazaarproject\De
 C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Renci.SshNet.dll
 C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\MySql.Data.xml
 C:\Users\velja\OneDrive\Desktop\Project\MediaBazaarProject\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\MySql.Data.dll
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Google.Protobuf.dll
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Renci.SshNet.dll
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\MySql.Data.xml
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.RestockRequestForm.resources
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.ScheduleForm.resources
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\Verg\Desktop\MEDIA BAZAR\mediabazaarproject\Design prototype\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
