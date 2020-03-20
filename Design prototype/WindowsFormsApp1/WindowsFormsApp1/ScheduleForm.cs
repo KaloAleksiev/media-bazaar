@@ -14,7 +14,6 @@ namespace WindowsFormsApp1
 {
     public partial class ScheduleForm : Form
     {
-        //Button[,] arrayOfButtons;
         int b = 15;
         int posX = 15;
         int posY = 102;
@@ -26,6 +25,7 @@ namespace WindowsFormsApp1
         DateTime dt;
         string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
         MySqlConnection conn;
+        List<Shift> shifts;
 
         public ScheduleForm(DateTime dt)
         {
@@ -37,8 +37,8 @@ namespace WindowsFormsApp1
             dynamicButtons = new List<Button>();
             lblMonth.Text = dt.ToString("dd.MM.yy");
             AlignAll();
+            shifts = new List<Shift>();
             createSchedule(dt);
-            //arrayOfButtons = new Button[a, b];
         }
 
         public void createSchedule(DateTime dt)
@@ -66,7 +66,7 @@ namespace WindowsFormsApp1
                     else if (j % 3 == 2)
                     { st = ShiftType.Evening; }
                     Department dep = Department.Manager;
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_number) AS EN FROM shift_manager WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
+                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_id) AS EN FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
                     conn.Open();
                     MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
                     reader1.Read();
@@ -76,6 +76,7 @@ namespace WindowsFormsApp1
                     if (n == 0)
                     { dynamicButton.BackColor = Color.Green; }
                     else { dynamicButton.BackColor = Color.Red; }
+                    shifts.Add(new Shift(dt, st, dep));
                     dynamicButton.Text = n + " / 1";
                 }
                 else if (j >= 3 && j < 6)
@@ -88,7 +89,7 @@ namespace WindowsFormsApp1
                     else if (j % 3 == 2)
                     { st = ShiftType.Evening; }
                     Department dep = Department.DepotWorker;
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_number) AS EN FROM shift_depot WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
+                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_id) AS EN FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
                     conn.Open();
                     MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
                     reader1.Read();
@@ -101,6 +102,7 @@ namespace WindowsFormsApp1
                     else if (n == 2)
                     { dynamicButton.BackColor = Color.Red; }
                     else { dynamicButton.BackColor = Color.Yellow; }
+                    shifts.Add(new Shift(dt, st, dep));
                 }
                 else if (j >= 6 && j < b)
                 {
@@ -118,7 +120,7 @@ namespace WindowsFormsApp1
                     { dep = Department.Computers; }
                     else if (j >= 15 && j < b)
                     { dep = Department.Phones; }
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_id) AS EN FROM shift_employee WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
+                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_id) AS EN FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
                     conn.Open();
                     MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
                     reader1.Read();
@@ -131,13 +133,13 @@ namespace WindowsFormsApp1
                     else if (n == 3)
                     { dynamicButton.BackColor = Color.Red; }
                     else { dynamicButton.BackColor = Color.Yellow; }
+                    shifts.Add(new Shift(dt, st, dep));
                 }
-                dynamicButton.Name = "i" + dt.Day.ToString() + "j" + j;
+                dynamicButton.Name = "j" + j;
                 dynamicButton.Font = new Font("Microsoft Sans Serif", 8);
                 dynamicButton.Click += new EventHandler(DynamicButton_Click);
                 dynamicButtons.Add(dynamicButton);
                 Controls.Add(dynamicButton);
-                //arrayOfButtons[i, j] = dynamicButton;
                 posX += btnWidth;
             }
             posX = 15;
@@ -152,28 +154,35 @@ namespace WindowsFormsApp1
             Button clickedButton = (Button)sender;
             char[] arBtnName = clickedButton.Name.ToCharArray();
             MessageBox.Show(clickedButton.Name);
-            //Form2 frm = new Form2(GetIdOutOfBtn(arBtnName)[0], GetIdOutOfBtn(arBtnName)[1]);
-            //frm.Show();
+            ShiftPicked(dt, GetIdOutOfBtn(arBtnName));
         }
 
-        public int[] GetIdOutOfBtn(char[] arBtnName)
+        public void ShiftPicked(DateTime dt, int j)
         {
-            List<int> ids = new List<int>();
+            lbShiftInfo.Text = $"{shifts[j].Type} shift in the {shifts[j].Department} department. Date: {dt.ToString("dd.MM.yyyy")}";
+            FillDBByDept(shifts[j].Department);
+            pShift.Visible = true;
+        }
+
+        public void FillDBByDept(Department dep)
+        {
+            List<Employee> emps = new List<Employee>();
+            foreach (Employee emp in ControlClass.GetAllEmployees())
+            {
+                if (emp.Department == dep)
+                { emps.Add(emp); }
+            }
+            foreach (Employee emp in emps)
+            {
+                lbAllPpl.Items.Add(emp.GetInfo());
+            }
+        }
+
+        public int GetIdOutOfBtn(char[] arBtnName)
+        {
             int first = 0;
-            int second = 0;
             for (int i = 0; i < arBtnName.Length; i++)
             {
-                if (arBtnName[i] == 'i')
-                {
-                    string l = null;
-                    int j = i + 1;
-                    while (arBtnName[j] != 'j')
-                    {
-                        l += arBtnName[j].ToString();
-                        j++;
-                    }
-                    first = Convert.ToInt32(l);
-                }
                 if (arBtnName[i] == 'j')
                 {
                     string l = null;
@@ -183,12 +192,10 @@ namespace WindowsFormsApp1
                         l += arBtnName[j].ToString();
                         j++;
                     }
-                    second = Convert.ToInt32(l);
+                    first = Convert.ToInt32(l);
                 }
             }
-            ids.Add(first);
-            ids.Add(second);
-            return ids.ToArray();
+            return first;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -275,6 +282,32 @@ namespace WindowsFormsApp1
                 labels[i].Height = 26;
                 labels[i].Width = 150;
             }
+
+            pShift.Size = new Size(751, 272);
+            pShift.Location = new Point(50, 169);
+
+            lbShiftInfo.Location = new Point(20, 14);
+
+            lbAllPpl.Size = new Size(230, 188);
+            lbAllPpl.Location = new Point(20, 75);
+
+            lbInShift.Size = new Size(230, 188);
+            lbInShift.Location = new Point(500, 75);
+
+            btnAdd.Size = new Size(150, 27);
+            btnAdd.Location = new Point(300, 129);
+
+            btnCancel.Size = new Size(150, 27);
+            btnCancel.Location = new Point(300, 228);
+
+            btnConfirm.Size = new Size(150, 27);
+            btnConfirm.Location = new Point(300, 195);
+
+            btnRemove.Size = new Size(150, 27);
+            btnRemove.Location = new Point(300, 162);
+
+            label22.Location = new Point(17, 55);
+            label23.Location = new Point(497, 55);
         }
     }
 }
