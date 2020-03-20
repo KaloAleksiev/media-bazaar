@@ -691,7 +691,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Text = "ITEM ID";
+            this.Text = "Media Bazar App";
             this.pLogin.ResumeLayout(false);
             this.pLogin.PerformLayout();
             this.pEmplyee.ResumeLayout(false);
