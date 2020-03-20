@@ -8,7 +8,7 @@ namespace WindowsFormsApp1
 {
     public class User
     {
-        private int id;
+        public static int id =0;
         private string firstName;
         private string lastName;
         private string email;
@@ -22,7 +22,24 @@ namespace WindowsFormsApp1
             this.email = email;
             this.address = address;
             this.phoneNumber = phonenumber;
+            id++;
         }
-         
+        public int ID()
+        { return id; }
+
+        public string FirstName()
+        { return firstName; }
+
+        public string LastName()
+        { return lastName; }
+        public string Email()
+        { return email; }
+        public string Address()
+        { return address; }
+        public string PhoneNumber()
+        {  return phoneNumber; }
+
+
+
     }
 }

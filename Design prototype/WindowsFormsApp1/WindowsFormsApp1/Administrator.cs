@@ -14,14 +14,8 @@ namespace WindowsFormsApp1
         {
 
         }
-        public void AddEmployee(User newUser)
-        {
-            ControlClass.users.Add(newUser);
-        }
-        public void RemoveEmployee(User userToBeRemoved)
-        {
-            ControlClass.users.Remove(userToBeRemoved);
-        }
+        
+       
         public RestockRequest[] ViewRestockREquest()
         {
             return stats.GetAllRequests().ToArray();   

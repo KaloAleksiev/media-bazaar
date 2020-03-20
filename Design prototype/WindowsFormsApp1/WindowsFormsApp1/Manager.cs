@@ -8,12 +8,13 @@ namespace WindowsFormsApp1
 {
     public class Manager : User
     {
+        public static int managerId ;
+        public static double salary;
         public Manager(string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
         {
-         
+            managerId++;
+            salary = 4000;
         }
-        public int ManagerId
-        { get; set; }
         public Item[] ViewStock()
         {
             return Stock.items.ToArray();
@@ -27,12 +28,5 @@ namespace WindowsFormsApp1
             }
             return emplyees.ToArray();
         }
-      
-        //public string ViewEmplyeeStats()
-        //{
-        //    string emplyeestats = "";
-        //    return emplyeestats;
-        //}
-
     }
 }

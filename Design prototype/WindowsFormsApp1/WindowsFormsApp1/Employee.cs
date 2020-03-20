@@ -8,19 +8,16 @@ namespace WindowsFormsApp1
 {
     public class Employee : User
     {
-        private int empNumber;
+        public static int empNumber;
         private Department department;
-        private double salary;
+        public static double salary = 3000;
         private DateTime startDate;
-        public Employee(string firstName, string lastname, string email, string address, string phonenumber, Department department, double salary) : base(firstName, lastname, email, address, phonenumber)
+        public Employee(string firstName, string lastname, string email, string address, string phonenumber, Department department):base(firstName, lastname,email, address, phonenumber)
         {
+            empNumber++;
             this.department = department;
-            this.salary = salary;
+            salary = 3000;
         }
-
-        public int Id
-        {get; set;}
-
         public Item[] ViewStock()
         {
             return Stock.items.ToArray();

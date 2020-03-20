@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-   public enum Department
+    class Schedule
     {
-        Computers,
-        Phones,
-        TVs
+        private int schedule;
+        private Month month;
+        private bool isDepot;
+        List<Shift> shifts;
     }
 }

@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 
 namespace WindowsFormsApp1
 {
     public partial class ScheduleForm : Form
     {
+
         //Button[,] arrayOfButtons;
         int b = 15;
         int posX = 15;
@@ -24,125 +23,72 @@ namespace WindowsFormsApp1
         List<Label> dynamicLabels;
         List<Button> dynamicButtons;
         DateTime dt;
-        string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-        MySqlConnection conn;
+        DateTime dtL;
+        int third = 1;
 
-        public ScheduleForm(DateTime dt)
+        public ScheduleForm(DateTime dt, int third)
         {
             InitializeComponent();
-
-            conn = new MySqlConnection(connStr);
             this.dt = dt;
+            dtL = dt;
+            this.third = third;
+            if (third == 3)
+            {
+                //dtL = dtL.AddDays((int)GetMonth(dt) - 21);
+                int l = -1 * dtL.Day;
+                int n = (int)GetMonth(dtL);
+                dtL = dtL.AddDays(l);
+                dtL = dtL.AddDays(n);
+            }
+            else
+            { dtL = dt.AddDays(10); }
             dynamicLabels = new List<Label>();
             dynamicButtons = new List<Button>();
-            lblMonth.Text = dt.ToString("dd.MM.yy");
+            lblMonth.Text = dt.ToString("dd-MM-yy") + "-" + dtL.ToString("dd-MM-yy");
             AlignAll();
-            createSchedule(dt);
+            createSchedule(GetMonth(dt));
             //arrayOfButtons = new Button[a, b];
         }
 
-        public void createSchedule(DateTime dt)
+        public void createSchedule(Month month)
         {
-            posX += lbWidth;
-            for (int j = 0; j < b; j++)
+            for (int i = dt.Day; i <= dtL.Day; i++)
             {
-                Button dynamicButton = new Button();
-                dynamicButton.Location = new Point(posX, posY);
-                dynamicButton.Height = allHeight;
-                dynamicButton.Width = btnWidth;
-                dynamicButton.BackColor = Color.White;
-                dynamicButton.ForeColor = Color.Black;
-                dynamicButton.FlatStyle = FlatStyle.Flat;
-
-                int n = 1;
-
-                if (j >= 0 && j < 3)
+                Label dynamicLabel = new Label();
+                dynamicLabel.Location = new Point(posX, posY);
+                dynamicLabel.Height = allHeight;
+                dynamicLabel.Width = lbWidth;
+                dynamicLabel.BackColor = Color.White;
+                dynamicLabel.ForeColor = Color.Black;
+                dynamicLabel.BorderStyle = BorderStyle.FixedSingle;
+                dynamicLabel.Text = i.ToString();
+                dynamicLabel.TextAlign = ContentAlignment.TopCenter;
+                dynamicLabel.Name = "lblDay" + i;
+                dynamicLabel.Font = new Font("Microsoft Sans Serif", 11);
+                dynamicLabels.Add(dynamicLabel);
+                Controls.Add(dynamicLabel);
+                posX += lbWidth;
+                for (int j = 0; j < b; j++)
                 {
-                    ShiftType st = ShiftType.Morning;
-                    if (j % 3 == 0)
-                    { st = ShiftType.Morning; }
-                    else if (j % 3 == 1)
-                    { st = ShiftType.Noon; }
-                    else if (j % 3 == 2)
-                    { st = ShiftType.Evening; }
-                    Department dep = Department.Manager;
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_number) AS EN FROM shift_manager WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
-                    conn.Open();
-                    MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
-                    reader1.Read();
-                    n = Convert.ToInt32(reader1["EN"]);
-                    reader1.Close();
-                    conn.Close();
-                    if (n == 0)
-                    { dynamicButton.BackColor = Color.Green; }
-                    else { dynamicButton.BackColor = Color.Red; }
-                    dynamicButton.Text = n + " / 1";
+                    Button dynamicButton = new Button();
+                    dynamicButton.Location = new Point(posX, posY);
+                    dynamicButton.Height = allHeight;
+                    dynamicButton.Width = btnWidth;
+                    dynamicButton.BackColor = Color.White;
+                    dynamicButton.ForeColor = Color.Black;
+                    dynamicButton.FlatStyle = FlatStyle.Flat;
+                    dynamicButton.Text = "Click";
+                    dynamicButton.Name = "i" + i + "j" + j;
+                    dynamicButton.Font = new Font("Microsoft Sans Serif", 8);
+                    dynamicButton.Click += new EventHandler(DynamicButton_Click);
+                    dynamicButtons.Add(dynamicButton);
+                    Controls.Add(dynamicButton);
+                    //arrayOfButtons[i, j] = dynamicButton;
+                    posX += btnWidth;
                 }
-                else if (j >= 3 && j < 6)
-                {
-                    ShiftType st = ShiftType.Morning;
-                    if (j % 3 == 0)
-                    { st = ShiftType.Morning; }
-                    else if (j % 3 == 1)
-                    { st = ShiftType.Noon; }
-                    else if (j % 3 == 2)
-                    { st = ShiftType.Evening; }
-                    Department dep = Department.DepotWorker;
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_number) AS EN FROM shift_depot WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
-                    conn.Open();
-                    MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
-                    reader1.Read();
-                    n = Convert.ToInt32(reader1["EN"]);
-                    reader1.Close();
-                    conn.Close();
-                    dynamicButton.Text = n + " / 2";
-                    if (n == 0)
-                    { dynamicButton.BackColor = Color.Green; }
-                    else if (n == 2)
-                    { dynamicButton.BackColor = Color.Red; }
-                    else { dynamicButton.BackColor = Color.Yellow; }
-                }
-                else if (j >= 6 && j < b)
-                {
-                    ShiftType st = ShiftType.Morning;
-                    if (j % 3 == 0)
-                    { st = ShiftType.Morning; }
-                    else if (j % 3 == 1)
-                    { st = ShiftType.Noon; }
-                    else if (j % 3 == 2)
-                    { st = ShiftType.Evening; }
-                    Department dep = Department.Phones;
-                    if (j >= 6 && j < 9)
-                    { dep = Department.Phones; }
-                    else if (j >= 9 && j < 12)
-                    { dep = Department.Computers; }
-                    else if (j >= 15 && j < b)
-                    { dep = Department.Phones; }
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_id) AS EN FROM shift_employee WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
-                    conn.Open();
-                    MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
-                    reader1.Read();
-                    n = Convert.ToInt32(reader1["EN"]);
-                    reader1.Close();
-                    conn.Close();
-                    dynamicButton.Text = n + " / 3";
-                    if (n == 0)
-                    { dynamicButton.BackColor = Color.Green; }
-                    else if (n == 3)
-                    { dynamicButton.BackColor = Color.Red; }
-                    else { dynamicButton.BackColor = Color.Yellow; }
-                }
-                dynamicButton.Name = "i" + dt.Day.ToString() + "j" + j;
-                dynamicButton.Font = new Font("Microsoft Sans Serif", 8);
-                dynamicButton.Click += new EventHandler(DynamicButton_Click);
-                dynamicButtons.Add(dynamicButton);
-                Controls.Add(dynamicButton);
-                //arrayOfButtons[i, j] = dynamicButton;
-                posX += btnWidth;
+                posX = 15;
+                posY += allHeight;
             }
-            posX = 15;
-            posY += allHeight;
-            
             posX = 15;
             posY = 102;
         }
@@ -193,16 +139,62 @@ namespace WindowsFormsApp1
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            dt = dt.AddDays(1);
-            Form1.CreateScheduleForm(dt); ;
+            if (third == 3)
+            { 
+                dt = dt.AddDays((int)GetMonth(dt) - 20);
+                if (dt.Day == 1)
+                { dt.AddDays(-1); }
+            }
+            else if (third == 2)
+            {
+                dt = dt.AddDays(10);
+                if (dt.Day == 1)
+                { dt.AddDays(-1); }
+            }
+            else { dt = dt.AddDays(10); }
+            third++;
+            if (third == 4)
+            { third = 1; }
+            Form1.CreateScheduleForm(dt, third);
             this.Close();
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
-            dt = dt.AddDays(-1);
-            Form1.CreateScheduleForm(dt); ;
-            this.Close();
+            if (third == 3)
+            { 
+                dt = dt.AddDays(-((int)GetMonth(dt) - 20));
+                if (dt.Day == 30 || dt.Day == 31 || dt.Day == 28)
+                {
+                    dt.AddMonths(1);
+                    dt.AddDays(-dt.Day + 1);
+                }
+            }
+            else if (third == 2)
+            {
+                dt = dt.AddDays(-10);
+                if (dt.Day == 30 || dt.Day == 31 || dt.Day == 28)
+                { dt.AddDays(1); }
+            }
+            else
+            { 
+                dt = dt.AddDays(-10);
+                if (dt.Day == 30 || dt.Day == 31 || dt.Day == 28)
+                { dt.AddDays(1); }
+            }
+            if (dt.Month < 3 && dt.Year < 2021)
+            {
+                MessageBox.Show("No data for February 2020 and earlier.");
+                dt = dt.AddMonths(1);
+            }
+            else
+            {
+                third--;
+                if (third == 0)
+                { third = 3; }
+                Form1.CreateScheduleForm(dt, third); ;
+                this.Close();
+            }
         }
 
         public Month GetMonth(DateTime dt)
@@ -241,7 +233,6 @@ namespace WindowsFormsApp1
             lblMonth.Location = new Point(350, 9);
 
             int posYfixed = 50;
-
             List<Label> labels = new List<Label>();
             foreach (Control obj in Controls)
             {
