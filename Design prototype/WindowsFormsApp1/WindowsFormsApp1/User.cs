@@ -8,14 +8,19 @@ namespace WindowsFormsApp1
 {
     public class User
     {
-        public static int id =0;
-        private string firstName;
-        private string lastName;
+        public static int id = 0;
+        private int gottenID;
+        protected string firstName;
+        protected string lastName;
         private string email;
         private string address;
         private string password;
         private string phoneNumber;
-      public User(string firstName, string lastname, string email, string address, string phonenumber)
+
+        //public static int Id
+        //{ get; set; }
+
+        public User(string firstName, string lastname, string email, string address, string phonenumber)
         {
             this.firstName = firstName;
             this.lastName = lastname;
@@ -24,9 +29,19 @@ namespace WindowsFormsApp1
             this.phoneNumber = phonenumber;
             id++;
         }
+        public User(int id, string firstName, string lastname, string email, string address, string phonenumber)
+        {
+            this.firstName = firstName;
+            this.lastName = lastname;
+            this.email = email;
+            this.address = address;
+            this.phoneNumber = phonenumber;
+            this.gottenID = id;
+        }
         public int ID()
         { return id; }
-
+        public int GetGottenID()
+        { return gottenID; }
         public string FirstName()
         { return firstName; }
 
