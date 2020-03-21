@@ -357,25 +357,23 @@ namespace WindowsFormsApp1
         #region Statistics
         private void btViewStatsOverall_Click(object sender, EventArgs e)
         {
-            
+            MessageBox.Show(cc.GetStatsOverall());
         }
 
-        #endregion
+       
 
         private void btViewItemStats_Click(object sender, EventArgs e)
         {
             try
             {
                 Item selected = stock.GetItemByName(cmbItemsStats.SelectedItem.ToString());
-                MessageBox.Show(selected.GetDetailedInfo());
+                MessageBox.Show(cc.GetItemStats(selected));
             }
             catch (System.NullReferenceException)
             {
                 MessageBox.Show("You have to select an item first!");
             }
-            
-            
-
+            cmbItemsStats.SelectedItem = null;
         }
 
         private void btViewDepartmentStats_Click(object sender, EventArgs e)
@@ -383,40 +381,16 @@ namespace WindowsFormsApp1
             string department = "";
             try
             {
-                 department = cmbDepartmentStats.SelectedItem.ToString();
+                department = cmbDepartmentStats.SelectedItem.ToString();
+                MessageBox.Show(cc.GetStatsPerDepartment(department));
             }
             catch (System.NullReferenceException)
             {
-                MessageBox.Show("You have to select an a department first!");
+                MessageBox.Show("You have to select a department first!");
             }
-
-            string table = "";
-            switch (department)
-            {
-                case "Depot Worker":
-                    table = "depotworker";
-                    break;
-                case "Manager":
-                    table = "manager";
-                    break;
-                case "Administrator":
-                    table = "administrator";
-                    break;
-                case "Employee":
-                    table = "employee";
-                    break;
-            }
-            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            MySqlConnection conn = new MySqlConnection(connStr);
-            conn.Open();
-
-            MySqlCommand GetAvarageSalary = new MySqlCommand($" SELECT AVG(salary) AS avarageSalary FROM {table};", conn);
-            MySqlDataReader reader2 = GetAvarageSalary.ExecuteReader();
-            reader2.Read();
-            double avgSalary = Convert.ToDouble(reader2["avarageSalary"]);
-            conn.Close();
-            MessageBox.Show($"Avarage salary for the {department} department is {avgSalary.ToString()}.");
+            cmbDepartmentStats.SelectedItem = null;
         }
+        #endregion
     }
 }
 
