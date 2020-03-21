@@ -40,7 +40,6 @@
             this.pEmplyee = new System.Windows.Forms.Panel();
             this.cmbNameAssign = new System.Windows.Forms.ComboBox();
             this.lbEmployee = new System.Windows.Forms.ListBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -53,7 +52,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tbPhoneNumber = new System.Windows.Forms.TextBox();
             this.tbEmailAddress = new System.Windows.Forms.TextBox();
-            this.btPromote = new System.Windows.Forms.Button();
             this.tbLastName = new System.Windows.Forms.TextBox();
             this.cmbDepartment = new System.Windows.Forms.ComboBox();
             this.btAddEmployee = new System.Windows.Forms.Button();
@@ -80,10 +78,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btSchedule = new System.Windows.Forms.Button();
             this.pSchedule = new System.Windows.Forms.Panel();
-            this.tbPromoteDepartment = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.cmbNamePromote = new System.Windows.Forms.ComboBox();
-            this.btnCheckInfoPromot = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tbPromoteDepartment = new System.Windows.Forms.TextBox();
+            this.btPromote = new System.Windows.Forms.Button();
             this.pLogin.SuspendLayout();
             this.pEmplyee.SuspendLayout();
             this.pStatistics.SuspendLayout();
@@ -199,7 +198,6 @@
             // pEmplyee
             // 
             this.pEmplyee.BackColor = System.Drawing.Color.White;
-            this.pEmplyee.Controls.Add(this.btnCheckInfoPromot);
             this.pEmplyee.Controls.Add(this.cmbNamePromote);
             this.pEmplyee.Controls.Add(this.tbPromoteDepartment);
             this.pEmplyee.Controls.Add(this.label11);
@@ -251,18 +249,6 @@
             this.lbEmployee.Name = "lbEmployee";
             this.lbEmployee.Size = new System.Drawing.Size(162, 254);
             this.lbEmployee.TabIndex = 140;
-            // 
-            // label10
-            // 
-            this.label10.AllowDrop = true;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label10.Location = new System.Drawing.Point(428, 193);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(76, 26);
-            this.label10.TabIndex = 138;
-            this.label10.Text = "NAME";
             // 
             // label16
             // 
@@ -406,20 +392,6 @@
             this.tbEmailAddress.Name = "tbEmailAddress";
             this.tbEmailAddress.Size = new System.Drawing.Size(73, 35);
             this.tbEmailAddress.TabIndex = 118;
-            // 
-            // btPromote
-            // 
-            this.btPromote.BackColor = System.Drawing.Color.Maroon;
-            this.btPromote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPromote.ForeColor = System.Drawing.SystemColors.Control;
-            this.btPromote.Location = new System.Drawing.Point(428, 258);
-            this.btPromote.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btPromote.Name = "btPromote";
-            this.btPromote.Size = new System.Drawing.Size(164, 35);
-            this.btPromote.TabIndex = 117;
-            this.btPromote.Text = "Promote";
-            this.btPromote.UseVisualStyleBackColor = false;
-            this.btPromote.Click += new System.EventHandler(this.btPromote_Click);
             // 
             // tbLastName
             // 
@@ -727,14 +699,27 @@
             this.pSchedule.TabIndex = 12;
             this.pSchedule.Visible = false;
             // 
-            // tbPromoteDepartment
+            // label10
             // 
-            this.tbPromoteDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.tbPromoteDepartment.Location = new System.Drawing.Point(501, 224);
-            this.tbPromoteDepartment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbPromoteDepartment.Name = "tbPromoteDepartment";
-            this.tbPromoteDepartment.Size = new System.Drawing.Size(74, 35);
-            this.tbPromoteDepartment.TabIndex = 143;
+            this.label10.AllowDrop = true;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label10.Location = new System.Drawing.Point(428, 193);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(76, 26);
+            this.label10.TabIndex = 138;
+            this.label10.Text = "NAME";
+            // 
+            // cmbNamePromote
+            // 
+            this.cmbNamePromote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.cmbNamePromote.FormattingEnabled = true;
+            this.cmbNamePromote.Location = new System.Drawing.Point(501, 184);
+            this.cmbNamePromote.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbNamePromote.Name = "cmbNamePromote";
+            this.cmbNamePromote.Size = new System.Drawing.Size(74, 37);
+            this.cmbNamePromote.TabIndex = 144;
             // 
             // label11
             // 
@@ -748,29 +733,28 @@
             this.label11.TabIndex = 142;
             this.label11.Text = "DEPARTMENT";
             // 
-            // cmbNamePromote
+            // tbPromoteDepartment
             // 
-            this.cmbNamePromote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.cmbNamePromote.FormattingEnabled = true;
-            this.cmbNamePromote.Location = new System.Drawing.Point(501, 184);
-            this.cmbNamePromote.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbNamePromote.Name = "cmbNamePromote";
-            this.cmbNamePromote.Size = new System.Drawing.Size(74, 37);
-            this.cmbNamePromote.TabIndex = 144;
+            this.tbPromoteDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.tbPromoteDepartment.Location = new System.Drawing.Point(501, 224);
+            this.tbPromoteDepartment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbPromoteDepartment.Name = "tbPromoteDepartment";
+            this.tbPromoteDepartment.Size = new System.Drawing.Size(74, 35);
+            this.tbPromoteDepartment.TabIndex = 143;
             // 
-            // btnCheckInfoPromot
+            // btPromote
             // 
-            this.btnCheckInfoPromot.BackColor = System.Drawing.Color.Maroon;
-            this.btnCheckInfoPromot.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckInfoPromot.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCheckInfoPromot.Location = new System.Drawing.Point(428, 290);
-            this.btnCheckInfoPromot.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCheckInfoPromot.Name = "btnCheckInfoPromot";
-            this.btnCheckInfoPromot.Size = new System.Drawing.Size(164, 35);
-            this.btnCheckInfoPromot.TabIndex = 145;
-            this.btnCheckInfoPromot.Text = "Check info";
-            this.btnCheckInfoPromot.UseVisualStyleBackColor = false;
-            this.btnCheckInfoPromot.Click += new System.EventHandler(this.btnCheckInfoPromot_Click);
+            this.btPromote.BackColor = System.Drawing.Color.Maroon;
+            this.btPromote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPromote.ForeColor = System.Drawing.SystemColors.Control;
+            this.btPromote.Location = new System.Drawing.Point(428, 258);
+            this.btPromote.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btPromote.Name = "btPromote";
+            this.btPromote.Size = new System.Drawing.Size(164, 35);
+            this.btPromote.TabIndex = 117;
+            this.btPromote.Text = "Promote";
+            this.btPromote.UseVisualStyleBackColor = false;
+            this.btPromote.Click += new System.EventHandler(this.btPromote_Click);
             // 
             // Form1
             // 
@@ -825,7 +809,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbPhoneNumber;
         private System.Windows.Forms.TextBox tbEmailAddress;
-        private System.Windows.Forms.Button btPromote;
         private System.Windows.Forms.TextBox tbLastName;
         private System.Windows.Forms.Button btAddEmployee;
         private System.Windows.Forms.TextBox tbAddress;
@@ -855,16 +838,16 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListBox lbEmployee;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ListBox lbItems;
         private System.Windows.Forms.Button btSchedule;
         private System.Windows.Forms.Panel pSchedule;
         private System.Windows.Forms.ComboBox cmbDepartment;
         private System.Windows.Forms.ComboBox cmbNameAssign;
+        private System.Windows.Forms.ComboBox cmbNamePromote;
         private System.Windows.Forms.TextBox tbPromoteDepartment;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox cmbNamePromote;
-        private System.Windows.Forms.Button btnCheckInfoPromot;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btPromote;
     }
 }
 

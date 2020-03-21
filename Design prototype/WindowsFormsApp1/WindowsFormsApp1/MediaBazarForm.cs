@@ -59,27 +59,53 @@ namespace WindowsFormsApp1
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            //Hides all panels an
-
             string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            int id = cc.ReturnWorkerID(tbUsername.Text);
             MySqlConnection conn = new MySqlConnection(connectionString);
             MySqlDataAdapter sda = new MySqlDataAdapter("SELECT count(*) FROM user WHERE email='" + tbUsername.Text + "' and password='" + tbPassword.Text + "'", conn);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             if (dt.Rows[0][0].ToString() == "1")
             {
-                pEmplyee.Visible = true;
-                EmployeePanel();
-                pLogin.Visible = false;
+                string function = cc.CheckFunction(id);
+                if (function == "Employee")
+                {
+                    btSchedule.SetBounds(540, 7, 200, 40);
+                    btStock.SetBounds(740, 7, 300, 40);
+                    btlogout.SetBounds(1040, 7, 200, 40);
+                }
+                else if (function == "Manager")
+                {
+                    btSchedule.SetBounds(340, 7, 200, 40);
+                    btStatistics.SetBounds(540, 7, 200, 40);
+                    btStock.SetBounds(740, 7, 300, 40);
+                    btlogout.SetBounds(1040, 7, 200, 40);
+                }
+                else if (function == "DepotWorker")
+                {
+                    btSchedule.SetBounds(540, 7, 200, 40);
+                    btStock.SetBounds(740, 7, 300, 40);
+                    btlogout.SetBounds(1040, 7, 200, 40);
+                }
+                else if (function == "Administrator")
+                {
+                    pEmplyee.Visible = true;
+                    EmployeePanel();
+                    pLogin.Visible = false;
+
+                    btEmployee.SetBounds(130, 7, 200, 40);
+                    btSchedule.SetBounds(340, 7, 200, 40);
+                    btStatistics.SetBounds(540, 7, 200, 40);
+                    btStock.SetBounds(740, 7, 300, 40);
+                    btlogout.SetBounds(1040, 7, 200, 40);
+                }
+              
             }
             else
             {
-                MessageBox.Show("The ussernameor pasword is not correct!");
+                MessageBox.Show("The ussername or pasword is not correct!");
             }
         }
-
-
-
 
         public void EmployeePanel()
         {
@@ -238,7 +264,6 @@ namespace WindowsFormsApp1
         private void btAddEmployee_Click(object sender, EventArgs e)
         {
 
-            int id = User.id;
             DateTime start_date = DateTime.Now;
 
             string password = tbLastName.Text + Convert.ToString(id);
@@ -247,9 +272,8 @@ namespace WindowsFormsApp1
             {
                 try
                 {
-                    string insertData = "insert into user(id, firstname,lastname,email,password,address,start_date,phone_number)  VALUES (@id, @firstname,@lastname,@email,@password,@address,@start_date,@phone_number)";
+                    string insertData = "insert into user( firstname,lastname,email,password,address,start_date,phone_number)  VALUES ( @firstname,@lastname,@email,@password,@address,@start_date,@phone_number)";
                     MySqlCommand command = new MySqlCommand(insertData, connection);
-                    command.Parameters.AddWithValue("@id", id);
                     command.Parameters.AddWithValue("@firstname", tbName.Text);
                     command.Parameters.AddWithValue("@lastname", tbLastName.Text);
                     command.Parameters.AddWithValue("@email", tbEmailAddress.Text);
@@ -340,7 +364,7 @@ namespace WindowsFormsApp1
             if (a == "Manager")
             {
                 MySqlConnection conn = new MySqlConnection(@"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234");
-                string sql = "DELETE FROM employee WHERE where concat(firstName,' ', lastName) = @name;";
+                string sql = "DELETE FROM employee WHERE concat(firstName,' ', lastName) = @name;";
                 MySqlCommand cmd = new MySqlCommand(sql, conn); 
                 cmd.Parameters.AddWithValue("@name", name); 
                 conn.Open();

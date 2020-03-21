@@ -12,12 +12,10 @@ namespace WindowsFormsApp1
 {
     public class ControlClass
     {
-        public static List<User> users = new List<User>();
-
-        public static List<User> workers = new List<User>();
         string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
 
-
+        
+        
         public string AssignToDepotTW(string name)
         {
             int id = ReturnWorkerID(name);
@@ -118,6 +116,22 @@ namespace WindowsFormsApp1
             }
 
         }
+        public int ReturnWorkerIDbyEmail(string email)
+        {
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            string sql = "SELECT id FROM user where email = @email;";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@email", email);
+            conn.Open();
+            Object result = cmd.ExecuteScalar();
+            int id = -1;
+            if (result != null)
+            {
+                id = Convert.ToInt32(result);
+            }
+            conn.Close();
+            return id;
+        }
         public int ReturnWorkerID(string name)
         {
             MySqlConnection conn = new MySqlConnection(connectionString);
@@ -148,6 +162,7 @@ namespace WindowsFormsApp1
             string lastname = Convert.ToString(reader["lastName"]);
             string function = Convert.ToString(reader["function"]);
             return $"{id }  {firstname }  {lastname }  {function }";
+            conn.Close();
         }
 
         public User ReturnUser(string name)
@@ -168,12 +183,59 @@ namespace WindowsFormsApp1
             string phonenumber = Convert.ToString(reader["phonenumber"]);
             User u = new User(firstname, lastname, email, address, phonenumber);
             return u;
+            conn.Close();
         }
-        public void DeleteWorker()
+        public string CheckFunction(int id)
         {
-           
-
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            MySqlDataReader myReader = null;
+            MySqlCommand myCommand = new MySqlCommand("SELECT id FROM `employee`", conn);
+            myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                if (myReader["id"].ToString() == id.ToString())
+                {
+                    conn.Close();
+                    return "Employee";
+                }
+            }
+            myCommand = new MySqlCommand("SELECT id FROM `manager`", conn);
+            myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                if (myReader["id"].ToString() == id.ToString())
+                {
+                    conn.Close();
+                    return "Manager";
+                }
+            }
+            myCommand = new MySqlCommand("SELECT id FROM `depotworker`", conn);
+            myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                if (myReader["id"].ToString() == id.ToString())
+                {
+                    conn.Close();
+                    return "DepotWorker";
+                }
+            }
+            myCommand = new MySqlCommand("SELECT id FROM `administrator`", conn);
+            myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                if (myReader["id"].ToString() == id.ToString())
+                {
+                    conn.Close();
+                    return "Administrator";
+                }
+            }
+            conn.Close();
+            return "NA";
         }
+
     }
+       
+    
 }
 
