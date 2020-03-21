@@ -194,6 +194,73 @@ namespace WindowsFormsApp1
             }
             return emps;
         }
+
+        public string GetItemStats(Item i)
+        {
+            string info = $"{i.Name}";
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            MySqlCommand GetRestockRequests = new MySqlCommand($"SELECT request_id AS id, amount AS amount FROM restockrequest WHERE item_id = {i.Id};", conn);
+            MySqlDataReader reader = GetRestockRequests.ExecuteReader();
+            
+            while (reader.Read())
+            {
+                info += $"\n-------------------------------\n";
+                info+=$"Request ID: {Convert.ToString(reader["id"])}; Amount: {Convert.ToString(reader["amount"])}";
+                info += $"\n-------------------------------\n";
+            }
+            conn.Close();
+            return info;
+        }
+
+        public string GetStatsPerDepartment(string department)
+        {
+            string table = "";
+            switch (department)
+            {
+                case "Depot Worker":
+                    table = "depotworker";
+                    break;
+                case "Manager":
+                    table = "manager";
+                    break;                   
+                case "Employee":
+                    table = "employee";
+                    break;
+            }
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+
+            MySqlCommand GetAvarageSalary = new MySqlCommand($" SELECT AVG(salary) AS avarageSalary FROM {table};", conn);
+            MySqlDataReader reader2 = GetAvarageSalary.ExecuteReader();
+            reader2.Read();
+            double avgSalary = Convert.ToDouble(reader2["avarageSalary"]);
+            conn.Close();
+            return $"Avarage salary for the {department} department is {avgSalary.ToString("n2")}.";
+        }
+
+        public string GetStatsOverall()
+        {
+            List<string> departments = new List<string>() { "depotworker", "manager", "employee" };
+            double avgSalary = 0;
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            
+            conn.Open();
+            foreach (string s in departments)
+            {
+                MySqlCommand GetAvarageSalary = new MySqlCommand($" SELECT AVG(salary) AS avarageSalary FROM {s};", conn);
+                MySqlDataReader reader2 = GetAvarageSalary.ExecuteReader();
+                reader2.Read();
+                avgSalary += Convert.ToDouble(reader2["avarageSalary"]);
+                reader2.Close();
+            }
+            avgSalary /= 3;
+            conn.Close();
+            return $"Avarage salary for all the departments is {avgSalary.ToString("n2")} euros";
+        }
     }
 }
 
