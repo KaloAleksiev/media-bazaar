@@ -43,6 +43,29 @@ namespace WindowsFormsApp1
 
             //variable initialization
             stock = new Stock("Stock");
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+
+            MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id AS id, name AS name, description AS descr, amount_in_stock AS inStock, auto_restock AS ar, ar_limit AS arl FROM item;", conn);
+            MySqlDataReader reader2 = GetAllItems.ExecuteReader();
+            while (reader2.Read())
+            {
+                int itemId = Convert.ToInt32(reader2["id"]);
+                string name = Convert.ToString(reader2["name"]);
+                string desc = Convert.ToString(reader2["descr"]);
+                int inStock = Convert.ToInt32(reader2["inStock"]);
+                bool ar = Convert.ToBoolean(reader2["ar"]);
+                int arl = Convert.ToInt32(reader2["arl"]);
+                Item item = new Item(itemId, name, desc, inStock, ar, arl);
+                stock.AddItem(item);
+            }
+            conn.Close();
+
+            for (int i = 0; i < stock.GetAllItems().Count; i++)
+            {
+                lbItems.Items.Add(stock.GetAllItems()[i].GetInfo());
+            }
         }
         void FillComboBox_Names()
         {
@@ -142,13 +165,18 @@ namespace WindowsFormsApp1
 
             //Bounds of Statistics form and its controls
             label5.SetBounds(235, 176, 200, 100);
-            tbNameStats.SetBounds(300, 170, 200, 100);
+            cmbItemsStats.SetBounds(300, 170, 200, 100);
             label6.SetBounds(570, 176, 200, 100);
             cmbDepartmentStats.SetBounds(690, 170, 200, 100);
             btViewDepartmentStats.SetBounds(132, 230, 300, 50);
             btViewStatsOverall.SetBounds(450, 230, 300, 50);
-            btViewEmployeeStats.SetBounds(770, 230, 300, 50);
+            btViewItemStats.SetBounds(770, 230, 300, 50);
 
+            //fill the cmb with all the items 
+            foreach(Item i in stock.GetAllItems())
+            {
+                cmbItemsStats.Items.Add(i.Name);
+            }
         }
 
         private void btStock_Click(object sender, EventArgs e)
@@ -160,29 +188,6 @@ namespace WindowsFormsApp1
             pStock.Visible = true;
             pStock.SetBounds(0, 50, 1280, 750);
 
-            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            MySqlConnection conn = new MySqlConnection(connStr);
-            conn.Open();
-
-            MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id AS id, name AS name, description AS descr, amount_in_stock AS inStock, auto_restock AS ar, ar_limit AS arl FROM item;", conn);
-            MySqlDataReader reader2 = GetAllItems.ExecuteReader();
-            while (reader2.Read())
-            {
-                int itemId = Convert.ToInt32(reader2["id"]);
-                string name = Convert.ToString(reader2["name"]);
-                string desc = Convert.ToString(reader2["descr"]);
-                int inStock = Convert.ToInt32(reader2["inStock"]);
-                bool ar = Convert.ToBoolean(reader2["ar"]);
-                int arl = Convert.ToInt32(reader2["arl"]);
-                Item item = new Item(itemId, name, desc, inStock, ar, arl);
-                stock.AddItem(item);
-            }
-            conn.Close();
-
-            for (int i = 0; i < stock.GetAllItems().Count; i++)
-            {
-                lbItems.Items.Add(stock.GetAllItems()[i].GetInfo());
-            }
         }
 
         private void btlogout_Click(object sender, EventArgs e)
@@ -352,10 +357,66 @@ namespace WindowsFormsApp1
         #region Statistics
         private void btViewStatsOverall_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         #endregion
+
+        private void btViewItemStats_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Item selected = stock.GetItemByName(cmbItemsStats.SelectedItem.ToString());
+                MessageBox.Show(selected.GetDetailedInfo());
+            }
+            catch (System.NullReferenceException)
+            {
+                MessageBox.Show("You have to select an item first!");
+            }
+            
+            
+
+        }
+
+        private void btViewDepartmentStats_Click(object sender, EventArgs e)
+        {
+            string department = "";
+            try
+            {
+                 department = cmbDepartmentStats.SelectedItem.ToString();
+            }
+            catch (System.NullReferenceException)
+            {
+                MessageBox.Show("You have to select an a department first!");
+            }
+
+            string table = "";
+            switch (department)
+            {
+                case "Depot Worker":
+                    table = "depotworker";
+                    break;
+                case "Manager":
+                    table = "manager";
+                    break;
+                case "Administrator":
+                    table = "administrator";
+                    break;
+                case "Employee":
+                    table = "employee";
+                    break;
+            }
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+
+            MySqlCommand GetAvarageSalary = new MySqlCommand($" SELECT AVG(salary) AS avarageSalary FROM {table};", conn);
+            MySqlDataReader reader2 = GetAvarageSalary.ExecuteReader();
+            reader2.Read();
+            double avgSalary = Convert.ToDouble(reader2["avarageSalary"]);
+            conn.Close();
+            MessageBox.Show($"Avarage salary for the {department} department is {avgSalary.ToString()}.");
+        }
     }
 }
 
