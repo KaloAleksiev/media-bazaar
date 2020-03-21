@@ -59,7 +59,7 @@ namespace WindowsFormsApp1
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            //Hides all panels an
+            
 
             string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
             MySqlConnection conn = new MySqlConnection(connectionString);
@@ -74,7 +74,7 @@ namespace WindowsFormsApp1
             }
             else
             {
-                MessageBox.Show("The ussernameor pasword is not correct!");
+                MessageBox.Show("Credentials do not match.");
             }
         }
 

@@ -596,7 +596,7 @@
             this.pStock.Location = new System.Drawing.Point(427, 272);
             this.pStock.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.pStock.Name = "pStock";
-            this.pStock.Size = new System.Drawing.Size(459, 159);
+            this.pStock.Size = new System.Drawing.Size(511, 159);
             this.pStock.TabIndex = 9;
             // 
             // lbItems
@@ -607,7 +607,7 @@
             this.lbItems.Location = new System.Drawing.Point(11, 10);
             this.lbItems.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.lbItems.Name = "lbItems";
-            this.lbItems.Size = new System.Drawing.Size(302, 264);
+            this.lbItems.Size = new System.Drawing.Size(302, 404);
             this.lbItems.TabIndex = 141;
             // 
             // btViewStockEmployee
@@ -615,9 +615,9 @@
             this.btViewStockEmployee.BackColor = System.Drawing.Color.Maroon;
             this.btViewStockEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btViewStockEmployee.ForeColor = System.Drawing.SystemColors.Control;
-            this.btViewStockEmployee.Location = new System.Drawing.Point(318, 26);
+            this.btViewStockEmployee.Location = new System.Drawing.Point(336, 10);
             this.btViewStockEmployee.Name = "btViewStockEmployee";
-            this.btViewStockEmployee.Size = new System.Drawing.Size(136, 33);
+            this.btViewStockEmployee.Size = new System.Drawing.Size(147, 33);
             this.btViewStockEmployee.TabIndex = 26;
             this.btViewStockEmployee.Text = "View stock";
             this.btViewStockEmployee.UseVisualStyleBackColor = false;
@@ -628,9 +628,9 @@
             this.btSendRestockRequest.BackColor = System.Drawing.Color.Maroon;
             this.btSendRestockRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btSendRestockRequest.ForeColor = System.Drawing.Color.White;
-            this.btSendRestockRequest.Location = new System.Drawing.Point(318, 65);
+            this.btSendRestockRequest.Location = new System.Drawing.Point(336, 49);
             this.btSendRestockRequest.Name = "btSendRestockRequest";
-            this.btSendRestockRequest.Size = new System.Drawing.Size(136, 33);
+            this.btSendRestockRequest.Size = new System.Drawing.Size(147, 33);
             this.btSendRestockRequest.TabIndex = 29;
             this.btSendRestockRequest.Text = "Stock request";
             this.btSendRestockRequest.UseVisualStyleBackColor = false;
@@ -693,7 +693,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Text = "ITEM ID";
+            this.Text = "Media Bazar App";
             this.pLogin.ResumeLayout(false);
             this.pLogin.PerformLayout();
             this.pEmplyee.ResumeLayout(false);
