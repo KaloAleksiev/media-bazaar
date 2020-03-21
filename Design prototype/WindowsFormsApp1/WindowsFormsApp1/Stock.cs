@@ -8,16 +8,12 @@ namespace WindowsFormsApp1
 {
     public class Stock
     {
-        //private int id;
-        //Why do we need id for stock ?? - Alex
         private string name;
-        //can we make th list static? - Cristina
-      public  static List<Item> items;
+        public static List<Item> items;
 
         public Stock(string name)
         {
             items = new List<Item>();
-            //this.id = id;
             this.name = name;
         }
 
@@ -43,10 +39,22 @@ namespace WindowsFormsApp1
             return null;
         }
 
+        public Item GetItemByName(string name)
+        {
+            foreach(Item i in items)
+            {
+                if(i.Name == name)
+                {
+                    return i;
+                }
+            }
+            return null;
+        }
+
         public string GetStockInfo()
         {
             string returnStr = "";
-            foreach(Item i in items)
+            foreach (Item i in items)
             {
                 returnStr += $"{i.GetInfo()} \n";
             }

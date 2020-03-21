@@ -10,6 +10,12 @@ namespace WindowsFormsApp1
     {
         Computers,
         Phones,
+<<<<<<< HEAD
         TVs
+=======
+        TVs,
+        Manager,
+        DepotWorker
+>>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
     }
 }
