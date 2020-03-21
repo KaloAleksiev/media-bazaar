@@ -330,5 +330,10 @@ namespace WindowsFormsApp1
             { lbAllPpl.Items.Add(emp.GetInfo()); }
             FillChosenShift();
         }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

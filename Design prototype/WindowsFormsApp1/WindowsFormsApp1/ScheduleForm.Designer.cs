@@ -436,6 +436,7 @@
             this.btnConfirm.TabIndex = 23;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = false;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnRemove
             // 
