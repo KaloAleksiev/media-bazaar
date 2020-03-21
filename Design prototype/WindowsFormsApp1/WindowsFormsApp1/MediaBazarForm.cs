@@ -82,37 +82,48 @@ namespace WindowsFormsApp1
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            int id = cc.ReturnWorkerID(tbUsername.Text);
-
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            MySqlDataAdapter sda = new MySqlDataAdapter("SELECT count(*) FROM user WHERE email='" + tbUsername.Text + "' and password='" + tbPassword.Text + "'", conn);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            if (dt.Rows[0][0].ToString() == "1")
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";         
+            MySqlConnection conn = new MySqlConnection(connStr);            
+            conn.Open();
+            MySqlCommand command = new MySqlCommand("SELECT COUNT(*) AS succ, id AS id FROM user WHERE email='" + tbUsername.Text + "' and password='" + tbPassword.Text + "'", conn);           
+            MySqlDataReader reader2 = command.ExecuteReader();
+            reader2.Read();
+            int infoRead = Convert.ToInt32(reader2["succ"]);
+            if (infoRead == 1)
             {
-
+                int id = Convert.ToInt32(reader2["id"]);
                 string function = cc.CheckFunction(id);
-                if (function == "Employee")
+                reader2.Close();
+                
+                if (function == "employee")
                 {
-                    btSchedule.SetBounds(540, 7, 200, 40);
+                    btSchedule.SetBounds(540, 7, 200, 40);                    
                     btStock.SetBounds(740, 7, 300, 40);
                     btlogout.SetBounds(1040, 7, 200, 40);
+                    pEmplyee.Visible = true;
+                    EmployeePanel();
+                    pLogin.Visible = false;
                 }
-                else if (function == "Manager")
+                else if (function == "manager")
                 {
                     btSchedule.SetBounds(340, 7, 200, 40);
                     btStatistics.SetBounds(540, 7, 200, 40);
                     btStock.SetBounds(740, 7, 300, 40);
                     btlogout.SetBounds(1040, 7, 200, 40);
+                    pEmplyee.Visible = true;
+                    EmployeePanel();
+                    pLogin.Visible = false;
                 }
-                else if (function == "DepotWorker")
+                else if (function == "depotworker")
                 {
                     btSchedule.SetBounds(540, 7, 200, 40);
                     btStock.SetBounds(740, 7, 300, 40);
                     btlogout.SetBounds(1040, 7, 200, 40);
+                    pEmplyee.Visible = true;
+                    EmployeePanel();
+                    pLogin.Visible = false;
                 }
-                else if (function == "Administrator")
+                else if (function == "administrator")
                 {
                     pEmplyee.Visible = true;
                     EmployeePanel();
@@ -130,9 +141,9 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("The credentials do not match");
 
-                pEmplyee.Visible = true;
+                
                 EmployeePanel();
-                pLogin.Visible = false;
+                
             }
         }
 
