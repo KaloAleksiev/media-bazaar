@@ -348,6 +348,14 @@ namespace WindowsFormsApp1
             string info = cc.ReturnWorkerInfo(cmbNamePromote.Text);
             MessageBox.Show(info);
         }
+
+        #region Statistics
+        private void btViewStatsOverall_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
     }
 }
 

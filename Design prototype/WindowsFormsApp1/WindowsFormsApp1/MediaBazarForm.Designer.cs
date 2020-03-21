@@ -117,6 +117,7 @@
             this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPassword.Location = new System.Drawing.Point(69, 71);
             this.tbPassword.Name = "tbPassword";
+            this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(100, 26);
             this.tbPassword.TabIndex = 1;
             // 
@@ -519,10 +520,11 @@
             this.btViewStatsOverall.ForeColor = System.Drawing.SystemColors.Control;
             this.btViewStatsOverall.Location = new System.Drawing.Point(228, 105);
             this.btViewStatsOverall.Name = "btViewStatsOverall";
-            this.btViewStatsOverall.Size = new System.Drawing.Size(156, 33);
+            this.btViewStatsOverall.Size = new System.Drawing.Size(156, 24);
             this.btViewStatsOverall.TabIndex = 41;
             this.btViewStatsOverall.Text = "View statistics overall";
             this.btViewStatsOverall.UseVisualStyleBackColor = false;
+            this.btViewStatsOverall.Click += new System.EventHandler(this.btViewStatsOverall_Click);
             // 
             // btViewDepartmentStats
             // 
