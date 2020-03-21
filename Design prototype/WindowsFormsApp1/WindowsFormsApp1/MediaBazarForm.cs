@@ -82,22 +82,57 @@ namespace WindowsFormsApp1
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            
-
             string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            int id = cc.ReturnWorkerID(tbUsername.Text);
+
             MySqlConnection conn = new MySqlConnection(connectionString);
             MySqlDataAdapter sda = new MySqlDataAdapter("SELECT count(*) FROM user WHERE email='" + tbUsername.Text + "' and password='" + tbPassword.Text + "'", conn);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             if (dt.Rows[0][0].ToString() == "1")
             {
-                pEmplyee.Visible = true;
-                EmployeePanel();
-                pLogin.Visible = false;
+
+                string function = cc.CheckFunction(id);
+                if (function == "Employee")
+                {
+                    btSchedule.SetBounds(540, 7, 200, 40);
+                    btStock.SetBounds(740, 7, 300, 40);
+                    btlogout.SetBounds(1040, 7, 200, 40);
+                }
+                else if (function == "Manager")
+                {
+                    btSchedule.SetBounds(340, 7, 200, 40);
+                    btStatistics.SetBounds(540, 7, 200, 40);
+                    btStock.SetBounds(740, 7, 300, 40);
+                    btlogout.SetBounds(1040, 7, 200, 40);
+                }
+                else if (function == "DepotWorker")
+                {
+                    btSchedule.SetBounds(540, 7, 200, 40);
+                    btStock.SetBounds(740, 7, 300, 40);
+                    btlogout.SetBounds(1040, 7, 200, 40);
+                }
+                else if (function == "Administrator")
+                {
+                    pEmplyee.Visible = true;
+                    EmployeePanel();
+                    pLogin.Visible = false;
+
+                    btEmployee.SetBounds(130, 7, 200, 40);
+                    btSchedule.SetBounds(340, 7, 200, 40);
+                    btStatistics.SetBounds(540, 7, 200, 40);
+                    btStock.SetBounds(740, 7, 300, 40);
+                    btlogout.SetBounds(1040, 7, 200, 40);
+                }
+
             }
             else
             {
-                MessageBox.Show("Credentials do not match.");
+                MessageBox.Show("The credentials do not match");
+
+                pEmplyee.Visible = true;
+                EmployeePanel();
+                pLogin.Visible = false;
             }
         }
 
@@ -173,7 +208,7 @@ namespace WindowsFormsApp1
             btViewItemStats.SetBounds(770, 230, 300, 50);
 
             //fill the cmb with all the items 
-            foreach(Item i in stock.GetAllItems())
+            foreach (Item i in stock.GetAllItems())
             {
                 cmbItemsStats.Items.Add(i.Name);
             }
@@ -314,8 +349,8 @@ namespace WindowsFormsApp1
             {
                 MySqlConnection conn = new MySqlConnection(@"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234");
                 string sql = "DELETE FROM employee WHERE where concat(firstName,' ', lastName) = @name;";
-                MySqlCommand cmd = new MySqlCommand(sql, conn); 
-                cmd.Parameters.AddWithValue("@name", name); 
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
                 conn.Open();
                 int effectedRows = cmd.ExecuteNonQuery();
                 string message = cc.AssignToManager(cmbNamePromote.Text);
@@ -360,7 +395,7 @@ namespace WindowsFormsApp1
             MessageBox.Show(cc.GetStatsOverall());
         }
 
-       
+
 
         private void btViewItemStats_Click(object sender, EventArgs e)
         {

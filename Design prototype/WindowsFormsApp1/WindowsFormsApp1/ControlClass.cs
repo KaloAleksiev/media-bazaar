@@ -169,32 +169,32 @@ namespace WindowsFormsApp1
             return u;
         }
 
-        public static List<Employee> GetAllEmployees()
-        {
-            List<Employee> emps = new List<Employee>();
-            string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            conn.Open();
-            string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.emp_number, e.department, e.salary FROM user AS u INNER JOIN employee AS e ON u.id = e.id";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                int id = Convert.ToInt32(reader["id"]);
-                int empid = Convert.ToInt32(reader["emp_number"]);
-                string firstname = Convert.ToString(reader["firstName"]);
-                string lastname = Convert.ToString(reader["lastName"]);
-                string email = Convert.ToString(reader["email"]);
-                string address = Convert.ToString(reader["address"]);
-                string phonenumber = Convert.ToString(reader["phone_number"]);
-                string department = Convert.ToString(reader["department"]);
-                double salary = Convert.ToDouble(reader["salary"]);
-                Employee e = new Employee(id, empid, firstname, lastname, email, address, phonenumber, department, salary);
-                emps.Add(e);
-            }
-            return emps;
+        //public static List<Employee> GetAllEmployees()
+        //{
+        //    List<Employee> emps = new List<Employee>();
+        //    string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+        //    MySqlConnection conn = new MySqlConnection(connectionString);
+        //    conn.Open();
+        //    string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.emp_number, e.department, e.salary FROM user AS u INNER JOIN employee AS e ON u.id = e.id";
+        //    MySqlCommand cmd = new MySqlCommand(sql, conn);
+        //    MySqlDataReader reader = cmd.ExecuteReader();
+        //    while (reader.Read())
+        //    {
+        //        int id = Convert.ToInt32(reader["id"]);
+        //        int empid = Convert.ToInt32(reader["emp_number"]);
+        //        string firstname = Convert.ToString(reader["firstName"]);
+        //        string lastname = Convert.ToString(reader["lastName"]);
+        //        string email = Convert.ToString(reader["email"]);
+        //        string address = Convert.ToString(reader["address"]);
+        //        string phonenumber = Convert.ToString(reader["phone_number"]);
+        //        string department = Convert.ToString(reader["department"]);
+        //        double salary = Convert.ToDouble(reader["salary"]);
+        //        Employee e = new Employee(id, empid, firstname, lastname, email, address, phonenumber, department, salary);
+        //        emps.Add(e);
+        //    }
+        //    return emps;
 
-        }
+        //}
         public string GetItemStats(Item i)
         {
             string info = $"{i.Name}";
@@ -260,6 +260,60 @@ namespace WindowsFormsApp1
             avgSalary /= 3;
             conn.Close();
             return $"Avarage salary for all the departments is {avgSalary.ToString("n2")} euros";
+        }
+
+        public string CheckFunction(int id)
+        {
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            MySqlCommand myCommand = new MySqlCommand("SELECT id FROM `employee`", conn);
+            MySqlDataReader myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                if (myReader["id"].ToString() == id.ToString())
+                {
+                    conn.Close();
+                    return "Employee";
+                }
+            }
+
+            myCommand = new MySqlCommand("SELECT id FROM `manager`", conn);
+
+            myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                if (myReader["id"].ToString() == id.ToString())
+                {
+                    conn.Close();
+                    return "Manager";
+                }
+            }
+
+            myCommand = new MySqlCommand("SELECT id FROM `depotworker`", conn);
+        
+            myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                if (myReader["id"].ToString() == id.ToString())
+                {
+                    conn.Close();
+                    return "DepotWorker";
+                }
+            }
+
+            myCommand = new MySqlCommand("SELECT id FROM `administrator`", conn);
+
+            myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                if (myReader["id"].ToString() == id.ToString())
+                {
+                    conn.Close();
+                    return "Administrator";
+                }
+            }
+            conn.Close();
+            return "NA";
         }
     }
 }
