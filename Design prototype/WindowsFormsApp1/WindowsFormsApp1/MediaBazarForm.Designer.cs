@@ -594,7 +594,7 @@
             this.pStock.Location = new System.Drawing.Point(427, 272);
             this.pStock.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.pStock.Name = "pStock";
-            this.pStock.Size = new System.Drawing.Size(511, 159);
+            this.pStock.Size = new System.Drawing.Size(517, 166);
             this.pStock.TabIndex = 9;
             // 
             // lbItems
@@ -676,7 +676,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(949, 439);
+            this.ClientSize = new System.Drawing.Size(957, 450);
             this.Controls.Add(this.pSchedule);
             this.Controls.Add(this.pStock);
             this.Controls.Add(this.pStatistics);

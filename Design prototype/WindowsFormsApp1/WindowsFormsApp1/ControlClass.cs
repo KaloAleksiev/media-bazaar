@@ -195,12 +195,6 @@ namespace WindowsFormsApp1
             }
             return emps;
         }
-
-        public void DeleteWorker()
-        {
-           
-
-        }
     }
 }
 

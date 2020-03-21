@@ -28,26 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tbAmountRestockForm = new System.Windows.Forms.TextBox();
             this.btnSendRequest = new System.Windows.Forms.Button();
-            this.tbItemIDRestockForm = new System.Windows.Forms.TextBox();
+            this.lbItems = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Item";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(54, 90);
+            this.label2.Location = new System.Drawing.Point(330, 244);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 1;
@@ -55,38 +45,40 @@
             // 
             // tbAmountRestockForm
             // 
-            this.tbAmountRestockForm.Location = new System.Drawing.Point(103, 87);
+            this.tbAmountRestockForm.Location = new System.Drawing.Point(314, 260);
             this.tbAmountRestockForm.Name = "tbAmountRestockForm";
-            this.tbAmountRestockForm.Size = new System.Drawing.Size(121, 20);
+            this.tbAmountRestockForm.Size = new System.Drawing.Size(75, 20);
             this.tbAmountRestockForm.TabIndex = 3;
             // 
             // btnSendRequest
             // 
-            this.btnSendRequest.Location = new System.Drawing.Point(57, 130);
+            this.btnSendRequest.Location = new System.Drawing.Point(291, 286);
             this.btnSendRequest.Name = "btnSendRequest";
-            this.btnSendRequest.Size = new System.Drawing.Size(186, 35);
+            this.btnSendRequest.Size = new System.Drawing.Size(108, 46);
             this.btnSendRequest.TabIndex = 4;
             this.btnSendRequest.Text = "Send Restock Request";
             this.btnSendRequest.UseVisualStyleBackColor = true;
             this.btnSendRequest.Click += new System.EventHandler(this.btnSendRequest_Click);
             // 
-            // tbItemIDRestockForm
+            // lbItems
             // 
-            this.tbItemIDRestockForm.Location = new System.Drawing.Point(103, 48);
-            this.tbItemIDRestockForm.Name = "tbItemIDRestockForm";
-            this.tbItemIDRestockForm.Size = new System.Drawing.Size(121, 20);
-            this.tbItemIDRestockForm.TabIndex = 5;
+            this.lbItems.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbItems.FormattingEnabled = true;
+            this.lbItems.ItemHeight = 20;
+            this.lbItems.Location = new System.Drawing.Point(12, 28);
+            this.lbItems.Name = "lbItems";
+            this.lbItems.Size = new System.Drawing.Size(273, 304);
+            this.lbItems.TabIndex = 5;
             // 
             // RestockRequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 189);
-            this.Controls.Add(this.tbItemIDRestockForm);
+            this.ClientSize = new System.Drawing.Size(421, 347);
+            this.Controls.Add(this.lbItems);
             this.Controls.Add(this.btnSendRequest);
             this.Controls.Add(this.tbAmountRestockForm);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Name = "RestockRequestForm";
             this.Text = "Restock Request";
             this.ResumeLayout(false);
@@ -95,11 +87,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbAmountRestockForm;
         private System.Windows.Forms.Button btnSendRequest;
-        private System.Windows.Forms.TextBox tbItemIDRestockForm;
+        private System.Windows.Forms.ListBox lbItems;
     }
 }
