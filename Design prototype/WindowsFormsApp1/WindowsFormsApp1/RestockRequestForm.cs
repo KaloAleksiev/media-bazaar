@@ -15,7 +15,8 @@ namespace WindowsFormsApp1
 {
     public partial class RestockRequestForm : Form
     {
-        int ItemId;
+        int itemId;
+        string itemName;
         DepotWorker depotWorker;
 
 
@@ -44,7 +45,7 @@ namespace WindowsFormsApp1
             conn.Close();
             for (int i = 0; i < stock.GetAllItems().Count; i++)
             {
-                lbItems.Items.Add(stock.GetAllItems()[i].GetInfo());
+                lbItems.Items.Add(stock.GetAllItems()[i].GetItemNames());
             }
         }
 
@@ -52,11 +53,26 @@ namespace WindowsFormsApp1
         {
             int amount = Convert.ToInt32(tbAmountRestockForm.Text);
             String date = DateTime.Now.ToString("yyyyMMdd");
-            MySqlCommand CreateRequest = new MySqlCommand($"INSERT INTO restockrequest(item_id, amount, date) VALUES ({this.ItemId}, {amount}, {date})", conn);
+            MessageBox.Show($"{this.itemId} {date} {amount}");
+
+            //MySqlCommand CreateRequest = new MySqlCommand($"INSERT INTO restockrequest(item_id, amount, date) VALUES ({this.itemId}, {amount}, {date})", conn);
+            //conn.Open();
+            //int succ = CreateRequest.ExecuteNonQuery();
+            //conn.Close();
+            //MessageBox.Show("Request sent!");
+        }
+
+        private void lbItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            conn = new MySqlConnection(connStr);
             conn.Open();
-            int succ = CreateRequest.ExecuteNonQuery();
+            string name = lbItems.SelectedItem.ToString();
+            MySqlCommand GetItemID = new MySqlCommand("SELECT item_id AS id, name AS name FROM item WHERE name LIKE '" + name + "';", conn);
+            MySqlDataReader reader = GetItemID.ExecuteReader();
+            reader.Read();
+            itemId = Convert.ToInt32(reader["id"]);
+            itemName = reader["name"].ToString();
             conn.Close();
-            MessageBox.Show("Request sent!");
         }
     }
 }

@@ -496,7 +496,7 @@
             this.pStatistics.Controls.Add(this.cmbDepartmentStats);
             this.pStatistics.Controls.Add(this.btViewItemStats);
             this.pStatistics.Controls.Add(this.label5);
-            this.pStatistics.Location = new System.Drawing.Point(48, 461);
+            this.pStatistics.Location = new System.Drawing.Point(11, 272);
             this.pStatistics.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.pStatistics.Name = "pStatistics";
             this.pStatistics.Size = new System.Drawing.Size(411, 166);
@@ -687,11 +687,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Maroon;
-<<<<<<< HEAD
-            this.ClientSize = new System.Drawing.Size(957, 450);
-=======
-            this.ClientSize = new System.Drawing.Size(949, 664);
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
+            this.ClientSize = new System.Drawing.Size(949, 458);
             this.Controls.Add(this.pSchedule);
             this.Controls.Add(this.pStock);
             this.Controls.Add(this.pStatistics);

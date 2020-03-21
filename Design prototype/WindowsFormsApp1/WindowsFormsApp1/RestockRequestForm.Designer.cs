@@ -69,6 +69,7 @@
             this.lbItems.Name = "lbItems";
             this.lbItems.Size = new System.Drawing.Size(273, 304);
             this.lbItems.TabIndex = 5;
+            this.lbItems.SelectedIndexChanged += new System.EventHandler(this.lbItems_SelectedIndexChanged);
             // 
             // RestockRequestForm
             // 
