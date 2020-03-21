@@ -60,7 +60,7 @@ namespace WindowsFormsApp1
 
         public string GetDetailedInfo()
         {
-            return $"x{this.amountInStock} \t {this.name} \t {this.description}";
+            return $"x{this.amountInStock} \t {this.name} \t {this.description} \t Auto-restock limit: {this.arLimit}";
         }
     }
 }

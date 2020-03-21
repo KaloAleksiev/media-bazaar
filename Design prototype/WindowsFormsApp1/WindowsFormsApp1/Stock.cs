@@ -39,6 +39,18 @@ namespace WindowsFormsApp1
             return null;
         }
 
+        public Item GetItemByName(string name)
+        {
+            foreach(Item i in items)
+            {
+                if(i.Name == name)
+                {
+                    return i;
+                }
+            }
+            return null;
+        }
+
         public string GetStockInfo()
         {
             string returnStr = "";

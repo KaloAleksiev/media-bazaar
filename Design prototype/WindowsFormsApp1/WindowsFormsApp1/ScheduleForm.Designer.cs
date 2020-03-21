@@ -53,15 +53,15 @@
             this.lblMonth = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.pShift = new System.Windows.Forms.Panel();
-            this.lbAllPpl = new System.Windows.Forms.ListBox();
-            this.lbInShift = new System.Windows.Forms.ListBox();
-            this.lbShiftInfo = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.btnConfirm = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnConfirm = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.lbShiftInfo = new System.Windows.Forms.Label();
+            this.lbInShift = new System.Windows.Forms.ListBox();
+            this.lbAllPpl = new System.Windows.Forms.ListBox();
             this.pShift.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -393,75 +393,23 @@
             this.pShift.TabIndex = 24;
             this.pShift.Visible = false;
             // 
-            // lbAllPpl
+            // label23
             // 
-            this.lbAllPpl.FormattingEnabled = true;
-            this.lbAllPpl.ItemHeight = 16;
-            this.lbAllPpl.Location = new System.Drawing.Point(20, 75);
-            this.lbAllPpl.Name = "lbAllPpl";
-            this.lbAllPpl.Size = new System.Drawing.Size(230, 180);
-            this.lbAllPpl.TabIndex = 0;
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(497, 55);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(99, 17);
+            this.label23.TabIndex = 26;
+            this.label23.Text = "Added to shift:";
             // 
-            // lbInShift
+            // label22
             // 
-            this.lbInShift.FormattingEnabled = true;
-            this.lbInShift.ItemHeight = 16;
-            this.lbInShift.Location = new System.Drawing.Point(500, 75);
-            this.lbInShift.Name = "lbInShift";
-            this.lbInShift.Size = new System.Drawing.Size(230, 180);
-            this.lbInShift.TabIndex = 1;
-            // 
-            // lbShiftInfo
-            // 
-            this.lbShiftInfo.AutoSize = true;
-            this.lbShiftInfo.BackColor = System.Drawing.Color.White;
-            this.lbShiftInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbShiftInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.lbShiftInfo.ForeColor = System.Drawing.Color.Black;
-            this.lbShiftInfo.Location = new System.Drawing.Point(20, 14);
-            this.lbShiftInfo.Name = "lbShiftInfo";
-            this.lbShiftInfo.Size = new System.Drawing.Size(2, 26);
-            this.lbShiftInfo.TabIndex = 2;
-            this.lbShiftInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(300, 129);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(150, 27);
-            this.btnAdd.TabIndex = 21;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.BackColor = System.Drawing.Color.White;
-            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.btnRemove.ForeColor = System.Drawing.Color.Black;
-            this.btnRemove.Location = new System.Drawing.Point(300, 162);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(150, 27);
-            this.btnRemove.TabIndex = 22;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.UseVisualStyleBackColor = false;
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.BackColor = System.Drawing.Color.White;
-            this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.btnConfirm.ForeColor = System.Drawing.Color.Black;
-            this.btnConfirm.Location = new System.Drawing.Point(300, 195);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(150, 27);
-            this.btnConfirm.TabIndex = 23;
-            this.btnConfirm.Text = "Confirm";
-            this.btnConfirm.UseVisualStyleBackColor = false;
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(17, 55);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(99, 17);
+            this.label22.TabIndex = 25;
+            this.label22.Text = "All employees:";
             // 
             // btnCancel
             // 
@@ -476,23 +424,76 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             // 
-            // label22
+            // btnConfirm
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(17, 55);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(99, 17);
-            this.label22.TabIndex = 25;
-            this.label22.Text = "All employees:";
+            this.btnConfirm.BackColor = System.Drawing.Color.White;
+            this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.btnConfirm.ForeColor = System.Drawing.Color.Black;
+            this.btnConfirm.Location = new System.Drawing.Point(300, 195);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(150, 27);
+            this.btnConfirm.TabIndex = 23;
+            this.btnConfirm.Text = "Confirm";
+            this.btnConfirm.UseVisualStyleBackColor = false;
             // 
-            // label23
+            // btnRemove
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(497, 55);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(99, 17);
-            this.label23.TabIndex = 26;
-            this.label23.Text = "Added to shift:";
+            this.btnRemove.BackColor = System.Drawing.Color.White;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.btnRemove.ForeColor = System.Drawing.Color.Black;
+            this.btnRemove.Location = new System.Drawing.Point(300, 162);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(150, 27);
+            this.btnRemove.TabIndex = 22;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = false;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.btnAdd.ForeColor = System.Drawing.Color.Black;
+            this.btnAdd.Location = new System.Drawing.Point(300, 129);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(150, 27);
+            this.btnAdd.TabIndex = 21;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // lbShiftInfo
+            // 
+            this.lbShiftInfo.AutoSize = true;
+            this.lbShiftInfo.BackColor = System.Drawing.Color.White;
+            this.lbShiftInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbShiftInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.lbShiftInfo.ForeColor = System.Drawing.Color.Black;
+            this.lbShiftInfo.Location = new System.Drawing.Point(20, 14);
+            this.lbShiftInfo.Name = "lbShiftInfo";
+            this.lbShiftInfo.Size = new System.Drawing.Size(2, 26);
+            this.lbShiftInfo.TabIndex = 2;
+            this.lbShiftInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lbInShift
+            // 
+            this.lbInShift.FormattingEnabled = true;
+            this.lbInShift.ItemHeight = 16;
+            this.lbInShift.Location = new System.Drawing.Point(500, 75);
+            this.lbInShift.Name = "lbInShift";
+            this.lbInShift.Size = new System.Drawing.Size(230, 180);
+            this.lbInShift.TabIndex = 1;
+            // 
+            // lbAllPpl
+            // 
+            this.lbAllPpl.FormattingEnabled = true;
+            this.lbAllPpl.ItemHeight = 16;
+            this.lbAllPpl.Location = new System.Drawing.Point(20, 75);
+            this.lbAllPpl.Name = "lbAllPpl";
+            this.lbAllPpl.Size = new System.Drawing.Size(230, 180);
+            this.lbAllPpl.TabIndex = 0;
             // 
             // ScheduleForm
             // 

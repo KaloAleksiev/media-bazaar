@@ -64,14 +64,14 @@
             this.tbAddress = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.pStatistics = new System.Windows.Forms.Panel();
+            this.cmbItemsStats = new System.Windows.Forms.ComboBox();
             this.lbStatistics = new System.Windows.Forms.ListBox();
             this.btViewStatsOverall = new System.Windows.Forms.Button();
             this.btViewDepartmentStats = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbDepartmentStats = new System.Windows.Forms.ComboBox();
-            this.btViewEmployeeStats = new System.Windows.Forms.Button();
+            this.btViewItemStats = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.tbNameStats = new System.Windows.Forms.TextBox();
             this.pStock = new System.Windows.Forms.Panel();
             this.lbItems = new System.Windows.Forms.ListBox();
             this.btViewStockEmployee = new System.Windows.Forms.Button();
@@ -117,6 +117,7 @@
             this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPassword.Location = new System.Drawing.Point(69, 71);
             this.tbPassword.Name = "tbPassword";
+            this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(100, 26);
             this.tbPassword.TabIndex = 1;
             // 
@@ -487,19 +488,28 @@
             // pStatistics
             // 
             this.pStatistics.BackColor = System.Drawing.Color.White;
+            this.pStatistics.Controls.Add(this.cmbItemsStats);
             this.pStatistics.Controls.Add(this.lbStatistics);
             this.pStatistics.Controls.Add(this.btViewStatsOverall);
             this.pStatistics.Controls.Add(this.btViewDepartmentStats);
             this.pStatistics.Controls.Add(this.label6);
             this.pStatistics.Controls.Add(this.cmbDepartmentStats);
-            this.pStatistics.Controls.Add(this.btViewEmployeeStats);
+            this.pStatistics.Controls.Add(this.btViewItemStats);
             this.pStatistics.Controls.Add(this.label5);
-            this.pStatistics.Controls.Add(this.tbNameStats);
-            this.pStatistics.Location = new System.Drawing.Point(9, 272);
+            this.pStatistics.Location = new System.Drawing.Point(48, 461);
             this.pStatistics.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.pStatistics.Name = "pStatistics";
             this.pStatistics.Size = new System.Drawing.Size(411, 166);
             this.pStatistics.TabIndex = 8;
+            // 
+            // cmbItemsStats
+            // 
+            this.cmbItemsStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.cmbItemsStats.FormattingEnabled = true;
+            this.cmbItemsStats.Location = new System.Drawing.Point(101, 32);
+            this.cmbItemsStats.Name = "cmbItemsStats";
+            this.cmbItemsStats.Size = new System.Drawing.Size(121, 28);
+            this.cmbItemsStats.TabIndex = 43;
             // 
             // lbStatistics
             // 
@@ -519,10 +529,11 @@
             this.btViewStatsOverall.ForeColor = System.Drawing.SystemColors.Control;
             this.btViewStatsOverall.Location = new System.Drawing.Point(228, 105);
             this.btViewStatsOverall.Name = "btViewStatsOverall";
-            this.btViewStatsOverall.Size = new System.Drawing.Size(156, 33);
+            this.btViewStatsOverall.Size = new System.Drawing.Size(156, 24);
             this.btViewStatsOverall.TabIndex = 41;
             this.btViewStatsOverall.Text = "View statistics overall";
             this.btViewStatsOverall.UseVisualStyleBackColor = false;
+            this.btViewStatsOverall.Click += new System.EventHandler(this.btViewStatsOverall_Click);
             // 
             // btViewDepartmentStats
             // 
@@ -535,6 +546,7 @@
             this.btViewDepartmentStats.TabIndex = 40;
             this.btViewDepartmentStats.Text = "View department statistics";
             this.btViewDepartmentStats.UseVisualStyleBackColor = false;
+            this.btViewDepartmentStats.Click += new System.EventHandler(this.btViewDepartmentStats_Click);
             // 
             // label6
             // 
@@ -550,40 +562,38 @@
             // 
             this.cmbDepartmentStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.cmbDepartmentStats.FormattingEnabled = true;
+            this.cmbDepartmentStats.Items.AddRange(new object[] {
+            "Depot Worker",
+            "Manager ",
+            "Administrator",
+            "Employee"});
             this.cmbDepartmentStats.Location = new System.Drawing.Point(100, 66);
             this.cmbDepartmentStats.Name = "cmbDepartmentStats";
             this.cmbDepartmentStats.Size = new System.Drawing.Size(121, 28);
             this.cmbDepartmentStats.TabIndex = 38;
             // 
-            // btViewEmployeeStats
+            // btViewItemStats
             // 
-            this.btViewEmployeeStats.BackColor = System.Drawing.Color.Maroon;
-            this.btViewEmployeeStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btViewEmployeeStats.ForeColor = System.Drawing.SystemColors.Control;
-            this.btViewEmployeeStats.Location = new System.Drawing.Point(228, 70);
-            this.btViewEmployeeStats.Name = "btViewEmployeeStats";
-            this.btViewEmployeeStats.Size = new System.Drawing.Size(156, 23);
-            this.btViewEmployeeStats.TabIndex = 36;
-            this.btViewEmployeeStats.Text = "View statistics";
-            this.btViewEmployeeStats.UseVisualStyleBackColor = false;
+            this.btViewItemStats.BackColor = System.Drawing.Color.Maroon;
+            this.btViewItemStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btViewItemStats.ForeColor = System.Drawing.Color.White;
+            this.btViewItemStats.Location = new System.Drawing.Point(228, 70);
+            this.btViewItemStats.Name = "btViewItemStats";
+            this.btViewItemStats.Size = new System.Drawing.Size(156, 23);
+            this.btViewItemStats.TabIndex = 36;
+            this.btViewItemStats.Text = "View statistics for an item";
+            this.btViewItemStats.UseVisualStyleBackColor = false;
+            this.btViewItemStats.Click += new System.EventHandler(this.btViewItemStats_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label5.Location = new System.Drawing.Point(48, 33);
+            this.label5.Location = new System.Drawing.Point(12, 37);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 18);
+            this.label5.Size = new System.Drawing.Size(90, 18);
             this.label5.TabIndex = 37;
-            this.label5.Text = "NAME";
-            // 
-            // tbNameStats
-            // 
-            this.tbNameStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.tbNameStats.Location = new System.Drawing.Point(100, 33);
-            this.tbNameStats.Name = "tbNameStats";
-            this.tbNameStats.Size = new System.Drawing.Size(121, 26);
-            this.tbNameStats.TabIndex = 35;
+            this.label5.Text = "ITEM NAME";
             // 
             // pStock
             // 
@@ -672,11 +682,16 @@
             // 
             // Form1
             // 
+            this.AcceptButton = this.btLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Maroon;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(957, 450);
+=======
+            this.ClientSize = new System.Drawing.Size(949, 664);
+>>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
             this.Controls.Add(this.pSchedule);
             this.Controls.Add(this.pStock);
             this.Controls.Add(this.pStatistics);
@@ -732,9 +747,8 @@
         private System.Windows.Forms.Button btViewDepartmentStats;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbDepartmentStats;
-        private System.Windows.Forms.Button btViewEmployeeStats;
+        private System.Windows.Forms.Button btViewItemStats;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbNameStats;
         private System.Windows.Forms.Panel pStock;
         private System.Windows.Forms.Button btViewStockEmployee;
         private System.Windows.Forms.Button btSendRestockRequest;
@@ -756,6 +770,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cmbNamePromote;
         private System.Windows.Forms.Button btnCheckInfoPromot;
+        private System.Windows.Forms.ComboBox cmbItemsStats;
     }
 }
 
