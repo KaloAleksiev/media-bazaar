@@ -26,6 +26,9 @@ namespace WindowsFormsApp1
         string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
         MySqlConnection conn;
         List<Shift> shifts;
+        List<User> AllPpl;
+        List<User> InShift;
+
 
         public ScheduleForm(DateTime dt)
         {
@@ -38,6 +41,8 @@ namespace WindowsFormsApp1
             lblMonth.Text = dt.ToString("dd.MM.yy");
             AlignAll();
             shifts = new List<Shift>();
+            AllPpl = new List<User>();
+            InShift = new List<User>();
             createSchedule(dt);
         }
 
@@ -166,16 +171,16 @@ namespace WindowsFormsApp1
 
         public void FillDBByDept(Department dep)
         {
-            List<Employee> emps = new List<Employee>();
-            foreach (Employee emp in ControlClass.GetAllEmployees())
+            lbAllPpl.Items.Clear();
+            List<User> emps = new List<User>();
+            foreach (Employee emp in AllPpl)
             {
                 if (emp.Department == dep)
                 { emps.Add(emp); }
             }
             foreach (Employee emp in emps)
-            {
-                lbAllPpl.Items.Add(emp.GetInfo());
-            }
+            { lbAllPpl.Items.Add(emp.GetInfo()); }
+            AllPpl = emps;
         }
 
         public int GetIdOutOfBtn(char[] arBtnName)
@@ -308,6 +313,22 @@ namespace WindowsFormsApp1
 
             label22.Location = new Point(17, 55);
             label23.Location = new Point(497, 55);
+        }
+
+        public void FillChosenShift()
+        {
+            lbInShift.Items.Clear();
+            foreach (Employee emp in InShift)
+            { lbAllPpl.Items.Add(emp.GetInfo()); }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            InShift.Add(AllPpl[lbAllPpl.SelectedIndex]);
+            AllPpl.RemoveAt(lbAllPpl.SelectedIndex);
+            foreach (Employee emp in AllPpl)
+            { lbAllPpl.Items.Add(emp.GetInfo()); }
+            FillChosenShift();
         }
     }
 }
