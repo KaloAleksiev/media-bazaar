@@ -12,11 +12,11 @@ namespace WindowsFormsApp1
         private Department department;
         public double salary = 3000;
         private DateTime startDate;
-        public Employee(int id, string firstName, string lastname, string email, string address, DateTime date, string phonenumber, Department department) : base(id, firstName, lastname, email, address, date, phonenumber)
+        public Employee(string firstName, string lastname, string email, string address, string phonenumber, Department department):base(firstName, lastname,email, address, phonenumber)
         {
             empNumber++;
             this.department = department;
-            this.salary = 3000;
+            salary = 3000;
         }
         public Employee(int id, int employee_number, string firstName, string lastname, string email, string address, string phonenumber, string department, double salary) : base(id, firstName, lastname, email, address, phonenumber)
         {

@@ -16,7 +16,6 @@ namespace WindowsFormsApp1
         private string address;
         private string password;
         private string phoneNumber;
-        private DateTime startDate;
 
         //public static int Id
         //{ get; set; }
@@ -38,16 +37,6 @@ namespace WindowsFormsApp1
             this.address = address;
             this.phoneNumber = phonenumber;
             this.gottenID = id;
-        }
-        public User(int id, string firstName, string lastname, string email, string address, DateTime date, string phonenumber)
-        {
-            this.firstName = firstName;
-            this.lastName = lastname;
-            this.email = email;
-            this.address = address;
-            this.phoneNumber = phonenumber;
-            this.gottenID = id;
-            this.startDate = date;
         }
         public int ID()
         { return id; }

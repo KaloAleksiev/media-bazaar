@@ -8,16 +8,13 @@ namespace WindowsFormsApp1
 {
     public class DepotWorker : User
     {
-        private double salary;
         public static int depoNumber;
-        public double Salary
+        public static double salary ;
+        private DateTime startDate;
+        public DepotWorker(string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
         {
-            get { return this.salary; }
-            set { this.salary = value; }
-        }
-        public DepotWorker(int id, string firstName, string lastname, string email, string address, DateTime date, string phonenumber) : base(id, firstName, lastname, email, address, date, phonenumber)
-        {
-            this.Salary = 2000;
+            depoNumber++;
+            salary = 2000;
         }
         public Item[] ViewStock()
         {
