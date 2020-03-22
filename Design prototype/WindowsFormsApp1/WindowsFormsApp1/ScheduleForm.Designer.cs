@@ -368,7 +368,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(12, 427);
+            this.label21.Location = new System.Drawing.Point(-10, 424);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(54, 17);
             this.label21.TabIndex = 23;
@@ -450,6 +450,7 @@
             this.btnRemove.TabIndex = 22;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
             // 
