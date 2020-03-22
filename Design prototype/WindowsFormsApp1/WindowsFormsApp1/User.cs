@@ -8,16 +8,10 @@ namespace WindowsFormsApp1
 {
     public class User
     {
-<<<<<<< HEAD
-        public int id =0;
-        private string firstName;
-        private string lastName;
-=======
         public static int id = 0;
         private int gottenID;
         protected string firstName;
         protected string lastName;
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
         private string email;
         private string address;
         private string password;
@@ -35,11 +29,6 @@ namespace WindowsFormsApp1
             this.phoneNumber = phonenumber;
             id++;
         }
-<<<<<<< HEAD
-        public int ID()
-        { return id; }
-
-=======
         public User(int id, string firstName, string lastname, string email, string address, string phonenumber)
         {
             this.firstName = firstName;
@@ -53,7 +42,6 @@ namespace WindowsFormsApp1
         { return id; }
         public int GetGottenID()
         { return gottenID; }
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
         public string FirstName()
         { return firstName; }
 
@@ -66,10 +54,7 @@ namespace WindowsFormsApp1
         public string PhoneNumber()
         {  return phoneNumber; }
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
     }
 }

@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
             InitializeComponent();
             FillComboBox_Names();
             //Navigation Bar buttons Bounds
-            btEmployee.SetBounds(130, 7, 200, 40);
+            btEmployee.SetBounds(140, 7, 200, 40);
             btSchedule.SetBounds(340, 7, 200, 40);
             btStatistics.SetBounds(540, 7, 200, 40);
             btStock.SetBounds(740, 7, 300, 40);
@@ -79,57 +79,51 @@ namespace WindowsFormsApp1
                 cmbNamePromote.Items.Add(name[i]);
             }
         }
-        void FillComboBox_Names()
-        {
-            cmbNameAssign.Items.Clear();
-            cmbNamePromote.Items.Clear();
-            List<string> name = new List<string>();
-            cc.ShowAllUsers(name);
-            for (int i = 0; i < name.Count(); i++)
-            {
-                cmbNameAssign.Items.Add(name[i]);
-                cmbNamePromote.Items.Add(name[i]);
-            }
-        }
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            int id = cc.ReturnWorkerID(tbUsername.Text);
-=======
-            
-
-            string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            MySqlDataAdapter sda = new MySqlDataAdapter("SELECT count(*) FROM user WHERE email='" + tbUsername.Text + "' and password='" + tbPassword.Text + "'", conn);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            if (dt.Rows[0][0].ToString() == "1")
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";         
+            MySqlConnection conn = new MySqlConnection(connStr);            
+            conn.Open();
+            MySqlCommand command = new MySqlCommand("SELECT COUNT(*) AS succ, id AS id FROM user WHERE email='" + tbUsername.Text + "' and password='" + tbPassword.Text + "'", conn);           
+            MySqlDataReader reader2 = command.ExecuteReader();
+            reader2.Read();
+            int infoRead = Convert.ToInt32(reader2["succ"]);
+            if (infoRead == 1)
             {
-<<<<<<< HEAD
+                int id = Convert.ToInt32(reader2["id"]);
                 string function = cc.CheckFunction(id);
-                if (function == "Employee")
+                reader2.Close();
+                
+                if (function == "employee")
                 {
-                    btSchedule.SetBounds(540, 7, 200, 40);
+                    btSchedule.SetBounds(540, 7, 200, 40);                    
                     btStock.SetBounds(740, 7, 300, 40);
                     btlogout.SetBounds(1040, 7, 200, 40);
+                    pEmplyee.Visible = true;
+                    EmployeePanel();
+                    pLogin.Visible = false;
                 }
-                else if (function == "Manager")
+                else if (function == "manager")
                 {
                     btSchedule.SetBounds(340, 7, 200, 40);
                     btStatistics.SetBounds(540, 7, 200, 40);
                     btStock.SetBounds(740, 7, 300, 40);
                     btlogout.SetBounds(1040, 7, 200, 40);
+                    pEmplyee.Visible = true;
+                    EmployeePanel();
+                    pLogin.Visible = false;
                 }
-                else if (function == "DepotWorker")
+                else if (function == "depotworker")
                 {
                     btSchedule.SetBounds(540, 7, 200, 40);
                     btStock.SetBounds(740, 7, 300, 40);
                     btlogout.SetBounds(1040, 7, 200, 40);
+                    pEmplyee.Visible = true;
+                    EmployeePanel();
+                    pLogin.Visible = false;
                 }
-                else if (function == "Administrator")
+                else if (function == "administrator")
                 {
                     pEmplyee.Visible = true;
                     EmployeePanel();
@@ -141,20 +135,15 @@ namespace WindowsFormsApp1
                     btStock.SetBounds(740, 7, 300, 40);
                     btlogout.SetBounds(1040, 7, 200, 40);
                 }
-              
+
             }
             else
             {
-                MessageBox.Show("The ussername or pasword is not correct!");
-=======
-                pEmplyee.Visible = true;
+                MessageBox.Show("The credentials do not match");
+
+                
                 EmployeePanel();
-                pLogin.Visible = false;
-            }
-            else
-            {
-                MessageBox.Show("Credentials do not match.");
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
+                
             }
         }
 
@@ -221,18 +210,22 @@ namespace WindowsFormsApp1
             pStatistics.SetBounds(0, 50, 1280, 750);
 
             //Bounds of Statistics form and its controls
-            label5.SetBounds(235, 176, 200, 100);
-            cmbItemsStats.SetBounds(300, 170, 200, 100);
-            label6.SetBounds(570, 176, 200, 100);
-            cmbDepartmentStats.SetBounds(690, 170, 200, 100);
-            btViewDepartmentStats.SetBounds(132, 230, 300, 50);
-            btViewStatsOverall.SetBounds(450, 230, 300, 50);
-            btViewItemStats.SetBounds(770, 230, 300, 50);
+            label5.SetBounds(320, 20, 200, 100);
 
+            lbStatisticsPanel.SetBounds(150, 50, 400, 500);
+           
+
+            label6.SetBounds(600, 190, 300, 50);
+            cmbDepartmentStats.SetBounds(720, 190, 180, 50);
+            
+            btViewItemStats.SetBounds(600, 230, 300, 50);
+            btViewStatsOverall.SetBounds(600, 290, 300, 50);
+            btViewDepartmentStats.SetBounds(600, 350, 300, 50);
+            
             //fill the cmb with all the items 
-            foreach(Item i in stock.GetAllItems())
+            foreach (Item i in stock.GetAllItems())
             {
-                cmbItemsStats.Items.Add(i.Name);
+                lbStatisticsPanel.Items.Add(i.Name);
             }
         }
 
@@ -244,39 +237,11 @@ namespace WindowsFormsApp1
             pStatistics.Visible = false;
             pStock.Visible = true;
             pStock.SetBounds(0, 50, 1280, 750);
+            lbItems.SetBounds(150, 70, 400, 500);
+            btViewStockEmployee.SetBounds(600, 250, 200, 40);
+            btSendRestockRequest.SetBounds(600, 310, 200, 40);
 
-<<<<<<< HEAD
-            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            SqlConnection conn = new SqlConnection(connStr);
-            conn.Open();
-            SqlCommand GetMAXitem = new SqlCommand("SELECT MAX(item_id) AS maxItem FROM item", conn);
-            SqlDataReader reader1 = GetMAXitem.ExecuteReader();
-            reader1.Read();
-            for (int i = 1; i <= (int)reader1["maxItem"]; i++)
-            {
-                try
-                {
-                    SqlCommand GetAllItems = new SqlCommand("SELECT item_id AS id, name AS name, description AS desc, amount_in_stock AS inStock, auto_restock AS ar, ar_limit AS arl FROM item", conn);
-                    SqlDataReader reader2 = GetMAXitem.ExecuteReader();
-                    int itemId = Convert.ToInt32(reader2["id"]);
-                    string name = Convert.ToString(reader2["name"]);
-                    string desc = Convert.ToString(reader2["desc"]);
-                    int inStock = Convert.ToInt32(reader2["inStock"]);
-                    bool ar = Convert.ToBoolean(reader2["ar"]);
-                    int arl = Convert.ToInt32(reader2["arl"]);
 
-                    Item item = new Item(itemId, name, desc, inStock, ar, arl);
-                    stock.AddItem(item);
-
-                }
-                catch
-                {
-                    MessageBox.Show("unsucc");
-                }
-
-            }
-=======
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
         }
 
         private void btlogout_Click(object sender, EventArgs e)
@@ -287,21 +252,12 @@ namespace WindowsFormsApp1
             pStatistics.Visible = false;
             pStock.Visible = false;
             pLogin.SetBounds(0, 0, 1280, 800);
+            lbItems.SetBounds(50, 70, 500, 600);
+            btViewStockEmployee.SetBounds(550, 570, 100, 40);
+            btSendRestockRequest.SetBounds(550, 680, 100, 40);
         }
 
         #region Stock
-<<<<<<< HEAD
-        private void btCheckAvailability_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-
-            }
-            catch
-            {
-=======
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
 
 
         private void btViewStockEmployee_Click(object sender, EventArgs e)
@@ -311,31 +267,15 @@ namespace WindowsFormsApp1
 
         private void btSendRestockRequest_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            try
-            {
-                RestockRequestForm r = new RestockRequestForm(Convert.ToInt32(tbItemIDRestock.Text));
-                r.Show(this);
-            }
-            catch
-            {
-                MessageBox.Show("Please enter an Intager value for ID");
-            }
-
-=======
             RestockRequestForm r = new RestockRequestForm();
             r.Show(this);
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
         }
         #endregion
 
         private void btAddEmployee_Click(object sender, EventArgs e)
         {
 
-<<<<<<< HEAD
-=======
             int id = User.id;
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
             DateTime start_date = DateTime.Now;
 
             string password = tbLastName.Text + Convert.ToString(id);
@@ -344,14 +284,9 @@ namespace WindowsFormsApp1
             {
                 try
                 {
-<<<<<<< HEAD
-                    string insertData = "insert into user( firstname,lastname,email,password,address,start_date,phone_number)  VALUES ( @firstname,@lastname,@email,@password,@address,@start_date,@phone_number)";
-                    MySqlCommand command = new MySqlCommand(insertData, connection);
-=======
                     string insertData = "insert into user(id, firstname,lastname,email,password,address,start_date,phone_number)  VALUES (@id, @firstname,@lastname,@email,@password,@address,@start_date,@phone_number)";
                     MySqlCommand command = new MySqlCommand(insertData, connection);
                     command.Parameters.AddWithValue("@id", id);
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
                     command.Parameters.AddWithValue("@firstname", tbName.Text);
                     command.Parameters.AddWithValue("@lastname", tbLastName.Text);
                     command.Parameters.AddWithValue("@email", tbEmailAddress.Text);
@@ -435,13 +370,9 @@ namespace WindowsFormsApp1
             if (a == "Manager")
             {
                 MySqlConnection conn = new MySqlConnection(@"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234");
-<<<<<<< HEAD
-                string sql = "DELETE FROM employee WHERE concat(firstName,' ', lastName) = @name;";
-=======
                 string sql = "DELETE FROM employee WHERE where concat(firstName,' ', lastName) = @name;";
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
-                MySqlCommand cmd = new MySqlCommand(sql, conn); 
-                cmd.Parameters.AddWithValue("@name", name); 
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
                 conn.Open();
                 int effectedRows = cmd.ExecuteNonQuery();
                 string message = cc.AssignToManager(cmbNamePromote.Text);
@@ -479,31 +410,27 @@ namespace WindowsFormsApp1
             string info = cc.ReturnWorkerInfo(cmbNamePromote.Text);
             MessageBox.Show(info);
         }
-<<<<<<< HEAD
-=======
 
         #region Statistics
         private void btViewStatsOverall_Click(object sender, EventArgs e)
         {
-            
+            MessageBox.Show(cc.GetStatsOverall());
         }
 
-        #endregion
+
 
         private void btViewItemStats_Click(object sender, EventArgs e)
         {
             try
             {
-                Item selected = stock.GetItemByName(cmbItemsStats.SelectedItem.ToString());
-                MessageBox.Show(selected.GetDetailedInfo());
+                Item selected = stock.GetItemByName(lbStatisticsPanel.SelectedItem.ToString());
+                MessageBox.Show(cc.GetItemStats(selected));
             }
             catch (System.NullReferenceException)
             {
                 MessageBox.Show("You have to select an item first!");
             }
-            
-            
-
+            lbStatisticsPanel.SelectedItem = null;
         }
 
         private void btViewDepartmentStats_Click(object sender, EventArgs e)
@@ -511,41 +438,16 @@ namespace WindowsFormsApp1
             string department = "";
             try
             {
-                 department = cmbDepartmentStats.SelectedItem.ToString();
+                department = cmbDepartmentStats.SelectedItem.ToString();
+                MessageBox.Show(cc.GetStatsPerDepartment(department));
             }
             catch (System.NullReferenceException)
             {
-                MessageBox.Show("You have to select an a department first!");
+                MessageBox.Show("You have to select a department first!");
             }
-
-            string table = "";
-            switch (department)
-            {
-                case "Depot Worker":
-                    table = "depotworker";
-                    break;
-                case "Manager":
-                    table = "manager";
-                    break;
-                case "Administrator":
-                    table = "administrator";
-                    break;
-                case "Employee":
-                    table = "employee";
-                    break;
-            }
-            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            MySqlConnection conn = new MySqlConnection(connStr);
-            conn.Open();
-
-            MySqlCommand GetAvarageSalary = new MySqlCommand($" SELECT AVG(salary) AS avarageSalary FROM {table};", conn);
-            MySqlDataReader reader2 = GetAvarageSalary.ExecuteReader();
-            reader2.Read();
-            double avgSalary = Convert.ToDouble(reader2["avarageSalary"]);
-            conn.Close();
-            MessageBox.Show($"Avarage salary for the {department} department is {avgSalary.ToString()}.");
+            cmbDepartmentStats.SelectedItem = null;
         }
->>>>>>> c37f1e4a1700676bf83ab4232a7478dc9466a9a2
+        #endregion
     }
 }
 

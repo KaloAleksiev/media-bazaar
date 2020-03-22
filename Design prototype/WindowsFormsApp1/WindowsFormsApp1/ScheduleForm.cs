@@ -26,8 +26,12 @@ namespace WindowsFormsApp1
         string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
         MySqlConnection conn;
         List<Shift> shifts;
-        List<User> AllPpl;
-        List<User> InShift;
+        List<Employee> AllEmps;
+        List<DepotWorker> AllDW;
+        List<Manager> AllMng;
+        List<Employee> InShiftE;
+        List<DepotWorker> InShiftD;
+        List<Manager> InShiftM;
 
 
         public ScheduleForm(DateTime dt)
@@ -41,8 +45,12 @@ namespace WindowsFormsApp1
             lblMonth.Text = dt.ToString("dd.MM.yy");
             AlignAll();
             shifts = new List<Shift>();
-            AllPpl = new List<User>();
-            InShift = new List<User>();
+            AllEmps = new List<Employee>();
+            AllDW = new List<DepotWorker>();
+            AllMng = new List<Manager>();
+            InShiftE = new List<Employee>();
+            InShiftD = new List<DepotWorker>();
+            InShiftM = new List<Manager>();
             createSchedule(dt);
         }
 
@@ -158,29 +166,31 @@ namespace WindowsFormsApp1
         {
             Button clickedButton = (Button)sender;
             char[] arBtnName = clickedButton.Name.ToCharArray();
-            MessageBox.Show(clickedButton.Name);
             ShiftPicked(dt, GetIdOutOfBtn(arBtnName));
         }
 
         public void ShiftPicked(DateTime dt, int j)
         {
             lbShiftInfo.Text = $"{shifts[j].Type} shift in the {shifts[j].Department} department. Date: {dt.ToString("dd.MM.yyyy")}";
-            FillDBByDept(shifts[j].Department);
+            label21.Text = j.ToString();
             pShift.Visible = true;
+
+            AllEmps = ControlClass.GetAllEmployees();
+            FillDBByDept(shifts[j].Department);
         }
 
         public void FillDBByDept(Department dep)
         {
             lbAllPpl.Items.Clear();
-            List<User> emps = new List<User>();
-            foreach (Employee emp in AllPpl)
+            List<Employee> emps = new List<Employee>();
+            foreach (Employee emp in AllEmps)
             {
                 if (emp.Department == dep)
                 { emps.Add(emp); }
             }
             foreach (Employee emp in emps)
             { lbAllPpl.Items.Add(emp.GetInfo()); }
-            AllPpl = emps;
+            AllEmps = emps;
         }
 
         public int GetIdOutOfBtn(char[] arBtnName)
@@ -318,17 +328,46 @@ namespace WindowsFormsApp1
         public void FillChosenShift()
         {
             lbInShift.Items.Clear();
-            foreach (Employee emp in InShift)
-            { lbAllPpl.Items.Add(emp.GetInfo()); }
+            foreach (Employee emp in InShiftE)
+            { lbInShift.Items.Add(emp.GetInfo()); }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            InShift.Add(AllPpl[lbAllPpl.SelectedIndex]);
-            AllPpl.RemoveAt(lbAllPpl.SelectedIndex);
-            foreach (Employee emp in AllPpl)
-            { lbAllPpl.Items.Add(emp.GetInfo()); }
-            FillChosenShift();
+            try
+            {
+                InShiftE.Add(AllEmps[lbAllPpl.SelectedIndex]);
+                User u = AllEmps[lbAllPpl.SelectedIndex];
+                AllEmps.RemoveAt(lbAllPpl.SelectedIndex);
+                lbAllPpl.Items.Clear();
+                foreach (Employee emp in AllEmps)
+                { lbAllPpl.Items.Add(emp.GetInfo()); }
+                shifts[Convert.ToInt32(label22.Text)].AddPerson(u);
+                FillChosenShift();
+            }
+            catch
+            { MessageBox.Show("Please select a person."); }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllEmps.Add(InShiftE[lbInShift.SelectedIndex]);
+                InShiftE.RemoveAt(lbInShift.SelectedIndex);
+                lbAllPpl.Items.Clear();
+                foreach (Employee emp in AllEmps)
+                { lbAllPpl.Items.Add(emp.GetInfo()); }
+                FillChosenShift();
+                
+            }
+            catch
+            { MessageBox.Show("Please select a person."); }
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            shifts[Convert.ToInt32(label22.Text)].AddShiftToDB();
         }
     }
 }
