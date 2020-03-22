@@ -23,6 +23,22 @@ namespace WindowsFormsApp1
             people = new List<User>();
         }
 
+        public Shift(int shiftId, DateTime date, ShiftType type, Department department)
+        {
+            ShiftId = shiftId;
+            this.date = date;
+            this.Type = type;
+            this.Department = department;
+
+            people = new List<User>();
+        }
+
+        public int ShiftId
+        {
+            get { return shiftId; }
+            set { shiftId = value; }
+        }
+
         public Department Department
         { get; set; }
 
@@ -39,15 +55,15 @@ namespace WindowsFormsApp1
             MySqlCommand AddShiftToDB = new MySqlCommand("INSERT INTO shift (date, type, department) VALUES (@date, @type, @department)", conn);
             AddShiftToDB.Parameters.AddWithValue("@date", this.date.ToString("yyyy-MM-dd"));
             AddShiftToDB.Parameters.AddWithValue("@type", this.Type);
-            AddShiftToDB.Parameters.AddWithValue("@department", this.Department);
+            AddShiftToDB.Parameters.AddWithValue("@department", this.Department.ToString());
             conn.Open();
             int i = AddShiftToDB.ExecuteNonQuery();
             conn.Close();
-            MySqlCommand GetShiftID = new MySqlCommand("SELECT id FROM shift WHERE date = '" + this.date.ToString("yyyy=-MM-dd") + "' AND type = '" + this.Type + "' AND department = '" + this.Department + "'", conn);
+            MySqlCommand GetShiftID = new MySqlCommand("SELECT shift_id FROM shift WHERE date = '" + this.date.ToString("yyyy=-MM-dd") + "' AND type = '" + this.Type.ToString() + "' AND department = '" + this.Department.ToString() + "'", conn);
             conn.Open();
             MySqlDataReader reader1 = GetShiftID.ExecuteReader();
             reader1.Read();
-            this.shiftId = Convert.ToInt32(reader1["id"]);
+            this.shiftId = Convert.ToInt32(reader1["shift_id"]);
             reader1.Close();
             conn.Close();
             string table = null;
@@ -55,8 +71,8 @@ namespace WindowsFormsApp1
             foreach (User user in people)
             {
                 table = "shift_user";
-                MySqlCommand AddPersonToShiftDB = new MySqlCommand("INSERT INTO " + table + " (employee_id, shift_id) VALUES (@demployee_id, @shift_id)", conn);
-                AddPersonToShiftDB.Parameters.AddWithValue("@demployee_id", user.ID());
+                MySqlCommand AddPersonToShiftDB = new MySqlCommand("INSERT INTO " + table + " (employee_id, shift_id) VALUES (@employee_id, @shift_id)", conn);
+                AddPersonToShiftDB.Parameters.AddWithValue("@employee_id", user.GetGottenID());
                 AddPersonToShiftDB.Parameters.AddWithValue("@shift_id", this.shiftId);
                 conn.Open();
                 int j = AddPersonToShiftDB.ExecuteNonQuery();
