@@ -451,6 +451,12 @@
             // 
             this.cmbDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.cmbDepartment.FormattingEnabled = true;
+            this.cmbDepartment.Items.AddRange(new object[] {
+            "Manager",
+            "Depot worker",
+            "Employee - TVs",
+            "Employee - Computers",
+            "Employee - Phones"});
             this.cmbDepartment.Location = new System.Drawing.Point(136, 61);
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(50, 28);

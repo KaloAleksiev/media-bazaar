@@ -263,42 +263,44 @@ namespace WindowsFormsApp1
 
         private void btAddEmployee_Click(object sender, EventArgs e)
         {
+            DateTime date = DateTime.Now;
+            cc.CreateUser(tbName.Text, tbLastName.Text, tbEmailAddress.Text, tbAddress.Text, date, tbPhoneNumber.Text, cmbDepartment.SelectedItem.ToString());
 
-            int id = User.id;
-            DateTime start_date = DateTime.Now;
+            //int id = User.id;
+            //DateTime start_date = DateTime.Now;
 
-            string password = tbLastName.Text + Convert.ToString(id);
-            string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                try
-                {
-                    string insertData = "insert into user(id, firstname,lastname,email,password,address,start_date,phone_number)  VALUES (@id, @firstname,@lastname,@email,@password,@address,@start_date,@phone_number)";
-                    MySqlCommand command = new MySqlCommand(insertData, connection);
-                    command.Parameters.AddWithValue("@id", id);
-                    command.Parameters.AddWithValue("@firstname", tbName.Text);
-                    command.Parameters.AddWithValue("@lastname", tbLastName.Text);
-                    command.Parameters.AddWithValue("@email", tbEmailAddress.Text);
-                    command.Parameters.AddWithValue("@password", password);
-                    command.Parameters.AddWithValue("@address", tbAddress.Text);
-                    command.Parameters.AddWithValue("@start_date", start_date);
-                    command.Parameters.AddWithValue("@phone_number", tbPhoneNumber.Text);
-                    connection.Open();
-                    int result = command.ExecuteNonQuery();
-                    MessageBox.Show("Connected to database");
-                    MessageBox.Show("Data inserted successfully");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to connect to database due to" + ex.ToString());
-                    MessageBox.Show("Failed to insert data due to" + ex.ToString());
-                }
+            //string password = tbLastName.Text + Convert.ToString(id);
+            //string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            //using (MySqlConnection connection = new MySqlConnection(connectionString))
+            //{
+            //    try
+            //    {
+            //        string insertData = "insert into user(id, firstname,lastname,email,password,address,start_date,phone_number)  VALUES (@id, @firstname,@lastname,@email,@password,@address,@start_date,@phone_number)";
+            //        MySqlCommand command = new MySqlCommand(insertData, connection);
+            //        command.Parameters.AddWithValue("@id", id);
+            //        command.Parameters.AddWithValue("@firstname", tbName.Text);
+            //        command.Parameters.AddWithValue("@lastname", tbLastName.Text);
+            //        command.Parameters.AddWithValue("@email", tbEmailAddress.Text);
+            //        command.Parameters.AddWithValue("@password", password);
+            //        command.Parameters.AddWithValue("@address", tbAddress.Text);
+            //        command.Parameters.AddWithValue("@start_date", start_date);
+            //        command.Parameters.AddWithValue("@phone_number", tbPhoneNumber.Text);
+            //        connection.Open();
+            //        int result = command.ExecuteNonQuery();
+            //        MessageBox.Show("Connected to database");
+            //        MessageBox.Show("Data inserted successfully");
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Failed to connect to database due to" + ex.ToString());
+            //        MessageBox.Show("Failed to insert data due to" + ex.ToString());
+            //    }
 
-            }
+            //}
 
-            User newUser = new User(tbName.Text, tbLastName.Text, tbEmailAddress.Text, tbAddress.Text, tbPhoneNumber.Text);
-            string name = tbName.Text + " " + tbLastName.Text;
-            FillComboBox_Names();
+            //User newUser = new User(tbName.Text, tbLastName.Text, tbEmailAddress.Text, tbAddress.Text, tbPhoneNumber.Text);
+            //string name = tbName.Text + " " + tbLastName.Text;
+            //FillComboBox_Names();
         }
 
 
