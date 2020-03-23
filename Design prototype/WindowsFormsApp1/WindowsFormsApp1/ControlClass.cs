@@ -349,7 +349,7 @@ namespace WindowsFormsApp1
                 case "Employee - TVs":
                     query = "employee";
                     dep = Department.TVs;
-                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary)";
+                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary, @department)";
                     addToDepartment = new MySqlCommand(query, conn);
                     addToDepartment.Parameters.AddWithValue("@id", id);
                     addToDepartment.Parameters.AddWithValue("@salary", 3000);
@@ -362,7 +362,7 @@ namespace WindowsFormsApp1
                 case "Employee - Phones":
                     query = "employee";
                     dep = Department.Phones;
-                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary)";
+                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary, @department)";
                     addToDepartment = new MySqlCommand(query, conn);
                     addToDepartment.Parameters.AddWithValue("@id", id);
                     addToDepartment.Parameters.AddWithValue("@salary", 3000);
@@ -375,7 +375,7 @@ namespace WindowsFormsApp1
                 case "Employee - Computers":
                     query = "employee";
                     dep = Department.Computers;
-                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary)";
+                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary, @department)";
                     addToDepartment = new MySqlCommand(query, conn);
                     addToDepartment.Parameters.AddWithValue("@id", id);
                     addToDepartment.Parameters.AddWithValue("@salary", 3000);
