@@ -307,7 +307,6 @@ namespace WindowsFormsApp1
             pStock.Visible = true;
             pStock.SetBounds(0, 50, 1280, 750);
             lbItems.SetBounds(150, 70, 400, 500);
-            btViewStockEmployee.SetBounds(600, 250, 200, 40);
             btSendRestockRequest.SetBounds(600, 310, 200, 40);
 
 
@@ -322,17 +321,13 @@ namespace WindowsFormsApp1
             pStock.Visible = false;
             pLogin.SetBounds(0, 0, 1280, 800);
             lbItems.SetBounds(50, 70, 500, 600);
-            btViewStockEmployee.SetBounds(550, 570, 100, 40);
             btSendRestockRequest.SetBounds(550, 680, 100, 40);
         }
 
         #region Stock
 
 
-        private void btViewStockEmployee_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(stock.GetStockInfo());
-        }
+
 
         private void btSendRestockRequest_Click(object sender, EventArgs e)
         {
@@ -399,39 +394,14 @@ namespace WindowsFormsApp1
 
         private void btAssignToDepartment_Click(object sender, EventArgs e)
         {
-            string a = tbPromoteDepartment.Text;
-
-            if (a == "Manager")
-            {
-                string message = cc.AssignToManager(cmbNameAssign.Text);
-
-                MessageBox.Show(message);
-            }
-            else if (a == "Employee.TV")
-            {
-                string message = cc.AssignToEmployee(cmbNameAssign.Text, Department.TVs);
-
-                MessageBox.Show(message);
-            }
-            else if (a == "Employee.Computer")
-            {
-                string message = cc.AssignToEmployee(cmbNameAssign.Text, Department.Computers);
-
-                MessageBox.Show(message);
-            }
-            else if (a == "Employee.Phones")
-            {
-                string message = cc.AssignToEmployee(cmbNameAssign.Text, Department.Phones);
-
-                MessageBox.Show(message);
-            }
-            else if (a == "Depo Workers")
-            {
-                string message = cc.AssignToDepotTW(cmbNameAssign.Text);
-
-                MessageBox.Show(message);
-            }
-
+            DateTime date = DateTime.Now;
+            string department = cmbDepartemntAssign.SelectedItem.ToString();
+            string name = cmbNameAssign.SelectedItem.ToString();
+            User u;
+            u = cc.ReturnUser(name);
+            string m = cc.DeleteWorker(u.GetGottenID());
+            MessageBox.Show(m);
+            MessageBox.Show("Assigned succ");
         }
 
         private void btPromote_Click(object sender, EventArgs e)

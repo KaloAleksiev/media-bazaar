@@ -65,7 +65,6 @@
             this.tbName = new System.Windows.Forms.TextBox();
             this.pStock = new System.Windows.Forms.Panel();
             this.lbItems = new System.Windows.Forms.ListBox();
-            this.btViewStockEmployee = new System.Windows.Forms.Button();
             this.btSendRestockRequest = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btSchedule = new System.Windows.Forms.Button();
@@ -453,6 +452,12 @@
             // 
             this.cmbDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.cmbDepartment.FormattingEnabled = true;
+            this.cmbDepartment.Items.AddRange(new object[] {
+            "Employee - Phones",
+            "Employee - Computers",
+            "Employee - TVs",
+            "Depot Worker",
+            "Manager"});
             this.cmbDepartment.Location = new System.Drawing.Point(136, 61);
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(50, 28);
@@ -493,7 +498,6 @@
             this.pStock.BackColor = System.Drawing.Color.White;
             this.pStock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pStock.Controls.Add(this.lbItems);
-            this.pStock.Controls.Add(this.btViewStockEmployee);
             this.pStock.Controls.Add(this.btSendRestockRequest);
             this.pStock.Location = new System.Drawing.Point(427, 272);
             this.pStock.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
@@ -513,25 +517,12 @@
             this.lbItems.Size = new System.Drawing.Size(162, 124);
             this.lbItems.TabIndex = 141;
             // 
-            // btViewStockEmployee
-            // 
-            this.btViewStockEmployee.BackColor = System.Drawing.Color.Maroon;
-            this.btViewStockEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btViewStockEmployee.ForeColor = System.Drawing.SystemColors.Control;
-            this.btViewStockEmployee.Location = new System.Drawing.Point(191, 37);
-            this.btViewStockEmployee.Name = "btViewStockEmployee";
-            this.btViewStockEmployee.Size = new System.Drawing.Size(147, 33);
-            this.btViewStockEmployee.TabIndex = 26;
-            this.btViewStockEmployee.Text = "View stock";
-            this.btViewStockEmployee.UseVisualStyleBackColor = false;
-            this.btViewStockEmployee.Click += new System.EventHandler(this.btViewStockEmployee_Click);
-            // 
             // btSendRestockRequest
             // 
             this.btSendRestockRequest.BackColor = System.Drawing.Color.Maroon;
             this.btSendRestockRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btSendRestockRequest.ForeColor = System.Drawing.Color.White;
-            this.btSendRestockRequest.Location = new System.Drawing.Point(191, 76);
+            this.btSendRestockRequest.Location = new System.Drawing.Point(181, 20);
             this.btSendRestockRequest.Name = "btSendRestockRequest";
             this.btSendRestockRequest.Size = new System.Drawing.Size(147, 33);
             this.btSendRestockRequest.TabIndex = 29;
@@ -724,7 +715,6 @@
         private System.Windows.Forms.TextBox tbAddress;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Panel pStock;
-        private System.Windows.Forms.Button btViewStockEmployee;
         private System.Windows.Forms.Button btSendRestockRequest;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;

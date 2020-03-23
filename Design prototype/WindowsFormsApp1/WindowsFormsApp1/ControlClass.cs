@@ -349,7 +349,7 @@ namespace WindowsFormsApp1
                 case "Employee - TVs":
                     query = "employee";
                     dep = Department.TVs;
-                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary)";
+                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary, @department)";
                     addToDepartment = new MySqlCommand(query, conn);
                     addToDepartment.Parameters.AddWithValue("@id", id);
                     addToDepartment.Parameters.AddWithValue("@salary", 3000);
@@ -362,7 +362,7 @@ namespace WindowsFormsApp1
                 case "Employee - Phones":
                     query = "employee";
                     dep = Department.Phones;
-                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary)";
+                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary, @department)";
                     addToDepartment = new MySqlCommand(query, conn);
                     addToDepartment.Parameters.AddWithValue("@id", id);
                     addToDepartment.Parameters.AddWithValue("@salary", 3000);
@@ -375,7 +375,7 @@ namespace WindowsFormsApp1
                 case "Employee - Computers":
                     query = "employee";
                     dep = Department.Computers;
-                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary)";
+                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary, @department)";
                     addToDepartment = new MySqlCommand(query, conn);
                     addToDepartment.Parameters.AddWithValue("@id", id);
                     addToDepartment.Parameters.AddWithValue("@salary", 3000);
@@ -390,6 +390,23 @@ namespace WindowsFormsApp1
 
 
 
+        }
+        public string DeleteWorker(int id)
+        {
+            List<string> departments = new List<string>() { "depotworker", "manager", "employee" };
+
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            conn.Open();
+            foreach (string d in departments)
+            {
+                MySqlCommand cmd = new MySqlCommand($"DELETE FROM {d} WHERE id={id};", conn);
+                //cmd.Parameters.AddWithValue("@userId", id);
+                int effectedRows = cmd.ExecuteNonQuery();
+            }
+            conn.Close();
+            return "the user was deleted succesfully";
         }
     }
 }
