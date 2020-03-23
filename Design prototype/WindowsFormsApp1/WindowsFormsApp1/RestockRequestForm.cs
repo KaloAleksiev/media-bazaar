@@ -55,7 +55,7 @@ namespace WindowsFormsApp1
 
             int amount = Convert.ToInt32(tbAmountRestockForm.Text);
             string date = DateTime.Now.ToString("yyyyMMdd");
-            MySqlCommand createRequest = new MySqlCommand($"INSERT INTO restockrequest(item_id, amount, emp_id, date) VALUES ({this.itemId}, {amount}, {currentUser.ID()}, {date})", conn);
+            MySqlCommand createRequest = new MySqlCommand($"INSERT INTO restockrequest(item_id, amount, emp_id, date) VALUES ({this.itemId}, {amount}, {currentUser.GottenID}, {date})", conn);
             conn.Open();
             int succ = createRequest.ExecuteNonQuery();
             conn.Close();

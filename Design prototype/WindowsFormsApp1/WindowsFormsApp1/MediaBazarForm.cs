@@ -399,39 +399,14 @@ namespace WindowsFormsApp1
 
         private void btAssignToDepartment_Click(object sender, EventArgs e)
         {
-            string a = tbPromoteDepartment.Text;
-
-            if (a == "Manager")
-            {
-                string message = cc.AssignToManager(cmbNameAssign.Text);
-
-                MessageBox.Show(message);
-            }
-            else if (a == "Employee.TV")
-            {
-                string message = cc.AssignToEmployee(cmbNameAssign.Text, Department.TVs);
-
-                MessageBox.Show(message);
-            }
-            else if (a == "Employee.Computer")
-            {
-                string message = cc.AssignToEmployee(cmbNameAssign.Text, Department.Computers);
-
-                MessageBox.Show(message);
-            }
-            else if (a == "Employee.Phones")
-            {
-                string message = cc.AssignToEmployee(cmbNameAssign.Text, Department.Phones);
-
-                MessageBox.Show(message);
-            }
-            else if (a == "Depo Workers")
-            {
-                string message = cc.AssignToDepotTW(cmbNameAssign.Text);
-
-                MessageBox.Show(message);
-            }
-
+            DateTime date = DateTime.Now;
+            string department = cmbDepartemntAssign.SelectedItem.ToString();
+            string name = cmbNameAssign.SelectedItem.ToString();
+            User u;
+            u = cc.ReturnUser(name);
+            string m = cc.DeleteWorker(u.GetGottenID());
+            MessageBox.Show(m);
+            MessageBox.Show("Assigned succ");
         }
 
         private void btPromote_Click(object sender, EventArgs e)

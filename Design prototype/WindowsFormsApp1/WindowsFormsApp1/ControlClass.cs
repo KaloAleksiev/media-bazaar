@@ -391,6 +391,23 @@ namespace WindowsFormsApp1
 
 
         }
+        public string DeleteWorker(int id)
+        {
+            List<string> departments = new List<string>() { "depotworker", "manager", "employee" };
+
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            conn.Open();
+            foreach (string d in departments)
+            {
+                MySqlCommand cmd = new MySqlCommand($"DELETE FROM {d} WHERE id={id};", conn);
+                //cmd.Parameters.AddWithValue("@userId", id);
+                int effectedRows = cmd.ExecuteNonQuery();
+            }
+            conn.Close();
+            return "the user was deleted succesfully";
+        }
     }
 }
 
