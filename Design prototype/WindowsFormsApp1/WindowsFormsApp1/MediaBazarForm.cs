@@ -18,6 +18,7 @@ namespace WindowsFormsApp1
     {
         private Stock stock;
         ControlClass cc = new ControlClass();
+        User currentUser;
         public Form1()
         {
             InitializeComponent();
@@ -103,6 +104,23 @@ namespace WindowsFormsApp1
                     pEmplyee.Visible = true;
                     EmployeePanel();
                     pLogin.Visible = false;
+                    MySqlConnection pullInfo = new MySqlConnection(connStr);
+                    pullInfo.Open();
+                    string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.emp_number, e.department, e.salary FROM user AS u INNER JOIN employee AS e ON u.id = e.id WHERE u.id = '" + id.ToString() + "'";
+                    MySqlCommand pullAll = new MySqlCommand(sql, pullInfo);
+                    MySqlDataReader readerAll = pullAll.ExecuteReader();
+                    readerAll.Read();
+                    int empid = Convert.ToInt32(readerAll["emp_number"]);
+                    string firstname = Convert.ToString(readerAll["firstName"]);
+                    string lastname = Convert.ToString(readerAll["lastName"]);
+                    string email = Convert.ToString(readerAll["email"]);
+                    string address = Convert.ToString(readerAll["address"]);
+                    string phonenumber = Convert.ToString(readerAll["phone_number"]);
+                    string department = Convert.ToString(readerAll["department"]);
+                    double salary = Convert.ToDouble(readerAll["salary"]);
+                    currentUser = new Employee(id, empid, firstname, lastname, email, address, phonenumber, department, salary);
+                    readerAll.Close();
+                    pullInfo.Close();
                 }
                 else if (function == "manager")
                 {
@@ -113,6 +131,21 @@ namespace WindowsFormsApp1
                     pEmplyee.Visible = true;
                     EmployeePanel();
                     pLogin.Visible = false;
+
+                    MySqlConnection pullInfo = new MySqlConnection(connStr);
+                    pullInfo.Open();
+                    string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.emp_number, e.department, e.salary FROM user AS u INNER JOIN manager AS e ON u.id = e.id WHERE u.id = '" + id.ToString() + "'";
+                    MySqlCommand pullAll = new MySqlCommand(sql, pullInfo);
+                    MySqlDataReader readerAll = pullAll.ExecuteReader();
+                    readerAll.Read();
+                    string firstname = Convert.ToString(readerAll["firstName"]);
+                    string lastname = Convert.ToString(readerAll["lastName"]);
+                    string email = Convert.ToString(readerAll["email"]);
+                    string address = Convert.ToString(readerAll["address"]);
+                    string phonenumber = Convert.ToString(readerAll["phone_number"]);
+                    currentUser = new Manager(id, firstname, lastname, email, address, phonenumber);
+                    readerAll.Close();
+                    pullInfo.Close();
                 }
                 else if (function == "depotworker")
                 {
@@ -122,6 +155,21 @@ namespace WindowsFormsApp1
                     pEmplyee.Visible = true;
                     EmployeePanel();
                     pLogin.Visible = false;
+
+                    MySqlConnection pullInfo = new MySqlConnection(connStr);
+                    pullInfo.Open();
+                    string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.emp_number, e.department, e.salary FROM user AS u INNER JOIN depotworker AS e ON u.id = e.id WHERE u.id = '" + id.ToString() + "'";
+                    MySqlCommand pullAll = new MySqlCommand(sql, pullInfo);
+                    MySqlDataReader readerAll = pullAll.ExecuteReader();
+                    readerAll.Read();
+                    string firstname = Convert.ToString(readerAll["firstName"]);
+                    string lastname = Convert.ToString(readerAll["lastName"]);
+                    string email = Convert.ToString(readerAll["email"]);
+                    string address = Convert.ToString(readerAll["address"]);
+                    string phonenumber = Convert.ToString(readerAll["phone_number"]);
+                    currentUser = new DepotWorker(id, firstname, lastname, email, address, phonenumber);
+                    readerAll.Close();
+                    pullInfo.Close();
                 }
                 else if (function == "administrator")
                 {
@@ -134,6 +182,21 @@ namespace WindowsFormsApp1
                     btStatistics.SetBounds(540, 7, 200, 40);
                     btStock.SetBounds(740, 7, 300, 40);
                     btlogout.SetBounds(1040, 7, 200, 40);
+
+                    MySqlConnection pullInfo = new MySqlConnection(connStr);
+                    pullInfo.Open();
+                    string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.admin_number FROM user AS u INNER JOIN administrator AS e ON u.id = e.id WHERE u.id = '" + id.ToString() + "'";
+                    MySqlCommand pullAll = new MySqlCommand(sql, pullInfo);
+                    MySqlDataReader readerAll = pullAll.ExecuteReader();
+                    readerAll.Read();
+                    string firstname = Convert.ToString(readerAll["firstName"]);
+                    string lastname = Convert.ToString(readerAll["lastName"]);
+                    string email = Convert.ToString(readerAll["email"]);
+                    string address = Convert.ToString(readerAll["address"]);
+                    string phonenumber = Convert.ToString(readerAll["phone_number"]);
+                    currentUser = new Administrator(id, firstname, lastname, email, address, phonenumber);
+                    readerAll.Close();
+                    pullInfo.Close();
                 }
 
             }
