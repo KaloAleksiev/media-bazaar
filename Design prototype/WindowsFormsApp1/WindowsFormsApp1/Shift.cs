@@ -48,12 +48,12 @@ namespace WindowsFormsApp1
         public void AddPerson(User person)
         { people.Add(person); }
 
-        public void AddShiftToDB(int shiftID)
+        public void AddShiftToDB()
         {
             //See if a shift with the ID already exists.
             string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
             MySqlConnection conn = new MySqlConnection(connStr);
-            MySqlCommand CheckForShift = new MySqlCommand("SELECT COUNT(*) AS cnt FROM shift WHERE shift_id = '" + shiftID.ToString() + "'", conn);
+            MySqlCommand CheckForShift = new MySqlCommand("SELECT COUNT(*) AS cnt FROM shift WHERE shift_id = '" + this.shiftId.ToString() + "'", conn);
             conn.Open();
             MySqlDataReader reader = CheckForShift.ExecuteReader();
             reader.Read();
@@ -95,7 +95,7 @@ namespace WindowsFormsApp1
                     int k = AddPersonToShiftDB.ExecuteNonQuery();
                     conn.Close();
                 }
-            }
+            }       
         }
 
         public List<Employee> GetAllEmps()

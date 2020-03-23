@@ -310,16 +310,7 @@ namespace WindowsFormsApp1
                             lbAllPpl.Items.Clear();
                             foreach (Employee emp in AllEmps)
                             { lbAllPpl.Items.Add(emp.GetInfo()); } //Refresh the AllPpl listbox
-                            if (shifts[Convert.ToInt32(label21.Text)].GetAllEmps() != null)
-                            {
-                                for (int i = 0; i < shifts[Convert.ToInt32(label21.Text)].GetAllEmps().Count; i++)
-                                { 
-                                    if (shifts[Convert.ToInt32(label21.Text)].GetAllEmps()[i].EmpNumber != u.EmpNumber)
-                                    { shifts[Convert.ToInt32(label21.Text)].AddPerson(u); }
-                                }
-                            }
-                            else
-                            { shifts[Convert.ToInt32(label21.Text)].AddPerson(u); }
+                            shifts[Convert.ToInt32(label21.Text)].AddPerson(u);
                             FillChosenShift(); //Refresh the InShift listbox.
                         }
                         catch
@@ -359,7 +350,7 @@ namespace WindowsFormsApp1
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            shifts[Convert.ToInt32(label21.Text)].AddShiftToDB(shifts[Convert.ToInt32(label21.Text)].ShiftId); //Add the shift to the DB.
+            shifts[Convert.ToInt32(label21.Text)].AddShiftToDB(); //Add the shift to the DB.
             switch (shifts[Convert.ToInt32(label21.Text)].Department)
             {
                 case (Department.Manager): //HELP
