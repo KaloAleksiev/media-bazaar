@@ -43,7 +43,7 @@ namespace WindowsFormsApp1
             this.email = email;
             this.address = address;
             this.phoneNumber = phonenumber;
-            this.gottenID = id;
+            this.GottenID = id;
         }
         public int ID()
         { return id; }

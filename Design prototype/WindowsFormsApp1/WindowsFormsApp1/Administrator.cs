@@ -13,18 +13,18 @@ namespace WindowsFormsApp1
         private int adminNumber;
         public Administrator(string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
         {
-
+            
         }
 
-        public Administrator(int id, string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
+        public Administrator(int id, string firstName, string lastname, string email, string address, string phonenumber) : base(id, firstName, lastname, email, address, phonenumber)
         {
-
+            
         }
 
 
         public RestockRequest[] ViewRestockREquest()
         {
-            return stats.GetAllRequests().ToArray();   
+            return stats.GetAllRequests().ToArray();
         }
         public void AssignToDepartment()
         {
