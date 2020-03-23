@@ -78,15 +78,16 @@ namespace WindowsFormsApp1
             {
                 cmbNameAssign.Items.Add(name[i]);
                 cmbNamePromote.Items.Add(name[i]);
+                lbEmployee.Items.Add(name[i]);
             }
         }
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";         
-            MySqlConnection conn = new MySqlConnection(connStr);            
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
-            MySqlCommand command = new MySqlCommand("SELECT COUNT(*) AS succ, id AS id FROM user WHERE email='" + tbUsername.Text + "' and password='" + tbPassword.Text + "'", conn);           
+            MySqlCommand command = new MySqlCommand("SELECT COUNT(*) AS succ, id AS id FROM user WHERE email='" + tbUsername.Text + "' and password='" + tbPassword.Text + "'", conn);
             MySqlDataReader reader2 = command.ExecuteReader();
             reader2.Read();
             int infoRead = Convert.ToInt32(reader2["succ"]);
@@ -95,10 +96,10 @@ namespace WindowsFormsApp1
                 int id = Convert.ToInt32(reader2["id"]);
                 string function = cc.CheckFunction(id);
                 reader2.Close();
-                
+
                 if (function == "employee")
                 {
-                    btSchedule.SetBounds(540, 7, 200, 40);                    
+                    btSchedule.SetBounds(540, 7, 200, 40);
                     btStock.SetBounds(740, 7, 300, 40);
                     btlogout.SetBounds(1040, 7, 200, 40);
                     //pEmplyee.Visible = true;
@@ -210,9 +211,9 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("The credentials do not match");
 
-                
+
                 EmployeePanel();
-                
+
             }
         }
 
@@ -248,13 +249,10 @@ namespace WindowsFormsApp1
 
             label10.SetBounds(200, 390, 100, 40);
             cmbNamePromote.SetBounds(160, 410, 200, 40);
-            label11.SetBounds(430, 390, 150, 100);
-            tbPromoteDepartment.SetBounds(410, 410, 150, 100);
+     
+            btPromote.SetBounds(380, 410, 180, 30);
 
-            btnCheckInfoPromot.SetBounds(150, 440, 200, 40);
-            btPromote.SetBounds(360, 440, 200, 40);
-
-            lbEmployee.SetBounds(700, 50, 400, 550);
+            lbEmployee.SetBounds(700, 50, 400, 450);
 
         }
 
@@ -282,15 +280,15 @@ namespace WindowsFormsApp1
             label5.SetBounds(320, 20, 200, 100);
 
             lbStatistics.SetBounds(150, 50, 400, 500);
-           
+
 
             label6.SetBounds(600, 190, 300, 50);
             cmbDepartmentStats.SetBounds(720, 190, 180, 50);
-            
+
             btViewItemStats.SetBounds(600, 230, 300, 50);
             btViewStatsOverall.SetBounds(600, 290, 300, 50);
             btViewDepartmentStats.SetBounds(600, 350, 300, 50);
-            
+
             //fill the cmb with all the items 
             foreach (Item i in stock.GetAllItems())
             {
@@ -307,6 +305,7 @@ namespace WindowsFormsApp1
             pStock.Visible = true;
             pStock.SetBounds(0, 50, 1280, 750);
             lbItems.SetBounds(150, 70, 400, 500);
+            btViewStockEmployee.SetBounds(600, 250, 200, 40);
             btSendRestockRequest.SetBounds(600, 310, 200, 40);
 
 
@@ -321,13 +320,17 @@ namespace WindowsFormsApp1
             pStock.Visible = false;
             pLogin.SetBounds(0, 0, 1280, 800);
             lbItems.SetBounds(50, 70, 500, 600);
+            btViewStockEmployee.SetBounds(550, 570, 100, 40);
             btSendRestockRequest.SetBounds(550, 680, 100, 40);
         }
 
         #region Stock
 
 
-
+        private void btViewStockEmployee_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(stock.GetStockInfo());
+        }
 
         private void btSendRestockRequest_Click(object sender, EventArgs e)
         {
@@ -338,45 +341,24 @@ namespace WindowsFormsApp1
 
         private void btAddEmployee_Click(object sender, EventArgs e)
         {
-            DateTime date = DateTime.Now;
-            cc.CreateUser(tbName.Text, tbLastName.Text, tbEmailAddress.Text, tbAddress.Text, date, tbPhoneNumber.Text, cmbDepartment.SelectedItem.ToString());
+            if (String.IsNullOrEmpty(tbLastName.Text))
+            {
+                MessageBox.Show("The full name is missing!");
+            }
+            else
+            {
+                if (cmbDepartment.SelectedIndex > -1)
+                {
+                    DateTime date = DateTime.Now;
+                    cc.CreateUser(tbName.Text, tbLastName.Text, tbEmailAddress.Text, tbAddress.Text, date, tbPhoneNumber.Text, cmbDepartment.SelectedItem.ToString());
+                    FillComboBox_Names();
+                }
+                else
+                {
+                    MessageBox.Show("The Department  is not specify!");
+                }
 
-
-            //int id = User.id;
-            //DateTime start_date = DateTime.Now;
-
-            //string password = tbLastName.Text + Convert.ToString(id);
-            //string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            //using (MySqlConnection connection = new MySqlConnection(connectionString))
-            //{
-            //    try
-            //    {
-            //        string insertData = "insert into user(id, firstname,lastname,email,password,address,start_date,phone_number)  VALUES (@id, @firstname,@lastname,@email,@password,@address,@start_date,@phone_number)";
-            //        MySqlCommand command = new MySqlCommand(insertData, connection);
-            //        command.Parameters.AddWithValue("@id", id);
-            //        command.Parameters.AddWithValue("@firstname", tbName.Text);
-            //        command.Parameters.AddWithValue("@lastname", tbLastName.Text);
-            //        command.Parameters.AddWithValue("@email", tbEmailAddress.Text);
-            //        command.Parameters.AddWithValue("@password", password);
-            //        command.Parameters.AddWithValue("@address", tbAddress.Text);
-            //        command.Parameters.AddWithValue("@start_date", start_date);
-            //        command.Parameters.AddWithValue("@phone_number", tbPhoneNumber.Text);
-            //        connection.Open();
-            //        int result = command.ExecuteNonQuery();
-            //        MessageBox.Show("Connected to database");
-            //        MessageBox.Show("Data inserted successfully");
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Failed to connect to database due to" + ex.ToString());
-            //        MessageBox.Show("Failed to insert data due to" + ex.ToString());
-            //    }
-
-            //}
-
-            //User newUser = new User(tbName.Text, tbLastName.Text, tbEmailAddress.Text, tbAddress.Text, tbPhoneNumber.Text);
-            //string name = tbName.Text + " " + tbLastName.Text;
-            //FillComboBox_Names();
+            }
         }
 
 
@@ -394,108 +376,107 @@ namespace WindowsFormsApp1
 
         private void btAssignToDepartment_Click(object sender, EventArgs e)
         {
-            DateTime date = DateTime.Now;
-            string department = cmbDepartemntAssign.SelectedItem.ToString();
-            string name = cmbNameAssign.SelectedItem.ToString();
-            User u;
-            u = cc.ReturnUser(name);
-            string m = cc.DeleteWorker(u.GetGottenID());
-            MessageBox.Show(m);
-            MessageBox.Show("Assigned succ");
+            if (cmbDepartemntAssign.SelectedIndex > -1)
+            {
+                if (cmbNameAssign.SelectedIndex > -1)
+                {
+                    DateTime date = DateTime.Now;
+                    string department = cmbDepartemntAssign.SelectedItem.ToString();
+                    string name = cmbNameAssign.SelectedItem.ToString();
+                    User u;
+                    u = cc.ReturnUser(name);
+                    string m = cc.DeleteWorker(u.GetGottenID());
+                    MessageBox.Show(m);
+                    cc.AssignToDepartment(u.GottenID, department);
+                    MessageBox.Show("Assigned succ");
+                }
+                else
+                {
+                    MessageBox.Show("The Name was not specify!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("The department was not specify!");
+            }
         }
 
         private void btPromote_Click(object sender, EventArgs e)
         {
+            string name = cmbNamePromote.SelectedItem.ToString();
+            int id = cc.ReturnWorkerID(name);
+            double salary =0;
 
-            string a = tbPromoteDepartment.Text;
-            string name = cmbNamePromote.Text;
-            if (a == "Manager")
+            List<string> departments = new List<string>() { "depotworker", "manager", "employee" };
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            
+            foreach (string d in departments)
             {
-                MySqlConnection conn = new MySqlConnection(@"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234");
-                string sql = "DELETE FROM employee WHERE where concat(firstName,' ', lastName) = @name;";
+                string sql = $"SELECT salary FROM {d} where id ={id};";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@name", name);
                 conn.Open();
-                int effectedRows = cmd.ExecuteNonQuery();
-                string message = cc.AssignToManager(cmbNamePromote.Text);
-                MessageBox.Show(message);
-            }
-            else if (a == "Employee.TV")
-            {
-                string message = cc.AssignToEmployee(cmbNamePromote.Text, Department.TVs);
+                Object result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    salary =0.1 * Convert.ToInt32(result) + Convert.ToInt32(result);
+                }
+                conn.Close();
 
-                MessageBox.Show(message);
             }
-            else if (a == "Employee.Computer")
-            {
-                string message = cc.AssignToEmployee(cmbNamePromote.Text, Department.Computers);
-
-                MessageBox.Show(message);
-            }
-            else if (a == "Employee.Phones")
-            {
-                string message = cc.AssignToEmployee(cmbNamePromote.Text, Department.Phones);
-
-                MessageBox.Show(message);
-            }
-            else if (a == "Depo Workers")
-            {
-                string message = cc.AssignToDepotTW(cmbNamePromote.Text);
-
-                MessageBox.Show(message);
-            }
-
+            cc.Promote(id, salary);
+            MessageBox.Show($"The curren salary of {name} is {salary}");
         }
 
-        private void btnCheckInfoPromot_Click(object sender, EventArgs e)
-        {
-            string info = cc.ReturnWorkerInfo(cmbNamePromote.Text);
-            MessageBox.Show(info);
-        }
-
-        #region Statistics
-        private void btViewStatsOverall_Click(object sender, EventArgs e)
-        {
-
-            MessageBox.Show(cc.GetStatsOverall());
-        }
-
-        private void btViewItemStats_Click(object sender, EventArgs e)
-        {
-            try
+            private void btnCheckInfoPromot_Click(object sender, EventArgs e)
             {
-
-                Item selected = stock.GetItemByName(lbStatistics.SelectedItem.ToString());
-
-                MessageBox.Show(cc.GetItemStats(selected));
-            }
-            catch (System.NullReferenceException)
-            {
-                MessageBox.Show("You have to select an item first!");
+                string info = cc.ReturnWorkerInfo(cmbNamePromote.Text);
+                MessageBox.Show(info);
             }
 
-            lbStatistics.SelectedItem = null;
-
-        }
-
-        private void btViewDepartmentStats_Click(object sender, EventArgs e)
-        {
-            string department = "";
-            try
+            #region Statistics
+            private void btViewStatsOverall_Click(object sender, EventArgs e)
             {
 
-                department = cmbDepartmentStats.SelectedItem.ToString();
-                MessageBox.Show(cc.GetStatsPerDepartment(department));
+                MessageBox.Show(cc.GetStatsOverall());
+            }
+
+            private void btViewItemStats_Click(object sender, EventArgs e)
+            {
+                try
+                {
+
+                    Item selected = stock.GetItemByName(lbStatistics.SelectedItem.ToString());
+
+                    MessageBox.Show(cc.GetItemStats(selected));
+                }
+                catch (System.NullReferenceException)
+                {
+                    MessageBox.Show("You have to select an item first!");
+                }
+
+                lbStatistics.SelectedItem = null;
 
             }
-            catch (System.NullReferenceException)
+
+            private void btViewDepartmentStats_Click(object sender, EventArgs e)
             {
-                MessageBox.Show("You have to select a department first!");
+                string department = "";
+                try
+                {
+
+                    department = cmbDepartmentStats.SelectedItem.ToString();
+                    MessageBox.Show(cc.GetStatsPerDepartment(department));
+
+                }
+                catch (System.NullReferenceException)
+                {
+                    MessageBox.Show("You have to select a department first!");
+                }
+                cmbDepartmentStats.SelectedItem = null;
             }
-            cmbDepartmentStats.SelectedItem = null;
+            #endregion
         }
-        #endregion
     }
-}
 
 

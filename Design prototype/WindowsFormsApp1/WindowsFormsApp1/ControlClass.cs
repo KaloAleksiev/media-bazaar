@@ -151,24 +151,40 @@ namespace WindowsFormsApp1
 
         public User ReturnUser(string name)
         {
+           
             MySqlConnection conn = new MySqlConnection(connectionString);
-            conn.Open();
-            string sql = "SELECT u.id as id, u.firstName as firstName, u.lastName as lastName, u.email as email ,u.address as address,u.phone_number as phonenumber,w.function as function FROM user u INNER JOIN workers w on u.id = w.id where concat(firstName,' ', lastName) = @name;";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlCommand cmd = new MySqlCommand($"SELECT id as id, firstName as firstName, lastName as lastName, email as email, address, phone_number as phone_number  FROM user WHERE concat(firstName,' ', lastName) = @name;", conn);
             cmd.Parameters.AddWithValue("@name", name);
+            conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            int id = Convert.ToInt32(reader["id"]);
-            string firstname = Convert.ToString(reader["firstName"]);
-            string lastname = Convert.ToString(reader["lastName"]);
-            string function = Convert.ToString(reader["function"]);
-            string email = Convert.ToString(reader["email"]);
-            string address = Convert.ToString(reader["address"]);
-            string phonenumber = Convert.ToString(reader["phonenumber"]);
-            User u = new User(firstname, lastname, email, address, phonenumber);
+                int id = Convert.ToInt32(reader["id"]);
+                string firstname = Convert.ToString(reader["firstName"]);
+                string lastname = Convert.ToString(reader["lastName"]);
+                string email = Convert.ToString(reader["email"]);
+                string address = Convert.ToString(reader["address"]);
+                string phonenumber = Convert.ToString(reader["phone_number"]);
+               User u = new User(id, firstname, lastname, email, address, phonenumber);
+            conn.Close();
             return u;
         }
 
+        public string DeleteWorker(int id)
+        {
+            List<string> departments = new List<string>() { "depotworker", "manager", "employee" };
+
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            conn.Open();
+            foreach (string d in departments)
+            {
+                MySqlCommand cmd = new MySqlCommand($"DELETE FROM {d} WHERE id={id};", conn);
+                int effectedRows = cmd.ExecuteNonQuery();
+            }
+            conn.Close();
+            return "the user was deleted succesfully";
+        }
         public static List<Employee> GetAllEmployees()
         {
             List<Employee> emps = new List<Employee>();
@@ -292,34 +308,10 @@ namespace WindowsFormsApp1
 
 
 
-
-
-        public void CreateUser(string fname, string lname, string email, string address, DateTime date, string phone_number, string type)
+        public void AssignToDepartment(int id,string type)
         {
             string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
             MySqlConnection conn = new MySqlConnection(connStr);
-            MySqlCommand getMaxID = new MySqlCommand($"SELECT MAX(id) AS id FROM user;", conn);
-            conn.Open();
-            MySqlDataReader reader2 = getMaxID.ExecuteReader();
-            reader2.Read();
-            int id = Convert.ToInt32(reader2["id"]) + 1;
-            conn.Close();
-            reader2.Close();
-
-            string insertData = "insert into user(id, firstname,lastname,email,password,address,start_date,phone_number)  VALUES (@id, @firstname,@lastname,@email,@password,@address,@start_date,@phone_number)";
-            MySqlCommand command = new MySqlCommand(insertData, conn);
-            command.Parameters.AddWithValue("@id", id);
-            command.Parameters.AddWithValue("@firstname", fname);
-            command.Parameters.AddWithValue("@lastname", lname);
-            command.Parameters.AddWithValue("@email", email);
-            command.Parameters.AddWithValue("@password", id);
-            command.Parameters.AddWithValue("@address", address);
-            command.Parameters.AddWithValue("@start_date", date);
-            command.Parameters.AddWithValue("@phone_number", phone_number);
-            conn.Open();
-            int result = command.ExecuteNonQuery();
-            conn.Close();
-
             string query = "";
             Department dep = Department.Computers;
             MySqlCommand addToDepartment;
@@ -349,7 +341,7 @@ namespace WindowsFormsApp1
                 case "Employee - TVs":
                     query = "employee";
                     dep = Department.TVs;
-                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary, @department)";
+                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary)";
                     addToDepartment = new MySqlCommand(query, conn);
                     addToDepartment.Parameters.AddWithValue("@id", id);
                     addToDepartment.Parameters.AddWithValue("@salary", 3000);
@@ -362,7 +354,7 @@ namespace WindowsFormsApp1
                 case "Employee - Phones":
                     query = "employee";
                     dep = Department.Phones;
-                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary, @department)";
+                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary)";
                     addToDepartment = new MySqlCommand(query, conn);
                     addToDepartment.Parameters.AddWithValue("@id", id);
                     addToDepartment.Parameters.AddWithValue("@salary", 3000);
@@ -375,7 +367,7 @@ namespace WindowsFormsApp1
                 case "Employee - Computers":
                     query = "employee";
                     dep = Department.Computers;
-                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary, @department)";
+                    query = "INSERT INTO employee(id, salary, department) VALUES (@id, @salary)";
                     addToDepartment = new MySqlCommand(query, conn);
                     addToDepartment.Parameters.AddWithValue("@id", id);
                     addToDepartment.Parameters.AddWithValue("@salary", 3000);
@@ -386,12 +378,38 @@ namespace WindowsFormsApp1
                     //newUser = new Employee(id, fname, lname, email, address, date, phone_number, dep);
                     break;
             }
+        }
 
+        public void CreateUser(string fname, string lname, string email, string address, DateTime date, string phone_number, string type)
+        {
+            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            MySqlCommand getMaxID = new MySqlCommand($"SELECT MAX(id) AS id FROM user;", conn);
+            conn.Open();
+            MySqlDataReader reader2 = getMaxID.ExecuteReader();
+            reader2.Read();
+            int id = Convert.ToInt32(reader2["id"]) + 1;
+            conn.Close();
+            reader2.Close();
 
+            string insertData = "insert into user(id, firstname,lastname,email,password,address,start_date,phone_number)  VALUES (@id, @firstname,@lastname,@email,@password,@address,@start_date,@phone_number)";
+            MySqlCommand command = new MySqlCommand(insertData, conn);
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@firstname", fname);
+            command.Parameters.AddWithValue("@lastname", lname);
+            command.Parameters.AddWithValue("@email", email);
+            command.Parameters.AddWithValue("@password", id);
+            command.Parameters.AddWithValue("@address", address);
+            command.Parameters.AddWithValue("@start_date", date);
+            command.Parameters.AddWithValue("@phone_number", phone_number);
+            conn.Open();
+            int result = command.ExecuteNonQuery();
+            conn.Close();
 
+            AssignToDepartment(id,type);
 
         }
-        public string DeleteWorker(int id)
+        public void Promote( int id, double salary)
         {
             List<string> departments = new List<string>() { "depotworker", "manager", "employee" };
 
@@ -401,12 +419,10 @@ namespace WindowsFormsApp1
             conn.Open();
             foreach (string d in departments)
             {
-                MySqlCommand cmd = new MySqlCommand($"DELETE FROM {d} WHERE id={id};", conn);
-                //cmd.Parameters.AddWithValue("@userId", id);
+                MySqlCommand cmd = new MySqlCommand($"UPDATE {d} set salary = {salary} WHERE id={id};", conn);
                 int effectedRows = cmd.ExecuteNonQuery();
             }
             conn.Close();
-            return "the user was deleted succesfully";
         }
     }
 }
