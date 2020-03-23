@@ -18,15 +18,16 @@ namespace WindowsFormsApp1
         int itemId;
         string itemName;
         DepotWorker depotWorker;
-
+        User currentUser;
 
         string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
         MySqlConnection conn;
         Stock stock = new Stock("Restock");
 
-        public RestockRequestForm()
+        public RestockRequestForm(User user)
         {
             InitializeComponent();
+            this.currentUser = user;
             conn = new MySqlConnection(connStr);
             conn.Open();
             MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id AS id, name AS name, description AS descr, amount_in_stock AS inStock, auto_restock AS ar, ar_limit AS arl FROM item;", conn);
@@ -51,15 +52,14 @@ namespace WindowsFormsApp1
 
         private void btnSendRequest_Click(object sender, EventArgs e)
         {
-            int amount = Convert.ToInt32(tbAmountRestockForm.Text);
-            String date = DateTime.Now.ToString("yyyyMMdd");
-            MessageBox.Show($"{this.itemId} {date} {amount}");
 
-            //MySqlCommand CreateRequest = new MySqlCommand($"INSERT INTO restockrequest(item_id, amount, date) VALUES ({this.itemId}, {amount}, {date})", conn);
-            //conn.Open();
-            //int succ = CreateRequest.ExecuteNonQuery();
-            //conn.Close();
-            //MessageBox.Show("Request sent!");
+            int amount = Convert.ToInt32(tbAmountRestockForm.Text);
+            string date = DateTime.Now.ToString("yyyyMMdd");
+            MySqlCommand createRequest = new MySqlCommand($"INSERT INTO restockrequest(item_id, amount, emp_id, date) VALUES ({this.itemId}, {amount}, {currentUser.ID()}, {date})", conn);
+            conn.Open();
+            int succ = createRequest.ExecuteNonQuery();
+            conn.Close();
+            MessageBox.Show("Request sent!");
         }
 
         private void lbItems_SelectedIndexChanged(object sender, EventArgs e)

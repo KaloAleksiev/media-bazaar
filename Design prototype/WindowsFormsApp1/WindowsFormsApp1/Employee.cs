@@ -8,7 +8,7 @@ namespace WindowsFormsApp1
 {
     public class Employee : User
     {
-        public  int empNumber;
+        private  int empNumber;
         private Department department;
         public double salary = 3000;
         private DateTime startDate;
@@ -32,6 +32,12 @@ namespace WindowsFormsApp1
         }
         public Department Department
         { get; set; }
+
+        public int EmpNumber
+        {
+            get { return empNumber; }
+            set { empNumber = value; }
+        }
 
         public Item[] ViewStock()
         {

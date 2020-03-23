@@ -15,6 +15,12 @@ namespace WindowsFormsApp1
             managerId++;
             salary = 4000;
         }
+
+        public Manager(int id, string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
+        {
+            managerId++;
+            salary = 4000;
+        }
         public Item[] ViewStock()
         {
             return Stock.items.ToArray();

@@ -16,6 +16,13 @@ namespace WindowsFormsApp1
             depoNumber++;
             salary = 2000;
         }
+
+        public DepotWorker(int id, string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
+        {
+            depoNumber++;
+            salary = 2000;
+        }
+
         public Item[] ViewStock()
         {
             return Stock.items.ToArray();

@@ -8,7 +8,7 @@ namespace WindowsFormsApp1
 {
     enum ShiftType
     {
-        Morning,
+        Morning = 1,
         Noon,
         Evening
     }
