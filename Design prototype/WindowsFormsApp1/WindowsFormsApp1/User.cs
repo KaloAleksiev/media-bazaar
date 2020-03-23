@@ -17,8 +17,14 @@ namespace WindowsFormsApp1
         private string password;
         private string phoneNumber;
 
-        //public static int Id
-        //{ get; set; }
+        public int GottenID
+        {
+            get
+            {
+                return gottenID;
+            }
+            private set { gottenID = value; }
+        }
 
         public User(string firstName, string lastname, string email, string address, string phonenumber)
         {
@@ -29,6 +35,7 @@ namespace WindowsFormsApp1
             this.phoneNumber = phonenumber;
             id++;
         }
+
         public User(int id, string firstName, string lastname, string email, string address, string phonenumber)
         {
             this.firstName = firstName;
@@ -39,7 +46,7 @@ namespace WindowsFormsApp1
             this.gottenID = id;
         }
         public int ID()
-        { return gottenID; }
+        { return id; }
         public int GetGottenID()
         { return gottenID; }
         public string FirstName()

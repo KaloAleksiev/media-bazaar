@@ -9,6 +9,7 @@ namespace WindowsFormsApp1
     public class Administrator : User
     {
         Statistics stats = new Statistics();
+
         private int adminNumber;
         public Administrator(string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
         {
