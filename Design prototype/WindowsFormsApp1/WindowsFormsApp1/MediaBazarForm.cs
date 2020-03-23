@@ -101,9 +101,13 @@ namespace WindowsFormsApp1
                     btSchedule.SetBounds(540, 7, 200, 40);                    
                     btStock.SetBounds(740, 7, 300, 40);
                     btlogout.SetBounds(1040, 7, 200, 40);
-                    pEmplyee.Visible = true;
+                    //pEmplyee.Visible = true;
                     EmployeePanel();
                     pLogin.Visible = false;
+                    btEmployee.Visible = false;
+                    btSchedule.Visible = false;
+                    btStatistics.Visible = false;
+
                     MySqlConnection pullInfo = new MySqlConnection(connStr);
                     pullInfo.Open();
                     string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.emp_number, e.department, e.salary FROM user AS u INNER JOIN employee AS e ON u.id = e.id WHERE u.id = '" + id.ToString() + "'";
@@ -134,7 +138,7 @@ namespace WindowsFormsApp1
 
                     MySqlConnection pullInfo = new MySqlConnection(connStr);
                     pullInfo.Open();
-                    string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.emp_number, e.department, e.salary FROM user AS u INNER JOIN manager AS e ON u.id = e.id WHERE u.id = '" + id.ToString() + "'";
+                    string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.manager_id, e.salary FROM user AS u INNER JOIN manager AS e ON u.id = e.id WHERE u.id = '" + id.ToString() + "'";
                     MySqlCommand pullAll = new MySqlCommand(sql, pullInfo);
                     MySqlDataReader readerAll = pullAll.ExecuteReader();
                     readerAll.Read();
@@ -152,13 +156,15 @@ namespace WindowsFormsApp1
                     btSchedule.SetBounds(540, 7, 200, 40);
                     btStock.SetBounds(740, 7, 300, 40);
                     btlogout.SetBounds(1040, 7, 200, 40);
-                    pEmplyee.Visible = true;
+                    //pEmplyee.Visible = true;
                     EmployeePanel();
                     pLogin.Visible = false;
+                    btEmployee.Visible = false;
+                    btSchedule.Visible = false;
 
                     MySqlConnection pullInfo = new MySqlConnection(connStr);
                     pullInfo.Open();
-                    string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.emp_number, e.department, e.salary FROM user AS u INNER JOIN depotworker AS e ON u.id = e.id WHERE u.id = '" + id.ToString() + "'";
+                    string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.emp_number, e.salary FROM user AS u INNER JOIN depotworker AS e ON u.id = e.id WHERE u.id = '" + id.ToString() + "'";
                     MySqlCommand pullAll = new MySqlCommand(sql, pullInfo);
                     MySqlDataReader readerAll = pullAll.ExecuteReader();
                     readerAll.Read();

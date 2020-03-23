@@ -102,7 +102,7 @@
             // 
             this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.tbPassword.Location = new System.Drawing.Point(101, 61);
-            this.tbPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(2);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(68, 26);
@@ -112,7 +112,7 @@
             // 
             this.tbUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.tbUsername.Location = new System.Drawing.Point(103, 35);
-            this.tbUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbUsername.Margin = new System.Windows.Forms.Padding(2);
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(68, 26);
             this.tbUsername.TabIndex = 3;
@@ -136,9 +136,9 @@
             this.btlogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.btlogout.ForeColor = System.Drawing.SystemColors.Control;
             this.btlogout.Location = new System.Drawing.Point(801, 14);
-            this.btlogout.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btlogout.Margin = new System.Windows.Forms.Padding(1);
             this.btlogout.Name = "btlogout";
-            this.btlogout.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btlogout.Padding = new System.Windows.Forms.Padding(1);
             this.btlogout.Size = new System.Drawing.Size(143, 34);
             this.btlogout.TabIndex = 6;
             this.btlogout.Text = "LOG OUT";
@@ -165,9 +165,9 @@
             this.btStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.btStatistics.ForeColor = System.Drawing.SystemColors.Control;
             this.btStatistics.Location = new System.Drawing.Point(496, 14);
-            this.btStatistics.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btStatistics.Margin = new System.Windows.Forms.Padding(1);
             this.btStatistics.Name = "btStatistics";
-            this.btStatistics.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btStatistics.Padding = new System.Windows.Forms.Padding(1);
             this.btStatistics.Size = new System.Drawing.Size(163, 33);
             this.btStatistics.TabIndex = 4;
             this.btStatistics.Text = "STATISTICS";
@@ -182,7 +182,7 @@
             this.btEmployee.Location = new System.Drawing.Point(149, 16);
             this.btEmployee.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btEmployee.Name = "btEmployee";
-            this.btEmployee.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btEmployee.Padding = new System.Windows.Forms.Padding(1);
             this.btEmployee.Size = new System.Drawing.Size(171, 33);
             this.btEmployee.TabIndex = 3;
             this.btEmployee.Text = "EMPLOYEE";
@@ -221,6 +221,7 @@
             this.pEmplyee.Location = new System.Drawing.Point(200, 57);
             this.pEmplyee.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.pEmplyee.Name = "pEmplyee";
+            this.pEmplyee.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.pEmplyee.Size = new System.Drawing.Size(532, 211);
             this.pEmplyee.TabIndex = 7;
             // 
@@ -497,6 +498,7 @@
             this.pStock.Location = new System.Drawing.Point(427, 272);
             this.pStock.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.pStock.Name = "pStock";
+            this.pStock.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.pStock.Size = new System.Drawing.Size(343, 166);
             this.pStock.TabIndex = 9;
             // 
@@ -556,7 +558,7 @@
             this.btSchedule.Location = new System.Drawing.Point(323, 16);
             this.btSchedule.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btSchedule.Name = "btSchedule";
-            this.btSchedule.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btSchedule.Padding = new System.Windows.Forms.Padding(1);
             this.btSchedule.Size = new System.Drawing.Size(171, 33);
             this.btSchedule.TabIndex = 11;
             this.btSchedule.Text = "SCHEDULE";
@@ -652,6 +654,7 @@
             this.pStatistics.Location = new System.Drawing.Point(11, 272);
             this.pStatistics.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.pStatistics.Name = "pStatistics";
+            this.pStatistics.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.pStatistics.Size = new System.Drawing.Size(411, 166);
             this.pStatistics.TabIndex = 8;
             // 
