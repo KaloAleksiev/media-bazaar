@@ -39,7 +39,7 @@ namespace WindowsFormsApp1
             this.gottenID = id;
         }
         public int ID()
-        { return id; }
+        { return gottenID; }
         public int GetGottenID()
         { return gottenID; }
         public string FirstName()

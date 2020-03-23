@@ -336,7 +336,7 @@ namespace WindowsFormsApp1
 
         private void btSendRestockRequest_Click(object sender, EventArgs e)
         {
-            RestockRequestForm r = new RestockRequestForm();
+            RestockRequestForm r = new RestockRequestForm(currentUser);
             r.Show(this);
         }
         #endregion
