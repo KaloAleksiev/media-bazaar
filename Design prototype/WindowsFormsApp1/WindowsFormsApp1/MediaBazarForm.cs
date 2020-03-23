@@ -275,7 +275,7 @@ namespace WindowsFormsApp1
             //Bounds of Statistics form and its controls
             label5.SetBounds(320, 20, 200, 100);
 
-            lbStatisticsPanel.SetBounds(150, 50, 400, 500);
+            lbStatistics.SetBounds(150, 50, 400, 500);
            
 
             label6.SetBounds(600, 190, 300, 50);
@@ -288,7 +288,7 @@ namespace WindowsFormsApp1
             //fill the cmb with all the items 
             foreach (Item i in stock.GetAllItems())
             {
-                lbStatisticsPanel.Items.Add(i.Name);
+                lbStatistics.Items.Add(i.Name);
             }
         }
 
@@ -337,42 +337,45 @@ namespace WindowsFormsApp1
 
         private void btAddEmployee_Click(object sender, EventArgs e)
         {
+            DateTime date = DateTime.Now;
+            cc.CreateUser(tbName.Text, tbLastName.Text, tbEmailAddress.Text, tbAddress.Text, date, tbPhoneNumber.Text, cmbDepartment.SelectedItem.ToString());
 
-            int id = User.id;
-            DateTime start_date = DateTime.Now;
 
-            string password = tbLastName.Text + Convert.ToString(id);
-            string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                try
-                {
-                    string insertData = "insert into user(id, firstname,lastname,email,password,address,start_date,phone_number)  VALUES (@id, @firstname,@lastname,@email,@password,@address,@start_date,@phone_number)";
-                    MySqlCommand command = new MySqlCommand(insertData, connection);
-                    command.Parameters.AddWithValue("@id", id);
-                    command.Parameters.AddWithValue("@firstname", tbName.Text);
-                    command.Parameters.AddWithValue("@lastname", tbLastName.Text);
-                    command.Parameters.AddWithValue("@email", tbEmailAddress.Text);
-                    command.Parameters.AddWithValue("@password", password);
-                    command.Parameters.AddWithValue("@address", tbAddress.Text);
-                    command.Parameters.AddWithValue("@start_date", start_date);
-                    command.Parameters.AddWithValue("@phone_number", tbPhoneNumber.Text);
-                    connection.Open();
-                    int result = command.ExecuteNonQuery();
-                    MessageBox.Show("Connected to database");
-                    MessageBox.Show("Data inserted successfully");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to connect to database due to" + ex.ToString());
-                    MessageBox.Show("Failed to insert data due to" + ex.ToString());
-                }
+            //int id = User.id;
+            //DateTime start_date = DateTime.Now;
 
-            }
+            //string password = tbLastName.Text + Convert.ToString(id);
+            //string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            //using (MySqlConnection connection = new MySqlConnection(connectionString))
+            //{
+            //    try
+            //    {
+            //        string insertData = "insert into user(id, firstname,lastname,email,password,address,start_date,phone_number)  VALUES (@id, @firstname,@lastname,@email,@password,@address,@start_date,@phone_number)";
+            //        MySqlCommand command = new MySqlCommand(insertData, connection);
+            //        command.Parameters.AddWithValue("@id", id);
+            //        command.Parameters.AddWithValue("@firstname", tbName.Text);
+            //        command.Parameters.AddWithValue("@lastname", tbLastName.Text);
+            //        command.Parameters.AddWithValue("@email", tbEmailAddress.Text);
+            //        command.Parameters.AddWithValue("@password", password);
+            //        command.Parameters.AddWithValue("@address", tbAddress.Text);
+            //        command.Parameters.AddWithValue("@start_date", start_date);
+            //        command.Parameters.AddWithValue("@phone_number", tbPhoneNumber.Text);
+            //        connection.Open();
+            //        int result = command.ExecuteNonQuery();
+            //        MessageBox.Show("Connected to database");
+            //        MessageBox.Show("Data inserted successfully");
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Failed to connect to database due to" + ex.ToString());
+            //        MessageBox.Show("Failed to insert data due to" + ex.ToString());
+            //    }
 
-            User newUser = new User(tbName.Text, tbLastName.Text, tbEmailAddress.Text, tbAddress.Text, tbPhoneNumber.Text);
-            string name = tbName.Text + " " + tbLastName.Text;
-            FillComboBox_Names();
+            //}
+
+            //User newUser = new User(tbName.Text, tbLastName.Text, tbEmailAddress.Text, tbAddress.Text, tbPhoneNumber.Text);
+            //string name = tbName.Text + " " + tbLastName.Text;
+            //FillComboBox_Names();
         }
 
 
@@ -477,23 +480,26 @@ namespace WindowsFormsApp1
         #region Statistics
         private void btViewStatsOverall_Click(object sender, EventArgs e)
         {
+
             MessageBox.Show(cc.GetStatsOverall());
         }
-
-
 
         private void btViewItemStats_Click(object sender, EventArgs e)
         {
             try
             {
-                Item selected = stock.GetItemByName(lbStatisticsPanel.SelectedItem.ToString());
+
+                Item selected = stock.GetItemByName(lbStatistics.SelectedItem.ToString());
+
                 MessageBox.Show(cc.GetItemStats(selected));
             }
             catch (System.NullReferenceException)
             {
                 MessageBox.Show("You have to select an item first!");
             }
-            lbStatisticsPanel.SelectedItem = null;
+
+            lbStatistics.SelectedItem = null;
+
         }
 
         private void btViewDepartmentStats_Click(object sender, EventArgs e)
@@ -501,8 +507,10 @@ namespace WindowsFormsApp1
             string department = "";
             try
             {
+
                 department = cmbDepartmentStats.SelectedItem.ToString();
                 MessageBox.Show(cc.GetStatsPerDepartment(department));
+
             }
             catch (System.NullReferenceException)
             {
