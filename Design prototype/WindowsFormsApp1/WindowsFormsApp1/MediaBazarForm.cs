@@ -205,15 +205,11 @@ namespace WindowsFormsApp1
                     readerAll.Close();
                     pullInfo.Close();
                 }
-
             }
             else
             {
                 MessageBox.Show("The credentials do not match");
-
-
                 EmployeePanel();
-
             }
         }
 
@@ -253,7 +249,6 @@ namespace WindowsFormsApp1
             btPromote.SetBounds(380, 410, 180, 30);
 
             lbEmployee.SetBounds(700, 50, 400, 450);
-
         }
 
         private void btEmployee_Click(object sender, EventArgs e)
@@ -281,7 +276,6 @@ namespace WindowsFormsApp1
 
             lbStatistics.SetBounds(150, 50, 400, 500);
 
-
             label6.SetBounds(600, 190, 300, 50);
             cmbDepartmentStats.SetBounds(720, 190, 180, 50);
 
@@ -306,8 +300,6 @@ namespace WindowsFormsApp1
             pStock.SetBounds(0, 50, 1280, 750);
             lbItems.SetBounds(150, 70, 400, 500);
             btSendRestockRequest.SetBounds(600, 310, 200, 40);
-
-
         }
 
         private void btlogout_Click(object sender, EventArgs e)
@@ -320,6 +312,11 @@ namespace WindowsFormsApp1
             pLogin.SetBounds(0, 0, 1280, 800);
             lbItems.SetBounds(50, 70, 500, 600);
             btSendRestockRequest.SetBounds(550, 680, 100, 40);
+            btEmployee.Visible = true;
+            btStatistics.Visible = true;
+            btSchedule.Visible = true;
+            btStock.Visible = true;
+            btlogout.Visible = true;
         }
 
         #region Stock
@@ -347,9 +344,8 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    MessageBox.Show("The Department  is not specify!");
+                    MessageBox.Show("The Department is not specified!");
                 }
-
             }
         }
 
@@ -378,18 +374,18 @@ namespace WindowsFormsApp1
                     User u;
                     u = cc.ReturnUser(name);
                     string m = cc.DeleteWorker(u.GetGottenID());
-                    MessageBox.Show(m);
+                    //MessageBox.Show(m);
                     cc.AssignToDepartment(u.GottenID, department);
-                    MessageBox.Show("Assigned succ");
+                    MessageBox.Show("Assigned successfully");
                 }
                 else
                 {
-                    MessageBox.Show("The Name was not specify!");
+                    MessageBox.Show("The Name was not specified!");
                 }
             }
             else
             {
-                MessageBox.Show("The department was not specify!");
+                MessageBox.Show("The department was not specified!");
             }
         }
 
