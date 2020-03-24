@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
             this.date = date;
             this.Type = type;
             this.Department = department;
-            
+
             people = new List<User>();
         }
 
@@ -95,7 +95,7 @@ namespace WindowsFormsApp1
                     int k = AddPersonToShiftDB.ExecuteNonQuery();
                     conn.Close();
                 }
-            }       
+            }
         }
 
         public List<Employee> GetAllEmps()
@@ -105,6 +105,30 @@ namespace WindowsFormsApp1
             { emps.Add(emp); }
             return emps;
         }
+
+        public List<Manager> GetAllMng()
+        {
+            List<Manager> managers = new List<Manager>();
+            foreach (Manager m in people)
+            {
+                managers.Add(m);
+            }
+            return managers;
+
+        }
+
+        public List<DepotWorker> GetAllDW()
+        {
+            List<DepotWorker> dws = new List<DepotWorker>();
+            foreach (DepotWorker dw in people)
+            {
+                dws.Add(dw);
+            }
+            return dws;
+
+        }
+
+
 
         public void RemovePerson(User u)
         {

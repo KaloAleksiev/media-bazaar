@@ -31,17 +31,12 @@ namespace WindowsFormsApp1
 
         }
         public Department Department
-        { get; set; }
+        { get; private set; }
 
         public int EmpNumber
         {
             get { return empNumber; }
-            set { empNumber = value; }
-        }
-
-        public Item[] ViewStock()
-        {
-            return Stock.items.ToArray();
+            private set { empNumber = value; }
         }
 
         public string GetInfo()

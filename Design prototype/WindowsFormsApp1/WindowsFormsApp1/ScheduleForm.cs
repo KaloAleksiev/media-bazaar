@@ -32,7 +32,7 @@ namespace WindowsFormsApp1
         //Lists for types of workers (who are in the shifts)
         List<Employee> InShiftE;
         List<DepotWorker> InShiftD;
-        List<Manager> InShiftM;
+        Manager InShiftM;
 
 
         public ScheduleForm(DateTime dt)
@@ -50,8 +50,8 @@ namespace WindowsFormsApp1
             AllMng = new List<Manager>();
             InShiftE = new List<Employee>();
             InShiftD = new List<DepotWorker>();
-            InShiftM = new List<Manager>();
-            createSchedule(dt); 
+
+            createSchedule(dt);
         }
 
         public void createSchedule(DateTime dt)
@@ -196,7 +196,6 @@ namespace WindowsFormsApp1
             AllMng = new List<Manager>();
             InShiftE = new List<Employee>();
             InShiftD = new List<DepotWorker>();
-            InShiftM = new List<Manager>();
             lbAllPpl.Items.Clear();
             lbInShift.Items.Clear();
         }
@@ -209,8 +208,10 @@ namespace WindowsFormsApp1
             pShift.Visible = true;
 
             AllEmps = ControlClass.GetAllEmployees(); //Get ALL the employees in the DB.
+            AllMng = ControlClass.GetAllManagers();
+            AllDW = ControlClass.GetAllDepotWorkers();
             CheckIfFull(n, shifts[j].Department, shifts[j].ShiftId); //Not really "check", deletes the people already selected for the shift from the AllEmps List.
-            FillChosenShift();
+            FillChosenShift(shifts[j].Department);
             FillFromDBByDept(shifts[j].Department);
         }
 
@@ -245,11 +246,11 @@ namespace WindowsFormsApp1
                     Employee e = new Employee(id, empid, firstname, lastname, email, address, phonenumber, department, salary);
                     InShiftE.Add(e); //Add found people to the list for people in shifts.
                     for (int j = 0; j < AllEmps.Count; j++)
-                    { 
-                        if (AllEmps[j].EmpNumber == e.EmpNumber) 
-                        { 
+                    {
+                        if (AllEmps[j].EmpNumber == e.EmpNumber)
+                        {
                             AllEmps.RemoveAt(j); //Remove the people already picked for the shift
-                        } 
+                        }
                     }
                     //AllEmps.Remove(e);
                     reader.Close();
@@ -258,12 +259,24 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void FillChosenShift()
+        public void FillChosenShift(Department dep)
         {
             //Fill listbox with people selected for the shift.
-            lbInShift.Items.Clear();
-            foreach (Employee emp in InShiftE)
-            { lbInShift.Items.Add(emp.GetInfo()); }
+            switch (dep)
+            {
+                case Department.Manager:
+                    lbInShift.Items.Clear();
+
+                    break;
+                case Department.DepotWorker:
+                    break;
+                default:
+                    lbInShift.Items.Clear();
+                    foreach (Employee emp in InShiftE)
+                    { lbInShift.Items.Add(emp.GetInfo()); }
+                    break;
+            }
+
         }
 
         public void FillFromDBByDept(Department dep)
@@ -272,8 +285,28 @@ namespace WindowsFormsApp1
             switch (dep)
             {
                 case (Department.Manager): //HELP
+                    lbAllPpl.Items.Clear();
+                    List<Manager> managers = new List<Manager>();
+                    foreach (Manager m in AllMng)
+                    {
+                        if (m.Department == dep)
+                        { managers.Add(m); }
+                    }
+                    foreach (Manager manager in managers)
+                    { lbAllPpl.Items.Add(manager.GetInfo()); }
+                    AllMng = managers;
                     break;
                 case (Department.DepotWorker): //HELP
+                    lbAllPpl.Items.Clear();
+                    List<DepotWorker> depotWorkers = new List<DepotWorker>();
+                    foreach (DepotWorker d in AllDW)
+                    {
+                        if (d.Department == dep)
+                        { depotWorkers.Add(d); }
+                    }
+                    foreach (DepotWorker dw in depotWorkers)
+                    { lbAllPpl.Items.Add(dw.GetInfo()); }
+                    AllDW = depotWorkers;
                     break;
                 default:
                     lbAllPpl.Items.Clear();
@@ -292,11 +325,51 @@ namespace WindowsFormsApp1
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            switch (shifts[Convert.ToInt32(label21.Text)].Department)
+            Department dep = shifts[Convert.ToInt32(label21.Text)].Department;
+            switch (dep)
             {
                 case (Department.Manager): //HELP
+                    if (InShiftM == null)
+                    {
+                        try
+                        {
+                            //Add the selected person from the AllPpl listbox to the InShift listbox
+                            InShiftM = (AllMng[lbAllPpl.SelectedIndex]);
+                            AllMng.RemoveAt(lbAllPpl.SelectedIndex);
+                            lbAllPpl.Items.Clear();
+                            foreach (Manager m in AllMng)
+                            { lbAllPpl.Items.Add(m.GetInfo()); } //Refresh the AllPpl listbox
+                            shifts[Convert.ToInt32(label21.Text)].AddPerson(InShiftM);
+                            FillChosenShift(dep); //Refresh the InShift listbox.
+                        }
+                        catch
+                        { MessageBox.Show("Please select a person."); }
+                    }
+                    else
+                    { MessageBox.Show("There can't be more than 3 people in an employee shift."); }
                     break;
+
                 case (Department.DepotWorker): //HELP
+                    if (InShiftD.Count != 2)
+                    {
+                        try
+                        {
+                            //Add the selected person from the AllPpl listbox to the InShift listbox
+                            InShiftD.Add(AllDW[lbAllPpl.SelectedIndex]);
+                            DepotWorker d = AllDW[lbAllPpl.SelectedIndex];
+                            AllDW.RemoveAt(lbAllPpl.SelectedIndex);
+                            lbAllPpl.Items.Clear();
+                            foreach (DepotWorker dw in AllDW)
+                            { lbAllPpl.Items.Add(dw.GetInfo()); } //Refresh the AllPpl listbox
+                            shifts[Convert.ToInt32(label21.Text)].AddPerson(d);
+                            FillChosenShift(dep); //Refresh the InShift listbox.
+                        }
+                        catch
+                        { MessageBox.Show("Please select a person."); }
+                    }
+                    else
+                    { MessageBox.Show("There can't be more than 3 people in an employee shift."); }
+
                     break;
                 default:
                     if (InShiftE.Count != 3)
@@ -311,7 +384,7 @@ namespace WindowsFormsApp1
                             foreach (Employee emp in AllEmps)
                             { lbAllPpl.Items.Add(emp.GetInfo()); } //Refresh the AllPpl listbox
                             shifts[Convert.ToInt32(label21.Text)].AddPerson(u);
-                            FillChosenShift(); //Refresh the InShift listbox.
+                            FillChosenShift(dep); //Refresh the InShift listbox.
                         }
                         catch
                         { MessageBox.Show("Please select a person."); }
@@ -324,11 +397,38 @@ namespace WindowsFormsApp1
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            switch (shifts[Convert.ToInt32(label21.Text)].Department)
+            Department dep = shifts[Convert.ToInt32(label21.Text)].Department;
+            switch (dep)
             {
                 case (Department.Manager): //HELP
+                    try
+                    {
+                        //Remove selected person from the InShift listbox to the AllPpl listbox
+                        AllMng.Add(InShiftM);
+                        shifts[Convert.ToInt32(label21.Text)].RemovePerson(InShiftM);
+
+                        lbAllPpl.Items.Clear();
+                        foreach (Manager m in AllMng)
+                        { lbAllPpl.Items.Add(m.GetInfo()); } //Refresh the AllPpl listbox.
+                        FillChosenShift(dep); //Refresh the InShift listbox.
+                    }
+                    catch
+                    { MessageBox.Show("Please select a person."); }
                     break;
                 case (Department.DepotWorker): //HELP
+                    try
+                    {
+                        //Remove selected person from the InShift listbox to the AllPpl listbox
+                        AllDW.Add(InShiftD[lbInShift.SelectedIndex]);
+                        shifts[Convert.ToInt32(label21.Text)].RemovePerson(InShiftD[lbInShift.SelectedIndex]);
+                        InShiftD.RemoveAt(lbInShift.SelectedIndex);
+                        lbAllPpl.Items.Clear();
+                        foreach (DepotWorker d in AllDW)
+                        { lbAllPpl.Items.Add(d.GetInfo()); } //Refresh the AllPpl listbox.
+                        FillChosenShift(dep); //Refresh the InShift listbox.
+                    }
+                    catch
+                    { MessageBox.Show("Please select a person."); }
                     break;
                 default:
                     try
@@ -340,7 +440,7 @@ namespace WindowsFormsApp1
                         lbAllPpl.Items.Clear();
                         foreach (Employee emp in AllEmps)
                         { lbAllPpl.Items.Add(emp.GetInfo()); } //Refresh the AllPpl listbox.
-                        FillChosenShift(); //Refresh the InShift listbox.
+                        FillChosenShift(dep); //Refresh the InShift listbox.
                     }
                     catch
                     { MessageBox.Show("Please select a person."); }
@@ -354,8 +454,19 @@ namespace WindowsFormsApp1
             switch (shifts[Convert.ToInt32(label21.Text)].Department)
             {
                 case (Department.Manager): //HELP
+                    dynamicButtons[Convert.ToInt32(label21.Text)].Text = shifts[Convert.ToInt32(label21.Text)].GetAllMng().Count + " / 1";
+                    if (shifts[Convert.ToInt32(label21.Text)].GetAllMng().Count == 0)
+                    { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Green; }
+                    else if (shifts[Convert.ToInt32(label21.Text)].GetAllMng().Count == 1)
+                    { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Red; }
                     break;
                 case (Department.DepotWorker): //HELP
+                    dynamicButtons[Convert.ToInt32(label21.Text)].Text = shifts[Convert.ToInt32(label21.Text)].GetAllDW().Count + " / 2";
+                    if (shifts[Convert.ToInt32(label21.Text)].GetAllDW().Count == 0)
+                    { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Green; }
+                    else if (shifts[Convert.ToInt32(label21.Text)].GetAllDW().Count == 2)
+                    { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Red; }
+                    else { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Yellow; }
                     break;
                 default:
                     dynamicButtons[Convert.ToInt32(label21.Text)].Text = shifts[Convert.ToInt32(label21.Text)].GetAllEmps().Count + " / 3";

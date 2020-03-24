@@ -9,28 +9,45 @@ namespace WindowsFormsApp1
     public class DepotWorker : User
     {
         public static int depoNumber;
-        public static double salary ;
+        private double salary;
         private DateTime startDate;
+
+        private Department department;
+
+        public double Salary
+        {
+            get { return this.salary; }
+            private set { this.salary = value; }
+        }
+
+        public Department Department
+        {
+            get { return this.department; }
+            set { this.department = value; }
+        }
+
         public DepotWorker(string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
         {
             depoNumber++;
-            salary = 2000;
+            this.Salary = 2000;
+            this.Department = Department.DepotWorker;
+        }
+
+        public DepotWorker(int id, string firstName, string lastname, string email, string address, string phonenumber, double salary) : base(firstName, lastname, email, address, phonenumber)
+        {
+            depoNumber++;
+            this.Salary = salary;
+            this.Department = Department.DepotWorker;
         }
 
         public DepotWorker(int id, string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
         {
             depoNumber++;
-            salary = 2000;
+            this.Salary = 2000;
+            this.Department = Department.DepotWorker;
         }
 
-        public Item[] ViewStock()
-        {
-            return Stock.items.ToArray();
-        }
-        public void SendRestockRequest(Item item, int amount, DepotWorker depotWorker, DateTime date)
-        {
-            RestockRequest request = new RestockRequest( item, amount, depotWorker, date);
-        }
-
+        public string GetInfo()
+        { return $"ID:{GetGottenID()},{base.firstName} {base.lastName}"; }
     }
 }

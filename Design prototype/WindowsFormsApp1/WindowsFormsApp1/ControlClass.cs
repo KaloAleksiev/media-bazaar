@@ -210,6 +210,54 @@ namespace WindowsFormsApp1
             }
             return emps;
         }
+        public static List<Manager> GetAllManagers()
+        {
+            List<Manager> managers = new List<Manager>();
+            string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id FROM user AS u INNER JOIN manager AS e ON u.id = e.id";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["id"]);                
+                string firstname = Convert.ToString(reader["firstName"]);
+                string lastname = Convert.ToString(reader["lastName"]);
+                string email = Convert.ToString(reader["email"]);
+                string address = Convert.ToString(reader["address"]);
+                string phonenumber = Convert.ToString(reader["phone_number"]);               
+                double salary = Convert.ToDouble(reader["salary"]);
+                Manager m = new Manager(id, firstname, lastname, email, address, phonenumber,salary);
+                managers.Add(m);
+            }
+            return managers;
+        }
+
+        public static List<DepotWorker> GetAllDepotWorkers()
+        {
+            List<DepotWorker> depotWorkers = new List<DepotWorker>();
+            string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id FROM user AS u INNER JOIN depotworker AS e ON u.id = e.id";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["id"]);
+                string firstname = Convert.ToString(reader["firstName"]);
+                string lastname = Convert.ToString(reader["lastName"]);
+                string email = Convert.ToString(reader["email"]);
+                string address = Convert.ToString(reader["address"]);
+                string phonenumber = Convert.ToString(reader["phone_number"]);
+                double salary = Convert.ToDouble(reader["salary"]);
+                DepotWorker d = new DepotWorker(id, firstname, lastname, email, address, phonenumber,salary);
+                depotWorkers.Add(d);
+            }
+            return depotWorkers;
+        }
+        
 
         public string GetItemStats(Item i)
         {
@@ -424,6 +472,8 @@ namespace WindowsFormsApp1
             }
             conn.Close();
         }
+
+
     }
 }
 
