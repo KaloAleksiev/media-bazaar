@@ -37,27 +37,32 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(330, 244);
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(329, 230);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.Size = new System.Drawing.Size(59, 18);
             this.label2.TabIndex = 1;
             this.label2.Text = "Amount";
             // 
             // tbAmountRestockForm
             // 
-            this.tbAmountRestockForm.Location = new System.Drawing.Point(314, 260);
+            this.tbAmountRestockForm.Location = new System.Drawing.Point(301, 251);
             this.tbAmountRestockForm.Name = "tbAmountRestockForm";
-            this.tbAmountRestockForm.Size = new System.Drawing.Size(75, 20);
+            this.tbAmountRestockForm.Size = new System.Drawing.Size(108, 20);
             this.tbAmountRestockForm.TabIndex = 3;
             // 
             // btnSendRequest
             // 
-            this.btnSendRequest.Location = new System.Drawing.Point(291, 286);
+            this.btnSendRequest.BackColor = System.Drawing.Color.Maroon;
+            this.btnSendRequest.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendRequest.Location = new System.Drawing.Point(301, 277);
             this.btnSendRequest.Name = "btnSendRequest";
-            this.btnSendRequest.Size = new System.Drawing.Size(108, 46);
+            this.btnSendRequest.Size = new System.Drawing.Size(108, 55);
             this.btnSendRequest.TabIndex = 4;
             this.btnSendRequest.Text = "Send Restock Request";
-            this.btnSendRequest.UseVisualStyleBackColor = true;
+            this.btnSendRequest.UseVisualStyleBackColor = false;
             this.btnSendRequest.Click += new System.EventHandler(this.btnSendRequest_Click);
             // 
             // lbItems
@@ -75,6 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(421, 347);
             this.Controls.Add(this.lbItems);
             this.Controls.Add(this.btnSendRequest);
