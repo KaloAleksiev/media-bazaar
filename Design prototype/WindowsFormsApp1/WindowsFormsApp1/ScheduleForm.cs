@@ -50,7 +50,7 @@ namespace WindowsFormsApp1
             AllMng = new List<Manager>();
             InShiftE = new List<Employee>();
             InShiftD = new List<DepotWorker>();
-
+            InShiftM = null;
             createSchedule(dt);
         }
 
@@ -196,6 +196,7 @@ namespace WindowsFormsApp1
             AllMng = new List<Manager>();
             InShiftE = new List<Employee>();
             InShiftD = new List<DepotWorker>();
+            InShiftM = null;
             lbAllPpl.Items.Clear();
             lbInShift.Items.Clear();
         }
@@ -210,53 +211,120 @@ namespace WindowsFormsApp1
             AllEmps = ControlClass.GetAllEmployees(); //Get ALL the employees in the DB.
             AllMng = ControlClass.GetAllManagers();
             AllDW = ControlClass.GetAllDepotWorkers();
-            CheckIfFull(n, shifts[j].Department, shifts[j].ShiftId); //Not really "check", deletes the people already selected for the shift from the AllEmps List.
+            CheckIfFull(n, shifts[j].Department, shifts[j].ShiftId, j); //Not really "check", deletes the people already selected for the shift from the AllEmps List.
             FillChosenShift(shifts[j].Department);
             FillFromDBByDept(shifts[j].Department);
         }
 
-        public void CheckIfFull(int n, Department dep, int shiftId)
+        public void CheckIfFull(int n, Department dep, int shiftId, int l)
         {
             if (n > 0) //n is number of people found to be in the shift already.
             //If there are any people already in the shift:
             {
+                List<int> indexes = new List<int>();
                 string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
                 MySqlConnection conn = new MySqlConnection(connectionString);
                 MySqlCommand getEmpId = new MySqlCommand("SELECT employee_id FROM shift_user WHERE shift_id = '" + shiftId.ToString() + "'", conn);
                 conn.Open();
+                MySqlDataReader reader1 = getEmpId.ExecuteReader();
                 for (int i = 1; i <= n; i++)
                 {
-                    MySqlDataReader reader1 = getEmpId.ExecuteReader();
                     reader1.Read();
                     int empId = Convert.ToInt32(reader1["employee_id"]);
-                    reader1.Close();
-                    string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.emp_number, e.department, e.salary FROM user AS u INNER JOIN employee AS e ON u.id = e.id WHERE u.id = '" + empId.ToString() + "'";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    reader.Read();
-                    int id = Convert.ToInt32(reader["id"]);
-                    int empid = Convert.ToInt32(reader["emp_number"]);
-                    string firstname = Convert.ToString(reader["firstName"]);
-                    string lastname = Convert.ToString(reader["lastName"]);
-                    string email = Convert.ToString(reader["email"]);
-                    string address = Convert.ToString(reader["address"]);
-                    string phonenumber = Convert.ToString(reader["phone_number"]);
-                    string department = Convert.ToString(reader["department"]);
-                    double salary = Convert.ToDouble(reader["salary"]);
-                    Employee e = new Employee(id, empid, firstname, lastname, email, address, phonenumber, department, salary);
-                    InShiftE.Add(e); //Add found people to the list for people in shifts.
-                    for (int j = 0; j < AllEmps.Count; j++)
-                    {
-                        if (AllEmps[j].EmpNumber == e.EmpNumber)
-                        {
-                            AllEmps.RemoveAt(j); //Remove the people already picked for the shift
-                        }
-                    }
-                    //AllEmps.Remove(e);
-                    reader.Close();
+                    indexes.Add(empId);
                 }
-                conn.Close();
+                reader1.Close();
+                switch (dep)
+                {
+                    case Department.Manager:
+                        for (int i = 0; i < indexes.Count; i++)
+                        {
+                            string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.salary, e.manager_id FROM user AS u INNER JOIN manager AS e ON u.id = e.id";
+                            MySqlCommand cmd = new MySqlCommand(sql, conn);
+                            MySqlDataReader reader = cmd.ExecuteReader();
+                            reader.Read();
+                            int id = Convert.ToInt32(reader["id"]);
+                            int empid = Convert.ToInt32(reader["manager_id"]);
+                            string firstname = Convert.ToString(reader["firstName"]);
+                            string lastname = Convert.ToString(reader["lastName"]);
+                            string email = Convert.ToString(reader["email"]);
+                            string address = Convert.ToString(reader["address"]);
+                            string phonenumber = Convert.ToString(reader["phone_number"]);
+                            double salary = Convert.ToDouble(reader["salary"]);
+                            Manager m = new Manager(id, empid, firstname, lastname, email, address, phonenumber, salary);
+                            reader.Close();
+                            InShiftM = m; //Add found people to the list for people in shifts.
+                            shifts[l].AddMng(m);
+                            for (int j = 0; j < AllMng.Count; j++)
+                            {
+                                if (AllMng[j].ManagerId == m.ManagerId)
+                                {
+                                    AllMng.RemoveAt(j); //Remove the people already picked for the shift
+                                }
+                            }
+                        }
+                        break;
+                    case Department.DepotWorker:
+                        for (int i = 0; i < indexes.Count; i++)
+                        {
+                            string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.salary, e.emp_number FROM user AS u INNER JOIN depotworker AS e ON u.id = e.id";
+                            MySqlCommand cmd = new MySqlCommand(sql, conn);
+                            MySqlDataReader reader = cmd.ExecuteReader();
+                            reader.Read();
+                            int id = Convert.ToInt32(reader["id"]);
+                            int empid = Convert.ToInt32(reader["emp_number"]);
+                            string firstname = Convert.ToString(reader["firstName"]);
+                            string lastname = Convert.ToString(reader["lastName"]);
+                            string email = Convert.ToString(reader["email"]);
+                            string address = Convert.ToString(reader["address"]);
+                            string phonenumber = Convert.ToString(reader["phone_number"]);
+                            double salary = Convert.ToDouble(reader["salary"]);
+                            DepotWorker d = new DepotWorker(id, empid, firstname, lastname, email, address, phonenumber, salary);
+                            reader.Close();
+                            InShiftD.Add(d); //Add found people to the list for people in shifts.
+                            shifts[l].AddDepotWorker(d);
+                            for (int j = 0; j < AllDW.Count; j++)
+                            {
+                                if (AllDW[j].DepotNumber == d.DepotNumber)
+                                {
+                                    AllDW.RemoveAt(j); //Remove the people already picked for the shift
+                                }
+                            }
+                        }
+                        break;
+                    default:
+                        for (int i = 0; i < indexes.Count; i++)
+                        {
+                            string sql = "SELECT u.firstname, u.lastname, u.email, u.password, u.address, u.start_date, u.phone_number, e.id, e.emp_number, e.department, e.salary FROM user AS u INNER JOIN employee AS e ON u.id = e.id WHERE u.id = '" + indexes[i].ToString() + "'";
+                            MySqlCommand cmd = new MySqlCommand(sql, conn);
+                            MySqlDataReader reader = cmd.ExecuteReader();
+                            reader.Read();
+                            int id = Convert.ToInt32(reader["id"]);
+                            int empid = Convert.ToInt32(reader["emp_number"]);
+                            string firstname = Convert.ToString(reader["firstName"]);
+                            string lastname = Convert.ToString(reader["lastName"]);
+                            string email = Convert.ToString(reader["email"]);
+                            string address = Convert.ToString(reader["address"]);
+                            string phonenumber = Convert.ToString(reader["phone_number"]);
+                            string department = Convert.ToString(reader["department"]);
+                            double salary = Convert.ToDouble(reader["salary"]);
+
+                            Employee e = new Employee(id, empid, firstname, lastname, email, address, phonenumber, department, salary);
+                            reader.Close();
+                            InShiftE.Add(e); //Add found people to the list for people in shifts.
+                            shifts[l].AddEmployee(e);
+                            for (int j = 0; j < AllEmps.Count; j++)
+                            {
+                                if (AllEmps[j].EmpNumber == e.EmpNumber)
+                                {
+                                    AllEmps.RemoveAt(j); //Remove the people already picked for the shift
+                                }
+                            }
+                        }
+                        break;
+                }
             }
+            conn.Close();
         }
 
         public void FillChosenShift(Department dep)
@@ -265,15 +333,24 @@ namespace WindowsFormsApp1
             switch (dep)
             {
                 case Department.Manager:
-                    lbInShift.Items.Clear();
-
+                    if (InShiftM != null)
+                    {
+                        lbInShift.Items.Clear();
+                        lbInShift.Items.Add(InShiftM.GetInfo());
+                    }
+                    else { lbInShift.Items.Clear(); }
                     break;
                 case Department.DepotWorker:
+                    lbInShift.Items.Clear();
+                    foreach (DepotWorker emp in InShiftD)
+                    { lbInShift.Items.Add(emp.GetInfo()); }
                     break;
                 default:
                     lbInShift.Items.Clear();
                     foreach (Employee emp in InShiftE)
-                    { lbInShift.Items.Add(emp.GetInfo()); }
+                    { 
+                        lbInShift.Items.Add(emp.GetInfo()); 
+                    }
                     break;
             }
 
@@ -339,14 +416,14 @@ namespace WindowsFormsApp1
                             lbAllPpl.Items.Clear();
                             foreach (Manager m in AllMng)
                             { lbAllPpl.Items.Add(m.GetInfo()); } //Refresh the AllPpl listbox
-                            shifts[Convert.ToInt32(label21.Text)].AddPerson(InShiftM);
+                            shifts[Convert.ToInt32(label21.Text)].AddMng(InShiftM);
                             FillChosenShift(dep); //Refresh the InShift listbox.
                         }
                         catch
                         { MessageBox.Show("Please select a person."); }
                     }
                     else
-                    { MessageBox.Show("There can't be more than 3 people in an employee shift."); }
+                    { MessageBox.Show("There can't be more than 1 person in a manager shift."); }
                     break;
 
                 case (Department.DepotWorker): //HELP
@@ -361,14 +438,14 @@ namespace WindowsFormsApp1
                             lbAllPpl.Items.Clear();
                             foreach (DepotWorker dw in AllDW)
                             { lbAllPpl.Items.Add(dw.GetInfo()); } //Refresh the AllPpl listbox
-                            shifts[Convert.ToInt32(label21.Text)].AddPerson(d);
+                            shifts[Convert.ToInt32(label21.Text)].AddDepotWorker(d);
                             FillChosenShift(dep); //Refresh the InShift listbox.
                         }
                         catch
                         { MessageBox.Show("Please select a person."); }
                     }
                     else
-                    { MessageBox.Show("There can't be more than 3 people in an employee shift."); }
+                    { MessageBox.Show("There can't be more than 2 people in an depot worker shift."); }
 
                     break;
                 default:
@@ -383,7 +460,7 @@ namespace WindowsFormsApp1
                             lbAllPpl.Items.Clear();
                             foreach (Employee emp in AllEmps)
                             { lbAllPpl.Items.Add(emp.GetInfo()); } //Refresh the AllPpl listbox
-                            shifts[Convert.ToInt32(label21.Text)].AddPerson(u);
+                            shifts[Convert.ToInt32(label21.Text)].AddEmployee(u);
                             FillChosenShift(dep); //Refresh the InShift listbox.
                         }
                         catch
@@ -405,8 +482,8 @@ namespace WindowsFormsApp1
                     {
                         //Remove selected person from the InShift listbox to the AllPpl listbox
                         AllMng.Add(InShiftM);
-                        shifts[Convert.ToInt32(label21.Text)].RemovePerson(InShiftM);
-
+                        shifts[Convert.ToInt32(label21.Text)].RemoveManager(InShiftM);
+                        InShiftM = null;
                         lbAllPpl.Items.Clear();
                         foreach (Manager m in AllMng)
                         { lbAllPpl.Items.Add(m.GetInfo()); } //Refresh the AllPpl listbox.
@@ -420,7 +497,7 @@ namespace WindowsFormsApp1
                     {
                         //Remove selected person from the InShift listbox to the AllPpl listbox
                         AllDW.Add(InShiftD[lbInShift.SelectedIndex]);
-                        shifts[Convert.ToInt32(label21.Text)].RemovePerson(InShiftD[lbInShift.SelectedIndex]);
+                        shifts[Convert.ToInt32(label21.Text)].RemoveDepotWorker(InShiftD[lbInShift.SelectedIndex]);
                         InShiftD.RemoveAt(lbInShift.SelectedIndex);
                         lbAllPpl.Items.Clear();
                         foreach (DepotWorker d in AllDW)
@@ -435,7 +512,7 @@ namespace WindowsFormsApp1
                     {
                         //Remove selected person from the InShift listbox to the AllPpl listbox
                         AllEmps.Add(InShiftE[lbInShift.SelectedIndex]);
-                        shifts[Convert.ToInt32(label21.Text)].RemovePerson(InShiftE[lbInShift.SelectedIndex]);
+                        shifts[Convert.ToInt32(label21.Text)].RemoveEmployee(InShiftE[lbInShift.SelectedIndex]);
                         InShiftE.RemoveAt(lbInShift.SelectedIndex);
                         lbAllPpl.Items.Clear();
                         foreach (Employee emp in AllEmps)
@@ -454,11 +531,13 @@ namespace WindowsFormsApp1
             switch (shifts[Convert.ToInt32(label21.Text)].Department)
             {
                 case (Department.Manager): //HELP
-                    dynamicButtons[Convert.ToInt32(label21.Text)].Text = shifts[Convert.ToInt32(label21.Text)].GetAllMng().Count + " / 1";
-                    if (shifts[Convert.ToInt32(label21.Text)].GetAllMng().Count == 0)
+                    if (shifts[Convert.ToInt32(label21.Text)] == null)
+                    { dynamicButtons[Convert.ToInt32(label21.Text)].Text = "0 / 1"; }
+                    else { dynamicButtons[Convert.ToInt32(label21.Text)].Text = "1 / 1"; }
+
+                    if (shifts[Convert.ToInt32(label21.Text)].GetAllMng() == null)
                     { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Green; }
-                    else if (shifts[Convert.ToInt32(label21.Text)].GetAllMng().Count == 1)
-                    { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Red; }
+                    else { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Red; }
                     break;
                 case (Department.DepotWorker): //HELP
                     dynamicButtons[Convert.ToInt32(label21.Text)].Text = shifts[Convert.ToInt32(label21.Text)].GetAllDW().Count + " / 2";
@@ -477,14 +556,33 @@ namespace WindowsFormsApp1
                     else { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Yellow; }
                     break; //Change the clicked button text and color in accordance to the new emp amount.
             }
+            int oo = 0;
+            switch (shifts[Convert.ToInt32(label21.Text)].Department)
+            {
+                case Department.Manager:
+                    if (shifts[Convert.ToInt32(label21.Text)].GetAllMng() == null)
+                    { oo = 0; }
+                    else { oo = 1; }
+                    break;
+                case Department.DepotWorker:
+                    List<DepotWorker> ool = shifts[Convert.ToInt32(label21.Text)].GetAllDW();
+                    oo = ool.Count;
+                    break;
+                default:
+                    List<Employee> ooo = shifts[Convert.ToInt32(label21.Text)].GetAllEmps();
+                    oo = ooo.Count;
+                    break;
+            }
+            
             //If the shift has no people in it, delete it (!!!IMPORTANT!!!)
-            if (shifts[Convert.ToInt32(label21.Text)].GetAllEmps().Count == 0)
+            if ( oo == 0)
             {
                 MySqlCommand DeleteShift = new MySqlCommand("DELETE FROM shift WHERE shift_id = '" + shifts[Convert.ToInt32(label21.Text)].ShiftId + "'", conn);
                 conn.Open();
                 int j = DeleteShift.ExecuteNonQuery();
                 conn.Close();
             }
+
             ResetAll();
             pShift.Visible = false;
         }

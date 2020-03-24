@@ -25,6 +25,11 @@ namespace WindowsFormsApp1
             get { return this.department; }
             set { this.department = value; }
         }
+        public int DepotNumber
+        {
+            get { return depoNumber; }
+            set { depoNumber = value; }
+        }
 
         public DepotWorker(string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
         {
@@ -39,8 +44,20 @@ namespace WindowsFormsApp1
             this.Salary = salary;
             this.Department = Department.DepotWorker;
         }
+        public DepotWorker(int id, int depotNumber, string firstName, string lastname, string email, string address, string phonenumber, double salary) : base(id, firstName, lastname, email, address, phonenumber)
+        {
+            DepotNumber = depotNumber;
+            this.Salary = salary;
+            this.Department = Department.DepotWorker;
+        }
 
         public DepotWorker(int id, string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
+        {
+            depoNumber++;
+            this.Salary = 2000;
+            this.Department = Department.DepotWorker;
+        }
+        public DepotWorker(int id, int depotNumber, string firstName, string lastname, string email, string address, string phonenumber) : base(firstName, lastname, email, address, phonenumber)
         {
             depoNumber++;
             this.Salary = 2000;
