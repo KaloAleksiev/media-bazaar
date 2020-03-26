@@ -284,6 +284,7 @@ namespace WindowsFormsApp1
             btViewDepartmentStats.SetBounds(600, 350, 300, 50);
 
             //fill the cmb with all the items 
+            lbStatistics.Items.Clear();
             foreach (Item i in stock.GetAllItems())
             {
                 lbStatistics.Items.Add(i.Name);

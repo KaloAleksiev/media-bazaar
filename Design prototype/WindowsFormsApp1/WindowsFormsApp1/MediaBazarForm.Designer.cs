@@ -547,9 +547,6 @@
             this.cmbDepartmentStats.Items.AddRange(new object[] {
             "Depot Worker",
             "Manager",
-            "Employee",
-            "Depot Worker",
-            "Manager",
             "Employee"});
             this.cmbDepartmentStats.Location = new System.Drawing.Point(100, 66);
             this.cmbDepartmentStats.Name = "cmbDepartmentStats";

@@ -17,7 +17,6 @@ namespace WindowsFormsApp1
     {
         int itemId;
         string itemName;
-        DepotWorker depotWorker;
         User currentUser;
 
         string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";

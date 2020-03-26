@@ -57,6 +57,7 @@
             // 
             this.btnSendRequest.BackColor = System.Drawing.Color.Maroon;
             this.btnSendRequest.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendRequest.ForeColor = System.Drawing.Color.White;
             this.btnSendRequest.Location = new System.Drawing.Point(301, 277);
             this.btnSendRequest.Name = "btnSendRequest";
             this.btnSendRequest.Size = new System.Drawing.Size(108, 55);
