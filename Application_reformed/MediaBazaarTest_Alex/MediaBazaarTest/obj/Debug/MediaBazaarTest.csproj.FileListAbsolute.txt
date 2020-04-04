@@ -1,0 +1,10 @@
+D:\FONTYS\Semester_2\C#\Software\MediaBazaarTest\MediaBazaarTest\bin\Debug\MediaBazaarTest.exe.config
+D:\FONTYS\Semester_2\C#\Software\MediaBazaarTest\MediaBazaarTest\bin\Debug\MediaBazaarTest.exe
+D:\FONTYS\Semester_2\C#\Software\MediaBazaarTest\MediaBazaarTest\bin\Debug\MediaBazaarTest.pdb
+D:\FONTYS\Semester_2\C#\Software\MediaBazaarTest\MediaBazaarTest\obj\Debug\MediaBazaarTest.csprojAssemblyReference.cache
+D:\FONTYS\Semester_2\C#\Software\MediaBazaarTest\MediaBazaarTest\obj\Debug\MediaBazaarTest.Form1.resources
+D:\FONTYS\Semester_2\C#\Software\MediaBazaarTest\MediaBazaarTest\obj\Debug\MediaBazaarTest.Properties.Resources.resources
+D:\FONTYS\Semester_2\C#\Software\MediaBazaarTest\MediaBazaarTest\obj\Debug\MediaBazaarTest.csproj.GenerateResource.cache
+D:\FONTYS\Semester_2\C#\Software\MediaBazaarTest\MediaBazaarTest\obj\Debug\MediaBazaarTest.csproj.CopyComplete
+D:\FONTYS\Semester_2\C#\Software\MediaBazaarTest\MediaBazaarTest\obj\Debug\MediaBazaarTest.exe
+D:\FONTYS\Semester_2\C#\Software\MediaBazaarTest\MediaBazaarTest\obj\Debug\MediaBazaarTest.pdb
