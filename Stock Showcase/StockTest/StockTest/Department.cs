@@ -8,8 +8,8 @@ namespace StockTest
 {
     public enum Department
     {
-        Computers,
         Phones,
+        Computers,
         TVs,
         Manager,
         DepotWorker
