@@ -58,7 +58,7 @@ namespace StockTest
         {
             string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
             MySqlConnection conn = new MySqlConnection(connStr);
-            MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id, name, description, department_id, amount_in_stock FROM item", conn);
+            MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id, name, description, department_id, amount_in_stock, auto_restock FROM item", conn);
             conn.Open();
             MySqlDataReader reader = GetAllItems.ExecuteReader();
             while (reader.Read())
@@ -68,7 +68,8 @@ namespace StockTest
                 string description = reader["description"].ToString();
                 string department = ((Department)Convert.ToInt32(reader["department_id"])).ToString();
                 int amnt = Convert.ToInt32(reader["amount_in_stock"]);
-                AddItem(new Item(id, name, description, department, amnt));
+                bool auto = Convert.ToBoolean(reader["auto_restock"]);
+                AddItem(new Item(id, name, description, department, amnt, auto));
             }
             reader.Close();
             conn.Close();

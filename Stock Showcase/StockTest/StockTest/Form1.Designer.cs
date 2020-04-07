@@ -37,6 +37,7 @@
             this.tbNr = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnRequest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             this.dept,
             this.amnt});
             this.dgvStock.Location = new System.Drawing.Point(31, 21);
+            this.dgvStock.MultiSelect = false;
             this.dgvStock.Name = "dgvStock";
             this.dgvStock.RowHeadersWidth = 51;
             this.dgvStock.RowTemplate.Height = 73;
@@ -129,11 +131,22 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // btnRequest
+            // 
+            this.btnRequest.Location = new System.Drawing.Point(875, 414);
+            this.btnRequest.Name = "btnRequest";
+            this.btnRequest.Size = new System.Drawing.Size(158, 23);
+            this.btnRequest.TabIndex = 7;
+            this.btnRequest.Text = "Restock request";
+            this.btnRequest.UseVisualStyleBackColor = true;
+            this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1055, 459);
+            this.Controls.Add(this.btnRequest);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.tbNr);
@@ -156,6 +169,7 @@
         private System.Windows.Forms.TextBox tbNr;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnRequest;
     }
 }
 

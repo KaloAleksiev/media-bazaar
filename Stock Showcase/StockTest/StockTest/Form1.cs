@@ -70,5 +70,17 @@ namespace StockTest
             btnNext.Enabled = true;
             ShowStock(i - 1);
         }
+
+        private void btnRequest_Click(object sender, EventArgs e)
+        {
+            foreach (Item i in s.GetAllItems())
+            {
+                if (i.Id == Convert.ToInt32(dgvStock.SelectedRows[0].Cells[0].Value))
+                {
+                    RestockForm frm = new RestockForm(i);
+                    frm.Show();
+                }
+            }
+        }
     }
 }

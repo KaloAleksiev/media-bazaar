@@ -55,13 +55,14 @@ namespace StockTest
             this.arLimit = arLimit;
             this.Id = id;
         }
-        public Item(int id, string name, string description, string department, int amountInStock)
+        public Item(int id, string name, string description, string department, int amountInStock, bool autoRestock)
         {
             this.Id = id;
             this.Name = name;
             this.Description = description;
             this.AmountInStock = amountInStock;
             this.Department = department;
+            this.autoRestock = autoRestock;
         }
 
         public string GetInfo()
