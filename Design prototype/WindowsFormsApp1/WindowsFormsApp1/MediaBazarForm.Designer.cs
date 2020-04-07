@@ -625,7 +625,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(960, 477);
+            this.ClientSize = new System.Drawing.Size(957, 448);
             this.Controls.Add(this.pStock);
             this.Controls.Add(this.pStatistics);
             this.Controls.Add(this.pEmplyee);

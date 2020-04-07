@@ -1,6 +1,6 @@
 ﻿namespace MediaBazaarTest
 {
-    partial class Form1
+    partial class AddEmployeeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -204,13 +204,13 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "First Name:";
             // 
-            // Form1
+            // AddEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 560);
+            this.ClientSize = new System.Drawing.Size(673, 541);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
+            this.Name = "AddEmployeeForm";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

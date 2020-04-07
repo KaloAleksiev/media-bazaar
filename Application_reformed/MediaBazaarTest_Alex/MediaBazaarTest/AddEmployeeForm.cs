@@ -15,10 +15,10 @@ using S22.Imap;
 
 namespace MediaBazaarTest
 {
-    public partial class Form1 : Form
+    public partial class AddEmployeeForm : Form
     {
         private UserControl uc;
-        public Form1()
+        public AddEmployeeForm()
         {
             InitializeComponent();
             uc = new UserControl();
