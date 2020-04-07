@@ -20,6 +20,10 @@ namespace MediaBazaarTest
         {
             users = new List<User>();
             udc = new UserDataControl();
+            foreach (User u in udc.GetAllUsers())
+            {
+                users.Add(u);
+            }
         }
 
         public bool Login(string password, string email)
@@ -68,6 +72,11 @@ namespace MediaBazaarTest
                 mailer.EnableSsl = true;
                 mailer.Send(message);
             }
+        }
+
+        public List<User> GetUsers()
+        {
+            return this.users;
         }
     }
 }

@@ -61,7 +61,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(356, 22);
+            this.label1.Location = new System.Drawing.Point(369, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 32);
             this.label1.TabIndex = 13;
@@ -115,7 +115,7 @@
             this.dgvStock.RowHeadersWidth = 51;
             this.dgvStock.RowTemplate.Height = 73;
             this.dgvStock.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvStock.Size = new System.Drawing.Size(752, 296);
+            this.dgvStock.Size = new System.Drawing.Size(803, 296);
             this.dgvStock.TabIndex = 14;
             // 
             // id
@@ -163,7 +163,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(779, 458);
+            this.ClientSize = new System.Drawing.Size(824, 458);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.tbNr);

@@ -8,9 +8,9 @@ namespace MediaBazaarTest
 {
     public enum Position
     {
-        Administrator = 1,
-        Manager = 2,
-        DepotWorker = 3,
-        Employee = 4
+        Administrator ,
+        Manager,
+        DepotWorker,
+        Employee
     }
 }

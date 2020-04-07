@@ -52,10 +52,14 @@ namespace MediaBazaarTest
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            if (reader.HasRows)
+            if (reader.IsDBNull(0))
+            {                
+                id = 1;
+            }
+            else
             {
                 id = Convert.ToInt32(reader["max"]);
-                id++;                
+                id++;               
             }
             reader.Close();
             conn.Close();
@@ -66,16 +70,16 @@ namespace MediaBazaarTest
         {
             Department dep = u.Department;
             MySqlConnection conn = new MySqlConnection(connectionString);
-            string addUser = $"INSERT into user( id, fName, lName, address, email, password, position, department_id, phone_number, salary, rank, start_date, end_date, birth_date)" +
-                $"VALUES (@id, @fName, @lName, @address, @email, @password, @position, @department_id, @phone_number, @salary, @rank, @start_date, @end_date, @birth_date)";
+            string addUser = $"INSERT into user( id, firstName, lastName, address, email, password, position, department_id, phone_number, salary, rank, start_date, end_date, birth_date)" +
+                $"VALUES (@id, @firstName, @lastName, @address, @email, @password, @position, @department_id, @phone_number, @salary, @rank, @start_date, @end_date, @birth_date)";
             MySqlCommand cmd = new MySqlCommand(addUser, conn);
             cmd.Parameters.AddWithValue("@id", u.Id);
-            cmd.Parameters.AddWithValue("@fName", u.FName);
-            cmd.Parameters.AddWithValue("@lName", u.LName);
+            cmd.Parameters.AddWithValue("@firstName", u.FName);
+            cmd.Parameters.AddWithValue("@lastName", u.LName);
             cmd.Parameters.AddWithValue("@address", u.Address);
             cmd.Parameters.AddWithValue("@email", u.Email);
             cmd.Parameters.AddWithValue("@password", u.Password);
-            cmd.Parameters.AddWithValue("@position", u.Position);
+            cmd.Parameters.AddWithValue("@position", u.Position.ToString());
             cmd.Parameters.AddWithValue("@department_id",(int)dep);
             cmd.Parameters.AddWithValue("@phone_number", u.Phone);
             cmd.Parameters.AddWithValue("@salary", u.Salary);
@@ -86,6 +90,38 @@ namespace MediaBazaarTest
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
+        }
+
+        public List<User> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            string getInfo = $"SELECT id, firstName, lastName, address, email, password, position, department_id, phone_number, salary, rank, start_date, end_date, birth_date FROM user";
+            MySqlCommand cmd = new MySqlCommand(getInfo, conn);
+            conn.Open();
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["id"]);
+                string fNname = Convert.ToString(reader["firstName"]);
+                string lName = Convert.ToString(reader["lastName"]);
+                string address = Convert.ToString(reader["address"]);
+                string email = Convert.ToString(reader["email"]);
+                string password = Convert.ToString(reader["password"]);
+                string pos = Convert.ToString(reader["position"]);
+                int dep = Convert.ToInt32(reader["department_id"]);
+                string phonenumber = Convert.ToString(reader["phone_number"]);
+                double salary = Convert.ToDouble(reader["salary"]);
+                int rank = Convert.ToInt32(reader["rank"]);
+                DateTime startDate = Convert.ToDateTime(reader["start_date"]);
+                DateTime endDate = Convert.ToDateTime(reader["end_date"]);
+                DateTime bDate = Convert.ToDateTime(reader["birth_date"]);         
+                
+                users.Add(new User(id, fNname, lName, dep, pos, email, address, phonenumber, rank, salary, password, startDate, endDate, bDate));
+            }
+            reader.Close();
+            conn.Close();
+            return users;
         }
     }
 }

@@ -9,8 +9,7 @@ namespace MediaBazaarTest
 {
     public class User
     {
-        //instance variables 
-        private static int idSeeder = 1000;
+        //instance variables         
         private int id;
         private string fName;
         private string lName;
@@ -93,7 +92,7 @@ namespace MediaBazaarTest
 
         public User(int id,string fName, string surname, Department dep, Position pos, string email, string phone, string address, DateTime bday)
         {
-            this.Id = idSeeder;
+            this.Id = id;
             this.FName = fName;
             this.LName = surname;
             this.Department = dep;
@@ -104,7 +103,7 @@ namespace MediaBazaarTest
                     this.Salary = 5000;
                     break;
                 case Position.Manager:
-                    this.Salary = 5000;
+                    this.Salary = 4500;
                     break;
                 case Position.DepotWorker:
                     this.Salary = 3500;
