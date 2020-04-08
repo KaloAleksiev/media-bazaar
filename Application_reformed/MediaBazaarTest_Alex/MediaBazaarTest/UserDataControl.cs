@@ -11,12 +11,12 @@ namespace MediaBazaarTest
     public class UserDataControl
     {
         private string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-      
+
         public User CheckCredentials(string password, string email)
         {
             User u;
             MySqlConnection conn = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand($"SELECT id, fName, lName, start_date, end_date, birth_date, position, department, phone_number, salary, rank, address FROM User WHERE password LIKE {password} AND email LIKE = {email}",conn);
+            MySqlCommand cmd = new MySqlCommand($"SELECT id, fName, lName, start_date, end_date, birth_date, position, department, phone_number, salary, rank, address FROM User WHERE password LIKE {password} AND email LIKE = {email}", conn);
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
@@ -36,12 +36,12 @@ namespace MediaBazaarTest
                 int rank = Convert.ToInt32(reader["rank"]);
                 reader.Close();
                 conn.Close();
-                u = new User(id, fNname, lName, dep, pos, email, address, phonenumber, rank, salary, password, startDate, endDate, bDate);
+                u = new User(id, fNname, lName, dep, pos, email, address, phonenumber, rank, salary, password, startDate, bDate);
                 return u;
             }
             reader.Close();
             conn.Close();
-            return null;     
+            return null;
         }
 
         public int GetMaxId()
@@ -53,13 +53,13 @@ namespace MediaBazaarTest
             MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             if (reader.IsDBNull(0))
-            {                
+            {
                 id = 1;
             }
             else
             {
                 id = Convert.ToInt32(reader["max"]);
-                id++;               
+                id++;
             }
             reader.Close();
             conn.Close();
@@ -70,8 +70,8 @@ namespace MediaBazaarTest
         {
             Department dep = u.Department;
             MySqlConnection conn = new MySqlConnection(connectionString);
-            string addUser = $"INSERT into user( id, firstName, lastName, address, email, password, position, department_id, phone_number, salary, rank, start_date, end_date, birth_date)" +
-                $"VALUES (@id, @firstName, @lastName, @address, @email, @password, @position, @department_id, @phone_number, @salary, @rank, @start_date, @end_date, @birth_date)";
+            string addUser = $"INSERT into user( id, firstName, lastName, address, email, password, position, department_id, phone_number, salary, rank, start_date, birth_date)" +
+                $"VALUES (@id, @firstName, @lastName, @address, @email, @password, @position, @department_id, @phone_number, @salary, @rank, @start_date, @birth_date)";
             MySqlCommand cmd = new MySqlCommand(addUser, conn);
             cmd.Parameters.AddWithValue("@id", u.Id);
             cmd.Parameters.AddWithValue("@firstName", u.FName);
@@ -80,12 +80,12 @@ namespace MediaBazaarTest
             cmd.Parameters.AddWithValue("@email", u.Email);
             cmd.Parameters.AddWithValue("@password", u.Password);
             cmd.Parameters.AddWithValue("@position", u.Position.ToString());
-            cmd.Parameters.AddWithValue("@department_id",(int)dep);
+            cmd.Parameters.AddWithValue("@department_id", (int)dep);
             cmd.Parameters.AddWithValue("@phone_number", u.Phone);
             cmd.Parameters.AddWithValue("@salary", u.Salary);
             cmd.Parameters.AddWithValue("@rank", u.Rank);
             cmd.Parameters.AddWithValue("@start_date", u.StartDate);
-            cmd.Parameters.AddWithValue("@end_date", u.EndDate);
+            //cmd.Parameters.AddWithValue("@end_date", u.EndDate);
             cmd.Parameters.AddWithValue("@birth_date", u.BDay);
             conn.Open();
             cmd.ExecuteNonQuery();
@@ -96,7 +96,7 @@ namespace MediaBazaarTest
         {
             List<User> users = new List<User>();
             MySqlConnection conn = new MySqlConnection(connectionString);
-            string getInfo = $"SELECT id, firstName, lastName, address, email, password, position, department_id, phone_number, salary, rank, start_date, end_date, birth_date FROM user";
+            string getInfo = $"SELECT id, firstName, lastName, address, email, password, position, department_id, phone_number, salary, rank, start_date, birth_date FROM user WHERE end_date IS NULL OR end_date = '';";
             MySqlCommand cmd = new MySqlCommand(getInfo, conn);
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -114,14 +114,75 @@ namespace MediaBazaarTest
                 double salary = Convert.ToDouble(reader["salary"]);
                 int rank = Convert.ToInt32(reader["rank"]);
                 DateTime startDate = Convert.ToDateTime(reader["start_date"]);
-                DateTime endDate = Convert.ToDateTime(reader["end_date"]);
-                DateTime bDate = Convert.ToDateTime(reader["birth_date"]);         
-                
-                users.Add(new User(id, fNname, lName, dep, pos, email, address, phonenumber, rank, salary, password, startDate, endDate, bDate));
+                DateTime bDate = Convert.ToDateTime(reader["birth_date"]);
+
+                users.Add(new User(id, fNname, lName, dep, pos, email, address, phonenumber, rank, salary, password, startDate, bDate));
             }
             reader.Close();
             conn.Close();
             return users;
         }
+
+        public void FireEmployeeDB(int id, DateTime date)
+        {
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            string AddEndDate = $"UPDATE user SET end_date = @end_date WHERE id = @id";
+            MySqlCommand cmd = new MySqlCommand(AddEndDate, conn);
+            cmd.Parameters.AddWithValue("@end_date", date);
+            cmd.Parameters.AddWithValue("@id", id);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void ChangeEmployeeDepartment(int id, Department dep)
+        {
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            string ChangeDep = $"UPDATE user SET department_id = @department_id WHERE id = @id";
+            MySqlCommand cmd = new MySqlCommand(ChangeDep, conn);
+            cmd.Parameters.AddWithValue("@department_id", (int)dep);
+            cmd.Parameters.AddWithValue("@id", id);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void ChangeEmployeePosition(int id, Position pos)
+        {
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            string ChangePos = $"UPDATE user SET position = @position WHERE id = @id";
+            MySqlCommand cmd = new MySqlCommand(ChangePos, conn);
+            cmd.Parameters.AddWithValue("@position", pos.ToString());
+            cmd.Parameters.AddWithValue("@id", id);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void ChangeEmployeeRank(int id, int rank)
+        {
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            string ChangeRank = $"UPDATE user SET rank = @rank WHERE id = @id";
+            MySqlCommand cmd = new MySqlCommand(ChangeRank, conn);
+            cmd.Parameters.AddWithValue("@rank", rank);
+            cmd.Parameters.AddWithValue("@id", id);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void ChangeEmployeeSalary(int id, double salary)
+        {
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            string ChangeSalary = $"UPDATE user SET salary = @salary WHERE id = @id";
+            MySqlCommand cmd = new MySqlCommand(ChangeSalary, conn);
+            cmd.Parameters.AddWithValue("@salary", salary);
+            cmd.Parameters.AddWithValue("@id", id);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+
     }
 }

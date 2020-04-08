@@ -28,7 +28,7 @@ namespace MediaBazaarTest
 
         public bool Login(string password, string email)
         {
-            if(udc.CheckCredentials(password, email) == null)
+            if (udc.CheckCredentials(password, email) == null)
             {
                 return false;
             }
@@ -36,7 +36,7 @@ namespace MediaBazaarTest
             {
                 loggedIn = udc.CheckCredentials(password, email);
             }
-            return true;   
+            return true;
         }
 
         public bool CheckEmail(string email)
@@ -49,9 +49,9 @@ namespace MediaBazaarTest
             }
             return false;
         }
-        public void AddUser(string fname, string surname, Department dep, Position pos,string email, string phone, string address, DateTime bDate)
+        public void AddUser(string fname, string surname, Department dep, Position pos, string email, string phone, string address, DateTime bDate)
         {
-            User sashko = new User(udc.GetMaxId(),fname, surname, dep, pos, email, phone, address, bDate);
+            User sashko = new User(udc.GetMaxId(), fname, surname, dep, pos, email, phone, address, bDate);
             users.Add(sashko);
             udc.AddUserToDB(sashko);
 
@@ -78,5 +78,93 @@ namespace MediaBazaarTest
         {
             return this.users;
         }
+
+        public User GetUserByID(int id)
+        {
+            foreach (User u in users)
+            {
+                if (u.Id == id)
+                {
+                    return u;
+                }
+            }
+            return null;
+        }
+
+        #region FIRE/PROMOTE EMPLOYEE
+        public bool FireUser(int id)
+        {
+            if (GetUserByID(id) != null)
+            {
+                User u = GetUserByID(id);
+                DateTime date = DateTime.Now.Date;
+                u.FireEmployee(date);
+                udc.FireEmployeeDB(id, date);
+                return true;
+            }
+            return false;
+        }
+
+        public bool ChangeDepartment(int id, Department dep)
+        {
+            if (GetUserByID(id) != null)
+            {
+                User u = GetUserByID(id);
+                if (u.Department != dep)
+                {
+                    u.ChangeDepartment(dep);
+                    udc.ChangeEmployeeDepartment(id, dep);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool ChangePosition(int id, Position pos)
+        {
+            if (GetUserByID(id) != null)
+            {
+                User u = GetUserByID(id);
+                if (u.Position != pos)
+                {
+                    u.ChangePosition(pos);
+                    udc.ChangeEmployeePosition(id, pos);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool ChangeRank(int id, int rank)
+        {
+            if (GetUserByID(id) != null)
+            {
+                User u = GetUserByID(id);
+                if (u.Rank != rank)
+                {
+                    u.ChangeRank(rank);
+                    udc.ChangeEmployeeRank(id, rank);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool ChangeSalary(int id, double salary)
+        {
+            if (GetUserByID(id) != null)
+            {
+                User u = GetUserByID(id);
+                if (u.Salary != salary)
+                {
+                    u.ChangeSalary(salary);
+                    udc.ChangeEmployeeSalary(id, salary);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        #endregion
     }
 }

@@ -28,22 +28,22 @@ namespace MediaBazaarTest
         //properties
         public int Id { get { return this.id; } private set { this.id = value; } }
         public string FName { get { return this.fName; } private set { this.fName = value; } }
-        public string LName { get { return this.lName; }private set { this.lName = value; } }
+        public string LName { get { return this.lName; } private set { this.lName = value; } }
         public Department Department { get { return this.dep; } private set { this.dep = value; } }
-        public Position Position { get { return this.pos; } private set {this.pos = value; } }
-        public string Email { get { return this.email; } private set {this.email = value; } }
+        public Position Position { get { return this.pos; } private set { this.pos = value; } }
+        public string Email { get { return this.email; } private set { this.email = value; } }
         public string Address { get { return this.address; } private set { this.address = value; } }
-        public string Phone { get { return this.phone; } private set {this.phone = value; } }
+        public string Phone { get { return this.phone; } private set { this.phone = value; } }
         public int Rank { get { return this.rank; } private set { this.rank = value; } }
         public double Salary { get { return this.salary; } private set { this.salary = value; } }
         public string Password { get { return this.password; } private set { this.password = value; } }
         public DateTime StartDate { get { return this.startDate; } private set { this.startDate = value; } }
-        public DateTime EndDate { get { return this.endDate; } private set { this.endDate = value;} }
+        public DateTime EndDate { get { return this.endDate; } private set { this.endDate = value; } }
         public DateTime BDay { get { return this.bDay; } private set { this.bDay = value; } }
 
 
         //constructors
-        public User(int id, string fname, string surname, int dep, string position, string email, string address, string phone, int rank, double salary, string password, DateTime startDate, DateTime endDate, DateTime bday)
+        public User(int id, string fname, string surname, int dep, string position, string email, string address, string phone, int rank, double salary, string password, DateTime startDate, DateTime bday)
         {
             this.Id = id;
             this.FName = fname;
@@ -56,13 +56,13 @@ namespace MediaBazaarTest
             this.Password = password;
             this.StartDate = startDate;
             this.BDay = bday;
-            if(endDate != null)
-            {
-                this.EndDate = endDate;
-            }
+            //if(endDate != null)
+            //{
+            //    this.EndDate = endDate;
+            //}
             switch (dep)
             {
-                case 1:                  
+                case 1:
                     this.Department = Department.Computers;
                     break;
                 case 2:
@@ -90,7 +90,7 @@ namespace MediaBazaarTest
             }
         }
 
-        public User(int id,string fName, string surname, Department dep, Position pos, string email, string phone, string address, DateTime bday)
+        public User(int id, string fName, string surname, Department dep, Position pos, string email, string phone, string address, DateTime bday)
         {
             this.Id = id;
             this.FName = fName;
@@ -120,10 +120,34 @@ namespace MediaBazaarTest
             this.StartDate = DateTime.Now.Date;
             this.BDay = bday;
         }
-
         public string GetInfo()
         {
-            return $"{this.fName} {this.lName}, department: {this.Department.ToString()}, ID: {this.Id}";
+            return $"{this.fName} {this.lName}:\nDepartment: {this.Department}, Position: {this.Position}, Rank: {this.Rank}, Salary: {this.Salary}";
+        }
+
+        public void FireEmployee(DateTime date)
+        {
+            this.EndDate = date;
+        }
+
+        public void ChangeDepartment(Department dep)
+        {
+            this.Department = dep;
+        }
+
+        public void ChangePosition(Position pos)
+        {
+            this.Position = pos;
+        }
+
+        public void ChangeRank(int rank)
+        {
+            this.Rank = rank;
+        }
+
+        public void ChangeSalary(double salary)
+        {
+            this.salary = salary;
         }
     }
 }

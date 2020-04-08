@@ -29,12 +29,36 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddEmployeeForm));
-            this.tbEmail = new System.Windows.Forms.TextBox();
-            this.btSendEmail = new System.Windows.Forms.Button();
-            this.tbFName = new System.Windows.Forms.TextBox();
-            this.tbSName = new System.Windows.Forms.TextBox();
-            this.tbAddress = new System.Windows.Forms.TextBox();
-            this.tbPhoneNumber = new System.Windows.Forms.TextBox();
+            this.pAllEmployees = new System.Windows.Forms.Panel();
+            this.tbFireSelected = new System.Windows.Forms.Button();
+            this.btPromoteSelected = new System.Windows.Forms.Button();
+            this.dgvEmployee = new System.Windows.Forms.DataGridView();
+            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SurnameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PositionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DepartmentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankColum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalaryColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pPromoteEmployee = new System.Windows.Forms.Panel();
+            this.btChangeSalary = new System.Windows.Forms.Button();
+            this.btChangePosition = new System.Windows.Forms.Button();
+            this.btChangeRank = new System.Windows.Forms.Button();
+            this.btChangeDep = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tbSalary = new System.Windows.Forms.TextBox();
+            this.cmbRankChange = new System.Windows.Forms.ComboBox();
+            this.cmbPositionChange = new System.Windows.Forms.ComboBox();
+            this.cmbDepartmentChange = new System.Windows.Forms.ComboBox();
+            this.lblSelectedEmployeeInfo = new System.Windows.Forms.Label();
+            this.btGoBack = new System.Windows.Forms.Button();
+            this.btPromoteFire = new System.Windows.Forms.Button();
+            this.btCreateUserPanel = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pAddUser = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.dtpBday = new System.Windows.Forms.DateTimePicker();
@@ -46,81 +70,339 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.tbPhoneNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.btCreateUserPanel = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.pPromote = new System.Windows.Forms.Panel();
-            this.dgvEmployee = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Position = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Department = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Salary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pAddUser.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.pPromote.SuspendLayout();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.btSendEmail = new System.Windows.Forms.Button();
+            this.tbAddress = new System.Windows.Forms.TextBox();
+            this.tbFName = new System.Windows.Forms.TextBox();
+            this.tbSName = new System.Windows.Forms.TextBox();
+            this.pAllEmployees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
+            this.pPromoteEmployee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pAddUser.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tbEmail
+            // pAllEmployees
             // 
-            this.tbEmail.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
-            this.tbEmail.Location = new System.Drawing.Point(395, 140);
-            this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(197, 26);
-            this.tbEmail.TabIndex = 0;
+            this.pAllEmployees.BackColor = System.Drawing.Color.White;
+            this.pAllEmployees.Controls.Add(this.pPromoteEmployee);
+            this.pAllEmployees.Controls.Add(this.tbFireSelected);
+            this.pAllEmployees.Controls.Add(this.btPromoteSelected);
+            this.pAllEmployees.Controls.Add(this.dgvEmployee);
+            this.pAllEmployees.Location = new System.Drawing.Point(157, 82);
+            this.pAllEmployees.Name = "pAllEmployees";
+            this.pAllEmployees.Size = new System.Drawing.Size(700, 450);
+            this.pAllEmployees.TabIndex = 20;
             // 
-            // btSendEmail
+            // tbFireSelected
             // 
-            this.btSendEmail.BackColor = System.Drawing.Color.Maroon;
-            this.btSendEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btSendEmail.ForeColor = System.Drawing.Color.White;
-            this.btSendEmail.Location = new System.Drawing.Point(279, 321);
-            this.btSendEmail.Name = "btSendEmail";
-            this.btSendEmail.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btSendEmail.Size = new System.Drawing.Size(140, 57);
-            this.btSendEmail.TabIndex = 1;
-            this.btSendEmail.Text = "Create User";
-            this.btSendEmail.UseVisualStyleBackColor = false;
-            this.btSendEmail.Click += new System.EventHandler(this.btSendEmail_Click);
+            this.tbFireSelected.BackColor = System.Drawing.Color.Maroon;
+            this.tbFireSelected.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.tbFireSelected.ForeColor = System.Drawing.Color.White;
+            this.tbFireSelected.Location = new System.Drawing.Point(407, 397);
+            this.tbFireSelected.Name = "tbFireSelected";
+            this.tbFireSelected.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tbFireSelected.Size = new System.Drawing.Size(140, 50);
+            this.tbFireSelected.TabIndex = 21;
+            this.tbFireSelected.Text = "Fire";
+            this.tbFireSelected.UseVisualStyleBackColor = false;
+            this.tbFireSelected.Click += new System.EventHandler(this.tbFireSelected_Click);
             // 
-            // tbFName
+            // btPromoteSelected
             // 
-            this.tbFName.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
-            this.tbFName.Location = new System.Drawing.Point(100, 89);
-            this.tbFName.Name = "tbFName";
-            this.tbFName.Size = new System.Drawing.Size(197, 26);
-            this.tbFName.TabIndex = 2;
-            this.tbFName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFName_KeyPress);
+            this.btPromoteSelected.BackColor = System.Drawing.Color.Maroon;
+            this.btPromoteSelected.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btPromoteSelected.ForeColor = System.Drawing.Color.White;
+            this.btPromoteSelected.Location = new System.Drawing.Point(123, 397);
+            this.btPromoteSelected.Name = "btPromoteSelected";
+            this.btPromoteSelected.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btPromoteSelected.Size = new System.Drawing.Size(140, 50);
+            this.btPromoteSelected.TabIndex = 20;
+            this.btPromoteSelected.Text = "Promote";
+            this.btPromoteSelected.UseVisualStyleBackColor = false;
+            this.btPromoteSelected.Click += new System.EventHandler(this.btPromoteSelected_Click);
             // 
-            // tbSName
+            // dgvEmployee
             // 
-            this.tbSName.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
-            this.tbSName.Location = new System.Drawing.Point(395, 89);
-            this.tbSName.Name = "tbSName";
-            this.tbSName.Size = new System.Drawing.Size(197, 26);
-            this.tbSName.TabIndex = 3;
-            this.tbSName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSName_KeyPress);
+            this.dgvEmployee.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdColumn,
+            this.fNameColumn,
+            this.SurnameColumn,
+            this.PositionColumn,
+            this.DepartmentColumn,
+            this.RankColum,
+            this.SalaryColumn});
+            this.dgvEmployee.Location = new System.Drawing.Point(30, 30);
+            this.dgvEmployee.Name = "dgvEmployee";
+            this.dgvEmployee.Size = new System.Drawing.Size(645, 361);
+            this.dgvEmployee.TabIndex = 0;
             // 
-            // tbAddress
+            // IdColumn
             // 
-            this.tbAddress.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
-            this.tbAddress.Location = new System.Drawing.Point(100, 140);
-            this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(197, 26);
-            this.tbAddress.TabIndex = 4;
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.Width = 42;
             // 
-            // tbPhoneNumber
+            // fNameColumn
             // 
-            this.tbPhoneNumber.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
-            this.tbPhoneNumber.Location = new System.Drawing.Point(395, 190);
-            this.tbPhoneNumber.Name = "tbPhoneNumber";
-            this.tbPhoneNumber.Size = new System.Drawing.Size(197, 26);
-            this.tbPhoneNumber.TabIndex = 6;
-            this.tbPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPhoneNumber_KeyPress);
+            this.fNameColumn.HeaderText = "Name";
+            this.fNameColumn.Name = "fNameColumn";
+            // 
+            // SurnameColumn
+            // 
+            this.SurnameColumn.HeaderText = "Surname";
+            this.SurnameColumn.Name = "SurnameColumn";
+            // 
+            // PositionColumn
+            // 
+            this.PositionColumn.HeaderText = "Position";
+            this.PositionColumn.Name = "PositionColumn";
+            // 
+            // DepartmentColumn
+            // 
+            this.DepartmentColumn.HeaderText = "Department";
+            this.DepartmentColumn.Name = "DepartmentColumn";
+            // 
+            // RankColum
+            // 
+            this.RankColum.HeaderText = "Rank";
+            this.RankColum.Name = "RankColum";
+            // 
+            // SalaryColumn
+            // 
+            this.SalaryColumn.HeaderText = "Salary";
+            this.SalaryColumn.Name = "SalaryColumn";
+            // 
+            // pPromoteEmployee
+            // 
+            this.pPromoteEmployee.Controls.Add(this.btChangeSalary);
+            this.pPromoteEmployee.Controls.Add(this.btChangePosition);
+            this.pPromoteEmployee.Controls.Add(this.btChangeRank);
+            this.pPromoteEmployee.Controls.Add(this.btChangeDep);
+            this.pPromoteEmployee.Controls.Add(this.label14);
+            this.pPromoteEmployee.Controls.Add(this.label13);
+            this.pPromoteEmployee.Controls.Add(this.label12);
+            this.pPromoteEmployee.Controls.Add(this.label11);
+            this.pPromoteEmployee.Controls.Add(this.tbSalary);
+            this.pPromoteEmployee.Controls.Add(this.cmbRankChange);
+            this.pPromoteEmployee.Controls.Add(this.cmbPositionChange);
+            this.pPromoteEmployee.Controls.Add(this.cmbDepartmentChange);
+            this.pPromoteEmployee.Controls.Add(this.lblSelectedEmployeeInfo);
+            this.pPromoteEmployee.Controls.Add(this.btGoBack);
+            this.pPromoteEmployee.Location = new System.Drawing.Point(0, 0);
+            this.pPromoteEmployee.Name = "pPromoteEmployee";
+            this.pPromoteEmployee.Size = new System.Drawing.Size(700, 450);
+            this.pPromoteEmployee.TabIndex = 20;
+            // 
+            // btChangeSalary
+            // 
+            this.btChangeSalary.BackColor = System.Drawing.Color.Maroon;
+            this.btChangeSalary.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold);
+            this.btChangeSalary.ForeColor = System.Drawing.Color.White;
+            this.btChangeSalary.Location = new System.Drawing.Point(498, 351);
+            this.btChangeSalary.Name = "btChangeSalary";
+            this.btChangeSalary.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btChangeSalary.Size = new System.Drawing.Size(128, 34);
+            this.btChangeSalary.TabIndex = 23;
+            this.btChangeSalary.Text = "Change";
+            this.btChangeSalary.UseVisualStyleBackColor = false;
+            this.btChangeSalary.Click += new System.EventHandler(this.btChangeSalary_Click);
+            // 
+            // btChangePosition
+            // 
+            this.btChangePosition.BackColor = System.Drawing.Color.Maroon;
+            this.btChangePosition.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold);
+            this.btChangePosition.ForeColor = System.Drawing.Color.White;
+            this.btChangePosition.Location = new System.Drawing.Point(498, 184);
+            this.btChangePosition.Name = "btChangePosition";
+            this.btChangePosition.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btChangePosition.Size = new System.Drawing.Size(128, 34);
+            this.btChangePosition.TabIndex = 22;
+            this.btChangePosition.Text = "Change";
+            this.btChangePosition.UseVisualStyleBackColor = false;
+            this.btChangePosition.Click += new System.EventHandler(this.btChangePosition_Click);
+            // 
+            // btChangeRank
+            // 
+            this.btChangeRank.BackColor = System.Drawing.Color.Maroon;
+            this.btChangeRank.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold);
+            this.btChangeRank.ForeColor = System.Drawing.Color.White;
+            this.btChangeRank.Location = new System.Drawing.Point(498, 267);
+            this.btChangeRank.Name = "btChangeRank";
+            this.btChangeRank.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btChangeRank.Size = new System.Drawing.Size(128, 34);
+            this.btChangeRank.TabIndex = 21;
+            this.btChangeRank.Text = "Change";
+            this.btChangeRank.UseVisualStyleBackColor = false;
+            this.btChangeRank.Click += new System.EventHandler(this.btChangeRank_Click);
+            // 
+            // btChangeDep
+            // 
+            this.btChangeDep.BackColor = System.Drawing.Color.Maroon;
+            this.btChangeDep.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold);
+            this.btChangeDep.ForeColor = System.Drawing.Color.White;
+            this.btChangeDep.Location = new System.Drawing.Point(498, 106);
+            this.btChangeDep.Name = "btChangeDep";
+            this.btChangeDep.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btChangeDep.Size = new System.Drawing.Size(128, 34);
+            this.btChangeDep.TabIndex = 20;
+            this.btChangeDep.Text = "Change";
+            this.btChangeDep.UseVisualStyleBackColor = false;
+            this.btChangeDep.Click += new System.EventHandler(this.btChangeDep_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.label14.Location = new System.Drawing.Point(53, 193);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(63, 20);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Position";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.label13.Location = new System.Drawing.Point(53, 275);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(43, 20);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Rank";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.label12.Location = new System.Drawing.Point(53, 359);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 20);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "Salary";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.label11.Location = new System.Drawing.Point(53, 115);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(91, 20);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Department";
+            // 
+            // tbSalary
+            // 
+            this.tbSalary.Location = new System.Drawing.Point(168, 358);
+            this.tbSalary.Name = "tbSalary";
+            this.tbSalary.Size = new System.Drawing.Size(122, 20);
+            this.tbSalary.TabIndex = 6;
+            // 
+            // cmbRankChange
+            // 
+            this.cmbRankChange.FormattingEnabled = true;
+            this.cmbRankChange.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.cmbRankChange.Location = new System.Drawing.Point(168, 274);
+            this.cmbRankChange.Name = "cmbRankChange";
+            this.cmbRankChange.Size = new System.Drawing.Size(121, 21);
+            this.cmbRankChange.TabIndex = 5;
+            // 
+            // cmbPositionChange
+            // 
+            this.cmbPositionChange.FormattingEnabled = true;
+            this.cmbPositionChange.Location = new System.Drawing.Point(168, 193);
+            this.cmbPositionChange.Name = "cmbPositionChange";
+            this.cmbPositionChange.Size = new System.Drawing.Size(121, 21);
+            this.cmbPositionChange.TabIndex = 4;
+            // 
+            // cmbDepartmentChange
+            // 
+            this.cmbDepartmentChange.FormattingEnabled = true;
+            this.cmbDepartmentChange.Location = new System.Drawing.Point(168, 114);
+            this.cmbDepartmentChange.Name = "cmbDepartmentChange";
+            this.cmbDepartmentChange.Size = new System.Drawing.Size(121, 21);
+            this.cmbDepartmentChange.TabIndex = 3;
+            // 
+            // lblSelectedEmployeeInfo
+            // 
+            this.lblSelectedEmployeeInfo.AutoSize = true;
+            this.lblSelectedEmployeeInfo.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblSelectedEmployeeInfo.Location = new System.Drawing.Point(52, 30);
+            this.lblSelectedEmployeeInfo.Name = "lblSelectedEmployeeInfo";
+            this.lblSelectedEmployeeInfo.Size = new System.Drawing.Size(0, 21);
+            this.lblSelectedEmployeeInfo.TabIndex = 2;
+            // 
+            // btGoBack
+            // 
+            this.btGoBack.BackColor = System.Drawing.Color.Maroon;
+            this.btGoBack.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold);
+            this.btGoBack.ForeColor = System.Drawing.Color.White;
+            this.btGoBack.Location = new System.Drawing.Point(605, 10);
+            this.btGoBack.Name = "btGoBack";
+            this.btGoBack.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btGoBack.Size = new System.Drawing.Size(84, 34);
+            this.btGoBack.TabIndex = 24;
+            this.btGoBack.Text = "<<<";
+            this.btGoBack.UseVisualStyleBackColor = false;
+            this.btGoBack.Click += new System.EventHandler(this.btGoBack_Click);
+            // 
+            // btPromoteFire
+            // 
+            this.btPromoteFire.BackColor = System.Drawing.Color.Maroon;
+            this.btPromoteFire.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btPromoteFire.ForeColor = System.Drawing.Color.White;
+            this.btPromoteFire.Location = new System.Drawing.Point(11, 160);
+            this.btPromoteFire.Name = "btPromoteFire";
+            this.btPromoteFire.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btPromoteFire.Size = new System.Drawing.Size(140, 74);
+            this.btPromoteFire.TabIndex = 25;
+            this.btPromoteFire.Text = "Promote / Fire";
+            this.btPromoteFire.UseVisualStyleBackColor = false;
+            this.btPromoteFire.Click += new System.EventHandler(this.btPromoteFire_Click);
+            // 
+            // btCreateUserPanel
+            // 
+            this.btCreateUserPanel.BackColor = System.Drawing.Color.Maroon;
+            this.btCreateUserPanel.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btCreateUserPanel.ForeColor = System.Drawing.Color.White;
+            this.btCreateUserPanel.Location = new System.Drawing.Point(11, 84);
+            this.btCreateUserPanel.Name = "btCreateUserPanel";
+            this.btCreateUserPanel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btCreateUserPanel.Size = new System.Drawing.Size(140, 70);
+            this.btCreateUserPanel.TabIndex = 22;
+            this.btCreateUserPanel.Text = "Add a new employee";
+            this.btCreateUserPanel.UseVisualStyleBackColor = false;
+            this.btCreateUserPanel.Click += new System.EventHandler(this.btCreateUserPanel_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(431, 27);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(120, 32);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Employee";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Maroon;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(11, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(140, 66);
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
             // 
             // pAddUser
             // 
@@ -142,10 +424,10 @@
             this.pAddUser.Controls.Add(this.tbAddress);
             this.pAddUser.Controls.Add(this.tbFName);
             this.pAddUser.Controls.Add(this.tbSName);
-            this.pAddUser.Location = new System.Drawing.Point(154, 576);
+            this.pAddUser.Location = new System.Drawing.Point(157, 84);
             this.pAddUser.Name = "pAddUser";
-            this.pAddUser.Size = new System.Drawing.Size(697, 418);
-            this.pAddUser.TabIndex = 18;
+            this.pAddUser.Size = new System.Drawing.Size(697, 450);
+            this.pAddUser.TabIndex = 24;
             // 
             // label8
             // 
@@ -243,6 +525,15 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Surname:";
             // 
+            // tbPhoneNumber
+            // 
+            this.tbPhoneNumber.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
+            this.tbPhoneNumber.Location = new System.Drawing.Point(395, 190);
+            this.tbPhoneNumber.Name = "tbPhoneNumber";
+            this.tbPhoneNumber.Size = new System.Drawing.Size(197, 26);
+            this.tbPhoneNumber.TabIndex = 6;
+            this.tbPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPhoneNumber_KeyPress);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -253,129 +544,75 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "First Name:";
             // 
-            // pictureBox1
+            // tbEmail
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Maroon;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(5, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(140, 66);
-            this.pictureBox1.TabIndex = 17;
-            this.pictureBox1.TabStop = false;
+            this.tbEmail.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
+            this.tbEmail.Location = new System.Drawing.Point(395, 140);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(197, 26);
+            this.tbEmail.TabIndex = 0;
             // 
-            // label9
+            // btSendEmail
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold);
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(425, 27);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(120, 32);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Employee";
+            this.btSendEmail.BackColor = System.Drawing.Color.Maroon;
+            this.btSendEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btSendEmail.ForeColor = System.Drawing.Color.White;
+            this.btSendEmail.Location = new System.Drawing.Point(279, 321);
+            this.btSendEmail.Name = "btSendEmail";
+            this.btSendEmail.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btSendEmail.Size = new System.Drawing.Size(140, 57);
+            this.btSendEmail.TabIndex = 1;
+            this.btSendEmail.Text = "Create User";
+            this.btSendEmail.UseVisualStyleBackColor = false;
+            this.btSendEmail.Click += new System.EventHandler(this.btSendEmail_Click);
             // 
-            // btCreateUserPanel
+            // tbAddress
             // 
-            this.btCreateUserPanel.BackColor = System.Drawing.Color.Maroon;
-            this.btCreateUserPanel.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btCreateUserPanel.ForeColor = System.Drawing.Color.White;
-            this.btCreateUserPanel.Location = new System.Drawing.Point(5, 84);
-            this.btCreateUserPanel.Name = "btCreateUserPanel";
-            this.btCreateUserPanel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btCreateUserPanel.Size = new System.Drawing.Size(140, 70);
-            this.btCreateUserPanel.TabIndex = 18;
-            this.btCreateUserPanel.Text = "Add a new employee";
-            this.btCreateUserPanel.UseVisualStyleBackColor = false;
+            this.tbAddress.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
+            this.tbAddress.Location = new System.Drawing.Point(100, 140);
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.Size = new System.Drawing.Size(197, 26);
+            this.tbAddress.TabIndex = 4;
             // 
-            // button2
+            // tbFName
             // 
-            this.button2.BackColor = System.Drawing.Color.Maroon;
-            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(5, 160);
-            this.button2.Name = "button2";
-            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button2.Size = new System.Drawing.Size(140, 74);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "Promote / Fire";
-            this.button2.UseVisualStyleBackColor = false;
+            this.tbFName.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
+            this.tbFName.Location = new System.Drawing.Point(100, 89);
+            this.tbFName.Name = "tbFName";
+            this.tbFName.Size = new System.Drawing.Size(197, 26);
+            this.tbFName.TabIndex = 2;
+            this.tbFName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFName_KeyPress);
             // 
-            // pPromote
+            // tbSName
             // 
-            this.pPromote.BackColor = System.Drawing.Color.White;
-            this.pPromote.Controls.Add(this.dgvEmployee);
-            this.pPromote.Location = new System.Drawing.Point(151, 84);
-            this.pPromote.Name = "pPromote";
-            this.pPromote.Size = new System.Drawing.Size(1089, 450);
-            this.pPromote.TabIndex = 7;
-            // 
-            // dgvEmployee
-            // 
-            this.dgvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Name,
-            this.Surname,
-            this.Position,
-            this.Department,
-            this.Rank,
-            this.Salary});
-            this.dgvEmployee.Location = new System.Drawing.Point(16, 54);
-            this.dgvEmployee.Name = "dgvEmployee";
-            this.dgvEmployee.Size = new System.Drawing.Size(1055, 376);
-            this.dgvEmployee.TabIndex = 0;
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            // 
-            // Surname
-            // 
-            this.Surname.HeaderText = "Surname";
-            this.Surname.Name = "Surname";
-            // 
-            // Position
-            // 
-            this.Position.HeaderText = "Position";
-            this.Position.Name = "Position";
-            // 
-            // Department
-            // 
-            this.Department.HeaderText = "Department";
-            this.Department.Name = "Department";
-            // 
-            // Rank
-            // 
-            this.Rank.HeaderText = "Rank";
-            this.Rank.Name = "Rank";
-            // 
-            // Salary
-            // 
-            this.Salary.HeaderText = "Salary";
-            this.Salary.Name = "Salary";
+            this.tbSName.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
+            this.tbSName.Location = new System.Drawing.Point(395, 89);
+            this.tbSName.Name = "tbSName";
+            this.tbSName.Size = new System.Drawing.Size(197, 26);
+            this.tbSName.TabIndex = 3;
+            this.tbSName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSName_KeyPress);
             // 
             // AddEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(1270, 650);
-            this.Controls.Add(this.pAddUser);
-            this.Controls.Add(this.pPromote);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(863, 542);
+            this.Controls.Add(this.pAllEmployees);
+            this.Controls.Add(this.btPromoteFire);
             this.Controls.Add(this.btCreateUserPanel);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.pictureBox1);
-            //this.Name = "AddEmployeeForm";
+            this.Controls.Add(this.pAddUser);
+            this.Name = "AddEmployeeForm";
             this.Text = "Form1";
+            this.pAllEmployees.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).EndInit();
+            this.pPromoteEmployee.ResumeLayout(false);
+            this.pPromoteEmployee.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pAddUser.ResumeLayout(false);
             this.pAddUser.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.pPromote.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -383,36 +620,54 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox tbEmail;
-        private System.Windows.Forms.Button btSendEmail;
-        private System.Windows.Forms.TextBox tbFName;
-        private System.Windows.Forms.TextBox tbSName;
-        private System.Windows.Forms.TextBox tbAddress;
-        private System.Windows.Forms.TextBox tbPhoneNumber;
+        private System.Windows.Forms.Panel pAllEmployees;
+        private System.Windows.Forms.Button tbFireSelected;
+        private System.Windows.Forms.Button btPromoteSelected;
+        private System.Windows.Forms.DataGridView dgvEmployee;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SurnameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PositionColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DepartmentColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RankColum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SalaryColumn;
+        private System.Windows.Forms.Panel pPromoteEmployee;
+        private System.Windows.Forms.Button btChangeSalary;
+        private System.Windows.Forms.Button btChangePosition;
+        private System.Windows.Forms.Button btChangeRank;
+        private System.Windows.Forms.Button btChangeDep;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tbSalary;
+        private System.Windows.Forms.ComboBox cmbRankChange;
+        private System.Windows.Forms.ComboBox cmbPositionChange;
+        private System.Windows.Forms.ComboBox cmbDepartmentChange;
+        private System.Windows.Forms.Label lblSelectedEmployeeInfo;
+        private System.Windows.Forms.Button btGoBack;
+        private System.Windows.Forms.Button btPromoteFire;
+        private System.Windows.Forms.Button btCreateUserPanel;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel pAddUser;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dtpBday;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbPosition;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbDepartment;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbPhoneNumber;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cmbPosition;
-        private System.Windows.Forms.DateTimePicker dtpBday;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btCreateUserPanel;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel pAddUser;
-        private System.Windows.Forms.Panel pPromote;
-        private System.Windows.Forms.DataGridView dgvEmployee;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Position;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Department;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rank;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Salary;
+        private System.Windows.Forms.TextBox tbEmail;
+        private System.Windows.Forms.Button btSendEmail;
+        private System.Windows.Forms.TextBox tbAddress;
+        private System.Windows.Forms.TextBox tbFName;
+        private System.Windows.Forms.TextBox tbSName;
     }
 }
 

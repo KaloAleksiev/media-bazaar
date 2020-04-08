@@ -24,8 +24,15 @@ namespace MediaBazaarTest
             uc = new UserControl();
             cmbDepartment.DataSource = Enum.GetValues(typeof(Department));
             cmbPosition.DataSource = Enum.GetValues(typeof(Position));
+
+            cmbDepartmentChange.DataSource = Enum.GetValues(typeof(Department));
+            cmbPositionChange.DataSource = Enum.GetValues(typeof(Position));
+
             cmbDepartment.SelectedItem = null;
             cmbPosition.SelectedItem = null;
+
+            cmbDepartmentChange.SelectedItem = null;
+            cmbPositionChange.SelectedItem = null;
 
             //GridView
             dgvEmployee.AutoGenerateColumns = false;
@@ -35,27 +42,34 @@ namespace MediaBazaarTest
             dgvEmployee.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvEmployee.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dgvEmployee.RowTemplate.MinimumHeight = 54;
+            dgvEmployee.AllowUserToAddRows = false;
             FillUpDgv();
+
+            //Panel control 
+            pAddUser.Visible = false;
+            pAllEmployees.Visible = false;
+            pPromoteEmployee.Visible = false;
         }
 
+        #region CREATE_USER
         private void btSendEmail_Click(object sender, EventArgs e)
         {
             string fName = tbFName.Text;
             string lName = tbSName.Text;
-            Department dep;            
-            Position pos;            
+            Department dep;
+            Position pos;
             DateTime date = dtpBday.Value.Date;
             string email = tbEmail.Text;
             string phone = tbPhoneNumber.Text;
             string address = tbAddress.Text;
 
-            if (fName == "" || lName == "" || phone == "" || address == "" )
+            if (fName == "" || lName == "" || phone == "" || address == "")
             {
                 MessageBox.Show("All textboxes must be filled up! ");
             }
             else
             {
-                if(cmbDepartment.SelectedItem == null || cmbPosition.SelectedItem == null)
+                if (cmbDepartment.SelectedItem == null || cmbPosition.SelectedItem == null)
                 {
                     MessageBox.Show("Department/Position is not selected!");
                 }
@@ -74,16 +88,188 @@ namespace MediaBazaarTest
                         MessageBox.Show("Email should be in format 'user@email.com'");
                         tbEmail.Text = "";
                     }
-                }                
-            }                        
+                }
+            }
         }
+        #endregion
+
+        #region PANEL_CONTROL
+        private void btCreateUserPanel_Click(object sender, EventArgs e)
+        {
+            if (!pAddUser.Visible)
+            {
+                pAddUser.Visible = true;
+                pAllEmployees.Visible = false;
+            }
+            else
+            {
+                pAddUser.Visible = false;
+            }
+        }
+
+        private void btPromoteFire_Click(object sender, EventArgs e)
+        {
+            if (!pAllEmployees.Visible)
+            {
+                pAddUser.Visible = false;
+                pAllEmployees.Visible = true;
+                dgvEmployee.ClearSelection();
+            }
+            else
+            {
+                pAllEmployees.Visible = false;
+                btPromoteSelected.Enabled = false;
+                dgvEmployee.Refresh();
+            }
+        }
+        private int id;
+        private void btPromoteSelected_Click(object sender, EventArgs e)
+        {
+            if (!pPromoteEmployee.Visible && dgvEmployee.SelectedRows.Count > 0)
+            {
+                pPromoteEmployee.Visible = true;
+                id = Convert.ToInt32(dgvEmployee.SelectedCells[0].Value.ToString());
+                UpdateEmployeeInfoLabel();
+            }
+            else
+            {
+                MessageBox.Show("Please select an Employee first!");
+            }
+        }
+
+        #endregion
+
+        #region FIRE/PROMOTE
+        private void tbFireSelected_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(dgvEmployee.SelectedCells[0].Value.ToString());
+            uc.FireUser(id);
+        }
+
+        private void btChangeDep_Click(object sender, EventArgs e)
+        {
+            if (cmbDepartmentChange.SelectedItem != null)
+            {
+                Department dep;
+                Enum.TryParse<Department>(cmbDepartmentChange.SelectedValue.ToString(), out dep);
+                if (uc.ChangeDepartment(id, dep) == false)
+                {
+                    MessageBox.Show("Selected employee is a part of this department already!");
+                }
+                else
+                {
+                    MessageBox.Show("Department changed successfully!");
+                    UpdateEmployeeInfoLabel();
+                    cmbDepartmentChange.SelectedItem = null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Select a value from the comboBox!");
+            }
+
+        }
+
+        private void btChangePosition_Click(object sender, EventArgs e)
+        {
+            if (cmbPositionChange.SelectedItem != null)
+            {
+                Position pos;
+                Enum.TryParse<Position>(cmbPositionChange.SelectedValue.ToString(), out pos);
+                if (uc.ChangePosition(id, pos) == false)
+                {
+                    MessageBox.Show($"Selected employee is a {pos} already!");
+                }
+                else
+                {
+                    MessageBox.Show("Position changed successfully!");
+                    UpdateEmployeeInfoLabel();
+                    cmbPositionChange.SelectedItem = null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Select a value from the comboBox!");
+            }
+        }
+
+        private void btChangeRank_Click(object sender, EventArgs e)
+        {
+            if (cmbRankChange.SelectedItem != null)
+            {
+                int rank = Convert.ToInt32(cmbRankChange.SelectedItem);
+                if (uc.ChangeRank(id, rank) == false)
+                {
+                    MessageBox.Show($"Selected employee is rank {rank} already!");
+                }
+                else
+                {
+                    MessageBox.Show("Rank changed successfully!");
+                    UpdateEmployeeInfoLabel();
+                    cmbRankChange.SelectedItem = null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Select a value from the comboBox!");
+            }
+        }
+
+        private void btChangeSalary_Click(object sender, EventArgs e)
+        {
+            if (tbSalary.Text != "")
+            {
+                double salary = Convert.ToDouble(tbSalary.Text);
+                if (uc.ChangeSalary(id, salary) == false)
+                {
+                    MessageBox.Show($"Enter a different amount than the current salary!");
+                }
+                else
+                {
+                    MessageBox.Show("Salary changed successfully!");
+                    UpdateEmployeeInfoLabel();
+                    tbSalary.Text = "";
+                }
+            }
+            else
+            {
+                MessageBox.Show("Fill in the salary tb with a double value!");
+            }
+        }
+
+        private void btGoBack_Click(object sender, EventArgs e)
+        {
+            pPromoteEmployee.Visible = false;
+            pAllEmployees.Visible = true;
+
+            id = 0;
+            lblSelectedEmployeeInfo.Text = "";
+            dgvEmployee.ClearSelection();
+
+            tbSalary.Text = "";
+            cmbRankChange.SelectedItem = null;
+            cmbPositionChange.SelectedItem = null;
+            cmbDepartmentChange.SelectedItem = null;            
+            FillUpDgv();            
+        }
+        #endregion
+
+        #region UPDATE_CONTROLS
+        private void UpdateEmployeeInfoLabel()
+        {
+            lblSelectedEmployeeInfo.Text = uc.GetUserByID(id).GetInfo();
+        }
+
         private void FillUpDgv()
         {
-            List<User> users = uc.GetUsers(); 
-            foreach(User u in users)
+            dgvEmployee.Rows.Clear();
+            List<User> users = uc.GetUsers();
+            foreach (User u in users)
             {
                 dgvEmployee.Rows.Add(new string[]
-                {   u.FName,
+                {
+                    u.Id.ToString(),
+                    u.FName,
                     u.LName,
                     u.Position.ToString(),
                     u.Department.ToString(),
@@ -91,18 +277,19 @@ namespace MediaBazaarTest
                     u.Salary.ToString()
                 });
             }
-            
         }
+
+        #endregion
 
         #region INPUT_CONTROL
         private void tbFName_KeyPress(object sender, KeyPressEventArgs e)
         {
-           e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
-        }       
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
         private void tbSName_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
-        } 
+        }
         private void tbPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
@@ -118,10 +305,6 @@ namespace MediaBazaarTest
             cmbDepartment.SelectedItem = null;
             cmbPosition.SelectedItem = null;
         }
-
-
-
         #endregion
-      
     }
 }
