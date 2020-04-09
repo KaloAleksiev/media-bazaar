@@ -15,10 +15,14 @@ namespace StockTest
     public partial class Form1 : Form
     {
         Stock s;
+        StockDataControl sdc;
+        int j = 0;
         public Form1()
         {
             InitializeComponent();
+            sdc = new StockDataControl();
             s = new Stock("this");
+            s.AddAllStock(sdc.GetStockFromDB());
             dgvStock.AutoGenerateColumns = false;
             dgvStock.RowHeadersVisible = false;
             dgvStock.MultiSelect = false;
@@ -26,7 +30,7 @@ namespace StockTest
             dgvStock.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvStock.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dgvStock.RowTemplate.MinimumHeight = 54;
-            ShowStock(0);
+            ShowStock(j);
         }
 
         public void ShowStock(int n)
@@ -51,24 +55,24 @@ namespace StockTest
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            int i = Convert.ToInt32(tbNr.Text);
-            i++;
-            tbNr.Text = i.ToString();
+            j = Convert.ToInt32(tbNr.Text);
+            j++;
+            tbNr.Text = j.ToString();
             if (5 + Convert.ToInt32(tbNr.Text) * 5 > s.GetAllItems().Count)
             { btnNext.Enabled = false; }
             btnBack.Enabled = true;
-            ShowStock(i - 1);
+            ShowStock(j - 1);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            int i = Convert.ToInt32(tbNr.Text);
-            i--;
-            tbNr.Text = i.ToString();
+            j = Convert.ToInt32(tbNr.Text);
+            j--;
+            tbNr.Text = j.ToString();
             if (tbNr.Text == "1")
             { btnBack.Enabled = false; }
             btnNext.Enabled = true;
-            ShowStock(i - 1);
+            ShowStock(j - 1);
         }
 
         private void btnRequest_Click(object sender, EventArgs e)
@@ -77,7 +81,7 @@ namespace StockTest
             {
                 if (i.Id == Convert.ToInt32(dgvStock.SelectedRows[0].Cells[0].Value))
                 {
-                    RestockForm frm = new RestockForm(i);
+                    RestockForm frm = new RestockForm(i, s);
                     frm.Show();
                 }
             }

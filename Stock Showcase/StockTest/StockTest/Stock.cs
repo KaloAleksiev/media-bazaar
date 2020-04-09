@@ -8,16 +8,16 @@ using MySql.Data.MySqlClient;
 
 namespace StockTest
 {
-    class Stock
+    public class Stock
     {
         private string name;
-        public static List<Item> items;
-
+        public List<Item> items;
+        public List<RestockRequest> rrs;
         public Stock(string name)
         {
             items = new List<Item>();
+            rrs = new List<RestockRequest>();
             this.name = name;
-            GetStockFromDB();
         }
 
         public void AddItem(Item item)
@@ -25,6 +25,9 @@ namespace StockTest
 
         public List<Item> GetAllItems()
         { return items; }
+
+        public List<RestockRequest> GetAllRequests()
+        { return rrs; }
 
         public Item GetItemById(int id)
         {
@@ -54,25 +57,15 @@ namespace StockTest
             return returnStr;
         }
 
-        public void GetStockFromDB()
+        public void AddAllStock(List<Item> i)
+        { items = i; }
+
+        public RestockRequest CreateRequest(Item item, int amount, int userId)
         {
-            string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            MySqlConnection conn = new MySqlConnection(connStr);
-            MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id, name, description, department_id, amount_in_stock, auto_restock FROM item", conn);
-            conn.Open();
-            MySqlDataReader reader = GetAllItems.ExecuteReader();
-            while (reader.Read())
-            {
-                int id = Convert.ToInt32(reader["item_id"]);
-                string name = reader["name"].ToString();
-                string description = reader["description"].ToString();
-                string department = ((Department)Convert.ToInt32(reader["department_id"])).ToString();
-                int amnt = Convert.ToInt32(reader["amount_in_stock"]);
-                bool auto = Convert.ToBoolean(reader["auto_restock"]);
-                AddItem(new Item(id, name, description, department, amnt, auto));
-            }
-            reader.Close();
-            conn.Close();
+            RestockRequest rr = new RestockRequest(item, amount, userId);
+            rrs.Add(rr);
+            return rr;
+
         }
     }
 }
