@@ -63,13 +63,14 @@ namespace MediaBazaarTest
             switch (dep)
             {
                 case 1:
+                    this.Department = Department.Phones;                    
+                    break;
+                case 2:                  
                     this.Department = Department.Computers;
                     break;
-                case 2:
-                    this.Department = Department.TVs;
-                    break;
                 case 3:
-                    this.Department = Department.Phones;
+                    this.Department = Department.TVs;
+
                     break;
             }
             switch (position)
