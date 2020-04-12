@@ -11,11 +11,18 @@ namespace MediaBazaarTest
         private string name;
         public List<Item> items;
         public List<RestockRequest> rrs;
+
+        //Alex
+        private StockDataControl sdc;
         public Stock(string name)
         {
             items = new List<Item>();
             rrs = new List<RestockRequest>();
             this.name = name;
+
+            //Alex
+            sdc = new StockDataControl();
+            items = sdc.GetStockFromDB();
         }
 
         public void AddItem(Item item)
@@ -56,7 +63,7 @@ namespace MediaBazaarTest
         }
 
         public void AddAllStock(List<Item> i)
-        { items = i; }
+        { items = i; }       
 
         public RestockRequest CreateRequest(Item item, int amount, int userId)
         {

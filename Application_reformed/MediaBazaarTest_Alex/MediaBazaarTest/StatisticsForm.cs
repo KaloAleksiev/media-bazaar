@@ -13,10 +13,12 @@ namespace MediaBazaarTest
     public partial class StatisticsForm : Form
     {
         private StatsDataControl sdc;
+        private Stock stock;
         public StatisticsForm()
         {
             InitializeComponent();
-            sdc = new StatsDataControl();           
+            sdc = new StatsDataControl();
+            stock = new Stock("Lmao");
         }
 
         private void StatisticsForm_Load(object sender, EventArgs e)
@@ -31,8 +33,13 @@ namespace MediaBazaarTest
 
             //Handle Panels
             pDepStats.Visible = false;
-        }
+            pItemStats.Visible = false;
 
+            //loadStock            
+            UpdateItemsListBox();
+
+        }
+        #region DepartmentStats
         private void btShowAvgSalaryPerDep_Click(object sender, EventArgs e)
         {
             Department dep;
@@ -57,7 +64,7 @@ namespace MediaBazaarTest
 
         private void btShowEmpCountPerDep_Click(object sender, EventArgs e)
         {
-            ClearChart();
+            ClearDepChart();
             Department dep;
             if (cmbDepCount.SelectedItem != null)
             {
@@ -75,25 +82,81 @@ namespace MediaBazaarTest
             }
             cmbDepCount.SelectedItem = null;
         }
+        #endregion
 
+        #region Navigation
         private void DepartmentStats_Click(object sender, EventArgs e)
         {
             if(pDepStats.Visible == false)
             {
                 pDepStats.Visible = true;
+                pItemStats.Visible = false;
             }
             else
             {
                 pDepStats.Visible = false;
-                ClearChart();
+                ClearDepChart();
             }
         }
 
-        private void ClearChart()
+        private void ItemStats_Click(object sender, EventArgs e)
+        {
+            if(pItemStats.Visible == false)
+            {
+                pItemStats.Visible = true;
+                pDepStats.Visible = false;
+                //load chart
+                List<int> count = sdc.GetItemsCountPerDepartment();
+                chartItems.Series["count"].Points.AddXY("Phones", count[0]);
+                chartItems.Series["count"].Points.AddXY("Computers", count[0]);
+                chartItems.Series["count"].Points.AddXY("TVs", count[0]);
+            }
+            else
+            {
+                pItemStats.Visible = false;
+                ClearItemChart();
+            }
+        }
+        #endregion
+
+        #region Controls
+        private void ClearDepChart()
         {
             foreach (var series in chartEmployees.Series)
             {
                 series.Points.Clear();
+            }
+        }
+
+        private void ClearItemChart()
+        {
+            foreach (var series in chartItems.Series)
+            {
+                series.Points.Clear();
+            }
+        }
+
+        private void UpdateItemsListBox()
+        {
+            lbItemStats.Items.Clear();
+            foreach(Item i in stock.GetAllItems())
+            {
+                lbItemStats.Items.Add(i.Name);
+            }
+        }
+
+        #endregion
+
+        private void btShowItemStats_Click(object sender, EventArgs e)
+        {
+            if(lbItemStats.SelectedItem == null)
+            {
+                MessageBox.Show("Please select an item");
+            }
+            else
+            {
+                Item i = stock.GetItemByName(lbItemStats.SelectedItem.ToString());
+                MessageBox.Show(sdc.GetItemStats(i));
             }
         }
     }

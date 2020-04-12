@@ -10,7 +10,7 @@ namespace MediaBazaarTest
 {
     public class StatsDataControl
     {
-        private string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";        
+        private string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";   
 
         public string GetItemStats(Item i)
         {
@@ -70,6 +70,24 @@ namespace MediaBazaarTest
                 int empCount = Convert.ToInt32(reader["c"]);
                 reader.Close();
                 count.Add(empCount);
+            }
+            conn.Close();
+            return count;
+        }
+
+        public List<int> GetItemsCountPerDepartment()
+        {
+            List<int> count = new List<int>();
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            for(int i = 1; i <= 3; i++)
+            {
+                MySqlCommand GetItemsCount = new MySqlCommand($"SELECT COUNT(item_id) AS c FROM item WHERE department_id = {i};", conn);
+                MySqlDataReader reader = GetItemsCount.ExecuteReader();
+                reader.Read();
+                int itemCount = Convert.ToInt32(reader["c"]);
+                reader.Close();
+                count.Add(itemCount);
             }
             conn.Close();
             return count;

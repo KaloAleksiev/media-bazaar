@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatisticsForm));
             this.pDepStats = new System.Windows.Forms.Panel();
             this.btAvgSalaryOverall = new System.Windows.Forms.Button();
@@ -41,13 +44,22 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbDepSalary = new System.Windows.Forms.ComboBox();
             this.cmbDepCount = new System.Windows.Forms.ComboBox();
+            this.pItemStats = new System.Windows.Forms.Panel();
+            this.lbItemStats = new System.Windows.Forms.ListBox();
+            this.btShowItemStats = new System.Windows.Forms.Button();
+            this.chartItems = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btItemStats = new System.Windows.Forms.Button();
             this.btDepartmentStats = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pDepStats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartEmployees)).BeginInit();
+            this.pItemStats.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,18 +95,18 @@
             // 
             // chartEmployees
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartEmployees.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartEmployees.Legends.Add(legend2);
+            chartArea9.Name = "ChartArea1";
+            this.chartEmployees.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chartEmployees.Legends.Add(legend9);
             this.chartEmployees.Location = new System.Drawing.Point(3, 121);
             this.chartEmployees.Name = "chartEmployees";
-            series2.ChartArea = "ChartArea1";
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Employee count";
-            series2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
-            this.chartEmployees.Series.Add(series2);
+            series9.ChartArea = "ChartArea1";
+            series9.IsVisibleInLegend = false;
+            series9.Legend = "Legend1";
+            series9.Name = "Employee count";
+            series9.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
+            this.chartEmployees.Series.Add(series9);
             this.chartEmployees.Size = new System.Drawing.Size(415, 300);
             this.chartEmployees.TabIndex = 40;
             this.chartEmployees.Text = "chart1";
@@ -167,29 +179,110 @@
             this.cmbDepCount.Size = new System.Drawing.Size(146, 21);
             this.cmbDepCount.TabIndex = 0;
             // 
+            // pItemStats
+            // 
+            this.pItemStats.BackColor = System.Drawing.Color.White;
+            this.pItemStats.Controls.Add(this.panel1);
+            this.pItemStats.Controls.Add(this.lbItemStats);
+            this.pItemStats.Controls.Add(this.btShowItemStats);
+            this.pItemStats.Controls.Add(this.chartItems);
+            this.pItemStats.Controls.Add(this.label3);
+            this.pItemStats.Controls.Add(this.label4);
+            this.pItemStats.Location = new System.Drawing.Point(154, 80);
+            this.pItemStats.Name = "pItemStats";
+            this.pItemStats.Size = new System.Drawing.Size(866, 450);
+            this.pItemStats.TabIndex = 42;
+            // 
+            // lbItemStats
+            // 
+            this.lbItemStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbItemStats.FormattingEnabled = true;
+            this.lbItemStats.ItemHeight = 16;
+            this.lbItemStats.Location = new System.Drawing.Point(472, 59);
+            this.lbItemStats.Name = "lbItemStats";
+            this.lbItemStats.Size = new System.Drawing.Size(360, 276);
+            this.lbItemStats.TabIndex = 42;
+            // 
+            // btShowItemStats
+            // 
+            this.btShowItemStats.BackColor = System.Drawing.Color.Maroon;
+            this.btShowItemStats.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            this.btShowItemStats.ForeColor = System.Drawing.Color.White;
+            this.btShowItemStats.Location = new System.Drawing.Point(557, 369);
+            this.btShowItemStats.Name = "btShowItemStats";
+            this.btShowItemStats.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btShowItemStats.Size = new System.Drawing.Size(191, 52);
+            this.btShowItemStats.TabIndex = 41;
+            this.btShowItemStats.Text = "Show info for an Item";
+            this.btShowItemStats.UseVisualStyleBackColor = false;
+            this.btShowItemStats.Click += new System.EventHandler(this.btShowItemStats_Click);
+            // 
+            // chartItems
+            // 
+            chartArea10.Name = "ChartArea1";
+            this.chartItems.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            this.chartItems.Legends.Add(legend10);
+            this.chartItems.Location = new System.Drawing.Point(3, 121);
+            this.chartItems.Name = "chartItems";
+            series10.ChartArea = "ChartArea1";
+            series10.IsVisibleInLegend = false;
+            series10.Legend = "Legend1";
+            series10.Name = "count";
+            series10.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
+            this.chartItems.Series.Add(series10);
+            this.chartItems.Size = new System.Drawing.Size(415, 300);
+            this.chartItems.TabIndex = 40;
+            this.chartItems.Text = "chart1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(593, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 21);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Select item:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 15F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(75, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(276, 28);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "Items count per department:";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(528, 21);
+            this.label9.Location = new System.Drawing.Point(532, 21);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(110, 32);
             this.label9.TabIndex = 35;
             this.label9.Text = "Statistics";
             // 
-            // button1
+            // btItemStats
             // 
-            this.button1.BackColor = System.Drawing.Color.Maroon;
-            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(9, 160);
-            this.button1.Name = "button1";
-            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button1.Size = new System.Drawing.Size(140, 74);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "Item statistics";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btItemStats.BackColor = System.Drawing.Color.Maroon;
+            this.btItemStats.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btItemStats.ForeColor = System.Drawing.Color.White;
+            this.btItemStats.Location = new System.Drawing.Point(9, 160);
+            this.btItemStats.Name = "btItemStats";
+            this.btItemStats.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btItemStats.Size = new System.Drawing.Size(140, 74);
+            this.btItemStats.TabIndex = 34;
+            this.btItemStats.Text = "Item statistics";
+            this.btItemStats.UseVisualStyleBackColor = false;
+            this.btItemStats.Click += new System.EventHandler(this.ItemStats_Click);
             // 
             // btDepartmentStats
             // 
@@ -221,10 +314,18 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Maroon;
-            this.panel2.Location = new System.Drawing.Point(578, 80);
+            this.panel2.Location = new System.Drawing.Point(582, 75);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(10, 455);
             this.panel2.TabIndex = 42;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Maroon;
+            this.panel1.Location = new System.Drawing.Point(428, -2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(10, 455);
+            this.panel1.TabIndex = 43;
             // 
             // StatisticsForm
             // 
@@ -232,10 +333,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1023, 534);
+            this.Controls.Add(this.pItemStats);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pDepStats);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btItemStats);
             this.Controls.Add(this.btDepartmentStats);
             this.Controls.Add(this.pictureBox1);
             this.Name = "StatisticsForm";
@@ -244,6 +346,9 @@
             this.pDepStats.ResumeLayout(false);
             this.pDepStats.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartEmployees)).EndInit();
+            this.pItemStats.ResumeLayout(false);
+            this.pItemStats.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -254,7 +359,7 @@
 
         private System.Windows.Forms.Panel pDepStats;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btItemStats;
         private System.Windows.Forms.Button btDepartmentStats;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox cmbDepSalary;
@@ -266,5 +371,12 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btAvgSalaryOverall;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartEmployees;
+        private System.Windows.Forms.Panel pItemStats;
+        private System.Windows.Forms.ListBox lbItemStats;
+        private System.Windows.Forms.Button btShowItemStats;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartItems;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel1;
     }
 }
