@@ -44,6 +44,7 @@
             this.btnLogOut = new System.Windows.Forms.Button();
             this.btnEmployee = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblLoggedIn = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbLogin.SuspendLayout();
             this.gbMain.SuspendLayout();
@@ -56,16 +57,15 @@
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(232, 27);
             this.tbEmail.TabIndex = 0;
-            this.tbEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbPassword
             // 
             this.tbPassword.Location = new System.Drawing.Point(259, 101);
             this.tbPassword.Multiline = true;
             this.tbPassword.Name = "tbPassword";
+            this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(232, 27);
             this.tbPassword.TabIndex = 1;
-            this.tbPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pictureBox1
             // 
@@ -90,9 +90,12 @@
             this.btnLogIn.TabIndex = 13;
             this.btnLogIn.Text = "Log in";
             this.btnLogIn.UseVisualStyleBackColor = false;
+            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // gbLogin
             // 
+            this.gbLogin.BackColor = System.Drawing.Color.White;
+            this.gbLogin.Controls.Add(this.lblLoggedIn);
             this.gbLogin.Controls.Add(this.btnLogIn);
             this.gbLogin.Controls.Add(this.pictureBox1);
             this.gbLogin.Controls.Add(this.tbEmail);
@@ -126,9 +129,9 @@
             this.lblRole.AutoSize = true;
             this.lblRole.Location = new System.Drawing.Point(37, 80);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(101, 13);
+            this.lblRole.Size = new System.Drawing.Size(71, 13);
             this.lblRole.TabIndex = 14;
-            this.lblRole.Text = "Logged in as *Role*";
+            this.lblRole.Text = "Logged in as ";
             // 
             // lblDate
             // 
@@ -152,6 +155,7 @@
             this.btnStatistics.TabIndex = 12;
             this.btnStatistics.Text = "Statistics";
             this.btnStatistics.UseVisualStyleBackColor = false;
+            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
             // btnStocks
             // 
@@ -166,6 +170,7 @@
             this.btnStocks.TabIndex = 11;
             this.btnStocks.Text = "Stocks";
             this.btnStocks.UseVisualStyleBackColor = false;
+            this.btnStocks.Click += new System.EventHandler(this.btnStocks_Click);
             // 
             // btnSchedule
             // 
@@ -180,15 +185,16 @@
             this.btnSchedule.TabIndex = 10;
             this.btnSchedule.Text = "Schedule";
             this.btnSchedule.UseVisualStyleBackColor = false;
+            this.btnSchedule.Click += new System.EventHandler(this.btnSchedule_Click);
             // 
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Location = new System.Drawing.Point(133, 42);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(92, 13);
+            this.lblWelcome.Size = new System.Drawing.Size(58, 13);
             this.lblWelcome.TabIndex = 9;
-            this.lblWelcome.Text = "Welcome, *name*";
+            this.lblWelcome.Text = "Welcome, ";
             // 
             // btnLogOut
             // 
@@ -203,6 +209,7 @@
             this.btnLogOut.TabIndex = 8;
             this.btnLogOut.Text = "Log Out";
             this.btnLogOut.UseVisualStyleBackColor = false;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // btnEmployee
             // 
@@ -217,6 +224,7 @@
             this.btnEmployee.TabIndex = 4;
             this.btnEmployee.Text = "Employee";
             this.btnEmployee.UseVisualStyleBackColor = false;
+            this.btnEmployee.Click += new System.EventHandler(this.btnEmployee_Click);
             // 
             // label1
             // 
@@ -228,6 +236,15 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "These 2 GroupBoxes can stay on top of each other, so that only one of them is vis" +
     "ible at a time.";
+            // 
+            // lblLoggedIn
+            // 
+            this.lblLoggedIn.AutoSize = true;
+            this.lblLoggedIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblLoggedIn.Location = new System.Drawing.Point(263, 218);
+            this.lblLoggedIn.Name = "lblLoggedIn";
+            this.lblLoggedIn.Size = new System.Drawing.Size(0, 25);
+            this.lblLoggedIn.TabIndex = 14;
             // 
             // MainForm
             // 
@@ -266,5 +283,6 @@
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Button btnEmployee;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblLoggedIn;
     }
 }

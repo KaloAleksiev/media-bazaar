@@ -15,12 +15,14 @@ namespace MediaBazaarTest
         Stock s;
         StockDataControl sdc;
         int j = 0;
+        UserControl uc;
 
-        public StockForm()
+        public StockForm(UserControl userControl)
         {
             InitializeComponent();
             sdc = new StockDataControl();
             s = new Stock("this");
+            uc = userControl;
             s.AddAllStock(sdc.GetStockFromDB());
             dgvStock.AutoGenerateColumns = false;
             dgvStock.RowHeadersVisible = false;

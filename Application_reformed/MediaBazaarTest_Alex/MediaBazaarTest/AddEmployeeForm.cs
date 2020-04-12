@@ -18,10 +18,10 @@ namespace MediaBazaarTest
     public partial class AddEmployeeForm : Form
     {
         private UserControl uc;
-        public AddEmployeeForm()
+        public AddEmployeeForm(UserControl ucMain)
         {
             InitializeComponent();
-            uc = new UserControl();
+            uc = ucMain;
             cmbDepartment.DataSource = Enum.GetValues(typeof(Department));
             cmbPosition.DataSource = Enum.GetValues(typeof(Position));
 

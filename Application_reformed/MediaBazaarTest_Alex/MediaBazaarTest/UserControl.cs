@@ -39,6 +39,11 @@ namespace MediaBazaarTest
             return true;
         }
 
+        public void Logout()
+        {
+            this.loggedIn = null;
+        }
+
         public bool CheckEmail(string email)
         {
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
@@ -89,6 +94,11 @@ namespace MediaBazaarTest
                 }
             }
             return null;
+        }
+
+        public User GetLoggedIn()
+        {
+            return this.loggedIn;
         }
 
         #region FIRE/PROMOTE EMPLOYEE

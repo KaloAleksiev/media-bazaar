@@ -28,6 +28,9 @@ namespace MediaBazaarTest
             //Empty the CMBs
             cmbDepCount.SelectedItem = null;
             cmbDepSalary.SelectedItem = null;
+
+            //Handle Panels
+            pDepStats.Visible = false;
         }
 
         private void btShowAvgSalaryPerDep_Click(object sender, EventArgs e)
@@ -54,10 +57,7 @@ namespace MediaBazaarTest
 
         private void btShowEmpCountPerDep_Click(object sender, EventArgs e)
         {
-            foreach (var series in chartEmployees.Series)
-            {
-                series.Points.Clear();
-            }
+            ClearChart();
             Department dep;
             if (cmbDepCount.SelectedItem != null)
             {
@@ -67,8 +67,34 @@ namespace MediaBazaarTest
                 chartEmployees.Series["Employee count"].Points.AddXY("Manager", count[1]);
                 chartEmployees.Series["Employee count"].Points.AddXY("DepotWorker", count[2]);
                 chartEmployees.Series["Employee count"].Points.AddXY("Employee", count[3]);
+                
             }
-            
+            else
+            {
+                MessageBox.Show("Please select a department!");
+            }
+            cmbDepCount.SelectedItem = null;
+        }
+
+        private void DepartmentStats_Click(object sender, EventArgs e)
+        {
+            if(pDepStats.Visible == false)
+            {
+                pDepStats.Visible = true;
+            }
+            else
+            {
+                pDepStats.Visible = false;
+                ClearChart();
+            }
+        }
+
+        private void ClearChart()
+        {
+            foreach (var series in chartEmployees.Series)
+            {
+                series.Points.Clear();
+            }
         }
     }
 }
