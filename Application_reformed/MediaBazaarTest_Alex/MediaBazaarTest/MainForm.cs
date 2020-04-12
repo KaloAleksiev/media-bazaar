@@ -16,8 +16,7 @@ namespace MediaBazaarTest
         public MainForm()
         {
             InitializeComponent();
-            uc = new UserControl();
-            gbMain.Visible = false;
+            uc = new UserControl();        
         }
 
         private void btnLogIn_Click(object sender, EventArgs e)
@@ -48,9 +47,9 @@ namespace MediaBazaarTest
                     //Clear tbs
                     tbEmail.Text = "";
                     tbPassword.Text = "";
-                    UpdateLabels();
-                    gbMain.Visible = true;
-                    gbLogin.Visible = false;
+                    pLogin.Visible = false;
+                    UpdateLabels();                    
+                    
                 }
                 else
                 {
@@ -89,8 +88,7 @@ namespace MediaBazaarTest
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             uc.Logout();
-            gbLogin.Visible = true;
-            gbMain.Visible = false;
+            pLogin.Visible = true;           
         }
 
         #endregion
@@ -100,7 +98,7 @@ namespace MediaBazaarTest
         {
             User u = uc.GetLoggedIn();
             lblDate.Text = DateTime.Now.Date.ToShortDateString();
-            lblRole.Text = u.Position.ToString();
+            lblRole.Text = $"Logged in as {u.Position}";
             lblWelcome.Text = $"Welcome, {u.FName} {u.LName}";
         }
 
@@ -128,5 +126,6 @@ namespace MediaBazaarTest
             btnStocks.Visible = true;
         }
         #endregion
+
     }
 }

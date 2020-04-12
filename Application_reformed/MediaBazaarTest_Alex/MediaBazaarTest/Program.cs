@@ -16,7 +16,7 @@ namespace MediaBazaarTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StatisticsForm());
+            Application.Run(new MainForm());
         }
     }
 }
