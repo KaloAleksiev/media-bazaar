@@ -82,6 +82,7 @@ namespace MediaBazaarTest
                         uc.AddUser(fName, lName, dep, pos, email, phone, address, date);
                         MessageBox.Show("User added successfully");
                         ClearInfoAddUser();
+                        FillUpDgv();
                     }
                     else
                     {

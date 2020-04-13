@@ -30,6 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pLogin = new System.Windows.Forms.Panel();
+            this.pForgottenPass = new System.Windows.Forms.Panel();
+            this.btBackRetrievePass = new System.Windows.Forms.Button();
+            this.btRetrievePass = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbNameRetrievePass = new System.Windows.Forms.TextBox();
+            this.tbEmailRetrievePass = new System.Windows.Forms.TextBox();
+            this.lblForgottenPass = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -53,6 +61,7 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.pLogin.SuspendLayout();
+            this.pForgottenPass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +69,8 @@
             // pLogin
             // 
             this.pLogin.BackColor = System.Drawing.Color.White;
+            this.pLogin.Controls.Add(this.pForgottenPass);
+            this.pLogin.Controls.Add(this.lblForgottenPass);
             this.pLogin.Controls.Add(this.panel4);
             this.pLogin.Controls.Add(this.panel3);
             this.pLogin.Controls.Add(this.panel2);
@@ -73,6 +84,98 @@
             this.pLogin.Name = "pLogin";
             this.pLogin.Size = new System.Drawing.Size(752, 359);
             this.pLogin.TabIndex = 6;
+            // 
+            // pForgottenPass
+            // 
+            this.pForgottenPass.BackColor = System.Drawing.Color.Maroon;
+            this.pForgottenPass.Controls.Add(this.btBackRetrievePass);
+            this.pForgottenPass.Controls.Add(this.btRetrievePass);
+            this.pForgottenPass.Controls.Add(this.label2);
+            this.pForgottenPass.Controls.Add(this.label1);
+            this.pForgottenPass.Controls.Add(this.tbNameRetrievePass);
+            this.pForgottenPass.Controls.Add(this.tbEmailRetrievePass);
+            this.pForgottenPass.Location = new System.Drawing.Point(128, 66);
+            this.pForgottenPass.Name = "pForgottenPass";
+            this.pForgottenPass.Size = new System.Drawing.Size(501, 204);
+            this.pForgottenPass.TabIndex = 25;
+            this.pForgottenPass.Visible = false;
+            // 
+            // btBackRetrievePass
+            // 
+            this.btBackRetrievePass.BackColor = System.Drawing.Color.Maroon;
+            this.btBackRetrievePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBackRetrievePass.ForeColor = System.Drawing.SystemColors.Control;
+            this.btBackRetrievePass.Location = new System.Drawing.Point(413, 8);
+            this.btBackRetrievePass.Name = "btBackRetrievePass";
+            this.btBackRetrievePass.Size = new System.Drawing.Size(64, 33);
+            this.btBackRetrievePass.TabIndex = 29;
+            this.btBackRetrievePass.Text = "<<<";
+            this.btBackRetrievePass.UseVisualStyleBackColor = false;
+            this.btBackRetrievePass.Click += new System.EventHandler(this.btBackRetrievePass_Click);
+            // 
+            // btRetrievePass
+            // 
+            this.btRetrievePass.BackColor = System.Drawing.Color.Maroon;
+            this.btRetrievePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRetrievePass.ForeColor = System.Drawing.SystemColors.Control;
+            this.btRetrievePass.Location = new System.Drawing.Point(148, 119);
+            this.btRetrievePass.Name = "btRetrievePass";
+            this.btRetrievePass.Size = new System.Drawing.Size(192, 40);
+            this.btRetrievePass.TabIndex = 28;
+            this.btRetrievePass.Text = "Retrieve password";
+            this.btRetrievePass.UseVisualStyleBackColor = false;
+            this.btRetrievePass.Click += new System.EventHandler(this.btRetrievePass_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(81, 80);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 25);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Name";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(85, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 25);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Email";
+            // 
+            // tbNameRetrievePass
+            // 
+            this.tbNameRetrievePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNameRetrievePass.Location = new System.Drawing.Point(151, 85);
+            this.tbNameRetrievePass.Name = "tbNameRetrievePass";
+            this.tbNameRetrievePass.Size = new System.Drawing.Size(189, 22);
+            this.tbNameRetrievePass.TabIndex = 1;
+            // 
+            // tbEmailRetrievePass
+            // 
+            this.tbEmailRetrievePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbEmailRetrievePass.Location = new System.Drawing.Point(151, 56);
+            this.tbEmailRetrievePass.Name = "tbEmailRetrievePass";
+            this.tbEmailRetrievePass.Size = new System.Drawing.Size(189, 22);
+            this.tbEmailRetrievePass.TabIndex = 0;
+            // 
+            // lblForgottenPass
+            // 
+            this.lblForgottenPass.AutoSize = true;
+            this.lblForgottenPass.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblForgottenPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblForgottenPass.Location = new System.Drawing.Point(384, 279);
+            this.lblForgottenPass.Name = "lblForgottenPass";
+            this.lblForgottenPass.Size = new System.Drawing.Size(200, 25);
+            this.lblForgottenPass.TabIndex = 24;
+            this.lblForgottenPass.Text = "Forgotten password ?";
+            this.lblForgottenPass.Visible = false;
+            this.lblForgottenPass.Click += new System.EventHandler(this.lblForgottenPass_Click);
             // 
             // panel4
             // 
@@ -114,10 +217,13 @@
             // 
             this.lblLoggedIn.AutoSize = true;
             this.lblLoggedIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.lblLoggedIn.Location = new System.Drawing.Point(393, 239);
+            this.lblLoggedIn.ForeColor = System.Drawing.Color.Red;
+            this.lblLoggedIn.Location = new System.Drawing.Point(417, 239);
             this.lblLoggedIn.Name = "lblLoggedIn";
-            this.lblLoggedIn.Size = new System.Drawing.Size(0, 25);
+            this.lblLoggedIn.Size = new System.Drawing.Size(117, 25);
             this.lblLoggedIn.TabIndex = 19;
+            this.lblLoggedIn.Text = "Login failed!";
+            this.lblLoggedIn.Visible = false;
             // 
             // btnLogIn
             // 
@@ -146,6 +252,7 @@
             // 
             // tbEmail
             // 
+            this.tbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbEmail.Location = new System.Drawing.Point(364, 98);
             this.tbEmail.Multiline = true;
             this.tbEmail.Name = "tbEmail";
@@ -154,6 +261,7 @@
             // 
             // tbPassword
             // 
+            this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPassword.Location = new System.Drawing.Point(364, 131);
             this.tbPassword.Multiline = true;
             this.tbPassword.Name = "tbPassword";
@@ -314,6 +422,7 @@
             // 
             // MainForm
             // 
+            this.AcceptButton = this.btnLogIn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
@@ -335,6 +444,8 @@
             this.Text = "MediaBazaar";
             this.pLogin.ResumeLayout(false);
             this.pLogin.PerformLayout();
+            this.pForgottenPass.ResumeLayout(false);
+            this.pForgottenPass.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -366,5 +477,13 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label lblForgottenPass;
+        private System.Windows.Forms.Panel pForgottenPass;
+        private System.Windows.Forms.Button btBackRetrievePass;
+        private System.Windows.Forms.Button btRetrievePass;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbNameRetrievePass;
+        private System.Windows.Forms.TextBox tbEmailRetrievePass;
     }
 }

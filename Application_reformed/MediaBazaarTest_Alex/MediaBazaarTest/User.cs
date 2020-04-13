@@ -117,7 +117,7 @@ namespace MediaBazaarTest
             this.Phone = phone;
             this.Address = address;
             this.Rank = 1;
-            this.Password = Membership.GeneratePassword(4, 0);
+            this.Password = GenerateRandomPass();
             this.StartDate = DateTime.Now.Date;
             this.BDay = bday;
         }
@@ -149,6 +149,19 @@ namespace MediaBazaarTest
         public void ChangeSalary(double salary)
         {
             this.salary = salary;
+        }
+
+        private string GenerateRandomPass()
+        {
+            int length = 4;
+            const string valid = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < length--)
+            {
+                res.Append(valid[rnd.Next(valid.Length)]);
+            }
+            return res.ToString();
         }
     }
 }

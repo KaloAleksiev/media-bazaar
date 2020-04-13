@@ -47,14 +47,16 @@ namespace MediaBazaarTest
                     //Clear tbs
                     tbEmail.Text = "";
                     tbPassword.Text = "";
+                    lblForgottenPass.Visible = false;
+                    lblLoggedIn.Visible = true;
                     pLogin.Visible = false;
                     UpdateLabels();                    
                     
                 }
                 else
                 {
-                    lblLoggedIn.Text = "Login failed!";
-                    lblLoggedIn.ForeColor = System.Drawing.Color.Red;                    
+                    lblLoggedIn.Visible = true;
+                    lblForgottenPass.Visible = true;                   
                 }
             }
         }
@@ -88,7 +90,8 @@ namespace MediaBazaarTest
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             uc.Logout();
-            pLogin.Visible = true;           
+            pLogin.Visible = true;
+            lblLoggedIn.Visible = false;
         }
 
         #endregion
@@ -127,5 +130,53 @@ namespace MediaBazaarTest
         }
         #endregion
 
+        #region ForgottenPass
+        private void lblForgottenPass_Click(object sender, EventArgs e)
+        {
+            pForgottenPass.Visible = true;
+            lblForgottenPass.Visible = false;
+        }
+
+        private void btRetrievePass_Click(object sender, EventArgs e)
+        {
+            string email = tbEmailRetrievePass.Text;
+            string name = tbNameRetrievePass.Text;
+            if(tbEmailRetrievePass.Text == ""|| tbNameRetrievePass.Text == "")
+            {
+                MessageBox.Show("Please fill in all the textboxes!");
+            }
+            else
+            {
+                if (uc.CheckEmail(email))
+                {
+                    if(uc.GetForgottenPass(email, name))
+                    {
+                        MessageBox.Show($"Your password has been sent to {email} email!");
+                        tbEmailRetrievePass.Text = "";
+                        tbNameRetrievePass.Text = "";
+                        pForgottenPass.Visible = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No account has been found with the supplied credentials");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Email should be in this format: user@gmail.com");
+                }
+
+            }
+           
+        }
+
+        private void btBackRetrievePass_Click(object sender, EventArgs e)
+        {
+            tbEmailRetrievePass.Text = "";
+            tbNameRetrievePass.Text = "";
+            pForgottenPass.Visible = false;
+            lblForgottenPass.Visible = true;
+        }
+        #endregion
     }
 }

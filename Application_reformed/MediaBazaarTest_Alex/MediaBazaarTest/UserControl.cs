@@ -35,6 +35,14 @@ namespace MediaBazaarTest
             else
             {
                 loggedIn = udc.CheckCredentials(password, email);
+                //remove the logged in person from the list
+                for (int i = 0; i < users.Count; i++)
+                {
+                    if(users[i].Id == loggedIn.Id)
+                    {
+                        users.RemoveAt(i);
+                    }
+                }
             }
             return true;
         }
@@ -61,7 +69,7 @@ namespace MediaBazaarTest
             udc.AddUserToDB(sashko);
 
             MailMessage message = new MailMessage();
-            message.From = new MailAddress("alexeto69@gmail.com");
+            message.From = new MailAddress("mediabazaar.management@gmail.com");
             message.To.Add(email);
 
             message.Subject = "Welcome to MediaBazaar";
@@ -73,7 +81,7 @@ namespace MediaBazaarTest
 
             using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
             {
-                mailer.Credentials = new NetworkCredential("alexeto69@gmail.com", "Bigears69");
+                mailer.Credentials = new NetworkCredential("mediabazaar.management@gmail.com", "MediaB420");
                 mailer.EnableSsl = true;
                 mailer.Send(message);
             }
@@ -124,6 +132,24 @@ namespace MediaBazaarTest
                 {
                     u.ChangeDepartment(dep);
                     udc.ChangeEmployeeDepartment(id, dep);
+
+                    //Send an email about it
+                    MailMessage message = new MailMessage();
+                    message.From = new MailAddress("mediabazaar.management@gmail.com");
+                    message.To.Add(u.Email);
+
+                    message.Subject = "Department changed";
+                    message.Body = $"Greetings, {u.FName} {u.LName}, \n we would like to inform you that your have been assigned to work in the {dep} department starting next week. " +
+
+                        $"\n Kind ragards," +
+                        $"\n {loggedIn.FName} {loggedIn.LName}," +
+                        $"\n Management.";
+                    using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        mailer.Credentials = new NetworkCredential("mediabazaar.management@gmail.com", "MediaB420");
+                        mailer.EnableSsl = true;
+                        mailer.Send(message);
+                    }
                     return true;
                 }
             }
@@ -139,6 +165,24 @@ namespace MediaBazaarTest
                 {
                     u.ChangePosition(pos);
                     udc.ChangeEmployeePosition(id, pos);
+
+                    //Send an email about it
+                    MailMessage message = new MailMessage();
+                    message.From = new MailAddress("mediabazaar.management@gmail.com");
+                    message.To.Add(u.Email);
+
+                    message.Subject = "Position changed";
+                    message.Body = $"Greetings, {u.FName} {u.LName}, \n we would like to inform you that your position has been changed.Starting next week, your new position is {pos}. " +
+
+                        $"\n Kind ragards," +
+                        $"\n {loggedIn.FName} {loggedIn.LName}," +
+                        $"\n Management.";
+                    using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        mailer.Credentials = new NetworkCredential("mediabazaar.management@gmail.com", "MediaB420");
+                        mailer.EnableSsl = true;
+                        mailer.Send(message);
+                    }
                     return true;
                 }
             }
@@ -154,6 +198,25 @@ namespace MediaBazaarTest
                 {
                     u.ChangeRank(rank);
                     udc.ChangeEmployeeRank(id, rank);
+
+                    //Send an email about it
+                    MailMessage message = new MailMessage();
+                    message.From = new MailAddress("mediabazaar.management@gmail.com");
+                    message.To.Add(u.Email);
+
+                    message.Subject = "Rank changed";
+                    message.Body = $"Greetings, {u.FName} {u.LName}, \n we would like to inform you that your rank has been changed.Starting next month, your new rank will be {rank}. " +
+
+                        $"\n Kind ragards," +
+                        $"\n {loggedIn.FName} {loggedIn.LName}," +
+                        $"\n Management.";
+                    using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        mailer.Credentials = new NetworkCredential("mediabazaar.management@gmail.com", "MediaB420");
+                        mailer.EnableSsl = true;
+                        mailer.Send(message);
+                        
+                    }
                     return true;
                 }
             }
@@ -169,6 +232,24 @@ namespace MediaBazaarTest
                 {
                     u.ChangeSalary(salary);
                     udc.ChangeEmployeeSalary(id, salary);
+
+                    //Send an email about it
+                    MailMessage message = new MailMessage();
+                    message.From = new MailAddress("mediabazaar.management@gmail.com");
+                    message.To.Add(u.Email);
+
+                    message.Subject = "Salary changed";
+                    message.Body = $"Greetings, {u.FName} {u.LName}, \n we would like to inform you that your salary has been changed.Starting next month, your new salary will be {salary.ToString("C2")}. " +
+
+                        $"\n Kind ragards," +
+                        $"\n {loggedIn.FName} {loggedIn.LName}," +
+                        $"\n Management.";
+                    using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        mailer.Credentials = new NetworkCredential("mediabazaar.management@gmail.com", "MediaB420");
+                        mailer.EnableSsl = true;
+                        mailer.Send(message);                        
+                    }
                     return true;
                 }
             }
@@ -176,5 +257,31 @@ namespace MediaBazaarTest
         }
 
         #endregion
+
+        public bool GetForgottenPass(string email, string fName)
+        {
+            string pass = udc.GetForgottenPassword(email, fName);
+            if (pass != "")
+            {
+                //Send an email about it
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("mediabazaar.management@gmail.com");
+                message.To.Add(email);
+
+                message.Subject = "Forgotten password";
+                message.Body = $"Greetings, {fName}, \n your password is: \n {pass} " +
+
+                    $"\n Kind ragards,"+
+                    $"\n Alexa.";
+                using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    mailer.Credentials = new NetworkCredential("mediabazaar.management@gmail.com", "MediaB420");
+                    mailer.EnableSsl = true;
+                    mailer.Send(message);
+                }
+                return true;
+            }
+            return false;
+        }
     }
 }

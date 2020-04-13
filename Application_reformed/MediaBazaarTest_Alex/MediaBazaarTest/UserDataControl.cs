@@ -182,6 +182,28 @@ namespace MediaBazaarTest
             conn.Close();
         }
 
+        public string GetForgottenPassword(string email, string Fname)
+        {
+            string pass = "";
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            string GetPass = $"SELECT password FROM user WHERE email = '{email}' AND firstName = '{Fname}'";
+            MySqlCommand cmd = new MySqlCommand(GetPass, conn);
+            conn.Open();
+            MySqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            if (reader.HasRows)
+            {
+                pass = Convert.ToString(reader["password"]);
+                reader.Close();
+                conn.Close();
+                return pass;
+                
+            }            
+            reader.Close();
+            conn.Close();
+            return pass;      
+        }
+
 
     }
 }
