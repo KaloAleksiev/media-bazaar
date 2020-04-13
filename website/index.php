@@ -7,11 +7,12 @@
 
 <body>
   <div class="background">
-  <img class="logo" src="logo.png"> 
-  <?php include('Navbar.php');?>
+  
+  <!--img class="logo" src="logo.png"--> 
+  <!--?php include('Navbar.php');?-->
   </div>
 
- <!--?php include('Home.php');?-->
+ <?php include('login.php');?>
 </body>
 
 
