@@ -16,19 +16,18 @@ namespace MediaBazaarTest
         {
             User u;
             MySqlConnection conn = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand($"SELECT id, fName, lName, start_date, end_date, birth_date, position, department, phone_number, salary, rank, address FROM User WHERE password LIKE {password} AND email LIKE = {email}", conn);
+            MySqlCommand cmd = new MySqlCommand($"SELECT id, firstName, lastName, start_date, end_date, birth_date, position, department_id, phone_number, salary, rank, address FROM User WHERE email = '{email}' AND password = '{password}' AND end_date IS NULL OR end_date = '';", conn);
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             if (reader.HasRows)
             {
                 int id = Convert.ToInt32(reader["id"]);
-                string fNname = Convert.ToString(reader["fName"]);
-                string lName = Convert.ToString(reader["lName"]);
-                DateTime startDate = Convert.ToDateTime(reader["start_date"]);
-                DateTime endDate = Convert.ToDateTime(reader["end_date"]);
+                string fNname = Convert.ToString(reader["firstName"]);
+                string lName = Convert.ToString(reader["lastName"]);
+                DateTime startDate = Convert.ToDateTime(reader["start_date"]);               
                 DateTime bDate = Convert.ToDateTime(reader["birth_date"]);
-                int dep = Convert.ToInt32(reader["department"]);
+                int dep = Convert.ToInt32(reader["department_id"]);
                 string pos = Convert.ToString(reader["position"]);
                 string address = Convert.ToString(reader["address"]);
                 string phonenumber = Convert.ToString(reader["phone_number"]);
@@ -181,6 +180,28 @@ namespace MediaBazaarTest
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
+        }
+
+        public string GetForgottenPassword(string email, string Fname)
+        {
+            string pass = "";
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            string GetPass = $"SELECT password FROM user WHERE email = '{email}' AND firstName = '{Fname}'";
+            MySqlCommand cmd = new MySqlCommand(GetPass, conn);
+            conn.Open();
+            MySqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            if (reader.HasRows)
+            {
+                pass = Convert.ToString(reader["password"]);
+                reader.Close();
+                conn.Close();
+                return pass;
+                
+            }            
+            reader.Close();
+            conn.Close();
+            return pass;      
         }
 
 

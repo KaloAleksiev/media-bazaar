@@ -30,16 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddEmployeeForm));
             this.pAllEmployees = new System.Windows.Forms.Panel();
-            this.tbFireSelected = new System.Windows.Forms.Button();
-            this.btPromoteSelected = new System.Windows.Forms.Button();
-            this.dgvEmployee = new System.Windows.Forms.DataGridView();
-            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SurnameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PositionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DepartmentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RankColum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SalaryColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pPromoteEmployee = new System.Windows.Forms.Panel();
             this.btChangeSalary = new System.Windows.Forms.Button();
             this.btChangePosition = new System.Windows.Forms.Button();
@@ -55,6 +45,16 @@
             this.cmbDepartmentChange = new System.Windows.Forms.ComboBox();
             this.lblSelectedEmployeeInfo = new System.Windows.Forms.Label();
             this.btGoBack = new System.Windows.Forms.Button();
+            this.tbFireSelected = new System.Windows.Forms.Button();
+            this.btPromoteSelected = new System.Windows.Forms.Button();
+            this.dgvEmployee = new System.Windows.Forms.DataGridView();
+            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SurnameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PositionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DepartmentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankColum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalaryColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btPromoteFire = new System.Windows.Forms.Button();
             this.btCreateUserPanel = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -78,8 +78,8 @@
             this.tbFName = new System.Windows.Forms.TextBox();
             this.tbSName = new System.Windows.Forms.TextBox();
             this.pAllEmployees.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
             this.pPromoteEmployee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pAddUser.SuspendLayout();
             this.SuspendLayout();
@@ -95,87 +95,6 @@
             this.pAllEmployees.Name = "pAllEmployees";
             this.pAllEmployees.Size = new System.Drawing.Size(700, 450);
             this.pAllEmployees.TabIndex = 20;
-            // 
-            // tbFireSelected
-            // 
-            this.tbFireSelected.BackColor = System.Drawing.Color.Maroon;
-            this.tbFireSelected.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.tbFireSelected.ForeColor = System.Drawing.Color.White;
-            this.tbFireSelected.Location = new System.Drawing.Point(407, 397);
-            this.tbFireSelected.Name = "tbFireSelected";
-            this.tbFireSelected.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tbFireSelected.Size = new System.Drawing.Size(140, 50);
-            this.tbFireSelected.TabIndex = 21;
-            this.tbFireSelected.Text = "Fire";
-            this.tbFireSelected.UseVisualStyleBackColor = false;
-            this.tbFireSelected.Click += new System.EventHandler(this.tbFireSelected_Click);
-            // 
-            // btPromoteSelected
-            // 
-            this.btPromoteSelected.BackColor = System.Drawing.Color.Maroon;
-            this.btPromoteSelected.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btPromoteSelected.ForeColor = System.Drawing.Color.White;
-            this.btPromoteSelected.Location = new System.Drawing.Point(123, 397);
-            this.btPromoteSelected.Name = "btPromoteSelected";
-            this.btPromoteSelected.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btPromoteSelected.Size = new System.Drawing.Size(140, 50);
-            this.btPromoteSelected.TabIndex = 20;
-            this.btPromoteSelected.Text = "Promote";
-            this.btPromoteSelected.UseVisualStyleBackColor = false;
-            this.btPromoteSelected.Click += new System.EventHandler(this.btPromoteSelected_Click);
-            // 
-            // dgvEmployee
-            // 
-            this.dgvEmployee.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dgvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdColumn,
-            this.fNameColumn,
-            this.SurnameColumn,
-            this.PositionColumn,
-            this.DepartmentColumn,
-            this.RankColum,
-            this.SalaryColumn});
-            this.dgvEmployee.Location = new System.Drawing.Point(30, 30);
-            this.dgvEmployee.Name = "dgvEmployee";
-            this.dgvEmployee.Size = new System.Drawing.Size(645, 361);
-            this.dgvEmployee.TabIndex = 0;
-            // 
-            // IdColumn
-            // 
-            this.IdColumn.HeaderText = "Id";
-            this.IdColumn.Name = "IdColumn";
-            this.IdColumn.Width = 42;
-            // 
-            // fNameColumn
-            // 
-            this.fNameColumn.HeaderText = "Name";
-            this.fNameColumn.Name = "fNameColumn";
-            // 
-            // SurnameColumn
-            // 
-            this.SurnameColumn.HeaderText = "Surname";
-            this.SurnameColumn.Name = "SurnameColumn";
-            // 
-            // PositionColumn
-            // 
-            this.PositionColumn.HeaderText = "Position";
-            this.PositionColumn.Name = "PositionColumn";
-            // 
-            // DepartmentColumn
-            // 
-            this.DepartmentColumn.HeaderText = "Department";
-            this.DepartmentColumn.Name = "DepartmentColumn";
-            // 
-            // RankColum
-            // 
-            this.RankColum.HeaderText = "Rank";
-            this.RankColum.Name = "RankColum";
-            // 
-            // SalaryColumn
-            // 
-            this.SalaryColumn.HeaderText = "Salary";
-            this.SalaryColumn.Name = "SalaryColumn";
             // 
             // pPromoteEmployee
             // 
@@ -352,6 +271,87 @@
             this.btGoBack.UseVisualStyleBackColor = false;
             this.btGoBack.Click += new System.EventHandler(this.btGoBack_Click);
             // 
+            // tbFireSelected
+            // 
+            this.tbFireSelected.BackColor = System.Drawing.Color.Maroon;
+            this.tbFireSelected.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.tbFireSelected.ForeColor = System.Drawing.Color.White;
+            this.tbFireSelected.Location = new System.Drawing.Point(407, 397);
+            this.tbFireSelected.Name = "tbFireSelected";
+            this.tbFireSelected.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tbFireSelected.Size = new System.Drawing.Size(140, 50);
+            this.tbFireSelected.TabIndex = 21;
+            this.tbFireSelected.Text = "Fire";
+            this.tbFireSelected.UseVisualStyleBackColor = false;
+            this.tbFireSelected.Click += new System.EventHandler(this.tbFireSelected_Click);
+            // 
+            // btPromoteSelected
+            // 
+            this.btPromoteSelected.BackColor = System.Drawing.Color.Maroon;
+            this.btPromoteSelected.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btPromoteSelected.ForeColor = System.Drawing.Color.White;
+            this.btPromoteSelected.Location = new System.Drawing.Point(123, 397);
+            this.btPromoteSelected.Name = "btPromoteSelected";
+            this.btPromoteSelected.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btPromoteSelected.Size = new System.Drawing.Size(140, 50);
+            this.btPromoteSelected.TabIndex = 20;
+            this.btPromoteSelected.Text = "Promote";
+            this.btPromoteSelected.UseVisualStyleBackColor = false;
+            this.btPromoteSelected.Click += new System.EventHandler(this.btPromoteSelected_Click);
+            // 
+            // dgvEmployee
+            // 
+            this.dgvEmployee.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdColumn,
+            this.fNameColumn,
+            this.SurnameColumn,
+            this.PositionColumn,
+            this.DepartmentColumn,
+            this.RankColum,
+            this.SalaryColumn});
+            this.dgvEmployee.Location = new System.Drawing.Point(30, 30);
+            this.dgvEmployee.Name = "dgvEmployee";
+            this.dgvEmployee.Size = new System.Drawing.Size(645, 361);
+            this.dgvEmployee.TabIndex = 0;
+            // 
+            // IdColumn
+            // 
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.Width = 42;
+            // 
+            // fNameColumn
+            // 
+            this.fNameColumn.HeaderText = "Name";
+            this.fNameColumn.Name = "fNameColumn";
+            // 
+            // SurnameColumn
+            // 
+            this.SurnameColumn.HeaderText = "Surname";
+            this.SurnameColumn.Name = "SurnameColumn";
+            // 
+            // PositionColumn
+            // 
+            this.PositionColumn.HeaderText = "Position";
+            this.PositionColumn.Name = "PositionColumn";
+            // 
+            // DepartmentColumn
+            // 
+            this.DepartmentColumn.HeaderText = "Department";
+            this.DepartmentColumn.Name = "DepartmentColumn";
+            // 
+            // RankColum
+            // 
+            this.RankColum.HeaderText = "Rank";
+            this.RankColum.Name = "RankColum";
+            // 
+            // SalaryColumn
+            // 
+            this.SalaryColumn.HeaderText = "Salary";
+            this.SalaryColumn.Name = "SalaryColumn";
+            // 
             // btPromoteFire
             // 
             this.btPromoteFire.BackColor = System.Drawing.Color.Maroon;
@@ -362,7 +362,7 @@
             this.btPromoteFire.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btPromoteFire.Size = new System.Drawing.Size(140, 74);
             this.btPromoteFire.TabIndex = 25;
-            this.btPromoteFire.Text = "Promote / Fire";
+            this.btPromoteFire.Text = "Employee List";
             this.btPromoteFire.UseVisualStyleBackColor = false;
             this.btPromoteFire.Click += new System.EventHandler(this.btPromoteFire_Click);
             // 
@@ -607,9 +607,9 @@
             this.Name = "AddEmployeeForm";
             this.Text = "Form1";
             this.pAllEmployees.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).EndInit();
             this.pPromoteEmployee.ResumeLayout(false);
             this.pPromoteEmployee.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pAddUser.ResumeLayout(false);
             this.pAddUser.PerformLayout();

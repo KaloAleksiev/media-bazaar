@@ -49,6 +49,7 @@ C:\Users\velja\OneDrive\Desktop\Project\mediabazaarproject\Application_reformed\
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaarproject\Application_reformed\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.csproj.CopyComplete
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaarproject\Application_reformed\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.exe
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaarproject\Application_reformed\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.pdb
+<<<<<<< HEAD
 C:\xampp\htdocs\mediabazaarproject\Application_reformed\MediaBazaarTest_Alex\MediaBazaarTest\bin\Debug\MediaBazaarTest.exe.config
 C:\xampp\htdocs\mediabazaarproject\Application_reformed\MediaBazaarTest_Alex\MediaBazaarTest\bin\Debug\MediaBazaarTest.exe
 C:\xampp\htdocs\mediabazaarproject\Application_reformed\MediaBazaarTest_Alex\MediaBazaarTest\bin\Debug\MediaBazaarTest.pdb
@@ -69,3 +70,6 @@ C:\xampp\htdocs\mediabazaarproject\Application_reformed\MediaBazaarTest_Alex\Med
 C:\xampp\htdocs\mediabazaarproject\Application_reformed\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.csproj.CopyComplete
 C:\xampp\htdocs\mediabazaarproject\Application_reformed\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.exe
 C:\xampp\htdocs\mediabazaarproject\Application_reformed\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.pdb
+=======
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Application_reformed\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.RestockForm.resources
+>>>>>>> 9168dc1aa3083dc8fbdf0548a25f3b7aa9d80ca3

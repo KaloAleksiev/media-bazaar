@@ -12,9 +12,11 @@ namespace MediaBazaarTest
 {
     public partial class ScheduleForm : Form
     {
-        public ScheduleForm()
-        {
+        private UserControl uc;
+        public ScheduleForm(UserControl userControl)
+        {           
             InitializeComponent();
+            this.uc = userControl;
         }
     }
 }

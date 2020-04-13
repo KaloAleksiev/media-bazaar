@@ -8,8 +8,8 @@ namespace MediaBazaarTest
 {
     public enum Department
     {
-        Computers = 1,
-        TVs = 2,
-        Phones = 3
+        Phones = 1,
+        Computers = 2,              
+        TVs = 3,
     }
 }
