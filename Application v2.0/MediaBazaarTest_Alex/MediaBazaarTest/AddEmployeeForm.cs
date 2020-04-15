@@ -291,7 +291,7 @@ namespace MediaBazaarTest
                 }
                 else
                 {
-                    if($"{u.FName} {u.LName}".ToLower().Contains(demo.ToLower()))
+                    if($"{u.FName} {u.LName}".ToLower().Contains(demo.ToLower()) || u.LName.ToLower().Contains(demo.ToLower()))
                     {
                         dgvEmployee.Rows.Add(new string[]
                     {

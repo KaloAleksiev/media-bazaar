@@ -118,6 +118,25 @@ namespace MediaBazaarTest
                 DateTime date = DateTime.Now.Date;
                 u.FireEmployee(date);
                 udc.FireEmployeeDB(id, date);
+
+                //Send an email about it
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("mediabazaar.management@gmail.com");
+                message.To.Add(u.Email);
+
+                message.Subject = "Your contract has been terminated";
+                message.Body = $"Greetings, {u.FName} {u.LName}, \n we regret to inform you that your contract with MediaBazaar has been terminated. You will recieve a follow up email with more information. " +
+                    $"\n Thank you for being part of our team! We wish you all the best in your future endevours!"+
+                    $"\n Kind ragards," +
+                    $"\n {loggedIn.FName} {loggedIn.LName}," +
+                    $" Management.";
+                using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    mailer.Credentials = new NetworkCredential("mediabazaar.management@gmail.com", "MediaB420");
+                    mailer.EnableSsl = true;
+                    mailer.Send(message);
+                }
+                users.Remove(u);
                 return true;
             }
             return false;

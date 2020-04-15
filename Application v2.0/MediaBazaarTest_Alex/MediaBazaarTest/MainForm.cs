@@ -133,41 +133,49 @@ namespace MediaBazaarTest
         private void btnEmployee_MouseHover(object sender, EventArgs e)
         {
             pEmpInfo.Visible = true;
+            btnEmployee.BackColor = System.Drawing.Color.Firebrick;
         }
 
         private void btnStocks_MouseHover(object sender, EventArgs e)
         {        
             pStocksInfo.Visible = true;
+            btnStocks.BackColor = System.Drawing.Color.Firebrick;
         }
 
         private void btnSchedule_MouseHover(object sender, EventArgs e)
         {
             PScheduleInfo.Visible = true;
+            btnSchedule.BackColor = System.Drawing.Color.Firebrick;
         }
 
         private void btnStatistics_MouseHover(object sender, EventArgs e)
         {
             pStatsInfo.Visible = true;
+            btnStatistics.BackColor = System.Drawing.Color.Firebrick;
         }
 
         private void btnEmployee_MouseLeave(object sender, EventArgs e)
         {
             pEmpInfo.Visible = false;
+            btnEmployee.BackColor = System.Drawing.Color.Maroon;
         }
 
         private void btnStocks_MouseLeave(object sender, EventArgs e)
         {
             pStocksInfo.Visible = false;
+            btnStocks.BackColor = System.Drawing.Color.Maroon;
         }
 
         private void btnSchedule_MouseLeave(object sender, EventArgs e)
         {
             PScheduleInfo.Visible = false;
+            btnSchedule.BackColor = System.Drawing.Color.Maroon;
         }
 
         private void btnStatistics_MouseLeave(object sender, EventArgs e)
         {
             pStatsInfo.Visible = false;
+            btnStatistics.BackColor = System.Drawing.Color.Maroon;
         }
 
         #endregion

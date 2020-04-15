@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pLogin = new System.Windows.Forms.Panel();
             this.pForgottenPass = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.btBackRetrievePass = new System.Windows.Forms.Button();
             this.btRetrievePass = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,6 +44,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLoggedIn = new System.Windows.Forms.Label();
             this.btnLogIn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -56,26 +58,25 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.pEmpInfo = new System.Windows.Forms.Panel();
-            this.PScheduleInfo = new System.Windows.Forms.Panel();
-            this.pStocksInfo = new System.Windows.Forms.Panel();
-            this.pStatsInfo = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.PScheduleInfo = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.pStocksInfo = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pStatsInfo = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.btnEmployee = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStatistics = new System.Windows.Forms.Button();
             this.btnStocks = new System.Windows.Forms.Button();
             this.btnSchedule = new System.Windows.Forms.Button();
             this.pLogin.SuspendLayout();
             this.pForgottenPass.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             this.pEmpInfo.SuspendLayout();
             this.PScheduleInfo.SuspendLayout();
             this.pStocksInfo.SuspendLayout();
             this.pStatsInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pLogin
@@ -101,6 +102,7 @@
             // pForgottenPass
             // 
             this.pForgottenPass.BackColor = System.Drawing.Color.Maroon;
+            this.pForgottenPass.Controls.Add(this.label7);
             this.pForgottenPass.Controls.Add(this.btBackRetrievePass);
             this.pForgottenPass.Controls.Add(this.btRetrievePass);
             this.pForgottenPass.Controls.Add(this.label2);
@@ -111,6 +113,17 @@
             this.pForgottenPass.Size = new System.Drawing.Size(501, 204);
             this.pForgottenPass.TabIndex = 25;
             this.pForgottenPass.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(85, 55);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 25);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Email";
             // 
             // btBackRetrievePass
             // 
@@ -240,6 +253,18 @@
             this.btnLogIn.UseVisualStyleBackColor = false;
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Maroon;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(145, 98);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(214, 127);
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
+            // 
             // tbEmail
             // 
             this.tbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -249,6 +274,7 @@
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(232, 27);
             this.tbEmail.TabIndex = 15;
+            this.tbEmail.Tag = "Email";
             this.tbEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbPassword
@@ -279,7 +305,9 @@
             // lblRole
             // 
             this.lblRole.AutoSize = true;
+            this.lblRole.BackColor = System.Drawing.Color.White;
             this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRole.ForeColor = System.Drawing.Color.Black;
             this.lblRole.Location = new System.Drawing.Point(67, 92);
             this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRole.Name = "lblRole";
@@ -290,8 +318,10 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
+            this.lblDate.BackColor = System.Drawing.Color.White;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(62, 38);
+            this.lblDate.ForeColor = System.Drawing.Color.Black;
+            this.lblDate.Location = new System.Drawing.Point(67, 38);
             this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(73, 25);
@@ -316,7 +346,9 @@
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
+            this.lblWelcome.BackColor = System.Drawing.Color.White;
             this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.ForeColor = System.Drawing.Color.Black;
             this.lblWelcome.Location = new System.Drawing.Point(222, 38);
             this.lblWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWelcome.Name = "lblWelcome";
@@ -379,33 +411,6 @@
             this.pEmpInfo.TabIndex = 27;
             this.pEmpInfo.Visible = false;
             // 
-            // PScheduleInfo
-            // 
-            this.PScheduleInfo.Controls.Add(this.label5);
-            this.PScheduleInfo.Location = new System.Drawing.Point(210, 332);
-            this.PScheduleInfo.Name = "PScheduleInfo";
-            this.PScheduleInfo.Size = new System.Drawing.Size(259, 131);
-            this.PScheduleInfo.TabIndex = 28;
-            this.PScheduleInfo.Visible = false;
-            // 
-            // pStocksInfo
-            // 
-            this.pStocksInfo.Controls.Add(this.label4);
-            this.pStocksInfo.Location = new System.Drawing.Point(668, 140);
-            this.pStocksInfo.Name = "pStocksInfo";
-            this.pStocksInfo.Size = new System.Drawing.Size(259, 131);
-            this.pStocksInfo.TabIndex = 28;
-            this.pStocksInfo.Visible = false;
-            // 
-            // pStatsInfo
-            // 
-            this.pStatsInfo.Controls.Add(this.label6);
-            this.pStatsInfo.Location = new System.Drawing.Point(668, 332);
-            this.pStatsInfo.Name = "pStatsInfo";
-            this.pStatsInfo.Size = new System.Drawing.Size(259, 131);
-            this.pStatsInfo.TabIndex = 29;
-            this.pStatsInfo.Visible = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -415,6 +420,35 @@
             this.label3.Size = new System.Drawing.Size(195, 96);
             this.label3.TabIndex = 0;
             this.label3.Text = "- Add new employees\r\n- View all employees\r\n- Promote employees\r\n- Fire employees";
+            // 
+            // PScheduleInfo
+            // 
+            this.PScheduleInfo.Controls.Add(this.label5);
+            this.PScheduleInfo.Location = new System.Drawing.Point(210, 332);
+            this.PScheduleInfo.Name = "PScheduleInfo";
+            this.PScheduleInfo.Size = new System.Drawing.Size(259, 131);
+            this.PScheduleInfo.TabIndex = 28;
+            this.PScheduleInfo.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.75F);
+            this.label5.Location = new System.Drawing.Point(5, 17);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(242, 96);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "- View the schedule for \r\neach day\r\n- Assign employees to shifts\r\n- Can be automa" +
+    "ted?\r\n";
+            // 
+            // pStocksInfo
+            // 
+            this.pStocksInfo.Controls.Add(this.label4);
+            this.pStocksInfo.Location = new System.Drawing.Point(668, 140);
+            this.pStocksInfo.Name = "pStocksInfo";
+            this.pStocksInfo.Size = new System.Drawing.Size(259, 131);
+            this.pStocksInfo.TabIndex = 28;
+            this.pStocksInfo.Visible = false;
             // 
             // label4
             // 
@@ -427,16 +461,14 @@
             this.label4.Text = "- View all the stock\r\n- Search for an item\r\n- Send re-stock requests\r\n- View Item" +
     " information";
             // 
-            // label5
+            // pStatsInfo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.75F);
-            this.label5.Location = new System.Drawing.Point(5, 17);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(242, 96);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "- View the schedule for \r\neach day\r\n- Assign employees to shifts\r\n- Can be automa" +
-    "ted?\r\n";
+            this.pStatsInfo.Controls.Add(this.label6);
+            this.pStatsInfo.Location = new System.Drawing.Point(668, 332);
+            this.pStatsInfo.Name = "pStatsInfo";
+            this.pStatsInfo.Size = new System.Drawing.Size(259, 131);
+            this.pStatsInfo.TabIndex = 29;
+            this.pStatsInfo.Visible = false;
             // 
             // label6
             // 
@@ -467,18 +499,6 @@
             this.btnEmployee.Click += new System.EventHandler(this.btnEmployee_Click);
             this.btnEmployee.MouseLeave += new System.EventHandler(this.btnEmployee_MouseLeave);
             this.btnEmployee.MouseHover += new System.EventHandler(this.btnEmployee_MouseHover);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Maroon;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(145, 98);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(214, 127);
-            this.pictureBox1.TabIndex = 17;
-            this.pictureBox1.TabStop = false;
             // 
             // btnStatistics
             // 
@@ -569,6 +589,7 @@
             this.pLogin.PerformLayout();
             this.pForgottenPass.ResumeLayout(false);
             this.pForgottenPass.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.pEmpInfo.ResumeLayout(false);
             this.pEmpInfo.PerformLayout();
@@ -578,7 +599,6 @@
             this.pStocksInfo.PerformLayout();
             this.pStatsInfo.ResumeLayout(false);
             this.pStatsInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -624,5 +644,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
