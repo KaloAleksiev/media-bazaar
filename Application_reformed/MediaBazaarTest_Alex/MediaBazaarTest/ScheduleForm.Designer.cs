@@ -77,30 +77,28 @@
             this.pShift.Controls.Add(this.lbShiftInfo);
             this.pShift.Controls.Add(this.lbInShift);
             this.pShift.Controls.Add(this.lbAllPpl);
-            this.pShift.Location = new System.Drawing.Point(109, 190);
-            this.pShift.Margin = new System.Windows.Forms.Padding(2);
+            this.pShift.Location = new System.Drawing.Point(59, 184);
+            this.pShift.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pShift.Name = "pShift";
-            this.pShift.Size = new System.Drawing.Size(564, 221);
+            this.pShift.Size = new System.Drawing.Size(751, 272);
             this.pShift.TabIndex = 49;
             this.pShift.Visible = false;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(373, 45);
-            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Location = new System.Drawing.Point(497, 55);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(75, 13);
+            this.label23.Size = new System.Drawing.Size(99, 17);
             this.label23.TabIndex = 26;
             this.label23.Text = "Added to shift:";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(13, 45);
-            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Location = new System.Drawing.Point(17, 55);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(74, 13);
+            this.label22.Size = new System.Drawing.Size(99, 17);
             this.label22.TabIndex = 25;
             this.label22.Text = "All employees:";
             // 
@@ -110,10 +108,10 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
-            this.btnCancel.Location = new System.Drawing.Point(225, 185);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancel.Location = new System.Drawing.Point(300, 228);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(112, 22);
+            this.btnCancel.Size = new System.Drawing.Size(149, 27);
             this.btnCancel.TabIndex = 24;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -124,10 +122,10 @@
             this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.btnConfirm.ForeColor = System.Drawing.Color.Black;
-            this.btnConfirm.Location = new System.Drawing.Point(225, 158);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
+            this.btnConfirm.Location = new System.Drawing.Point(300, 194);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(112, 22);
+            this.btnConfirm.Size = new System.Drawing.Size(149, 27);
             this.btnConfirm.TabIndex = 23;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = false;
@@ -138,10 +136,10 @@
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.btnRemove.ForeColor = System.Drawing.Color.Black;
-            this.btnRemove.Location = new System.Drawing.Point(225, 132);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRemove.Location = new System.Drawing.Point(300, 162);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(112, 22);
+            this.btnRemove.Size = new System.Drawing.Size(149, 27);
             this.btnRemove.TabIndex = 22;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = false;
@@ -152,10 +150,10 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(225, 105);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAdd.Location = new System.Drawing.Point(300, 129);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(112, 22);
+            this.btnAdd.Size = new System.Drawing.Size(149, 27);
             this.btnAdd.TabIndex = 21;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -167,38 +165,38 @@
             this.lbShiftInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbShiftInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.lbShiftInfo.ForeColor = System.Drawing.Color.Black;
-            this.lbShiftInfo.Location = new System.Drawing.Point(15, 11);
-            this.lbShiftInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbShiftInfo.Location = new System.Drawing.Point(20, 14);
             this.lbShiftInfo.Name = "lbShiftInfo";
-            this.lbShiftInfo.Size = new System.Drawing.Size(2, 20);
+            this.lbShiftInfo.Size = new System.Drawing.Size(2, 26);
             this.lbShiftInfo.TabIndex = 2;
             this.lbShiftInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lbInShift
             // 
             this.lbInShift.FormattingEnabled = true;
-            this.lbInShift.Location = new System.Drawing.Point(375, 61);
-            this.lbInShift.Margin = new System.Windows.Forms.Padding(2);
+            this.lbInShift.ItemHeight = 16;
+            this.lbInShift.Location = new System.Drawing.Point(500, 75);
+            this.lbInShift.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbInShift.Name = "lbInShift";
-            this.lbInShift.Size = new System.Drawing.Size(174, 147);
+            this.lbInShift.Size = new System.Drawing.Size(231, 180);
             this.lbInShift.TabIndex = 1;
             // 
             // lbAllPpl
             // 
             this.lbAllPpl.FormattingEnabled = true;
-            this.lbAllPpl.Location = new System.Drawing.Point(15, 61);
-            this.lbAllPpl.Margin = new System.Windows.Forms.Padding(2);
+            this.lbAllPpl.ItemHeight = 16;
+            this.lbAllPpl.Location = new System.Drawing.Point(20, 75);
+            this.lbAllPpl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbAllPpl.Name = "lbAllPpl";
-            this.lbAllPpl.Size = new System.Drawing.Size(174, 147);
+            this.lbAllPpl.Size = new System.Drawing.Size(231, 180);
             this.lbAllPpl.TabIndex = 0;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(63, 397);
-            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Location = new System.Drawing.Point(-13, 498);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(41, 13);
+            this.label21.Size = new System.Drawing.Size(54, 17);
             this.label21.TabIndex = 48;
             this.label21.Text = "label21";
             this.label21.Visible = false;
@@ -209,10 +207,9 @@
             this.lblMonth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.lblMonth.ForeColor = System.Drawing.Color.Black;
-            this.lblMonth.Location = new System.Drawing.Point(333, 60);
-            this.lblMonth.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMonth.Location = new System.Drawing.Point(358, 24);
             this.lblMonth.Name = "lblMonth";
-            this.lblMonth.Size = new System.Drawing.Size(113, 22);
+            this.lblMonth.Size = new System.Drawing.Size(150, 27);
             this.lblMonth.TabIndex = 47;
             this.lblMonth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -222,10 +219,10 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.btnNext.ForeColor = System.Drawing.Color.Black;
-            this.btnNext.Location = new System.Drawing.Point(446, 60);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNext.Location = new System.Drawing.Point(509, 24);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(112, 22);
+            this.btnNext.Size = new System.Drawing.Size(149, 27);
             this.btnNext.TabIndex = 46;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -236,13 +233,14 @@
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.btnPrevious.ForeColor = System.Drawing.Color.Black;
-            this.btnPrevious.Location = new System.Drawing.Point(221, 60);
-            this.btnPrevious.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPrevious.Location = new System.Drawing.Point(209, 24);
+            this.btnPrevious.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(112, 22);
+            this.btnPrevious.Size = new System.Drawing.Size(149, 27);
             this.btnPrevious.TabIndex = 45;
             this.btnPrevious.Text = "Previous";
             this.btnPrevious.UseVisualStyleBackColor = false;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // label20
             // 
@@ -250,10 +248,9 @@
             this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(633, 115);
-            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Location = new System.Drawing.Point(758, 92);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(39, 22);
+            this.label20.Size = new System.Drawing.Size(51, 27);
             this.label20.TabIndex = 44;
             this.label20.Text = "E";
             this.label20.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -264,10 +261,9 @@
             this.label19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(521, 115);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Location = new System.Drawing.Point(609, 92);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(38, 22);
+            this.label19.Size = new System.Drawing.Size(50, 27);
             this.label19.TabIndex = 43;
             this.label19.Text = "E";
             this.label19.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -278,10 +274,9 @@
             this.label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(409, 115);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Location = new System.Drawing.Point(459, 92);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(38, 22);
+            this.label18.Size = new System.Drawing.Size(50, 27);
             this.label18.TabIndex = 42;
             this.label18.Text = "E";
             this.label18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -292,10 +287,9 @@
             this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(296, 115);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Location = new System.Drawing.Point(309, 92);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(38, 22);
+            this.label17.Size = new System.Drawing.Size(50, 27);
             this.label17.TabIndex = 41;
             this.label17.Text = "E";
             this.label17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -306,10 +300,9 @@
             this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(183, 115);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Location = new System.Drawing.Point(158, 92);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(38, 22);
+            this.label16.Size = new System.Drawing.Size(50, 27);
             this.label16.TabIndex = 40;
             this.label16.Text = "E";
             this.label16.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -320,10 +313,9 @@
             this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(596, 115);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Location = new System.Drawing.Point(709, 92);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(38, 22);
+            this.label15.Size = new System.Drawing.Size(50, 27);
             this.label15.TabIndex = 39;
             this.label15.Text = "N";
             this.label15.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -334,10 +326,9 @@
             this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(483, 115);
-            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Location = new System.Drawing.Point(558, 92);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(38, 22);
+            this.label14.Size = new System.Drawing.Size(50, 27);
             this.label14.TabIndex = 38;
             this.label14.Text = "N";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -348,10 +339,9 @@
             this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(371, 115);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Location = new System.Drawing.Point(409, 92);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(38, 22);
+            this.label13.Size = new System.Drawing.Size(50, 27);
             this.label13.TabIndex = 37;
             this.label13.Text = "N";
             this.label13.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -362,10 +352,9 @@
             this.label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(259, 115);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Location = new System.Drawing.Point(259, 92);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(38, 22);
+            this.label12.Size = new System.Drawing.Size(50, 27);
             this.label12.TabIndex = 36;
             this.label12.Text = "N";
             this.label12.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -376,10 +365,9 @@
             this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(146, 115);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Location = new System.Drawing.Point(109, 92);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(38, 22);
+            this.label11.Size = new System.Drawing.Size(50, 27);
             this.label11.TabIndex = 35;
             this.label11.Text = "N";
             this.label11.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -390,10 +378,9 @@
             this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(559, 115);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(659, 92);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 22);
+            this.label10.Size = new System.Drawing.Size(50, 27);
             this.label10.TabIndex = 34;
             this.label10.Text = "M";
             this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -404,10 +391,9 @@
             this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(446, 115);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(509, 92);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(38, 22);
+            this.label9.Size = new System.Drawing.Size(50, 27);
             this.label9.TabIndex = 33;
             this.label9.Text = "M";
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -418,10 +404,9 @@
             this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(333, 115);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(358, 92);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 22);
+            this.label8.Size = new System.Drawing.Size(50, 27);
             this.label8.TabIndex = 32;
             this.label8.Text = "M";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -432,10 +417,9 @@
             this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(221, 115);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(209, 92);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 22);
+            this.label7.Size = new System.Drawing.Size(50, 27);
             this.label7.TabIndex = 31;
             this.label7.Text = "M";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -446,10 +430,9 @@
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(109, 115);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(59, 92);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 22);
+            this.label6.Size = new System.Drawing.Size(50, 27);
             this.label6.TabIndex = 30;
             this.label6.Text = "M";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -460,10 +443,9 @@
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(559, 94);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(659, 66);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 22);
+            this.label5.Size = new System.Drawing.Size(150, 27);
             this.label5.TabIndex = 29;
             this.label5.Text = "Manager";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -474,10 +456,9 @@
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(446, 94);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(509, 66);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 22);
+            this.label4.Size = new System.Drawing.Size(150, 27);
             this.label4.TabIndex = 28;
             this.label4.Text = "Depot";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -488,10 +469,9 @@
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(333, 94);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(358, 66);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 22);
+            this.label3.Size = new System.Drawing.Size(150, 27);
             this.label3.TabIndex = 27;
             this.label3.Text = "Phones";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -502,10 +482,9 @@
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(221, 94);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(209, 66);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 22);
+            this.label2.Size = new System.Drawing.Size(150, 27);
             this.label2.TabIndex = 26;
             this.label2.Text = "Computers";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -516,19 +495,18 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(109, 94);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(59, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 22);
+            this.label1.Size = new System.Drawing.Size(150, 27);
             this.label1.TabIndex = 25;
             this.label1.Text = "TVs";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // ScheduleForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(870, 476);
             this.Controls.Add(this.pShift);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.lblMonth);
@@ -554,6 +532,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ScheduleForm";
             this.Text = "ScheduleForm";
             this.pShift.ResumeLayout(false);
