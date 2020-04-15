@@ -34,7 +34,6 @@
             this.btBackRetrievePass = new System.Windows.Forms.Button();
             this.btRetrievePass = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tbNameRetrievePass = new System.Windows.Forms.TextBox();
             this.tbEmailRetrievePass = new System.Windows.Forms.TextBox();
             this.lblForgottenPass = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblRole = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.btnEmployee = new System.Windows.Forms.Button();
@@ -136,19 +136,6 @@
             this.label2.TabIndex = 27;
             this.label2.Text = "Name";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(14, 472);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(660, 16);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "These 2 GroupBoxes can stay on top of each other, so that only one of them is vis" +
-    "ible at a time.";
-            // 
             // tbNameRetrievePass
             // 
             this.tbNameRetrievePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -191,9 +178,9 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.Maroon;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(742, 7);
+            this.panel3.Location = new System.Drawing.Point(745, 7);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(10, 345);
+            this.panel3.Size = new System.Drawing.Size(7, 345);
             this.panel3.TabIndex = 22;
             // 
             // panel2
@@ -274,6 +261,19 @@
             this.tbPassword.Size = new System.Drawing.Size(232, 27);
             this.tbPassword.TabIndex = 16;
             this.tbPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(14, 472);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(660, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "These 2 GroupBoxes can stay on top of each other, so that only one of them is vis" +
+    "ible at a time.";
             // 
             // lblRole
             // 

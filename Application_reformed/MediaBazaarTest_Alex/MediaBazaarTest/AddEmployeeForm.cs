@@ -21,7 +21,11 @@ namespace MediaBazaarTest
         public AddEmployeeForm(UserControl ucMain)
         {
             InitializeComponent();
-            uc = ucMain;
+            uc = ucMain;          
+        }
+
+        private void AddEmployeeForm_Load(object sender, EventArgs e)
+        {
             cmbDepartment.DataSource = Enum.GetValues(typeof(Department));
             cmbPosition.DataSource = Enum.GetValues(typeof(Position));
 
@@ -43,12 +47,14 @@ namespace MediaBazaarTest
             dgvEmployee.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dgvEmployee.RowTemplate.MinimumHeight = 54;
             dgvEmployee.AllowUserToAddRows = false;
-            FillUpDgv();
+            dgvEmployee.ScrollBars = ScrollBars.Vertical;
+            FillUpDgv("");
 
             //Panel control 
             pAddUser.Visible = false;
             pAllEmployees.Visible = false;
             pPromoteEmployee.Visible = false;
+
         }
 
         #region CREATE_USER
@@ -82,7 +88,7 @@ namespace MediaBazaarTest
                         uc.AddUser(fName, lName, dep, pos, email, phone, address, date);
                         MessageBox.Show("User added successfully");
                         ClearInfoAddUser();
-                        FillUpDgv();
+                        FillUpDgv("");
                     }
                     else
                     {
@@ -129,6 +135,7 @@ namespace MediaBazaarTest
             if (!pPromoteEmployee.Visible && dgvEmployee.SelectedRows.Count > 0)
             {
                 pPromoteEmployee.Visible = true;
+                tbSearch.Text = "";
                 id = Convert.ToInt32(dgvEmployee.SelectedCells[0].Value.ToString());
                 UpdateEmployeeInfoLabel();
             }
@@ -145,6 +152,8 @@ namespace MediaBazaarTest
         {
             int id = Convert.ToInt32(dgvEmployee.SelectedCells[0].Value.ToString());
             uc.FireUser(id);
+            FillUpDgv("");
+            MessageBox.Show("Employee fired successfully");
         }
 
         private void btChangeDep_Click(object sender, EventArgs e)
@@ -251,7 +260,7 @@ namespace MediaBazaarTest
             cmbRankChange.SelectedItem = null;
             cmbPositionChange.SelectedItem = null;
             cmbDepartmentChange.SelectedItem = null;            
-            FillUpDgv();            
+            FillUpDgv("");            
         }
         #endregion
 
@@ -261,14 +270,16 @@ namespace MediaBazaarTest
             lblSelectedEmployeeInfo.Text = uc.GetUserByID(id).GetInfo();
         }
 
-        private void FillUpDgv()
+        private void FillUpDgv(string demo)
         {
             dgvEmployee.Rows.Clear();
             List<User> users = uc.GetUsers();
             foreach (User u in users)
             {
-                dgvEmployee.Rows.Add(new string[]
+                if(demo == "")
                 {
+                    dgvEmployee.Rows.Add(new string[]
+                    {
                     u.Id.ToString(),
                     u.FName,
                     u.LName,
@@ -276,7 +287,25 @@ namespace MediaBazaarTest
                     u.Department.ToString(),
                     u.Rank.ToString(),
                     u.Salary.ToString()
-                });
+                    });
+                }
+                else
+                {
+                    if($"{u.FName} {u.LName}".ToLower().Contains(demo.ToLower()))
+                    {
+                        dgvEmployee.Rows.Add(new string[]
+                    {
+                    u.Id.ToString(),
+                    u.FName,
+                    u.LName,
+                    u.Position.ToString(),
+                    u.Department.ToString(),
+                    u.Rank.ToString(),
+                    u.Salary.ToString()
+                    });
+                    }
+                }
+                
             }
         }
 
@@ -306,6 +335,19 @@ namespace MediaBazaarTest
             cmbDepartment.SelectedItem = null;
             cmbPosition.SelectedItem = null;
         }
+        
+
+        private void tbSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {            
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);      
+        }
+
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+            FillUpDgv(tbSearch.Text);
+        }
         #endregion
+
+        
     }
 }
