@@ -20,7 +20,7 @@ namespace MediaBazaarTest
         private UserControl uc;
         public AddEmployeeForm(UserControl ucMain)
         {
-            InitializeComponent();
+            InitializeComponent();           
             uc = ucMain;          
         }
 

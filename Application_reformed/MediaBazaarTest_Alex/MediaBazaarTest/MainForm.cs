@@ -16,7 +16,8 @@ namespace MediaBazaarTest
         public MainForm()
         {
             InitializeComponent();
-            uc = new UserControl();        
+            uc = new UserControl();
+            this.Size = new System.Drawing.Size(767, 390);
         }
 
         private void btnLogIn_Click(object sender, EventArgs e)
@@ -28,9 +29,7 @@ namespace MediaBazaarTest
             else
             {
                 if(uc.Login(tbPassword.Text, tbEmail.Text) == true)
-                {
-                    //lblLoggedIn.ForeColor = System.Drawing.Color.Green;
-                    //lblLoggedIn.Text = "Login successfull!";
+                {                    
                     switch (uc.GetLoggedIn().Position)
                     {
                         case Position.Administrator:
@@ -50,6 +49,7 @@ namespace MediaBazaarTest
                     lblForgottenPass.Visible = false;
                     lblLoggedIn.Visible = true;
                     pLogin.Visible = false;
+                    this.Size = new System.Drawing.Size(1022, 552);
                     UpdateLabels();                    
                     
                 }
@@ -92,6 +92,7 @@ namespace MediaBazaarTest
             uc.Logout();
             pLogin.Visible = true;
             lblLoggedIn.Visible = false;
+            this.Size = new System.Drawing.Size(767, 390);
         }
 
         #endregion
@@ -128,6 +129,47 @@ namespace MediaBazaarTest
             btnStatistics.Visible = false;
             btnStocks.Visible = true;
         }
+
+        private void btnEmployee_MouseHover(object sender, EventArgs e)
+        {
+            pEmpInfo.Visible = true;
+        }
+
+        private void btnStocks_MouseHover(object sender, EventArgs e)
+        {        
+            pStocksInfo.Visible = true;
+        }
+
+        private void btnSchedule_MouseHover(object sender, EventArgs e)
+        {
+            PScheduleInfo.Visible = true;
+        }
+
+        private void btnStatistics_MouseHover(object sender, EventArgs e)
+        {
+            pStatsInfo.Visible = true;
+        }
+
+        private void btnEmployee_MouseLeave(object sender, EventArgs e)
+        {
+            pEmpInfo.Visible = false;
+        }
+
+        private void btnStocks_MouseLeave(object sender, EventArgs e)
+        {
+            pStocksInfo.Visible = false;
+        }
+
+        private void btnSchedule_MouseLeave(object sender, EventArgs e)
+        {
+            PScheduleInfo.Visible = false;
+        }
+
+        private void btnStatistics_MouseLeave(object sender, EventArgs e)
+        {
+            pStatsInfo.Visible = false;
+        }
+
         #endregion
 
         #region ForgottenPass
@@ -178,5 +220,6 @@ namespace MediaBazaarTest
             lblForgottenPass.Visible = true;
         }
         #endregion
+
     }
 }
