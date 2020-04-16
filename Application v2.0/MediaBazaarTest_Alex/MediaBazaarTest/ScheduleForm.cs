@@ -31,17 +31,22 @@ namespace MediaBazaarTest
         //Lists for types of workers (who are in the shifts)
         List<User> InShift;
 
-        public ScheduleForm(UserControl userControl)
+        public ScheduleForm(UserControl userControl, DateTime dt)
         {           
             InitializeComponent();
             this.uc = userControl;
 
+            conn = new MySqlConnection(connStr);
+            this.dt = dt; //Date of the shift
+            dynamicButtons = new List<Button>(); //List of all buttons
+            lblMonth.Text = dt.ToString("dd.MM.yy");
+            AlignAll();
+            shifts = new List<Shift>();
+            AllEmps = new List<User>();
+            InShift = new List<User>();
+            createSchedule(dt);
         }
 
-        private void btnPrevious_Click(object sender, EventArgs e)
-        {
-
-        }
 
         public void createSchedule(DateTime dt)
         {
@@ -70,9 +75,9 @@ namespace MediaBazaarTest
                     { st = ShiftType.Noon; }
                     else if (j % 3 == 2)
                     { st = ShiftType.Evening; }
-                    Position dep = Position.Manager;
+                    Position pos = Position.Manager;
                     //Find all people in the shift (if there are any)
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
+                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(user_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND position = '" + pos.ToString() + "')", conn);
                     conn.Open();
                     MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
                     reader1.Read();
@@ -88,7 +93,7 @@ namespace MediaBazaarTest
                     else { dynamicButton.BackColor = Color.Red; }
                     dynamicButton.Text = n + " / 1";
                     //New sihft is added
-                    //shifts.Add(new Shift(shiftId, dt, st, dep));
+                    shifts.Add(new Shift(shiftId, dt, st, pos));
                 }
                 else if (j >= 3 && j < 6)
                 {
@@ -99,8 +104,8 @@ namespace MediaBazaarTest
                     { st = ShiftType.Noon; }
                     else if (j % 3 == 2)
                     { st = ShiftType.Evening; }
-                    Position dep = Position.DepotWorker;
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
+                    Position pos = Position.DepotWorker;
+                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(user_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND position = '" + pos.ToString() + "')", conn);
                     conn.Open();
                     MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
                     reader1.Read();
@@ -116,7 +121,7 @@ namespace MediaBazaarTest
                     else if (n == 2)
                     { dynamicButton.BackColor = Color.Red; }
                     else { dynamicButton.BackColor = Color.Yellow; }
-                    //shifts.Add(new Shift(shiftId, dt, st, dep));
+                    shifts.Add(new Shift(shiftId, dt, st, pos));
                 }
                 else if (j >= 6 && j < b)
                 {
@@ -133,9 +138,10 @@ namespace MediaBazaarTest
                     { dep = Department.Phones; }
                     else if (j >= 9 && j < 12)
                     { dep = Department.Computers; }
-                    else if (j >= 15 && j < b)
-                    { dep = Department.Phones; }
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND department = '" + dep.ToString() + "')", conn);
+                    else if (j >= 12 && j < b)
+                    { dep = Department.TVs; }
+                    Position pos = Position.Employee;
+                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(user_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND position = '" + pos.ToString() + "' AND department_id = '" + (int)dep + "')", conn);
                     conn.Open();
                     MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
                     reader1.Read();
@@ -151,7 +157,7 @@ namespace MediaBazaarTest
                     else if (n == 3)
                     { dynamicButton.BackColor = Color.Red; }
                     else { dynamicButton.BackColor = Color.Yellow; }
-                    shifts.Add(new Shift(shiftId, dt, st, dep));
+                    shifts.Add(new Shift(shiftId, dt, st, pos, (int)dep));
                 }
                 dynamicButton.Name = "j" + j;
                 dynamicButton.Font = new Font("Microsoft Sans Serif", 8);
@@ -175,7 +181,7 @@ namespace MediaBazaarTest
             char[] arBtnText = clickedButton.Text.ToCharArray();
             int n = Convert.ToInt32(arBtnText[0].ToString());
             ResetAll(); //Reset all user type collections and listboxes
-            //ShiftPicked(dt, GetIdOutOfBtn(arBtnName), n);
+            ShiftPicked(dt, GetIdOutOfBtn(arBtnName), n);
         }
 
         public void ResetAll()
@@ -189,17 +195,19 @@ namespace MediaBazaarTest
         public void ShiftPicked(DateTime dt, int j, int n)
         {
             //Get shift info for label
-            lbShiftInfo.Text = $"{shifts[j].Type} shift in the {shifts[j].Department} department. Date: {dt.ToString("dd.MM.yyyy")}";
+            if (shifts[j].Position != Position.Employee)
+            { lbShiftInfo.Text = $"{shifts[j].Type} shift in the {shifts[j].Position} department. Date: {dt.ToString("dd.MM.yyyy")}"; }
+            else { lbShiftInfo.Text = $"{shifts[j].Type} shift in the {(Department)shifts[j].Department} department. Date: {dt.ToString("dd.MM.yyyy")}"; }
             label21.Text = j.ToString(); //Store shift index in label
             pShift.Visible = true;
 
             AllEmps = uc.GetUsers(); //Get ALL the employees in the DB.
-            CheckIfFull(n, shifts[j].Department, shifts[j].ShiftId, j); //Not really "check", deletes the people already selected for the shift from the AllEmps List.
-            FillChosenShift(shifts[j].Department);
-            FillFromDBByDept(shifts[j].Department);
+            CheckIfFull(n, shifts[j].ShiftId, j); //Not really "check", deletes the people already selected for the shift from the AllEmps List.
+            FillChosenShift();
+            FillFromDBByDept((Department)shifts[j].Department, shifts[j].Position);
         }
 
-        public void CheckIfFull(int n, Department dep, int shiftId, int l)
+        public void CheckIfFull(int n, int shiftId, int l)
         {
             if (n > 0) //n is number of people found to be in the shift already.
             //If there are any people already in the shift:
@@ -207,13 +215,13 @@ namespace MediaBazaarTest
                 List<int> indexes = new List<int>();
                 string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
                 MySqlConnection conn = new MySqlConnection(connectionString);
-                MySqlCommand getEmpId = new MySqlCommand("SELECT employee_id FROM shift_user WHERE shift_id = '" + shiftId.ToString() + "'", conn);
+                MySqlCommand getEmpId = new MySqlCommand("SELECT user_id FROM shift_user WHERE shift_id = '" + shiftId.ToString() + "'", conn);
                 conn.Open();
                 MySqlDataReader reader1 = getEmpId.ExecuteReader();
                 for (int i = 1; i <= n; i++)
                 {
                     reader1.Read();
-                    int empId = Convert.ToInt32(reader1["employee_id"]);
+                    int empId = Convert.ToInt32(reader1["user_id"]);
                     indexes.Add(empId);
                 }
                 reader1.Close();
@@ -253,7 +261,7 @@ namespace MediaBazaarTest
             conn.Close();
         }
 
-        public void FillChosenShift(Department dep)
+        public void FillChosenShift()
         {
             //Fill listbox with people selected for the shift. 
             lbInShift.Items.Clear();
@@ -263,19 +271,232 @@ namespace MediaBazaarTest
             }
         }
 
-        public void FillFromDBByDept(Department dep)
+        public void FillFromDBByDept(Department dep, Position pos)
         {
             //Fill listbox with all people with the department of the shift.
             lbAllPpl.Items.Clear();
             List<User> emps = new List<User>();
             foreach (User emp in AllEmps)
             {
-                if (emp.Department == dep)
-                { emps.Add(emp); }
+                if (pos == Position.Employee)
+                {
+                    if (emp.Department == dep && emp.Position == pos)
+                    { emps.Add(emp); }
+                }
+                else
+                {
+                    if (emp.Position == pos)
+                    { emps.Add(emp); }
+                }
             }
             foreach (User emp in emps)
             { lbAllPpl.Items.Add(emp.GetInfo()); }
             AllEmps = emps;
         }
+
+        #region Unimportant
+        public int GetIdOutOfBtn(char[] arBtnName)
+        {
+            int first = 0;
+            for (int i = 0; i < arBtnName.Length; i++)
+            {
+                if (arBtnName[i] == 'j')
+                {
+                    string l = null;
+                    int j = i + 1;
+                    while (j < arBtnName.Length)
+                    {
+                        l += arBtnName[j].ToString();
+                        j++;
+                    }
+                    first = Convert.ToInt32(l);
+                }
+            }
+            return first;
+        } 
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            dt = dt.AddDays(1);
+            MainForm.CreateScheduleForm(uc, dt); ;
+            this.Close();
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            dt = dt.AddDays(-1);
+            MainForm.CreateScheduleForm(uc, dt); ;
+            this.Close();
+        }
+
+        public Month GetMonth(DateTime dt)
+        {
+            Month month = Month.January;
+            switch (dt.Month)
+            {
+                case (1): month = Month.January; break;
+                case (2): month = Month.February; break;
+                case (3): month = Month.March; break;
+                case (4): month = Month.April; break;
+                case (5): month = Month.May; break;
+                case (6): month = Month.June; break;
+                case (7): month = Month.July; break;
+                case (8): month = Month.August; break;
+                case (9): month = Month.September; break;
+                case (10): month = Month.October; break;
+                case (11): month = Month.November; break;
+                case (12): month = Month.December; break;
+            }
+            return month;
+        } //Unimportant
+
+        public void AlignAll()
+        {
+            this.Width = 870;
+            this.Height = 500;
+            btnNext.Width = 150;
+            btnNext.Height = 27;
+            btnNext.Location = new Point(500, 9);
+            btnPrevious.Width = 150;
+            btnPrevious.Height = 27;
+            btnPrevious.Location = new Point(200, 9);
+            lblMonth.Width = 150;
+            lblMonth.Height = 27;
+            lblMonth.Location = new Point(350, 9);
+
+            int posYfixed = 50;
+
+            List<Label> labels = new List<Label>();
+            foreach (Control obj in Controls)
+            {
+                if (obj is Label)
+                {
+                    if (obj.Name != "lblMonth")
+                    { labels.Add((Label)obj); }
+                }
+            }
+            for (int i = 1; i <= 5; i++)
+            {
+                labels[i].Location = new Point(150 + ((i - 1) * 150), posYfixed + 26);
+                labels[i].Height = 26;
+                labels[i].Width = 50;
+            }
+            for (int i = 6; i <= 10; i++)
+            {
+                labels[i].Location = new Point(100 + ((i - 6) * 150), posYfixed + 26);
+                labels[i].Height = 26;
+                labels[i].Width = 50;
+            }
+            for (int i = 11; i <= 15; i++)
+            {
+                labels[i].Location = new Point(50 + ((i - 11) * 150), posYfixed + 26);
+                labels[i].Height = 26;
+                labels[i].Width = 50;
+            }
+            for (int i = 16; i < 21; i++)
+            {
+                labels[i].Location = new Point(50 + ((i - 16) * 150), posYfixed);
+                labels[i].Height = 26;
+                labels[i].Width = 150;
+            }
+
+            pShift.Size = new Size(751, 272);
+            pShift.Location = new Point(50, 169);
+
+            lbShiftInfo.Location = new Point(20, 14);
+
+            lbAllPpl.Size = new Size(230, 188);
+            lbAllPpl.Location = new Point(20, 75);
+
+            lbInShift.Size = new Size(230, 188);
+            lbInShift.Location = new Point(500, 75);
+
+            btnAdd.Size = new Size(150, 27);
+            btnAdd.Location = new Point(300, 129);
+
+            btnCancel.Size = new Size(150, 27);
+            btnCancel.Location = new Point(300, 228);
+
+            btnConfirm.Size = new Size(150, 27);
+            btnConfirm.Location = new Point(300, 195);
+
+            btnRemove.Size = new Size(150, 27);
+            btnRemove.Location = new Point(300, 162);
+
+            label22.Location = new Point(17, 55);
+            label23.Location = new Point(497, 55);
+        } //Unimportant
+        #endregion
+
+        #region Panel Buttons
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (InShift.Count != 3)
+            {
+                try
+                {
+                    //Add the selected person from the AllPpl listbox to the InShift listbox
+                    InShift.Add(AllEmps[lbAllPpl.SelectedIndex]);
+                    User u = AllEmps[lbAllPpl.SelectedIndex];
+                    AllEmps.RemoveAt(lbAllPpl.SelectedIndex);
+                    lbAllPpl.Items.Clear();
+                    foreach (User emp in AllEmps)
+                    { lbAllPpl.Items.Add(emp.GetInfo()); } //Refresh the AllPpl listbox
+                    shifts[Convert.ToInt32(label21.Text)].AddUser(u);
+                    FillChosenShift(); //Refresh the InShift listbox.
+                }
+                catch
+                { MessageBox.Show("Please select a person."); }
+            }
+            else
+            { MessageBox.Show("There can't be more than 3 people in an employee shift."); }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Remove selected person from the InShift listbox to the AllPpl listbox
+                AllEmps.Add(InShift[lbInShift.SelectedIndex]);
+                shifts[Convert.ToInt32(label21.Text)].RemoveUser(InShift[lbInShift.SelectedIndex]);
+                InShift.RemoveAt(lbInShift.SelectedIndex);
+                lbAllPpl.Items.Clear();
+                foreach (User emp in AllEmps)
+                { 
+                    lbAllPpl.Items.Add(emp.GetInfo()); } //Refresh the AllPpl listbox.
+                FillChosenShift(); //Refresh the InShift listbox.
+            }
+            catch
+            { MessageBox.Show("Please select a person."); }
+        }
+
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            shifts[Convert.ToInt32(label21.Text)].AddShiftToDB(); //Add the shift to the DB.
+            dynamicButtons[Convert.ToInt32(label21.Text)].Text = shifts[Convert.ToInt32(label21.Text)].GetAllUsers().Count + " / 3";
+            if (shifts[Convert.ToInt32(label21.Text)].GetAllUsers().Count == 0)
+            { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Green; }
+            else if (shifts[Convert.ToInt32(label21.Text)].GetAllUsers().Count == 3)
+            { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Red; }
+            else { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Yellow; }
+            int oo = 0;
+            List<User> ooo = shifts[Convert.ToInt32(label21.Text)].GetAllUsers();
+            oo = ooo.Count;
+
+            //If the shift has no people in it, delete it (!!!IMPORTANT!!!)
+            if (oo == 0)
+            {
+                MySqlCommand DeleteShift = new MySqlCommand("DELETE FROM shift WHERE shift_id = '" + shifts[Convert.ToInt32(label21.Text)].ShiftId + "'", conn);
+                conn.Open();
+                int j = DeleteShift.ExecuteNonQuery();
+                conn.Close();
+            }
+
+            ResetAll();
+            pShift.Visible = false;
+        }
+
+        #endregion
     }
 }

@@ -129,6 +129,7 @@
             this.btnConfirm.TabIndex = 23;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = false;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnRemove
             // 
@@ -143,6 +144,7 @@
             this.btnRemove.TabIndex = 22;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
             // 
@@ -157,6 +159,7 @@
             this.btnAdd.TabIndex = 21;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // lbShiftInfo
             // 
@@ -219,13 +222,14 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.btnNext.ForeColor = System.Drawing.Color.Black;
-            this.btnNext.Location = new System.Drawing.Point(509, 24);
+            this.btnNext.Location = new System.Drawing.Point(508, 24);
             this.btnNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(149, 27);
             this.btnNext.TabIndex = 46;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrevious
             // 
@@ -300,7 +304,7 @@
             this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(158, 92);
+            this.label16.Location = new System.Drawing.Point(159, 92);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(50, 27);
             this.label16.TabIndex = 40;
@@ -326,7 +330,7 @@
             this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(558, 92);
+            this.label14.Location = new System.Drawing.Point(559, 92);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(50, 27);
             this.label14.TabIndex = 38;
@@ -404,7 +408,7 @@
             this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(358, 92);
+            this.label8.Location = new System.Drawing.Point(359, 92);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(50, 27);
             this.label8.TabIndex = 32;
@@ -469,7 +473,7 @@
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(358, 66);
+            this.label3.Location = new System.Drawing.Point(359, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(150, 27);
             this.label3.TabIndex = 27;
@@ -532,7 +536,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ScheduleForm";
             this.Text = "ScheduleForm";
             this.pShift.ResumeLayout(false);

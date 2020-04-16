@@ -61,6 +61,7 @@ namespace MediaBazaarTest
             }
         }
 
+
         #region NavigationControl
 
         private void btnEmployee_Click(object sender, EventArgs e)
@@ -77,8 +78,13 @@ namespace MediaBazaarTest
 
         private void btnSchedule_Click(object sender, EventArgs e)
         {
-            ScheduleForm s = new ScheduleForm(uc);
-            s.Show();
+            DateTime dt = DateTime.Now;
+            CreateScheduleForm(uc, dt);
+        }
+        public static void CreateScheduleForm(UserControl uc, DateTime dt)
+        {
+            ScheduleForm frm = new ScheduleForm(uc, dt);
+            frm.Show();
         }
 
         private void btnStatistics_Click(object sender, EventArgs e)

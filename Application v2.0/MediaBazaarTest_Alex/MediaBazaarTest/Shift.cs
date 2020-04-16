@@ -16,7 +16,8 @@ namespace MediaBazaarTest
         List<User> users;
 
         //Propperties
-        public Department Department { get; set; }
+        public Position Position { get; set; }
+        public int Department { get; set; }
         public ShiftType Type { get; set; }
         public int ShiftId
         {
@@ -25,13 +26,22 @@ namespace MediaBazaarTest
         }
 
         //Constructors
-        public Shift(int shiftId, DateTime date, ShiftType type, Department department)
+        public Shift(int shiftId, DateTime date, ShiftType type, Position pos, int dep)
         {
             ShiftId = shiftId;
             this.date = date;
             this.Type = type;
-            this.Department = department;
+            this.Position = pos;
+            this.Department = dep;
+            users = new List<User>();
+        }
 
+        public Shift(int shiftId, DateTime date, ShiftType type, Position pos)
+        {
+            ShiftId = shiftId;
+            this.date = date;
+            this.Type = type;
+            this.Position = pos;
             users = new List<User>();
         }
 
@@ -54,7 +64,7 @@ namespace MediaBazaarTest
             //If it exists, just add people to the shift_user table with the correct shift ID. Might have to delete all the rows for the shift first, because they could repeat.
             if (o > 0)
             {
-                MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(employee_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = '" + this.shiftId.ToString() + "'", conn);
+                MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(user_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = '" + this.shiftId.ToString() + "'", conn);
                 conn.Open();
                 MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
                 reader1.Read();
@@ -62,13 +72,13 @@ namespace MediaBazaarTest
                 reader1.Close();
                 conn.Close();
                 List<int> indexe = new List<int>();
-                MySqlCommand GetIDsOfPeopl = new MySqlCommand("SELECT employee_id FROM shift_user WHERE shift_id = '" + this.shiftId.ToString() + "'", conn);
+                MySqlCommand GetIDsOfPeopl = new MySqlCommand("SELECT user_id FROM shift_user WHERE shift_id = '" + this.shiftId.ToString() + "'", conn);
                 conn.Open();
                 MySqlDataReader reader3 = GetIDsOfPeopl.ExecuteReader();
                 for (int i = 0; i < n; i++)
                 {
                     reader3.Read();
-                    int empId = Convert.ToInt32(reader3["employee_id"]);
+                    int empId = Convert.ToInt32(reader3["user_id"]);
                     indexe.Add(empId);
                 }
                 reader3.Close();
@@ -88,7 +98,7 @@ namespace MediaBazaarTest
                         }
                         if (flag)
                         {
-                            MySqlCommand DeleteShift = new MySqlCommand("DELETE FROM shift_user WHERE employee_id = '" + indexe[i].ToString() + "'", conn);
+                            MySqlCommand DeleteShift = new MySqlCommand("DELETE FROM shift_user WHERE user_id = '" + indexe[i].ToString() + "'", conn);
                             conn.Open();
                             int j = DeleteShift.ExecuteNonQuery();
                             conn.Close();
@@ -109,8 +119,8 @@ namespace MediaBazaarTest
                         }
                         if (flag)
                         {
-                            MySqlCommand AddPersonToShiftDB = new MySqlCommand("INSERT INTO shift_user (employee_id, shift_id) VALUES (@employee_id, @shift_id)", conn);
-                            AddPersonToShiftDB.Parameters.AddWithValue("@employee_id", users[i].Id.ToString());
+                            MySqlCommand AddPersonToShiftDB = new MySqlCommand("INSERT INTO shift_user (user_id, shift_id) VALUES (@user_id, @shift_id)", conn);
+                            AddPersonToShiftDB.Parameters.AddWithValue("@user_id", users[i].Id.ToString());
                             AddPersonToShiftDB.Parameters.AddWithValue("@shift_id", this.shiftId);
                             conn.Open();
                             int k = AddPersonToShiftDB.ExecuteNonQuery();
@@ -122,15 +132,22 @@ namespace MediaBazaarTest
             else
             {
                 //If the shift doesn't exist, create it.
-                MySqlCommand AddShiftToDB = new MySqlCommand("INSERT INTO shift (date, type, department) VALUES (@date, @type, @department)", conn);
+                MySqlCommand AddShiftToDB = new MySqlCommand("INSERT INTO shift (date, type, department_id, position) VALUES (@date, @type, @department, @position)", conn);
                 AddShiftToDB.Parameters.AddWithValue("@date", this.date.ToString("yyyy-MM-dd"));
                 AddShiftToDB.Parameters.AddWithValue("@type", this.Type);
-                AddShiftToDB.Parameters.AddWithValue("@department", this.Department.ToString());
+                if (this.Department == 0)
+                { AddShiftToDB.Parameters.AddWithValue("@department", null); }
+                else { AddShiftToDB.Parameters.AddWithValue("@department", this.Department); }
+                AddShiftToDB.Parameters.AddWithValue("@position", this.Position.ToString());
                 conn.Open();
                 int i = AddShiftToDB.ExecuteNonQuery();
                 conn.Close();
                 //Get the shifts ID. (Redundant, since I added shiftID as an input parameter, but I'm scared that removing this might mess up the code.)
-                MySqlCommand GetShiftID = new MySqlCommand("SELECT shift_id FROM shift WHERE date = '" + this.date.ToString("yyyy=-MM-dd") + "' AND type = '" + this.Type.ToString() + "' AND department = '" + this.Department.ToString() + "'", conn);
+                MySqlCommand GetShiftID;
+                if (this.Department == 0)
+                { 
+                    GetShiftID = new MySqlCommand("SELECT shift_id FROM shift WHERE date = '" + this.date.ToString("yyyy-MM-dd") + "' AND type = '" + this.Type.ToString() + "' AND position = '" + this.Position.ToString() + "'", conn); }
+                else { GetShiftID = new MySqlCommand("SELECT shift_id FROM shift WHERE date = '" + this.date.ToString("yyyy-MM-dd") + "' AND type = '" + this.Type.ToString() + "' AND position = '" + this.Position.ToString()  + "' AND department_id = '" + this.Department + "'", conn); }
                 conn.Open();
                 MySqlDataReader reader1 = GetShiftID.ExecuteReader();
                 reader1.Read();
@@ -142,8 +159,8 @@ namespace MediaBazaarTest
                 foreach (User user in users)
                 {
                     table = "shift_user";
-                    MySqlCommand AddPersonToShiftDB3 = new MySqlCommand("INSERT INTO " + table + " (employee_id, shift_id) VALUES (@employee_id, @shift_id)", conn);
-                    AddPersonToShiftDB3.Parameters.AddWithValue("@employee_id", user.Id);
+                    MySqlCommand AddPersonToShiftDB3 = new MySqlCommand("INSERT INTO " + table + " (user_id, shift_id) VALUES (@user_id, @shift_id)", conn);
+                    AddPersonToShiftDB3.Parameters.AddWithValue("@user_id", user.Id);
                     AddPersonToShiftDB3.Parameters.AddWithValue("@shift_id", this.shiftId);
                     conn.Open();
                     int h = AddPersonToShiftDB3.ExecuteNonQuery();
