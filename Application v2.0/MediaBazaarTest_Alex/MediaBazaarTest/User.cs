@@ -163,5 +163,15 @@ namespace MediaBazaarTest
             }
             return res.ToString();
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is User)
+            {
+                User other = (User)obj;
+                return (Id == other.Id);
+            }
+            return false;
+        }
     }
 }

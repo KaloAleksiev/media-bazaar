@@ -181,7 +181,8 @@ namespace MediaBazaarTest
             char[] arBtnText = clickedButton.Text.ToCharArray();
             int n = Convert.ToInt32(arBtnText[0].ToString());
             ResetAll(); //Reset all user type collections and listboxes
-            ShiftPicked(dt, GetIdOutOfBtn(arBtnName), n);
+            ShiftPicked(dt, GetIdOutOfBtn(arBtnName), n); 
+            
         }
 
         public void ResetAll()
@@ -190,6 +191,10 @@ namespace MediaBazaarTest
             InShift = new List<User>();
             lbAllPpl.Items.Clear();
             lbInShift.Items.Clear();
+            foreach (Shift s in shifts)
+            {
+                s.DeleteAllUsers();
+            }
         }
 
         public void ShiftPicked(DateTime dt, int j, int n)
@@ -442,8 +447,11 @@ namespace MediaBazaarTest
                     lbAllPpl.Items.Clear();
                     foreach (User emp in AllEmps)
                     { lbAllPpl.Items.Add(emp.GetInfo()); } //Refresh the AllPpl listbox
+                    
                     shifts[Convert.ToInt32(label21.Text)].AddUser(u);
+                    
                     FillChosenShift(); //Refresh the InShift listbox.
+                    
                 }
                 catch
                 { MessageBox.Show("Please select a person."); }
@@ -457,8 +465,10 @@ namespace MediaBazaarTest
             try
             {
                 //Remove selected person from the InShift listbox to the AllPpl listbox
+                
                 AllEmps.Add(InShift[lbInShift.SelectedIndex]);
                 shifts[Convert.ToInt32(label21.Text)].RemoveUser(InShift[lbInShift.SelectedIndex]);
+                
                 InShift.RemoveAt(lbInShift.SelectedIndex);
                 lbAllPpl.Items.Clear();
                 foreach (User emp in AllEmps)
@@ -474,6 +484,7 @@ namespace MediaBazaarTest
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             shifts[Convert.ToInt32(label21.Text)].AddShiftToDB(); //Add the shift to the DB.
+            
             dynamicButtons[Convert.ToInt32(label21.Text)].Text = shifts[Convert.ToInt32(label21.Text)].GetAllUsers().Count + " / 3";
             if (shifts[Convert.ToInt32(label21.Text)].GetAllUsers().Count == 0)
             { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Green; }
@@ -495,6 +506,7 @@ namespace MediaBazaarTest
 
             ResetAll();
             pShift.Visible = false;
+            
         }
 
         #endregion

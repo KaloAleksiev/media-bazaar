@@ -47,7 +47,20 @@ namespace MediaBazaarTest
 
         //Methods
         public void AddUser(User person)
-        { users.Add(person); }
+        {
+            bool flag = true;
+            foreach (User u in users)
+            {
+                if (u == person)
+                { flag = false; }
+            }
+
+            if (flag)
+            { users.Add(person); }
+        }
+
+        public void DeleteAllUsers()
+        { users.Clear(); }
 
         public void AddShiftToDB()
         {
