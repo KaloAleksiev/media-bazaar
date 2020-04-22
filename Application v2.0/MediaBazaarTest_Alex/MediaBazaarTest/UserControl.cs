@@ -62,9 +62,9 @@ namespace MediaBazaarTest
             }
             return false;
         }
-        public void AddUser(string fname, string surname, Department dep, Position pos, string email, string phone, string address, DateTime bDate)
+        public void AddUser(string fname, string surname, Department dep, Position pos, string email, string phone, string city, string zipcode, string address, DateTime bDate, string gender)
         {
-            User sashko = new User(udc.GetMaxId(), fname, surname, dep, pos, email, phone, address, bDate);
+            User sashko = new User(udc.GetMaxId(), fname, surname, dep, pos, email, phone, city, zipcode, address, bDate, gender);
             users.Add(sashko);
             udc.AddUserToDB(sashko);
 

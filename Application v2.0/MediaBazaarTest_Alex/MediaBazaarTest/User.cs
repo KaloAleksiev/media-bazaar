@@ -13,9 +13,12 @@ namespace MediaBazaarTest
         private int id;
         private string fName;
         private string lName;
+        private string gender;
         private Department dep;
         private Position pos;
         private string email;
+        private string city;
+        private string zipcode;
         private string address;
         private string phone;
         private int rank;
@@ -33,6 +36,8 @@ namespace MediaBazaarTest
         public Position Position { get { return this.pos; } private set { this.pos = value; } }
         public string Email { get { return this.email; } private set { this.email = value; } }
         public string Address { get { return this.address; } private set { this.address = value; } }
+        public string City { get { return this.city; } private set { this.city = value; } }
+        public string Zipcode { get { return this.zipcode;} private set { this.zipcode = value; } }
         public string Phone { get { return this.phone; } private set { this.phone = value; } }
         public int Rank { get { return this.rank; } private set { this.rank = value; } }
         public double Salary { get { return this.salary; } private set { this.salary = value; } }
@@ -40,22 +45,26 @@ namespace MediaBazaarTest
         public DateTime StartDate { get { return this.startDate; } private set { this.startDate = value; } }
         public DateTime EndDate { get { return this.endDate; } private set { this.endDate = value; } }
         public DateTime BDay { get { return this.bDay; } private set { this.bDay = value; } }
+        public string Gender { get { return this.gender; } private set { this.gender = value; } }
 
 
         //constructors
-        public User(int id, string fname, string surname, int dep, string position, string email, string address, string phone, int rank, double salary, string password, DateTime startDate, DateTime bday)
+        public User(int id, string fname, string surname, int dep, string position, string email, string city, string zipcode, string address, string phone, int rank, double salary, string password, DateTime startDate, DateTime bday, string gender)
         {
             this.Id = id;
             this.FName = fname;
             this.LName = surname;
             this.Email = email;
             this.Address = address;
+            this.City = city;
+            this.Zipcode = zipcode;
             this.Phone = phone;
             this.Rank = rank;
             this.Salary = salary;
             this.Password = password;
             this.StartDate = startDate;
             this.BDay = bday;
+            this.Gender = gender;
             //if(endDate != null)
             //{
             //    this.EndDate = endDate;
@@ -91,13 +100,13 @@ namespace MediaBazaarTest
             }
         }
 
-        public User(int id, string fName, string surname, Department dep, Position pos, string email, string phone, string address, DateTime bday)
+        public User(int id, string fName, string surname, Department dep, Position pos, string email, string phone, string city, string zipcode, string address, DateTime bday, string gender)
         {
             this.Id = id;
             this.FName = fName;
             this.LName = surname;
             this.Department = dep;
-            this.Position = pos;
+            this.Position = pos;           
             switch (pos)
             {
                 case Position.Administrator:
@@ -116,6 +125,9 @@ namespace MediaBazaarTest
             this.Email = email;
             this.Phone = phone;
             this.Address = address;
+            this.City = city;
+            this.Zipcode = zipcode;
+            this.Gender = gender;
             this.Rank = 1;
             this.Password = GenerateRandomPass();
             this.StartDate = DateTime.Now.Date;

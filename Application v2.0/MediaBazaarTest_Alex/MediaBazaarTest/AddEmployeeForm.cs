@@ -68,8 +68,25 @@ namespace MediaBazaarTest
             string email = tbEmail.Text;
             string phone = tbPhoneNumber.Text;
             string address = tbAddress.Text;
+            string city = tbCity.Text;
+            string zipcode = tbZipcode.Text;
 
-            if (fName == "" || lName == "" || phone == "" || address == "")
+            //GetGender
+            string gender = "";
+            if (cbMale.Checked)
+            {
+                gender = "Male";
+            }
+            else if (cbFemale.Checked)
+            {
+                gender = "Female";
+            }
+            else if (cbOtherGender.Checked)
+            {
+                gender = tbOtherGender.Text;
+            }
+
+            if (fName == "" || lName == "" || phone == "" || address == "" || gender == "" || zipcode == "" || city == "")
             {
                 MessageBox.Show("All textboxes must be filled up! ");
             }
@@ -85,7 +102,7 @@ namespace MediaBazaarTest
                     Enum.TryParse<Position>(cmbPosition.SelectedValue.ToString(), out pos);
                     if (uc.CheckEmail(email))
                     {
-                        uc.AddUser(fName, lName, dep, pos, email, phone, address, date);
+                        uc.AddUser(fName, lName, dep, pos, email, phone, city, zipcode, address, date, gender);
                         MessageBox.Show("User added successfully");
                         ClearInfoAddUser();
                         FillUpDgv("");
@@ -325,6 +342,29 @@ namespace MediaBazaarTest
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
 
+        private void tbCity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space);
+        }
+       
+        private void tbOtherGender_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void cbOtherGender_CheckedChanged(object sender, EventArgs e)
+        {
+            if(tbOtherGender.Visible == false)
+            {
+                tbOtherGender.Visible = true;
+            }
+            else
+            {
+                tbOtherGender.Visible = false;
+            }
+           
+        }
+
         private void ClearInfoAddUser()
         {
             tbFName.Text = "";
@@ -332,6 +372,9 @@ namespace MediaBazaarTest
             tbEmail.Text = "";
             tbPhoneNumber.Text = "";
             tbAddress.Text = "";
+            tbOtherGender.Text = "";
+            tbCity.Text = "";
+            tbZipcode.Text = "";
             cmbDepartment.SelectedItem = null;
             cmbPosition.SelectedItem = null;
         }
@@ -346,8 +389,10 @@ namespace MediaBazaarTest
         {
             FillUpDgv(tbSearch.Text);
         }
+
+
         #endregion
 
-        
+       
     }
 }

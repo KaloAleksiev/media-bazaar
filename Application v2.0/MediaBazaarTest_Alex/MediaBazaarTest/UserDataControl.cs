@@ -16,7 +16,7 @@ namespace MediaBazaarTest
         {
             User u;
             MySqlConnection conn = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand($"SELECT id, firstName, lastName, start_date, end_date, birth_date, position, department_id, phone_number, salary, rank, address FROM User WHERE email = '{email}' AND password = '{password}' AND end_date IS NULL OR end_date = '';", conn);
+            MySqlCommand cmd = new MySqlCommand($"SELECT id, firstName, lastName, start_date, end_date, birth_date, position, department_id, phone_number, salary, rank, city, zipcode, address, gender FROM User WHERE email = '{email}' AND password = '{password}' AND end_date IS NULL OR end_date = '';", conn);
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
@@ -29,13 +29,16 @@ namespace MediaBazaarTest
                 DateTime bDate = Convert.ToDateTime(reader["birth_date"]);
                 int dep = Convert.ToInt32(reader["department_id"]);
                 string pos = Convert.ToString(reader["position"]);
+                string city = Convert.ToString(reader["city"]);
+                string zipcode = Convert.ToString(reader["zipcode"]);
+                string gender = Convert.ToString(reader["gender"]);
                 string address = Convert.ToString(reader["address"]);
                 string phonenumber = Convert.ToString(reader["phone_number"]);
                 double salary = Convert.ToDouble(reader["salary"]);
                 int rank = Convert.ToInt32(reader["rank"]);
                 reader.Close();
                 conn.Close();
-                u = new User(id, fNname, lName, dep, pos, email, address, phonenumber, rank, salary, password, startDate, bDate);
+                u = new User(id, fNname, lName, dep, pos, email, city, zipcode, address, phonenumber, rank, salary, password, startDate, bDate, gender);
                 return u;
             }
             reader.Close();
@@ -69,8 +72,8 @@ namespace MediaBazaarTest
         {
             Department dep = u.Department;
             MySqlConnection conn = new MySqlConnection(connectionString);
-            string addUser = $"INSERT into user( id, firstName, lastName, address, email, password, position, department_id, phone_number, salary, rank, start_date, birth_date)" +
-                $"VALUES (@id, @firstName, @lastName, @address, @email, @password, @position, @department_id, @phone_number, @salary, @rank, @start_date, @birth_date)";
+            string addUser = $"INSERT into user( id, firstName, lastName, address, email, password, position, department_id, phone_number, salary, rank, start_date, birth_date, city, zipcode, gender)" +
+                $"VALUES (@id, @firstName, @lastName, @address, @email, @password, @position, @department_id, @phone_number, @salary, @rank, @start_date, @birth_date, @city, @zipcode, @gender)";
             MySqlCommand cmd = new MySqlCommand(addUser, conn);
             cmd.Parameters.AddWithValue("@id", u.Id);
             cmd.Parameters.AddWithValue("@firstName", u.FName);
@@ -86,6 +89,10 @@ namespace MediaBazaarTest
             cmd.Parameters.AddWithValue("@start_date", u.StartDate);
             //cmd.Parameters.AddWithValue("@end_date", u.EndDate);
             cmd.Parameters.AddWithValue("@birth_date", u.BDay);
+            cmd.Parameters.AddWithValue("@city", u.City);
+            cmd.Parameters.AddWithValue("@zipcode", u.Zipcode);
+            cmd.Parameters.AddWithValue("@gender", u.Gender);
+
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -95,7 +102,7 @@ namespace MediaBazaarTest
         {
             List<User> users = new List<User>();
             MySqlConnection conn = new MySqlConnection(connectionString);
-            string getInfo = $"SELECT id, firstName, lastName, address, email, password, position, department_id, phone_number, salary, rank, start_date, birth_date FROM user WHERE end_date IS NULL OR end_date = '';";
+            string getInfo = $"SELECT id, firstName, lastName, address, email, password, city, zipcode, gender, position, department_id, phone_number, salary, rank, start_date, birth_date FROM user WHERE end_date IS NULL OR end_date = '';";
             MySqlCommand cmd = new MySqlCommand(getInfo, conn);
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -105,6 +112,8 @@ namespace MediaBazaarTest
                 string fNname = Convert.ToString(reader["firstName"]);
                 string lName = Convert.ToString(reader["lastName"]);
                 string address = Convert.ToString(reader["address"]);
+                string city = Convert.ToString(reader["city"]);
+                string zipcode = Convert.ToString(reader["zipcode"]);
                 string email = Convert.ToString(reader["email"]);
                 string password = Convert.ToString(reader["password"]);
                 string pos = Convert.ToString(reader["position"]);
@@ -114,8 +123,9 @@ namespace MediaBazaarTest
                 int rank = Convert.ToInt32(reader["rank"]);
                 DateTime startDate = Convert.ToDateTime(reader["start_date"]);
                 DateTime bDate = Convert.ToDateTime(reader["birth_date"]);
+                string gender = Convert.ToString(reader["gender"]);
 
-                users.Add(new User(id, fNname, lName, dep, pos, email, address, phonenumber, rank, salary, password, startDate, bDate));
+                users.Add(new User(id, fNname, lName, dep, pos, email, city, zipcode, address, phonenumber, rank, salary, password, startDate, bDate, gender));
             }
             reader.Close();
             conn.Close();

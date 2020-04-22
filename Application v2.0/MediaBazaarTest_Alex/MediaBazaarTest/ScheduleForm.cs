@@ -232,7 +232,7 @@ namespace MediaBazaarTest
                 reader1.Close();
                 for (int i = 0; i < indexes.Count; i++)
                 {
-                    string sql = "SELECT id, firstName, lastName, email, password, address, position, department_id, salary, rank, start_date, birth_date, phone_number FROM user WHERE id = '" + indexes[i].ToString() + "'";
+                    string sql = "SELECT id, firstName, lastName, email, password, address, position, department_id, salary, rank, start_date, birth_date, phone_number, city, zipcode, gender FROM user WHERE id = '" + indexes[i].ToString() + "'";
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     MySqlDataReader reader = cmd.ExecuteReader();
                     reader.Read();
@@ -249,8 +249,11 @@ namespace MediaBazaarTest
                     DateTime startDate = Convert.ToDateTime(reader["start_date"]);
                     DateTime bday = Convert.ToDateTime(reader["birth_date"]);
                     double salary = Convert.ToDouble(reader["salary"]);
+                    string city = Convert.ToString(reader["city"]);
+                    string zipcode = Convert.ToString(reader["zipcode"]);
+                    string gender = Convert.ToString(reader["gender"]);
 
-                    User u = new User(id, firstname, lastname, department, position, email, address, phonenumber, rank, salary, password, startDate, bday);
+                    User u = new User(id, firstname, lastname, department, position, email, city, zipcode, address, phonenumber, rank, salary, password, startDate, bday, gender);
                     reader.Close();
                     InShift.Add(u); //Add found people to the list for people in shifts.
                     shifts[l].AddUser(u);
