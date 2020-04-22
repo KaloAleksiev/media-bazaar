@@ -195,11 +195,11 @@ namespace MediaBazaarTest
             {
                 s.DeleteAllUsers();
             }
-            uc.GetUsers();
         }
 
         public void ShiftPicked(DateTime dt, int j, int n)
         {
+            ResetAll();
             //Get shift info for label
             if (shifts[j].Position != Position.Employee)
             { lbShiftInfo.Text = $"{shifts[j].Type} shift in the {shifts[j].Position} department. Date: {dt.ToString("dd.MM.yyyy")}"; }
@@ -230,12 +230,16 @@ namespace MediaBazaarTest
                 MySqlCommand getEmpId = new MySqlCommand("SELECT user_id FROM shift_user WHERE shift_id = '" + shiftId.ToString() + "'", conn);
                 conn.Open();
                 MySqlDataReader reader1 = getEmpId.ExecuteReader();
+
+                MessageBox.Show(uc.GetUsers().Count.ToString());
                 for (int i = 1; i <= n; i++)
                 {
                     reader1.Read();
                     int empId = Convert.ToInt32(reader1["user_id"]);
                     indexes.Add(empId);
                 }
+
+                MessageBox.Show(uc.GetUsers().Count.ToString());
                 reader1.Close();
                 for (int i = 0; i < indexes.Count; i++)
                 {
@@ -260,17 +264,27 @@ namespace MediaBazaarTest
                     string zipcode = Convert.ToString(reader["zipcode"]);
                     string gender = Convert.ToString(reader["gender"]);
 
+                    MessageBox.Show(uc.GetUsers().Count.ToString());
+
                     User u = new User(id, firstname, lastname, department, position, email, city, zipcode, address, phonenumber, rank, salary, password, startDate, bday, gender);
                     reader.Close();
                     InShift.Add(u); //Add found people to the list for people in shifts.
                     shifts[l].AddUser(u);
+
+                    MessageBox.Show(uc.GetUsers().Count.ToString());
                     for (int j = 0; j < AllEmps.Count; j++)
                     {
                         if (AllEmps[j].Id == u.Id)
                         {
                             AllEmps.RemoveAt(j); //Remove the people already picked for the shift
+
+                            MessageBox.Show(uc.GetUsers().Count.ToString());
+
+
                         }
                     }
+
+                    MessageBox.Show(uc.GetUsers().Count.ToString());
                 }
             }
             conn.Close();
