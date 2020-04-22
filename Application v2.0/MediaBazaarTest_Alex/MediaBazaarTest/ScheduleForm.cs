@@ -21,6 +21,7 @@ namespace MediaBazaarTest
         int allHeight = 26;
         int lbWidth = 35;
         int btnWidth = 50;
+        int userLimit = 0;
         List<Button> dynamicButtons;
         DateTime dt;
         string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
@@ -182,7 +183,6 @@ namespace MediaBazaarTest
             int n = Convert.ToInt32(arBtnText[0].ToString());
             ResetAll(); //Reset all user type collections and listboxes
             ShiftPicked(dt, GetIdOutOfBtn(arBtnName), n); 
-            
         }
 
         public void ResetAll()
@@ -195,6 +195,7 @@ namespace MediaBazaarTest
             {
                 s.DeleteAllUsers();
             }
+            uc.GetUsers();
         }
 
         public void ShiftPicked(DateTime dt, int j, int n)
@@ -206,6 +207,12 @@ namespace MediaBazaarTest
             label21.Text = j.ToString(); //Store shift index in label
             pShift.Visible = true;
 
+            if (j >= 0 && j < 3)
+            { userLimit = 1; }
+            else if (j >= 3 && j < 6)
+            { userLimit = 2; }
+            else if (j >= 6 && j < b)
+            { userLimit = 3; }
             AllEmps = uc.GetUsers(); //Get ALL the employees in the DB.
             CheckIfFull(n, shifts[j].ShiftId, j); //Not really "check", deletes the people already selected for the shift from the AllEmps List.
             FillChosenShift();
@@ -439,7 +446,7 @@ namespace MediaBazaarTest
         #region Panel Buttons
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (InShift.Count != 3)
+            if (InShift.Count < userLimit)
             {
                 try
                 {
@@ -460,7 +467,7 @@ namespace MediaBazaarTest
                 { MessageBox.Show("Please select a person."); }
             }
             else
-            { MessageBox.Show("There can't be more than 3 people in an employee shift."); }
+            { MessageBox.Show($"There can't be more than {userLimit} people in a(n) {AllEmps[lbAllPpl.SelectedIndex].Position} shift."); }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -509,7 +516,6 @@ namespace MediaBazaarTest
 
             ResetAll();
             pShift.Visible = false;
-            
         }
 
         #endregion
