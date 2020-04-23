@@ -213,7 +213,10 @@ namespace MediaBazaarTest
             { userLimit = 2; }
             else if (j >= 6 && j < b)
             { userLimit = 3; }
-            AllEmps = uc.GetUsers(); //Get ALL the employees in the DB.
+
+            AllEmps.Clear();
+            foreach (User user in uc.GetUsers())
+            { AllEmps.Add(user); }
             CheckIfFull(n, shifts[j].ShiftId, j); //Not really "check", deletes the people already selected for the shift from the AllEmps List.
             FillChosenShift();
             FillFromDBByDept((Department)shifts[j].Department, shifts[j].Position);
