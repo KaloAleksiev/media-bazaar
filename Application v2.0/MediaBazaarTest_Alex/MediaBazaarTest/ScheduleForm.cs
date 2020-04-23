@@ -15,6 +15,7 @@ namespace MediaBazaarTest
     public partial class ScheduleForm : Form
     {
         private UserControl uc;
+        ShiftDataControl sdc;
         int b = 15;
         int posX = 15;
         int posY = 102;
@@ -25,7 +26,7 @@ namespace MediaBazaarTest
         List<Button> dynamicButtons;
         DateTime dt;
         string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-        MySqlConnection conn;
+        
         List<Shift> shifts;
         //Lists for types of workers (all in the db)
         List<User> AllEmps;
@@ -36,8 +37,8 @@ namespace MediaBazaarTest
         {           
             InitializeComponent();
             this.uc = userControl;
-
-            conn = new MySqlConnection(connStr);
+            sdc = new ShiftDataControl();
+            
             this.dt = dt; //Date of the shift
             dynamicButtons = new List<Button>(); //List of all buttons
             lblMonth.Text = dt.ToString("dd.MM.yy");
@@ -78,16 +79,10 @@ namespace MediaBazaarTest
                     { st = ShiftType.Evening; }
                     Position pos = Position.Manager;
                     //Find all people in the shift (if there are any)
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(user_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND position = '" + pos.ToString() + "')", conn);
-                    conn.Open();
-                    MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
-                    reader1.Read();
-                    n = Convert.ToInt32(reader1["EN"]);
+                    n = sdc.GetAmntOfUsersInShift(dt, st, pos)[1];
                     try
-                    { shiftId = Convert.ToInt32(reader1["shift_id"]); }
+                    { shiftId = sdc.GetAmntOfUsersInShift(dt, st, pos)[2]; }
                     catch { }
-                    reader1.Close();
-                    conn.Close();
                     //Button color depends on the amount of people found
                     if (n == 0)
                     { dynamicButton.BackColor = Color.Green; }
@@ -106,16 +101,10 @@ namespace MediaBazaarTest
                     else if (j % 3 == 2)
                     { st = ShiftType.Evening; }
                     Position pos = Position.DepotWorker;
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(user_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND position = '" + pos.ToString() + "')", conn);
-                    conn.Open();
-                    MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
-                    reader1.Read();
-                    n = Convert.ToInt32(reader1["EN"]);
+                    n = sdc.GetAmntOfUsersInShift(dt, st, pos)[1];
                     try
-                    { shiftId = Convert.ToInt32(reader1["shift_id"]); }
+                    { shiftId = sdc.GetAmntOfUsersInShift(dt, st, pos)[2]; }
                     catch { }
-                    reader1.Close();
-                    conn.Close();
                     dynamicButton.Text = n + " / 2";
                     if (n == 0)
                     { dynamicButton.BackColor = Color.Green; }
@@ -142,16 +131,10 @@ namespace MediaBazaarTest
                     else if (j >= 12 && j < b)
                     { dep = Department.TVs; }
                     Position pos = Position.Employee;
-                    MySqlCommand GetAmountOfPeople = new MySqlCommand("SELECT COUNT(user_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND position = '" + pos.ToString() + "' AND department_id = '" + (int)dep + "')", conn);
-                    conn.Open();
-                    MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
-                    reader1.Read();
-                    n = Convert.ToInt32(reader1["EN"]);
+                    n = sdc.GetAmntOfUsersInShift(dt, st, pos, (int)dep)[1];
                     try
-                    { shiftId = Convert.ToInt32(reader1["shift_id"]); }
+                    { shiftId = sdc.GetAmntOfUsersInShift(dt, st, pos, (int)dep)[2]; }
                     catch { }
-                    reader1.Close();
-                    conn.Close();
                     dynamicButton.Text = n + " / 3";
                     if (n == 0)
                     { dynamicButton.BackColor = Color.Green; }
@@ -228,69 +211,43 @@ namespace MediaBazaarTest
             //If there are any people already in the shift:
             {
                 List<int> indexes = new List<int>();
-                string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-                MySqlConnection conn = new MySqlConnection(connectionString);
-                MySqlCommand getEmpId = new MySqlCommand("SELECT user_id FROM shift_user WHERE shift_id = '" + shiftId.ToString() + "'", conn);
-                conn.Open();
-                MySqlDataReader reader1 = getEmpId.ExecuteReader();
-
-                MessageBox.Show(uc.GetUsers().Count.ToString());
-                for (int i = 1; i <= n; i++)
-                {
-                    reader1.Read();
-                    int empId = Convert.ToInt32(reader1["user_id"]);
-                    indexes.Add(empId);
-                }
-
-                MessageBox.Show(uc.GetUsers().Count.ToString());
-                reader1.Close();
+                indexes = sdc.GetIdOfUsersInShift(shiftId, n);
                 for (int i = 0; i < indexes.Count; i++)
                 {
-                    string sql = "SELECT id, firstName, lastName, email, password, address, position, department_id, salary, rank, start_date, birth_date, phone_number, city, zipcode, gender FROM user WHERE id = '" + indexes[i].ToString() + "'";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    reader.Read();
-                    int id = Convert.ToInt32(reader["id"]);
-                    string firstname = Convert.ToString(reader["firstName"]);
-                    string lastname = Convert.ToString(reader["lastName"]);
-                    string email = Convert.ToString(reader["email"]);
-                    string address = Convert.ToString(reader["address"]);
-                    string phonenumber = Convert.ToString(reader["phone_number"]);
-                    string position = Convert.ToString(reader["position"]);
-                    string password = Convert.ToString(reader["password"]);
-                    int department = Convert.ToInt32(reader["department_id"]);
-                    int rank = Convert.ToInt32(reader["rank"]);
-                    DateTime startDate = Convert.ToDateTime(reader["start_date"]);
-                    DateTime bday = Convert.ToDateTime(reader["birth_date"]);
-                    double salary = Convert.ToDouble(reader["salary"]);
-                    string city = Convert.ToString(reader["city"]);
-                    string zipcode = Convert.ToString(reader["zipcode"]);
-                    string gender = Convert.ToString(reader["gender"]);
-
-                    MessageBox.Show(uc.GetUsers().Count.ToString());
-
-                    User u = new User(id, firstname, lastname, department, position, email, city, zipcode, address, phonenumber, rank, salary, password, startDate, bday, gender);
-                    reader.Close();
+                    //string sql = "SELECT id, firstName, lastName, email, password, address, position, department_id, salary, rank, start_date, birth_date, phone_number, city, zipcode, gender FROM user WHERE id = '" + indexes[i].ToString() + "'";
+                    //MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    //MySqlDataReader reader = cmd.ExecuteReader();
+                    //reader.Read();
+                    //int id = Convert.ToInt32(reader["id"]);
+                    //string firstname = Convert.ToString(reader["firstName"]);
+                    //string lastname = Convert.ToString(reader["lastName"]);
+                    //string email = Convert.ToString(reader["email"]);
+                    //string address = Convert.ToString(reader["address"]);
+                    //string phonenumber = Convert.ToString(reader["phone_number"]);
+                    //string position = Convert.ToString(reader["position"]);
+                    //string password = Convert.ToString(reader["password"]);
+                    //int department = Convert.ToInt32(reader["department_id"]);
+                    //int rank = Convert.ToInt32(reader["rank"]);
+                    //DateTime startDate = Convert.ToDateTime(reader["start_date"]);
+                    //DateTime bday = Convert.ToDateTime(reader["birth_date"]);
+                    //double salary = Convert.ToDouble(reader["salary"]);
+                    //string city = Convert.ToString(reader["city"]);
+                    //string zipcode = Convert.ToString(reader["zipcode"]);
+                    //string gender = Convert.ToString(reader["gender"]);
+                    ////User u = new User(id, firstname, lastname, department, position, email, city, zipcode, address, phonenumber, rank, salary, password, startDate, bday, gender);
+                    //reader.Close();
+                    User u = uc.GetUserByID(indexes[i]);
                     InShift.Add(u); //Add found people to the list for people in shifts.
                     shifts[l].AddUser(u);
-
-                    MessageBox.Show(uc.GetUsers().Count.ToString());
                     for (int j = 0; j < AllEmps.Count; j++)
                     {
                         if (AllEmps[j].Id == u.Id)
                         {
                             AllEmps.RemoveAt(j); //Remove the people already picked for the shift
-
-                            MessageBox.Show(uc.GetUsers().Count.ToString());
-
-
                         }
                     }
-
-                    MessageBox.Show(uc.GetUsers().Count.ToString());
                 }
             }
-            conn.Close();
         }
 
         public void FillChosenShift()
@@ -524,12 +481,7 @@ namespace MediaBazaarTest
 
             //If the shift has no people in it, delete it (!!!IMPORTANT!!!)
             if (oo == 0)
-            {
-                MySqlCommand DeleteShift = new MySqlCommand("DELETE FROM shift WHERE shift_id = '" + shifts[Convert.ToInt32(label21.Text)].ShiftId + "'", conn);
-                conn.Open();
-                int j = DeleteShift.ExecuteNonQuery();
-                conn.Close();
-            }
+            { sdc.DeleteShift(shifts[Convert.ToInt32(label21.Text)].ShiftId); }
 
             ResetAll();
             pShift.Visible = false;

@@ -87,6 +87,7 @@
       <DependentUpon>ScheduleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Shift.cs" />
+    <Compile Include="ShiftDataControl.cs" />
     <Compile Include="ShiftType.cs" />
     <Compile Include="StatisticsForm.cs">
       <SubType>Form</SubType>
