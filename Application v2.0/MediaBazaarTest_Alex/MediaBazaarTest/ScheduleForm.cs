@@ -79,9 +79,10 @@ namespace MediaBazaarTest
                     { st = ShiftType.Evening; }
                     Position pos = Position.Manager;
                     //Find all people in the shift (if there are any)
-                    n = sdc.GetAmntOfUsersInShift(dt, st, pos)[1];
+                    int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos);
+                    n = amntOfUsers[0];
                     try
-                    { shiftId = sdc.GetAmntOfUsersInShift(dt, st, pos)[2]; }
+                    { shiftId = amntOfUsers[1]; }
                     catch { }
                     //Button color depends on the amount of people found
                     if (n == 0)
@@ -101,9 +102,10 @@ namespace MediaBazaarTest
                     else if (j % 3 == 2)
                     { st = ShiftType.Evening; }
                     Position pos = Position.DepotWorker;
-                    n = sdc.GetAmntOfUsersInShift(dt, st, pos)[1];
+                    int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos);
+                    n = amntOfUsers[0];
                     try
-                    { shiftId = sdc.GetAmntOfUsersInShift(dt, st, pos)[2]; }
+                    { shiftId = amntOfUsers[1]; }
                     catch { }
                     dynamicButton.Text = n + " / 2";
                     if (n == 0)
@@ -131,9 +133,10 @@ namespace MediaBazaarTest
                     else if (j >= 12 && j < b)
                     { dep = Department.TVs; }
                     Position pos = Position.Employee;
-                    n = sdc.GetAmntOfUsersInShift(dt, st, pos, (int)dep)[1];
+                    int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos, (int)dep);
+                    n = amntOfUsers[0];
                     try
-                    { shiftId = sdc.GetAmntOfUsersInShift(dt, st, pos, (int)dep)[2]; }
+                    { shiftId = amntOfUsers[1]; }
                     catch { }
                     dynamicButton.Text = n + " / 3";
                     if (n == 0)
@@ -464,15 +467,14 @@ namespace MediaBazaarTest
             { MessageBox.Show("Please select a person."); }
         }
 
-
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             shifts[Convert.ToInt32(label21.Text)].AddShiftToDB(); //Add the shift to the DB.
             
-            dynamicButtons[Convert.ToInt32(label21.Text)].Text = shifts[Convert.ToInt32(label21.Text)].GetAllUsers().Count + " / 3";
+            dynamicButtons[Convert.ToInt32(label21.Text)].Text = shifts[Convert.ToInt32(label21.Text)].GetAllUsers().Count + $" / {userLimit}";
             if (shifts[Convert.ToInt32(label21.Text)].GetAllUsers().Count == 0)
             { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Green; }
-            else if (shifts[Convert.ToInt32(label21.Text)].GetAllUsers().Count == 3)
+            else if (shifts[Convert.ToInt32(label21.Text)].GetAllUsers().Count == userLimit)
             { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Red; }
             else { dynamicButtons[Convert.ToInt32(label21.Text)].BackColor = Color.Yellow; }
             int oo = 0;

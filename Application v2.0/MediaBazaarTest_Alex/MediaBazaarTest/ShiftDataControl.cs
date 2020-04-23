@@ -29,8 +29,9 @@ namespace MediaBazaarTest
             conn.Open();
             MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
             reader1.Read();
-            toReturn[1] = Convert.ToInt32(reader1["EN"]);
-            toReturn[2] = Convert.ToInt32(reader1["shift_id"]);
+            toReturn[0] = Convert.ToInt32(reader1["EN"]);
+            if (!(reader1["shift_id"] is DBNull))
+            { toReturn[1] = Convert.ToInt32(reader1["shift_id"]); }
             reader1.Close();
             conn.Close();
             return toReturn;
@@ -49,6 +50,7 @@ namespace MediaBazaarTest
                 indexes.Add(empId);
             }
             reader1.Close();
+            conn.Close();
             return indexes;
         }
 
