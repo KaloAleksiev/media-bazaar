@@ -31,19 +31,16 @@ namespace MediaBazaarTest
             dgvStock.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvStock.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dgvStock.RowTemplate.MinimumHeight = 54;
-            ShowStock(j);
+            ShowStock();
         }
 
-        public void ShowStock(int n)
+        public void ShowStock()
         {
             dgvStock.Rows.Clear();
             int k = 0;
-            if (5 + n * 5 > s.GetAllItems().Count)
-            { k = s.GetAllItems().Count; }
-            else { k = 5 + 5 * n; }
-            for (int i = 1 + 5 * n; i <= k; i++)
+            for (int i = 0; i < s.GetAllItems().Count; i++)
             {
-                Item item = s.GetAllItems()[i - 1];
+                Item item = s.GetAllItems()[i];
                 dgvStock.Rows.Add(new string[]
                                       {   item.Id.ToString(),
                                           item.Name,
@@ -54,35 +51,13 @@ namespace MediaBazaarTest
             }
         }
 
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            j = Convert.ToInt32(tbNr.Text);
-            j++;
-            tbNr.Text = j.ToString();
-            if (5 + Convert.ToInt32(tbNr.Text) * 5 > s.GetAllItems().Count)
-            { btnNext.Enabled = false; }
-            btnBack.Enabled = true;
-            ShowStock(j - 1);
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            j = Convert.ToInt32(tbNr.Text);
-            j--;
-            tbNr.Text = j.ToString();
-            if (tbNr.Text == "1")
-            { btnBack.Enabled = false; }
-            btnNext.Enabled = true;
-            ShowStock(j - 1);
-        }
-
         private void btnRequest_Click(object sender, EventArgs e)
         {
             foreach (Item i in s.GetAllItems())
             {
                 if (i.Id == Convert.ToInt32(dgvStock.SelectedRows[0].Cells[0].Value))
                 {
-                    RestockForm frm = new RestockForm(i, s);
+                    RestockForm frm = new RestockForm(i, s, uc.GetLoggedIn());
                     frm.Show();
                 }
             }

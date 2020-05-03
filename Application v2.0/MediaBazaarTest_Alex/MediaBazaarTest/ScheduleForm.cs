@@ -488,7 +488,13 @@ namespace MediaBazaarTest
             ResetAll();
             pShift.Visible = false;
         }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            ResetAll();
+            pShift.Visible = false;
+        }
 
         #endregion
+
     }
 }

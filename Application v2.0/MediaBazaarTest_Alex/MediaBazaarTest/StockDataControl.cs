@@ -55,12 +55,12 @@ namespace MediaBazaarTest
             else { return false; }
         }
 
-        public bool CreateRestockRequest(RestockRequest rr, /*User user*/ int userId)
+        public bool CreateRestockRequest(RestockRequest rr, User user)
         {
             MySqlCommand CreateRequest = new MySqlCommand("INSERT INTO restockrequest (item_id, amount, emp_id, date) VALUES (@itemId, @amount, @emp_id, @date)", conn);
             CreateRequest.Parameters.AddWithValue("@itemId", rr.Item.Id);
             CreateRequest.Parameters.AddWithValue("@amount", rr.Amount);
-            CreateRequest.Parameters.AddWithValue("@emp_id", userId);
+            CreateRequest.Parameters.AddWithValue("@emp_id", user.Id);
             CreateRequest.Parameters.AddWithValue("@date", rr.Date.ToString("yyyy-MM-dd"));
             conn.Open();
             int k = CreateRequest.ExecuteNonQuery();

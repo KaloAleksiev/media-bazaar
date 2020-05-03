@@ -31,9 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.tbNr = new System.Windows.Forms.TextBox();
             this.dgvStock = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,46 +59,12 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(492, 34);
+            this.label1.Location = new System.Drawing.Point(357, 45);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 41);
             this.label1.TabIndex = 13;
             this.label1.Text = "Stocks";
-            // 
-            // btnBack
-            // 
-            this.btnBack.Enabled = false;
-            this.btnBack.Location = new System.Drawing.Point(387, 521);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 17;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // btnNext
-            // 
-            this.btnNext.Location = new System.Drawing.Point(573, 521);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
-            this.btnNext.TabIndex = 16;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // tbNr
-            // 
-            this.tbNr.Location = new System.Drawing.Point(467, 521);
-            this.tbNr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbNr.Name = "tbNr";
-            this.tbNr.ReadOnly = true;
-            this.tbNr.Size = new System.Drawing.Size(100, 22);
-            this.tbNr.TabIndex = 15;
-            this.tbNr.Text = "1";
-            this.tbNr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dgvStock
             // 
@@ -119,7 +82,7 @@
             this.dgvStock.RowHeadersWidth = 51;
             this.dgvStock.RowTemplate.Height = 73;
             this.dgvStock.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvStock.Size = new System.Drawing.Size(1071, 364);
+            this.dgvStock.Size = new System.Drawing.Size(803, 364);
             this.dgvStock.TabIndex = 14;
             // 
             // id
@@ -164,7 +127,7 @@
             // 
             // btnRequest
             // 
-            this.btnRequest.Location = new System.Drawing.Point(928, 520);
+            this.btnRequest.Location = new System.Drawing.Point(332, 505);
             this.btnRequest.Name = "btnRequest";
             this.btnRequest.Size = new System.Drawing.Size(158, 23);
             this.btnRequest.TabIndex = 18;
@@ -177,15 +140,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(1099, 564);
+            this.ClientSize = new System.Drawing.Size(827, 564);
             this.Controls.Add(this.btnRequest);
-            this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.tbNr);
             this.Controls.Add(this.dgvStock);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StockForm";
             this.Text = "StockForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -198,9 +158,6 @@
         #endregion
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.TextBox tbNr;
         private System.Windows.Forms.DataGridView dgvStock;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;

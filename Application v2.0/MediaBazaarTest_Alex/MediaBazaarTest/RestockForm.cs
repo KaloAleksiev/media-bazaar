@@ -15,11 +15,13 @@ namespace MediaBazaarTest
         Item item;
         Stock s;
         StockDataControl sdc;
-        public RestockForm(Item i, Stock s)
+        User currentUser;
+        public RestockForm(Item i, Stock s, User u)
         {
             InitializeComponent();
             this.item = i;
             this.s = s;
+            currentUser = u;
             sdc = new StockDataControl();
             lbInfo.Text += item.Name;
             lbAutoRequest.Text = $"Auto Request: {item.AutoRestock.ToString()}.";
@@ -33,7 +35,7 @@ namespace MediaBazaarTest
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (sdc.CreateRestockRequest(s.CreateRequest(item, Convert.ToInt32(nudAmount.Value), 5), 5))
+            if (sdc.CreateRestockRequest(s.CreateRequest(item, Convert.ToInt32(nudAmount.Value), currentUser.Id), currentUser))
             {
                 MessageBox.Show("Restock Request sent.");
                 this.Close();
