@@ -1,9 +1,56 @@
 <?php
-include('login.php');
-if(isset($_SESSION['login_user'])){
-    header("location: Home.php");
+
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "website";
+$message = "";
+try
+{
+    //conection to database
+  $connect = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+  //handling exeptions
+  $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  if(isset($_POST["login"]))
+  {//check if textboxes are empty
+      if(empty($_POST["username"]) || empty($_POST["password"]))
+      {
+         $message = '<label> Make sure you fill up yor username and password</label>';
+      }
+      else
+      {
+          $query = "SELECT * FROM user WHERE email = :username AND password = :password";
+          $statement = $connect->prepare($query);
+          $statement->execute(
+              array(
+                  'username'     =>     $_POST["username"],
+                  'password'     =>     $_POST["password"]
+              )
+              );
+              $result = $statement->fetch();
+              $count = $statement->rowCount();
+              if($count > 0)
+              {
+                $message = '<label>Heey!</label>';
+                  $_SESSION['username'] = $result['username'];
+                  header('Location: Home.php');
+              }
+              else{
+                  $message = '<label>Wrong data!</label>';
+              }
+
+      }
+  }
 }
+catch(PDOException $error)
+{
+    //display error message
+ $message = $error->getMessage();
+}
+
 ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -20,16 +67,23 @@ if(isset($_SESSION['login_user'])){
         <div class="img">
         </div>
         <div class="login-content">
-             
+     
             <form action="" method="post">
-            
+           
                 <h2 class="title">Welcome</h2>
+                <?php
+                if(isset($message))
+                {
+                    echo'<label class="text-danger">'.$message.'</label>';
+                }
+                ?>
                 <div class="input-div one">
+                
                     <div class="i">
                     </div>
                     <div class="div">
                         <h5>Username</h5>
-                        <input type="text" class="input" name="username" required>
+                        <input type="text" class="form-control" name="username" >
                     </div>
                 </div>
                 <div class="input-div pass">
@@ -37,12 +91,12 @@ if(isset($_SESSION['login_user'])){
                     </div>
                     <div class="div">
                         <h5>Password</h5>
-                        <input type="password" class="input" name="password" required>
+                        <input type="password" class="form-control" name="password" >
                     </div>
                 </div>
                
-                <input name="submit" type="submit"  value=" Login ">
-                <span><?php echo $error; ?></span>
+                <input name="login" type="submit" class="btn"  value="Login">
+                
             </form>
         </div>
     </div>
@@ -50,7 +104,7 @@ if(isset($_SESSION['login_user'])){
 </html>
 
 <script>
-const inputs = document.querySelectorAll(".input");
+const inputs = document.querySelectorAll(".form-control");
 
 
 function addcl(){

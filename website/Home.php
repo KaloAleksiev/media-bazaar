@@ -1,9 +1,17 @@
-<!--?php
-include('config.php');
-if(!isset($_SESSION['login_user'])){
-header("location: index.php"); // Redirecting To Home Page
-}
-?-->
+<!--?php  
+ //login_success.php  
+ session_start();  
+ if(isset($_SESSION["username"]))  
+ {  
+      echo '<h3>Login Success, Welcome - '.$_SESSION["username"].'</h3>';  
+ }  
+ else  
+ {  
+      header("location:login.php");  
+ }  
+ ?--> 
+
+
 <!DOCTYPE html>
 <html>
 
@@ -14,6 +22,7 @@ header("location: index.php"); // Redirecting To Home Page
 
 <body>
 <?php include('Navbar.php');?>
+ 
 
 <div class="nextShift">
 <h1>Your next shift is going to be on :</h1>
