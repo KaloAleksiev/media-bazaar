@@ -1,5 +1,7 @@
 <?php
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -32,8 +34,8 @@ try
               if($count > 0)
               {
                 $message = '<label>Heey!</label>';
-                  $_SESSION['username'] = $result['username'];
-                  header('Location: Home.php');
+                  $_SESSION['username'] = $result['email'];
+                  include('Home.php');
               }
               else{
                   $message = '<label>Wrong data!</label>';

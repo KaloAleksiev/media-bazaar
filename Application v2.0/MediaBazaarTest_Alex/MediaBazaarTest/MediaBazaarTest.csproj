@@ -55,6 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annoucement.cs" />
+    <Compile Include="AnnoucemntDataControl.cs" />
+    <Compile Include="Annoucemnts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Annoucemnts.Designer.cs">
+      <DependentUpon>Annoucemnts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Department.cs" />
     <Compile Include="AddEmployeeForm.cs">
       <SubType>Form</SubType>
@@ -109,6 +117,9 @@
     <Compile Include="UserDataControl.cs" />
     <EmbeddedResource Include="AddEmployeeForm.resx">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Annoucemnts.resx">
+      <DependentUpon>Annoucemnts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
