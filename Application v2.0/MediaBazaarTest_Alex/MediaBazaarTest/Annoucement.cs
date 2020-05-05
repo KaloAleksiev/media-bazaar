@@ -8,10 +8,10 @@ namespace MediaBazaarTest
 {
   public  class Annoucement
     { 
+        
         private DateTime startDate;
         private DateTime endDate;
         private User author;
-        private int authorID;
         private string title;
         private string text;
         public Annoucement(DateTime startDate, DateTime endDate, string title, string text, User author)
@@ -22,11 +22,28 @@ namespace MediaBazaarTest
             this.author = author;
             this.text = text;
         }
-        private void AddAnnoucemnt( )
-        { 
-
+        public DateTime StartDate
+        {
+            get { return this.startDate; }
         }
-        private void EditAnnoucemnt()
+        public DateTime EndDate
+        {
+            get { return this.endDate; }
+        }
+        public User Author
+        {
+            get { return this.author; }
+        }
+        public string Title
+        {
+            get { return this.title; }
+        }
+        public string Text
+        {
+            get { return this.text; }
+        }
+        
+        private void EditAnnoucemnt(string title)
         {
 
         }
@@ -34,5 +51,11 @@ namespace MediaBazaarTest
         {
 
         }
+        public string ToString()
+        {
+            return $"{title} : {startDate.ToString("dd MMMM yyyy")} - {endDate.ToString("dd MMMM yyyy")}";
+
+        }
+
     }
 }

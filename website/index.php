@@ -35,7 +35,7 @@ try
               {
                 $message = '<label>Heey!</label>';
                   $_SESSION['username'] = $result['email'];
-                  include('Home.php');
+                  header('location:Home.php');
               }
               else{
                   $message = '<label>Wrong data!</label>';

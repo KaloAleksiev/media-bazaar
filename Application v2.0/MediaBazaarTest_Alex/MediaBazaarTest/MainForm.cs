@@ -92,6 +92,11 @@ namespace MediaBazaarTest
             StatisticsForm s = new StatisticsForm();
             s.Show();
         }
+        private void btnAnnoucement_Click(object sender, EventArgs e)
+        {
+            Annoucemnts a = new Annoucemnts(uc);
+            a.Show();
+        }
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
@@ -126,6 +131,7 @@ namespace MediaBazaarTest
             btnSchedule.Visible = true;
             btnStatistics.Visible = false;
             btnStocks.Visible = true;
+            btnAnnoucement.Visible = true;
         }
 
         private void ButtonsForEmpDepWorker()
@@ -235,5 +241,6 @@ namespace MediaBazaarTest
         }
         #endregion
 
+        
     }
 }
