@@ -90,6 +90,13 @@ namespace MediaBazaarTest
         public void ChangeARLimit(int arLimit)
         { this.ARLimit = arLimit; }
 
+        public void UpdateItem(string name, string desc, string dept)
+        {
+            this.Name = name;
+            this.Description = desc;
+            this.Department = dept;
+        }
+
         public string GetDetailedInfo()
         { return $"x{this.amountInStock} \t {this.name} \t {this.description} \t Auto-restock limit: {this.arLimit}"; }
     }

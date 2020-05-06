@@ -28,6 +28,15 @@ namespace MediaBazaarTest
         public void AddItem(Item item)
         { items.Add(item); }
 
+        public void DeleteItem(Item item)
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (item.Id == items[i].Id)
+                { items.RemoveAt(i); }
+            }
+        }
+
         public List<Item> GetAllItems()
         { return items; }
 
@@ -63,7 +72,7 @@ namespace MediaBazaarTest
         }
 
         public void AddAllStock(List<Item> i)
-        { items = i; }       
+        { items = i; }
 
         public RestockRequest CreateRequest(Item item, int amount, int userId)
         {

@@ -16,11 +16,13 @@ namespace MediaBazaarTest
         Stock s;
         StockDataControl sdc;
         User currentUser;
+        bool auto;
         public RestockForm(Item i, Stock s, User u)
         {
             InitializeComponent();
             this.item = i;
             this.s = s;
+            auto = item.AutoRestock;
             currentUser = u;
             sdc = new StockDataControl();
             lbInfo.Text += item.Name;
@@ -44,7 +46,11 @@ namespace MediaBazaarTest
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
-        { this.Close(); }
+        {
+            while (item.AutoRestock != auto)
+            { item.ToggleAutoRequest(); }
+            this.Close();
+        }
 
         private void btnAutoRequest_Click(object sender, EventArgs e)
         {
@@ -57,6 +63,7 @@ namespace MediaBazaarTest
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            auto = item.AutoRestock;
             item.ChangeARLimit(Convert.ToInt32(nudAmount.Value));
             if (sdc.ChangeAutoRequest(item))
             { MessageBox.Show("Auto Request updated."); }
