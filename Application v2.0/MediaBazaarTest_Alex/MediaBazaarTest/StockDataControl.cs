@@ -44,13 +44,17 @@ namespace MediaBazaarTest
         public bool ChangeAutoRequest(Item i)
         {
             conn.Open();
-            MySqlCommand UpdateAR = new MySqlCommand("UPDATE item SET auto_restock = @autoRestock, ar_limit = @arLimit WHERE item_id = @id", conn);
+            MySqlCommand UpdateAR = new MySqlCommand("UPDATE item SET auto_restock = @autoRestock WHERE item_id = @id", conn);
             UpdateAR.Parameters.AddWithValue("@autoRestock", i.AutoRestock);
-            UpdateAR.Parameters.AddWithValue("@arLimit", i.ARLimit);
             UpdateAR.Parameters.AddWithValue("@id", i.Id);
             int k = UpdateAR.ExecuteNonQuery();
             conn.Close();
-            return Convert.ToBoolean(k);
+            conn.Open();
+            MySqlCommand UpdateARL = new MySqlCommand("UPDATE item SET ar_limit = @arLimit WHERE item_id = @id", conn);
+            UpdateARL.Parameters.AddWithValue("@arLimit", i.ARLimit);
+            k += UpdateAR.ExecuteNonQuery();
+            conn.Close();
+            return Convert.ToBoolean(k - 1);
         }
 
         public bool CreateRestockRequest(RestockRequest rr, User user)
