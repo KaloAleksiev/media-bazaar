@@ -3,14 +3,14 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
   }
 $host = "localhost";
-$username = "root";
-$password = "";
+$username = "dbi427262";
+$password = "parola1234";
 $database = "website";
 $message = "";
 try
 {
     //conection to database
-  $connect = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+  $connect = new PDO("mysql:host=studmysql01.fhict.local;dbname=dbi427262", $username,  $password);
   //handling exeptions
   $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   if(isset($_POST["login"]))
@@ -35,7 +35,7 @@ try
               {
                 $message = '<label>Heey!</label>';
                   $_SESSION['username'] = $result['email'];
-                  header('location:Home.php');
+                  header('location: include/Home.php');
               }
               else{
                   $message = '<label>Wrong data!</label>';
