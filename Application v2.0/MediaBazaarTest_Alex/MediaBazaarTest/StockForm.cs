@@ -42,8 +42,8 @@ namespace MediaBazaarTest
             for (int i = 0; i < items.Count; i++)
             {
                 Item item = items[i];
-                dgvStock.Rows.Add(new string[]
-                                      {   item.Id.ToString(),
+                dgvStock.Rows.Add(new object[]
+                                      {   item.Id,
                                           item.Name,
                                           item.Description.Replace(",", ",\n"),
                                           item.Department,

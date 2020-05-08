@@ -64,7 +64,7 @@ namespace MediaBazaarTest
         private void btnSave_Click(object sender, EventArgs e)
         {
             auto = item.AutoRestock;
-            item.ChangeARLimit(Convert.ToInt32(nudAmount.Value));
+            item.ChangeARLimit(Convert.ToInt32(nudLimit.Value));
             if (sdc.ChangeAutoRequest(item))
             { MessageBox.Show("Auto Request updated."); }
             else { MessageBox.Show("Something went wrong."); }

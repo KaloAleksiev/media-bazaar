@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 
 namespace MediaBazaarTest
 {
@@ -47,12 +48,16 @@ namespace MediaBazaarTest
             MySqlCommand UpdateAR = new MySqlCommand("UPDATE item SET auto_restock = @autoRestock WHERE item_id = @id", conn);
             UpdateAR.Parameters.AddWithValue("@autoRestock", i.AutoRestock);
             UpdateAR.Parameters.AddWithValue("@id", i.Id);
+            UpdateAR.Parameters.AddWithValue("@arLimit", i.ARLimit);
+            MessageBox.Show(i.AutoRestock.ToString());
+            MessageBox.Show(i.Id.ToString());
             int k = UpdateAR.ExecuteNonQuery();
-            conn.Close();
-            conn.Open();
+            MessageBox.Show(k.ToString());
             MySqlCommand UpdateARL = new MySqlCommand("UPDATE item SET ar_limit = @arLimit WHERE item_id = @id", conn);
             UpdateARL.Parameters.AddWithValue("@arLimit", i.ARLimit);
+            UpdateARL.Parameters.AddWithValue("@id", i.Id);
             k += UpdateAR.ExecuteNonQuery();
+            MessageBox.Show(k.ToString());
             conn.Close();
             return Convert.ToBoolean(k - 1);
         }
@@ -126,5 +131,6 @@ namespace MediaBazaarTest
             conn.Close();
             return Convert.ToBoolean(j);
         }
+        
     }
 }
