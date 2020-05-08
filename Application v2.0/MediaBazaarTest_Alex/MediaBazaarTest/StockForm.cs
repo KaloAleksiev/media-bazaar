@@ -47,7 +47,7 @@ namespace MediaBazaarTest
                                           item.Name,
                                           item.Description.Replace(",", ",\n"),
                                           item.Department,
-                                          item.AmountInStock.ToString()
+                                          item.AmountInStock
                                       });
             }
         }

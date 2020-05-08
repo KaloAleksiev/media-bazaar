@@ -49,7 +49,7 @@
             // 
             // btnAddItem
             // 
-            this.btnAddItem.Location = new System.Drawing.Point(493, 509);
+            this.btnAddItem.Location = new System.Drawing.Point(703, 509);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(158, 31);
             this.btnAddItem.TabIndex = 32;
@@ -69,7 +69,7 @@
             // 
             // btnEditItem
             // 
-            this.btnEditItem.Location = new System.Drawing.Point(657, 509);
+            this.btnEditItem.Location = new System.Drawing.Point(867, 509);
             this.btnEditItem.Name = "btnEditItem";
             this.btnEditItem.Size = new System.Drawing.Size(158, 31);
             this.btnEditItem.TabIndex = 30;
@@ -82,7 +82,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(548, 93);
+            this.label2.Location = new System.Drawing.Point(758, 87);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 41);
@@ -91,7 +91,7 @@
             // 
             // tbSearch
             // 
-            this.tbSearch.Location = new System.Drawing.Point(670, 106);
+            this.tbSearch.Location = new System.Drawing.Point(883, 100);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(142, 22);
             this.tbSearch.TabIndex = 28;
@@ -99,7 +99,7 @@
             // 
             // btnRequest
             // 
-            this.btnRequest.Location = new System.Drawing.Point(329, 509);
+            this.btnRequest.Location = new System.Drawing.Point(539, 509);
             this.btnRequest.Name = "btnRequest";
             this.btnRequest.Size = new System.Drawing.Size(158, 31);
             this.btnRequest.TabIndex = 27;
@@ -123,7 +123,7 @@
             this.dgvStock.RowHeadersWidth = 51;
             this.dgvStock.RowTemplate.Height = 73;
             this.dgvStock.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvStock.Size = new System.Drawing.Size(803, 364);
+            this.dgvStock.Size = new System.Drawing.Size(1013, 364);
             this.dgvStock.TabIndex = 26;
             // 
             // id
@@ -171,7 +171,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(354, 36);
+            this.label1.Location = new System.Drawing.Point(489, 35);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 41);
@@ -195,7 +195,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(827, 564);
+            this.ClientSize = new System.Drawing.Size(1037, 564);
             this.Controls.Add(this.btnAddItem);
             this.Controls.Add(this.btnDeleteItem);
             this.Controls.Add(this.btnEditItem);
