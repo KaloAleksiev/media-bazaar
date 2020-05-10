@@ -173,25 +173,39 @@ form {
 /*---------Stock--------*/
 /* Styling for the stock table. */
 table { 
-    margin-top: 50px;
+    margin-top: 20px;
     width: 100%;
     border: 4px double black;
     border-collapse: collapse;
+    font: bold 15px Arial;
 }
+table tr:nth-child(even){background-color: #f2f2f2;}
 th { 
     text-align: left; 
-    background: #ccc; 
+    background: #740c11; 
+    color: white;
     padding: 5px;
     border: 1px solid black; 
 } 
 td { 
     padding: 5px; 
-    border: 1px solid black;
+    border: 1px solid #740c11;
 }
 
 /* Styling for the stock searchbar. */
-.searchBar{
-    position:relative;
+.who{
+    margin-top: 70px;
+    /*margin-left: 88%;*/
+    position: relative;
+    display: block;
+    background: 0 0;
+    font-family: Poppins-Medium;
+    font-size: 18px;
+    color: #333;
+    line-height: 1.2;
+    padding: 0 5px;
+    border: none;
+    font: bold 20px Arial;
  }
 
  .searchResult{

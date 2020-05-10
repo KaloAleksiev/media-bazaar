@@ -2,7 +2,7 @@ $(function(){
     
     $('.who').bind("change keyup input click", function() {
         console.log(this.value);
-        if(this.value.length >= 2){
+        if(this.value.length >= 0){
             $.ajax({
                 type: 'POST',
                 url: "stock.php", 
