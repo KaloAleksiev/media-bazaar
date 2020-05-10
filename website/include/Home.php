@@ -13,7 +13,7 @@ if(isset($_SESSION['username']))
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="Styles.css">
+  <link rel="stylesheet" type="text/css" href="../Styles.css">
 
 </head>
 
