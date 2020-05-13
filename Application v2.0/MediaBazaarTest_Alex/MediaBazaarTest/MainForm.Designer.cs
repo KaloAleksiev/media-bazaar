@@ -624,6 +624,7 @@
             this.btnAnnoucement.UseVisualStyleBackColor = false;
             this.btnAnnoucement.Visible = false;
             this.btnAnnoucement.Click += new System.EventHandler(this.btnAnnoucement_Click);
+            this.btnAnnoucement.MouseHover += new System.EventHandler(this.btnAnnoucement_Click);
             // 
             // MainForm
             // 
