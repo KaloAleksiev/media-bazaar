@@ -5,7 +5,7 @@
           <a>Schedule</a>
           <a href="stock.php">Stock</a>
           <a href="profile.php">Profile</a>
-          <a>Home</a>
+          <a href="Home.php">Home</a>
         </div>
       </div>
 </div>

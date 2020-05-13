@@ -32,25 +32,25 @@ $now = new DateTime();
 $conn = new PDO("mysql:host=studmysql01.fhict.local;dbname=dbi427262", $username,  $password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = "select `date`
-from your_table
-where date(`date`) = (select min(date(`date`))
-    from your_table
-    where date(`date`) > date(now())
-);";
-$sth = $conn->prepare($sql);
-$sth->execute();
-$succ = $sth->rowCount();
-if ($succ > 0)
-{
-    $result = $sth->fetchAll();
-    // output data of each row
-    foreach($result as $row) {
-        echo "<br> Title: ". $row['title']. " - Name: ". $row['text'] . "<br>";
-    }
-} else {
-    echo "0 results";
-}
+// $sql = "select `date`
+// from your_table
+// where date(`date`) = (select min(date(`date`))
+//     from your_table
+//     where date(`date`) > date(now())
+// );";
+// $sth = $conn->prepare($sql);
+// $sth->execute();
+// $succ = $sth->rowCount();
+// if ($succ > 0)
+// {
+//     $result = $sth->fetchAll();
+//     // output data of each row
+//     foreach($result as $row) {
+//         echo "<br> Title: ". $row['title']. " - Name: ". $row['text'] . "<br>";
+//     }
+// } else {
+//     echo "0 results";
+// }
 $conn=null;
 ?>
 </div>
