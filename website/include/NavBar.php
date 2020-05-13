@@ -4,7 +4,7 @@
           <a href="logout.php">Log Out</a>
           <a>Schedule</a>
           <a href="stock.php">Stock</a>
-          <a>Profile</a>
+          <a href="profile.php">Profile</a>
           <a>Home</a>
         </div>
       </div>

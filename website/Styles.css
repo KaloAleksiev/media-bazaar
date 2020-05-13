@@ -340,4 +340,29 @@ a:hover {
     background-position: right;
 }
 
+/*----------------------*/
+.changeAddressForm{
+    border: #740e0e solid 1px;
+    font-size: x-large;
+    display:block;
+    padding: 20px;
+    float: right;
+    margin: auto;   
+}
+
+.changePassForm{
+    float:left;
+    border: #740e0e solid 1px;
+    font-size: x-large;    
+    display:block;
+    padding: 20px;
+    margin: auto;
+    
+}
+
+#containerChangeInfo{
+    margin: auto;
+    width: 70%;
+    padding-top: 100px;
+}
 
