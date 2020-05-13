@@ -64,6 +64,8 @@
             this.pStocksInfo = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.pStatsInfo = new System.Windows.Forms.Panel();
+            this.pnAnnoucemnts = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnEmployee = new System.Windows.Forms.Button();
             this.btnStatistics = new System.Windows.Forms.Button();
@@ -78,6 +80,7 @@
             this.PScheduleInfo.SuspendLayout();
             this.pStocksInfo.SuspendLayout();
             this.pStatsInfo.SuspendLayout();
+            this.pnAnnoucemnts.SuspendLayout();
             this.SuspendLayout();
             // 
             // pLogin
@@ -351,7 +354,7 @@
             this.btnLogOut.Location = new System.Drawing.Point(1293, 29);
             this.btnLogOut.Margin = new System.Windows.Forms.Padding(15, 14, 15, 14);
             this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.btnLogOut.Padding = new System.Windows.Forms.Padding(3);
             this.btnLogOut.Size = new System.Drawing.Size(182, 63);
             this.btnLogOut.TabIndex = 8;
             this.btnLogOut.Text = "Log Out";
@@ -489,6 +492,7 @@
             // 
             // pStatsInfo
             // 
+            this.pStatsInfo.Controls.Add(this.pnAnnoucemnts);
             this.pStatsInfo.Controls.Add(this.label6);
             this.pStatsInfo.Location = new System.Drawing.Point(1002, 511);
             this.pStatsInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -496,6 +500,28 @@
             this.pStatsInfo.Size = new System.Drawing.Size(388, 202);
             this.pStatsInfo.TabIndex = 29;
             this.pStatsInfo.Visible = false;
+            // 
+            // pnAnnoucemnts
+            // 
+            this.pnAnnoucemnts.Controls.Add(this.label8);
+            this.pnAnnoucemnts.Location = new System.Drawing.Point(5, 6);
+            this.pnAnnoucemnts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnAnnoucemnts.Name = "pnAnnoucemnts";
+            this.pnAnnoucemnts.Size = new System.Drawing.Size(388, 202);
+            this.pnAnnoucemnts.TabIndex = 30;
+            this.pnAnnoucemnts.Visible = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.75F);
+            this.label8.Location = new System.Drawing.Point(8, 26);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(324, 128);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "- Add an annoucemnt\r\n- View all annoucemnts\r\n- Delete an annoucemnt \r\n- Edit an a" +
+    "nnoucemnt";
             // 
             // label6
             // 
@@ -518,7 +544,7 @@
             this.btnEmployee.Location = new System.Drawing.Point(100, 215);
             this.btnEmployee.Margin = new System.Windows.Forms.Padding(15, 14, 15, 14);
             this.btnEmployee.Name = "btnEmployee";
-            this.btnEmployee.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.btnEmployee.Padding = new System.Windows.Forms.Padding(3);
             this.btnEmployee.Size = new System.Drawing.Size(208, 202);
             this.btnEmployee.TabIndex = 4;
             this.btnEmployee.Text = "Employee";
@@ -537,7 +563,7 @@
             this.btnStatistics.Location = new System.Drawing.Point(786, 511);
             this.btnStatistics.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.btnStatistics.Name = "btnStatistics";
-            this.btnStatistics.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStatistics.Padding = new System.Windows.Forms.Padding(2);
             this.btnStatistics.Size = new System.Drawing.Size(208, 202);
             this.btnStatistics.TabIndex = 20;
             this.btnStatistics.Text = "Statistics";
@@ -556,7 +582,7 @@
             this.btnStocks.Location = new System.Drawing.Point(786, 215);
             this.btnStocks.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.btnStocks.Name = "btnStocks";
-            this.btnStocks.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStocks.Padding = new System.Windows.Forms.Padding(2);
             this.btnStocks.Size = new System.Drawing.Size(208, 202);
             this.btnStocks.TabIndex = 19;
             this.btnStocks.Text = "Stocks";
@@ -575,7 +601,7 @@
             this.btnSchedule.Location = new System.Drawing.Point(100, 511);
             this.btnSchedule.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.btnSchedule.Name = "btnSchedule";
-            this.btnSchedule.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSchedule.Padding = new System.Windows.Forms.Padding(2);
             this.btnSchedule.Size = new System.Drawing.Size(208, 202);
             this.btnSchedule.TabIndex = 18;
             this.btnSchedule.Text = "Schedule";
@@ -590,9 +616,9 @@
             this.btnAnnoucement.BackColor = System.Drawing.Color.Maroon;
             this.btnAnnoucement.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.btnAnnoucement.ForeColor = System.Drawing.Color.Snow;
-            this.btnAnnoucement.Location = new System.Drawing.Point(791, 537);
+            this.btnAnnoucement.Location = new System.Drawing.Point(787, 511);
             this.btnAnnoucement.Name = "btnAnnoucement";
-            this.btnAnnoucement.Size = new System.Drawing.Size(197, 167);
+            this.btnAnnoucement.Size = new System.Drawing.Size(207, 202);
             this.btnAnnoucement.TabIndex = 30;
             this.btnAnnoucement.Text = "Annoucements";
             this.btnAnnoucement.UseVisualStyleBackColor = false;
@@ -606,8 +632,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1509, 789);
-            this.Controls.Add(this.btnAnnoucement);
             this.Controls.Add(this.pLogin);
+            this.Controls.Add(this.btnAnnoucement);
             this.Controls.Add(this.pStatsInfo);
             this.Controls.Add(this.PScheduleInfo);
             this.Controls.Add(this.label1);
@@ -642,6 +668,8 @@
             this.pStocksInfo.PerformLayout();
             this.pStatsInfo.ResumeLayout(false);
             this.pStatsInfo.PerformLayout();
+            this.pnAnnoucemnts.ResumeLayout(false);
+            this.pnAnnoucemnts.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -689,5 +717,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnAnnoucement;
+        private System.Windows.Forms.Panel pnAnnoucemnts;
+        private System.Windows.Forms.Label label8;
     }
 }

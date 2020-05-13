@@ -239,8 +239,10 @@ namespace MediaBazaarTest
             pForgottenPass.Visible = false;
             lblForgottenPass.Visible = true;
         }
+
+
         #endregion
 
-        
+       
     }
 }

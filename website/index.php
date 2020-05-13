@@ -34,7 +34,8 @@ try
               if($count > 0)
               {
                 $message = '<label>Heey!</label>';
-                  $_SESSION['username'] = $result['email'];
+                  $_SESSION['name'] = $result['firstName'];
+                  $_SESSION['user_id'] = $result['id'];
                   header('location: include/Home.php');
               }
               else{

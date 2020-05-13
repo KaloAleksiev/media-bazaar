@@ -51,7 +51,7 @@
             this.rtbAnnoucemntText.Name = "rtbAnnoucemntText";
             this.rtbAnnoucemntText.Size = new System.Drawing.Size(466, 138);
             this.rtbAnnoucemntText.TabIndex = 0;
-            this.rtbAnnoucemntText.Text = "";
+            this.rtbAnnoucemntText.Text = "Annoucemnt Text";
             // 
             // dtpstart_date
             // 
@@ -79,9 +79,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(557, 500);
+            this.btnDelete.Location = new System.Drawing.Point(557, 494);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(493, 51);
+            this.btnDelete.Size = new System.Drawing.Size(566, 57);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete Annoucemnt";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -89,7 +89,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(12, 472);
+            this.btnEdit.Location = new System.Drawing.Point(12, 494);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(496, 62);
             this.btnEdit.TabIndex = 5;
@@ -106,11 +106,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(61, 42);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(60, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.Size = new System.Drawing.Size(54, 25);
             this.label1.TabIndex = 8;
-            this.label1.Text = "label1";
+            this.label1.Text = "Title";
             // 
             // dgvANnoucemnts
             // 
@@ -126,7 +128,7 @@
             this.dgvANnoucemnts.RowHeadersWidth = 51;
             this.dgvANnoucemnts.RowTemplate.Height = 73;
             this.dgvANnoucemnts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvANnoucemnts.Size = new System.Drawing.Size(493, 455);
+            this.dgvANnoucemnts.Size = new System.Drawing.Size(566, 455);
             this.dgvANnoucemnts.TabIndex = 15;
             // 
             // Column1
@@ -141,37 +143,43 @@
             this.Column2.HeaderText = "Start Date";
             this.Column2.MinimumWidth = 8;
             this.Column2.Name = "Column2";
+            this.Column2.Width = 150;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "End Date";
             this.Column3.MinimumWidth = 8;
             this.Column3.Name = "Column3";
+            this.Column3.Width = 150;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(86, 321);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 20);
+            this.label2.Size = new System.Drawing.Size(101, 25);
             this.label2.TabIndex = 16;
-            this.label2.Text = "label2";
+            this.label2.Text = "End Date";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(86, 254);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(85, 249);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 20);
+            this.label3.Size = new System.Drawing.Size(109, 25);
             this.label3.TabIndex = 17;
-            this.label3.Text = "label3";
+            this.label3.Text = "Start Date";
             // 
             // Annoucemnts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(1074, 619);
+            this.ClientSize = new System.Drawing.Size(1148, 619);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvANnoucemnts);

@@ -3,11 +3,14 @@ session_start();
 
 $username = "dbi427262";
 $password = "parola1234";
-if(isset($_SESSION['username']))  
+//if(isset($_SESSION['username']))  
+ //{  
+  //    echo '<h3>Login Success, Welcome - ' . $_SESSION['username'] . '</h3>';  
+// }  
+ if(isset($_SESSION['name']))  
  {  
-      echo '<h3>Login Success, Welcome - ' . $_SESSION['username'] . '</h3>';  
+      echo '<h3>Login Success, Welcome - ' . $_SESSION['name'] . '</h3>';  
  }  
- 
  ?> 
 <!DOCTYPE html>
 <html>
@@ -31,7 +34,7 @@ if(isset($_SESSION['username']))
 $conn = new PDO("mysql:host=studmysql01.fhict.local;dbname=dbi427262", $username,  $password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = "SELECT title AS title, text AS text FROM announcement";
+$sql = "SELECT title AS title, text AS text FROM announcement WHERE end_date > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 DAY)>";
 $sth = $conn->prepare($sql);
 $sth->execute();
 $succ = $sth->rowCount();
