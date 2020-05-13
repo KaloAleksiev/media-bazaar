@@ -56,7 +56,7 @@ $conn=null;
 </div>
 
 <div class ="annoucements"> 
-<h1>Annoucemnts!</h1>
+<h1>Announcements!</h1>
 <?php
 $now = new DateTime();
 $conn = new PDO("mysql:host=studmysql01.fhict.local;dbname=dbi427262", $username,  $password);
