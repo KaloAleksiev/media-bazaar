@@ -34,22 +34,21 @@ namespace MediaBazaarTest
         {
             Annoucement a;
             MySqlConnection connection = new MySqlConnection(conectionString);
-            MySqlCommand cmd = new MySqlCommand($"SELECT  title, author_id, start_date, end_date, text  FROM announcement WHERE title = '{title}' ;", connection);
+            MySqlCommand cmd = new MySqlCommand($"SELECT announcement_id, title, author_id, start_date, end_date, text  FROM announcement WHERE title = '{title}' ;", connection);
             connection.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             if (reader.HasRows)
             {
-                int id = Convert.ToInt32(reader["annoucement_id"]);
+                int id = Convert.ToInt32(reader["announcement_id"]);
                 string aTitle = Convert.ToString(reader["title"]);
                 int author_id = Convert.ToInt32(reader["author_id"]);
                 DateTime startDate = Convert.ToDateTime(reader["start_date"]);
                 DateTime end_date = Convert.ToDateTime(reader["end_date"]);
                 string text = Convert.ToString(reader["text"]);
-               User user = uc.GetUserByID(author_id);
                 reader.Close();
                 connection.Close();
-                a = new Annoucement(startDate, end_date, aTitle, text, user);
+                a = new Annoucement(startDate, end_date, aTitle, text, author_id, id);
                 return a;
             }
             reader.Close();
@@ -79,6 +78,33 @@ namespace MediaBazaarTest
             reader.Close();
             connection.Close();
             return annoucements;
+        }
+
+        public void UpdateAnnoucemnt(Annoucement a)
+        {
+            MySqlConnection conn = new MySqlConnection(conectionString);
+            string update = $"UPDATE announcement SET title = @title, author_id = @authorid, start_date = @startdate, end_date = @enddate, text = @text WHERE announcement_id = @id";
+            MySqlCommand cmd = new MySqlCommand(update, conn);
+            cmd.Parameters.AddWithValue("@title", a.Title);
+            cmd.Parameters.AddWithValue("@authorid", a.AuthorID);
+            cmd.Parameters.AddWithValue("@startdate", a.StartDate);
+            cmd.Parameters.AddWithValue("@enddate", a.EndDate);
+            cmd.Parameters.AddWithValue("@text", a.Text);
+            cmd.Parameters.AddWithValue("@id", a.ID);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void DeleteAnnoucement(string title)
+        {
+            MySqlConnection conn = new MySqlConnection(conectionString);
+            string update = $"DELETE FROM announcement  WHERE title = @title";
+            MySqlCommand cmd = new MySqlCommand(update, conn);
+            cmd.Parameters.AddWithValue("@title", title);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
     }
 

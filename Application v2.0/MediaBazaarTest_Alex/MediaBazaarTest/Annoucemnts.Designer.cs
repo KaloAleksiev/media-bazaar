@@ -42,6 +42,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btAnnoucemntToBeUpdated = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvANnoucemnts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,9 +70,9 @@
             // 
             // btnAddAnnoucemnt
             // 
-            this.btnAddAnnoucemnt.Location = new System.Drawing.Point(12, 389);
+            this.btnAddAnnoucemnt.Location = new System.Drawing.Point(12, 386);
             this.btnAddAnnoucemnt.Name = "btnAddAnnoucemnt";
-            this.btnAddAnnoucemnt.Size = new System.Drawing.Size(496, 62);
+            this.btnAddAnnoucemnt.Size = new System.Drawing.Size(496, 52);
             this.btnAddAnnoucemnt.TabIndex = 3;
             this.btnAddAnnoucemnt.Text = "Add Annoucemnt";
             this.btnAddAnnoucemnt.UseVisualStyleBackColor = true;
@@ -79,9 +80,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(557, 494);
+            this.btnDelete.Location = new System.Drawing.Point(12, 457);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(566, 57);
+            this.btnDelete.Size = new System.Drawing.Size(496, 57);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete Annoucemnt";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -89,12 +90,13 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(12, 494);
+            this.btnEdit.Location = new System.Drawing.Point(12, 530);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(496, 62);
+            this.btnEdit.Size = new System.Drawing.Size(496, 56);
             this.btnEdit.TabIndex = 5;
             this.btnEdit.Text = "Update Anoucemnt";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // tbTitle
             // 
@@ -128,7 +130,7 @@
             this.dgvANnoucemnts.RowHeadersWidth = 51;
             this.dgvANnoucemnts.RowTemplate.Height = 73;
             this.dgvANnoucemnts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvANnoucemnts.Size = new System.Drawing.Size(566, 455);
+            this.dgvANnoucemnts.Size = new System.Drawing.Size(653, 493);
             this.dgvANnoucemnts.TabIndex = 15;
             // 
             // Column1
@@ -174,12 +176,23 @@
             this.label3.TabIndex = 17;
             this.label3.Text = "Start Date";
             // 
+            // btAnnoucemntToBeUpdated
+            // 
+            this.btAnnoucemntToBeUpdated.Location = new System.Drawing.Point(557, 530);
+            this.btAnnoucemntToBeUpdated.Name = "btAnnoucemntToBeUpdated";
+            this.btAnnoucemntToBeUpdated.Size = new System.Drawing.Size(653, 56);
+            this.btAnnoucemntToBeUpdated.TabIndex = 18;
+            this.btAnnoucemntToBeUpdated.Text = "Annoucement To Be Updated";
+            this.btAnnoucemntToBeUpdated.UseVisualStyleBackColor = true;
+            this.btAnnoucemntToBeUpdated.Click += new System.EventHandler(this.btAnnoucemntToBeUpdated_Click);
+            // 
             // Annoucemnts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(1148, 619);
+            this.ClientSize = new System.Drawing.Size(1222, 619);
+            this.Controls.Add(this.btAnnoucemntToBeUpdated);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvANnoucemnts);
@@ -215,5 +228,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btAnnoucemntToBeUpdated;
     }
 }
