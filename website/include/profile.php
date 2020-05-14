@@ -10,7 +10,7 @@
             <label id="label" for="password">Enter you password to countinue!</label> <br> <input type="password" name="oldPassword" id="oldPasswordTB" class="textbox">
         </div>
         <div>
-            <button type="submit" id="CheckPass" name="checkPassBtn">Submit</button>
+            <button type="submit" id="CheckPass" class= "btn" name="checkPassBtn">Submit</button>
         </div>
     </form>
     ';
@@ -30,7 +30,7 @@
                     <label id="label" for="password">Confirm Password:</label> <br> <input type="password" name="confirmPassword" id="confirmPasswordTB" class="textbox">
                 </div>
                 <div>
-                    <button type="submit" id="submitBT" name="changePersonal">Submit</button>
+                    <button type="submit" id="submitBT" class= "btn" name="changePersonal">Submit</button>
                 </div>
             </form>
             ';       
@@ -85,7 +85,7 @@
             <label id="label" for="address">Address</label> <br> <input type="text" name="address" id="addressTB" class="textbox">
         </div>
         <div>
-            <button type="submit" id="submitBT" name="changeAddress">Submit</button>
+            <button type="submit" id="submitBT" class= "btn" name="changeAddress">Submit</button>
         </div>
     </form>
     ';
@@ -133,6 +133,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
      
-      <script src="../inputControl.js"></script>'; 
+      <script src="../inputControl.js"></script>
   </body>
 </html>

@@ -492,7 +492,6 @@
             // 
             // pStatsInfo
             // 
-            this.pStatsInfo.Controls.Add(this.pnAnnoucemnts);
             this.pStatsInfo.Controls.Add(this.label6);
             this.pStatsInfo.Location = new System.Drawing.Point(1002, 511);
             this.pStatsInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -504,7 +503,7 @@
             // pnAnnoucemnts
             // 
             this.pnAnnoucemnts.Controls.Add(this.label8);
-            this.pnAnnoucemnts.Location = new System.Drawing.Point(5, 6);
+            this.pnAnnoucemnts.Location = new System.Drawing.Point(1002, 511);
             this.pnAnnoucemnts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnAnnoucemnts.Name = "pnAnnoucemnts";
             this.pnAnnoucemnts.Size = new System.Drawing.Size(388, 202);
@@ -624,7 +623,8 @@
             this.btnAnnoucement.UseVisualStyleBackColor = false;
             this.btnAnnoucement.Visible = false;
             this.btnAnnoucement.Click += new System.EventHandler(this.btnAnnoucement_Click);
-            this.btnAnnoucement.MouseHover += new System.EventHandler(this.btnAnnoucement_Click);
+            this.btnAnnoucement.MouseLeave += new System.EventHandler(this.btnAnnoucement_MouseLeave);
+            this.btnAnnoucement.MouseHover += new System.EventHandler(this.btnAnnoucement_MouseHover);
             // 
             // MainForm
             // 
@@ -633,6 +633,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1509, 789);
+            this.Controls.Add(this.pnAnnoucemnts);
             this.Controls.Add(this.pLogin);
             this.Controls.Add(this.btnAnnoucement);
             this.Controls.Add(this.pStatsInfo);

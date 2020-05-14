@@ -123,6 +123,7 @@ namespace MediaBazaarTest
             btnSchedule.Visible = true;
             btnStatistics.Visible = true;
             btnStocks.Visible = true;
+            btnAnnoucement.Visible = false;
         }
 
         private void ButtonsForManager()
@@ -140,8 +141,14 @@ namespace MediaBazaarTest
             btnSchedule.Visible = true;
             btnStatistics.Visible = false;
             btnStocks.Visible = true;
+            btnAnnoucement.Visible = false;
         }
-
+     
+        private void btnAnnoucement_MouseHover(object sender, EventArgs e)
+        {
+            pnAnnoucemnts.Visible = true;
+            btnAnnoucement.BackColor = System.Drawing.Color.Firebrick;
+        }
         private void btnEmployee_MouseHover(object sender, EventArgs e)
         {
             pEmpInfo.Visible = true;
@@ -164,6 +171,11 @@ namespace MediaBazaarTest
         {
             pStatsInfo.Visible = true;
             btnStatistics.BackColor = System.Drawing.Color.Firebrick;
+        }
+        private void btnAnnoucement_MouseLeave(object sender, EventArgs e)
+        {
+            pnAnnoucemnts.Visible = false;
+            btnAnnoucement.BackColor = System.Drawing.Color.Maroon;
         }
 
         private void btnEmployee_MouseLeave(object sender, EventArgs e)
