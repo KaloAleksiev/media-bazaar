@@ -14,18 +14,26 @@ namespace MediaBazaarTest
     {
         private StatsDataControl sdc;
         private Stock stock;
-        public StatisticsForm()
+        private DepartmentControl dc;
+
+        public StatisticsForm(DepartmentControl dcMain)
         {
             InitializeComponent();
             sdc = new StatsDataControl();
             stock = new Stock("Lmao");
+            this.dc = dcMain;
         }
 
         private void StatisticsForm_Load(object sender, EventArgs e)
         {
             //Add data to the CMBs
-            cmbDepSalary.DataSource = Enum.GetValues(typeof(Department));
-            cmbDepCount.DataSource = Enum.GetValues(typeof(Department));
+            //cmbDepSalary.DataSource = Enum.GetValues(typeof(Department));
+            //cmbDepCount.DataSource = Enum.GetValues(typeof(Department));
+            foreach(DepartmentClass d in dc.GetDepartments())
+            {
+                cmbDepCount.Items.Add(d);
+                cmbDepSalary.Items.Add(d);
+            }
 
             //Empty the CMBs
             cmbDepCount.SelectedItem = null;
@@ -42,12 +50,13 @@ namespace MediaBazaarTest
         #region DepartmentStats
         private void btShowAvgSalaryPerDep_Click(object sender, EventArgs e)
         {
-            Department dep;
+            DepartmentClass dep = null;
             if (cmbDepSalary.SelectedItem != null)
             {
-                Enum.TryParse<Department>(cmbDepSalary.SelectedValue.ToString(), out dep);
+                //Enum.TryParse<Department>(cmbDepSalary.SelectedValue.ToString(), out dep);
+                dep = dc.GetDepartmentByName(cmbDepSalary.SelectedValue.ToString());
                 double salary = sdc.GetAvgSalaryPerDepartment(dep);
-                MessageBox.Show($"Avarage salary for {dep} department is {salary.ToString("C2")}");
+                MessageBox.Show($"Avarage salary for {dep.Name} department is {salary.ToString("C2")}");
                 cmbDepSalary.SelectedItem = null;
             }
             else
@@ -65,10 +74,11 @@ namespace MediaBazaarTest
         private void btShowEmpCountPerDep_Click(object sender, EventArgs e)
         {
             ClearDepChart();
-            Department dep;
+            DepartmentClass dep = null;
             if (cmbDepCount.SelectedItem != null)
             {
-                Enum.TryParse<Department>(cmbDepCount.SelectedValue.ToString(), out dep);
+                //Enum.TryParse<Department>(cmbDepCount.SelectedValue.ToString(), out dep);
+                dep = dc.GetDepartmentByName(cmbDepCount.SelectedValue.ToString());
                 List<int> count = sdc.GetPostitionCountPerDep(dep);
                 chartEmployees.Series["Employee count"].Points.AddXY("Administrator", count[0]);
                 chartEmployees.Series["Employee count"].Points.AddXY("Manager", count[1]);
