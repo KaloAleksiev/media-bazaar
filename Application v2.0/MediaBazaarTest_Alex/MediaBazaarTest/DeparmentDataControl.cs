@@ -16,7 +16,7 @@ namespace MediaBazaarTest
         {
             List<DepartmentClass> deps = new List<DepartmentClass>();
             MySqlConnection conn = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand($"department_id AS id, name FROM department", conn);
+            MySqlCommand cmd = new MySqlCommand($"SELECT department_id AS id, name FROM department", conn);
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
