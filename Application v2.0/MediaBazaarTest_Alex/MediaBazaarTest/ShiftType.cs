@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediaBazaarTest
 {
-    enum ShiftType
+    public enum ShiftType
     {
         Morning = 1,
         Noon,

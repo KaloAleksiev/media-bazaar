@@ -105,6 +105,12 @@
     </Compile>
     <Compile Include="Shift.cs" />
     <Compile Include="ShiftDataControl.cs" />
+    <Compile Include="ShiftForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShiftForm.Designer.cs">
+      <DependentUpon>ShiftForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShiftType.cs" />
     <Compile Include="StatisticsForm.cs">
       <SubType>Form</SubType>
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ScheduleForm.resx">
       <DependentUpon>ScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShiftForm.resx">
+      <DependentUpon>ShiftForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StatisticsForm.resx">
       <DependentUpon>StatisticsForm.cs</DependentUpon>

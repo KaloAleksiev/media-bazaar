@@ -19,9 +19,9 @@ namespace MediaBazaarTest
             conn = new MySqlConnection(connStr);
         }
 
-        public int[] GetAmntOfUsersInShift(DateTime dt, ShiftType st, Position pos, int dep = 9999)
+        public KeyValuePair<int, int> GetAmntOfUsersInShift(DateTime dt, ShiftType st, Position pos, int dep = 9999)
         {
-            int[] toReturn = new int[2];
+            KeyValuePair<int, int> toReturn;
             MySqlCommand GetAmountOfPeople;
             if (dep == 9999)
             { GetAmountOfPeople = new MySqlCommand("SELECT COUNT(user_id) AS EN, shift_id AS shift_id FROM shift_user WHERE shift_id = (SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND type = '" + st.ToString() + "' AND position = '" + pos.ToString() + "')", conn); }
@@ -29,9 +29,10 @@ namespace MediaBazaarTest
             conn.Open();
             MySqlDataReader reader1 = GetAmountOfPeople.ExecuteReader();
             reader1.Read();
-            toReturn[0] = Convert.ToInt32(reader1["EN"]);
+            //toReturn.Value = Convert.ToInt32(reader1["EN"]);
             if (!(reader1["shift_id"] is DBNull))
-            { toReturn[1] = Convert.ToInt32(reader1["shift_id"]); }
+            { toReturn = new KeyValuePair<int, int>(Convert.ToInt32(reader1["shift_id"]), Convert.ToInt32(reader1["EN"])); }
+            else { toReturn = new KeyValuePair<int, int>(0, Convert.ToInt32(reader1["EN"])); }
             reader1.Close();
             conn.Close();
             return toReturn;
