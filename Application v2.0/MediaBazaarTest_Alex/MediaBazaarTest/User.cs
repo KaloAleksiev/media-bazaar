@@ -14,7 +14,8 @@ namespace MediaBazaarTest
         private string fName;
         private string lName;
         private string gender;
-        private DepartmentClass dep;
+        private string dep;
+        private string department;
         private Position pos;
         private string email;
         private string city;
@@ -32,7 +33,7 @@ namespace MediaBazaarTest
         public int Id { get { return this.id; } private set { this.id = value; } }
         public string FName { get { return this.fName; } private set { this.fName = value; } }
         public string LName { get { return this.lName; } private set { this.lName = value; } }
-        public DepartmentClass Department { get { return this.dep; } private set { this.dep = value; } }
+        public string Department { get { return this.dep; } private set { this.dep = value; } }
         public Position Position { get { return this.pos; } private set { this.pos = value; } }
         public string Email { get { return this.email; } private set { this.email = value; } }
         public string Address { get { return this.address; } private set { this.address = value; } }
@@ -49,7 +50,7 @@ namespace MediaBazaarTest
 
 
         //constructors
-        public User(int id, string fname, string surname, DepartmentClass dep, string position, string email, string city, string zipcode, string address, string phone, int rank, double salary, string password, DateTime startDate, DateTime bday, string gender)
+        public User(int id, string fname, string surname, string dep, string position, string email, string city, string zipcode, string address, string phone, int rank, double salary, string password, DateTime startDate, DateTime bday, string gender)
         {
             this.Id = id;
             this.FName = fname;
@@ -85,7 +86,7 @@ namespace MediaBazaarTest
             }
         }
 
-        public User(int id, string fName, string surname, DepartmentClass dep, Position pos, string email, string phone, string city, string zipcode, string address, DateTime bday, string gender)
+        public User(int id, string fName, string surname, string dep, Position pos, string email, string phone, string city, string zipcode, string address, DateTime bday, string gender)
         {
             this.Id = id;
             this.FName = fName;
@@ -128,7 +129,7 @@ namespace MediaBazaarTest
             this.EndDate = date;
         }
 
-        public void ChangeDepartment(DepartmentClass dep)
+        public void ChangeDepartment(string dep)
         {
             this.Department = dep;
         }

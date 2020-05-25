@@ -64,12 +64,22 @@
             this.lbCurrentlyInOrder = new System.Windows.Forms.ListBox();
             this.btRemoveItemFromSale = new System.Windows.Forms.Button();
             this.btCompleteSale = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.lbGreetings = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pLogin.SuspendLayout();
             this.pForgottenPass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -77,7 +87,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(157, 102);
+            this.label2.Location = new System.Drawing.Point(150, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 32);
             this.label2.TabIndex = 38;
@@ -86,7 +96,7 @@
             // tbSearch
             // 
             this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearch.Location = new System.Drawing.Point(106, 136);
+            this.tbSearch.Location = new System.Drawing.Point(100, 63);
             this.tbSearch.Margin = new System.Windows.Forms.Padding(2);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(195, 29);
@@ -103,7 +113,7 @@
             this.desc,
             this.dept,
             this.amnt});
-            this.dgvStock.Location = new System.Drawing.Point(20, 198);
+            this.dgvStock.Location = new System.Drawing.Point(26, 107);
             this.dgvStock.Margin = new System.Windows.Forms.Padding(2);
             this.dgvStock.Name = "dgvStock";
             this.dgvStock.RowHeadersWidth = 51;
@@ -158,7 +168,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Maroon;
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(20, 16);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 10);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(107, 60);
@@ -169,7 +179,7 @@
             // 
             this.cbDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbDepartment.FormattingEnabled = true;
-            this.cbDepartment.Location = new System.Drawing.Point(388, 136);
+            this.cbDepartment.Location = new System.Drawing.Point(388, 63);
             this.cbDepartment.Name = "cbDepartment";
             this.cbDepartment.Size = new System.Drawing.Size(184, 28);
             this.cbDepartment.TabIndex = 39;
@@ -181,7 +191,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(408, 101);
+            this.label1.Location = new System.Drawing.Point(408, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 32);
             this.label1.TabIndex = 40;
@@ -400,9 +410,9 @@
             // nudAmount
             // 
             this.nudAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudAmount.Location = new System.Drawing.Point(339, 559);
+            this.nudAmount.Location = new System.Drawing.Point(404, 427);
             this.nudAmount.Name = "nudAmount";
-            this.nudAmount.Size = new System.Drawing.Size(120, 26);
+            this.nudAmount.Size = new System.Drawing.Size(72, 26);
             this.nudAmount.TabIndex = 43;
             // 
             // btAddItemToSale
@@ -410,7 +420,7 @@
             this.btAddItemToSale.BackColor = System.Drawing.Color.Maroon;
             this.btAddItemToSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btAddItemToSale.ForeColor = System.Drawing.SystemColors.Control;
-            this.btAddItemToSale.Location = new System.Drawing.Point(497, 551);
+            this.btAddItemToSale.Location = new System.Drawing.Point(497, 419);
             this.btAddItemToSale.Name = "btAddItemToSale";
             this.btAddItemToSale.Size = new System.Drawing.Size(157, 40);
             this.btAddItemToSale.TabIndex = 44;
@@ -421,11 +431,11 @@
             // lblSelected
             // 
             this.lblSelected.AutoSize = true;
-            this.lblSelected.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelected.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
             this.lblSelected.ForeColor = System.Drawing.Color.White;
-            this.lblSelected.Location = new System.Drawing.Point(30, 551);
+            this.lblSelected.Location = new System.Drawing.Point(36, 421);
             this.lblSelected.Name = "lblSelected";
-            this.lblSelected.Size = new System.Drawing.Size(199, 32);
+            this.lblSelected.Size = new System.Drawing.Size(182, 30);
             this.lblSelected.TabIndex = 45;
             this.lblSelected.Text = "No item selected";
             // 
@@ -434,7 +444,7 @@
             this.lbCurrentlyInOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCurrentlyInOrder.FormattingEnabled = true;
             this.lbCurrentlyInOrder.ItemHeight = 20;
-            this.lbCurrentlyInOrder.Location = new System.Drawing.Point(748, 136);
+            this.lbCurrentlyInOrder.Location = new System.Drawing.Point(748, 131);
             this.lbCurrentlyInOrder.Name = "lbCurrentlyInOrder";
             this.lbCurrentlyInOrder.Size = new System.Drawing.Size(401, 284);
             this.lbCurrentlyInOrder.TabIndex = 46;
@@ -465,6 +475,99 @@
             this.btCompleteSale.UseVisualStyleBackColor = false;
             this.btCompleteSale.Click += new System.EventHandler(this.btCompleteSale_Click);
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.panel10);
+            this.panel5.Controls.Add(this.panel9);
+            this.panel5.Controls.Add(this.panel8);
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.label2);
+            this.panel5.Controls.Add(this.tbSearch);
+            this.panel5.Controls.Add(this.lblSelected);
+            this.panel5.Controls.Add(this.cbDepartment);
+            this.panel5.Controls.Add(this.nudAmount);
+            this.panel5.Controls.Add(this.btAddItemToSale);
+            this.panel5.Controls.Add(this.dgvStock);
+            this.panel5.Location = new System.Drawing.Point(23, 95);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(689, 493);
+            this.panel5.TabIndex = 49;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(299, 423);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 30);
+            this.label4.TabIndex = 46;
+            this.label4.Text = "Amount:";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Controls.Add(this.panel7);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(689, 3);
+            this.panel6.TabIndex = 47;
+            this.panel6.TabStop = true;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(689, 3);
+            this.panel7.TabIndex = 48;
+            this.panel7.TabStop = true;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel8.Location = new System.Drawing.Point(0, 490);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(689, 3);
+            this.panel8.TabIndex = 49;
+            this.panel8.TabStop = true;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel9.Location = new System.Drawing.Point(686, 3);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(3, 487);
+            this.panel9.TabIndex = 50;
+            this.panel9.TabStop = true;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel10.Location = new System.Drawing.Point(0, 3);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(3, 487);
+            this.panel10.TabIndex = 51;
+            this.panel10.TabStop = true;
+            // 
+            // lbGreetings
+            // 
+            this.lbGreetings.AutoSize = true;
+            this.lbGreetings.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
+            this.lbGreetings.ForeColor = System.Drawing.Color.White;
+            this.lbGreetings.Location = new System.Drawing.Point(288, 21);
+            this.lbGreetings.Name = "lbGreetings";
+            this.lbGreetings.Size = new System.Drawing.Size(60, 37);
+            this.lbGreetings.TabIndex = 50;
+            this.lbGreetings.Text = "Hui";
+            // 
             // CashierApp
             // 
             this.AcceptButton = this.btnLogIn;
@@ -475,19 +578,14 @@
             this.Controls.Add(this.btCompleteSale);
             this.Controls.Add(this.btRemoveItemFromSale);
             this.Controls.Add(this.lbCurrentlyInOrder);
-            this.Controls.Add(this.lblSelected);
-            this.Controls.Add(this.btAddItemToSale);
-            this.Controls.Add(this.nudAmount);
             this.Controls.Add(this.pLogin);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbDepartment);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.tbSearch);
-            this.Controls.Add(this.dgvStock);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.lbGreetings);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CashierApp";
             this.Text = "Cashier";
+            this.Load += new System.EventHandler(this.CashierApp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pLogin.ResumeLayout(false);
@@ -496,6 +594,9 @@
             this.pForgottenPass.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -538,6 +639,14 @@
         private System.Windows.Forms.ListBox lbCurrentlyInOrder;
         private System.Windows.Forms.Button btRemoveItemFromSale;
         private System.Windows.Forms.Button btCompleteSale;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label lbGreetings;
     }
 }
 

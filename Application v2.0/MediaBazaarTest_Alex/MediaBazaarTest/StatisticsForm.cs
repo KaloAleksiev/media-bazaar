@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CashierApp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,14 +15,13 @@ namespace MediaBazaarTest
     {
         private StatsDataControl sdc;
         private Stock stock;
-        private DepartmentControl dc;
+        private DepartmentDictionary dd;
 
-        public StatisticsForm(DepartmentControl dcMain)
+        public StatisticsForm()
         {
             InitializeComponent();
             sdc = new StatsDataControl();
-            stock = new Stock("Lmao");
-            this.dc = dcMain;
+            stock = new Stock("Lmao");          
         }
 
         private void StatisticsForm_Load(object sender, EventArgs e)
@@ -29,10 +29,10 @@ namespace MediaBazaarTest
             //Add data to the CMBs
             //cmbDepSalary.DataSource = Enum.GetValues(typeof(Department));
             //cmbDepCount.DataSource = Enum.GetValues(typeof(Department));
-            foreach(DepartmentClass d in dc.GetDepartments())
+            foreach(KeyValuePair<string, int> d in dd.GetAllDepartmentsFromDB())
             {
-                cmbDepCount.Items.Add(d);
-                cmbDepSalary.Items.Add(d);
+                cmbDepCount.Items.Add(d.Key);
+                cmbDepSalary.Items.Add(d.Key);
             }
 
             //Empty the CMBs
@@ -50,13 +50,14 @@ namespace MediaBazaarTest
         #region DepartmentStats
         private void btShowAvgSalaryPerDep_Click(object sender, EventArgs e)
         {
-            DepartmentClass dep = null;
+            string dep = null;
             if (cmbDepSalary.SelectedItem != null)
             {
                 //Enum.TryParse<Department>(cmbDepSalary.SelectedValue.ToString(), out dep);
-                dep = dc.GetDepartmentByName(cmbDepSalary.SelectedValue.ToString());
-                double salary = sdc.GetAvgSalaryPerDepartment(dep);
-                MessageBox.Show($"Avarage salary for {dep.Name} department is {salary.ToString("C2")}");
+                dep = cmbDepSalary.SelectedValue.ToString();
+                int depId = dd.GetIdByName(dep);
+                double salary = sdc.GetAvgSalaryPerDepartment(depId);
+                MessageBox.Show($"Avarage salary for {dep} department is {salary.ToString("C2")}");
                 cmbDepSalary.SelectedItem = null;
             }
             else
@@ -74,12 +75,13 @@ namespace MediaBazaarTest
         private void btShowEmpCountPerDep_Click(object sender, EventArgs e)
         {
             ClearDepChart();
-            DepartmentClass dep = null;
+            string dep = null;
             if (cmbDepCount.SelectedItem != null)
             {
                 //Enum.TryParse<Department>(cmbDepCount.SelectedValue.ToString(), out dep);
-                dep = dc.GetDepartmentByName(cmbDepCount.SelectedValue.ToString());
-                List<int> count = sdc.GetPostitionCountPerDep(dep);
+                dep =cmbDepCount.SelectedValue.ToString();
+                int depId = dd.GetIdByName(dep);
+                List<int> count = sdc.GetPostitionCountPerDep(depId);
                 chartEmployees.Series["Employee count"].Points.AddXY("Administrator", count[0]);
                 chartEmployees.Series["Employee count"].Points.AddXY("Manager", count[1]);
                 chartEmployees.Series["Employee count"].Points.AddXY("DepotWorker", count[2]);

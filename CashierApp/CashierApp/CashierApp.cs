@@ -24,6 +24,12 @@ namespace CashierApp
             //initialize objects, get the departments
             s = new Stock();
             cc = new CashierControl();
+            
+
+        }
+        
+        private void CashierApp_Load(object sender, EventArgs e)
+        {
             //Departments
             dd = new DepartmentDictionary();
             this.deps = dd.GetAllDepartmentsFromDB();
@@ -68,6 +74,8 @@ namespace CashierApp
                     lblForgottenPass.Visible = false;
                     lblLoggedIn.Visible = true;
                     pLogin.Visible = false;
+                    Cashier c = cc.GetLoggedIn();
+                    lbGreetings.Text = $"Hello, {c.Name} {c.Surname}";
                     this.Size = new System.Drawing.Size(1200, 650);
                 }
                 else
@@ -292,5 +300,7 @@ namespace CashierApp
             }
         }
         #endregion
+
+        
     }
 }

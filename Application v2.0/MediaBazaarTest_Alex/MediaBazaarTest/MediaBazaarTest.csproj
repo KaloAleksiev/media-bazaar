@@ -63,7 +63,6 @@
     <Compile Include="Annoucemnts.Designer.cs">
       <DependentUpon>Annoucemnts.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeparmentDataControl.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="AddEmployeeForm.cs">
       <SubType>Form</SubType>
@@ -71,8 +70,7 @@
     <Compile Include="AddEmployeeForm.Designer.cs">
       <DependentUpon>AddEmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DepartmentClass.cs" />
-    <Compile Include="DepartmentControl.cs" />
+    <Compile Include="DepartmentDictionary.cs" />
     <Compile Include="EditItemForm.cs">
       <SubType>Form</SubType>
     </Compile>

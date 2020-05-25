@@ -84,8 +84,7 @@ namespace CashierApp
             }
             else
             {
-                loggedIn = cdc.CheckCredentials(password, email);
-                //remove the logged in person from the list                
+                loggedIn = cdc.CheckCredentials(password, email);                 
             }
             return true;
         }
@@ -124,6 +123,11 @@ namespace CashierApp
                 return true;
             }
             return false;
+        }
+
+        public Cashier GetLoggedIn()
+        {
+            return this.loggedIn;
         }
         #endregion
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CashierApp;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -11,15 +12,15 @@ namespace MediaBazaarTest
     public class UserDataControl
     {
         private string connectionString = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-        private List<DepartmentClass> deps;
-        DeparmentDataControl dc;
+        private DepartmentDictionary dd;
+        private Dictionary<string, int> deps;
         public UserDataControl()
         {
-            deps = new List<DepartmentClass>();
-            dc = new DeparmentDataControl();
-            foreach(DepartmentClass d in dc.GetAllDepartments())
+            dd = new DepartmentDictionary();
+            deps = new Dictionary<string, int>();
+            foreach(KeyValuePair<string, int> entry in dd.GetAllDepartmentsFromDB())
             {
-                deps.Add(d);
+                deps.Add(entry.Key,entry.Value);
             }
         }
 
@@ -48,13 +49,12 @@ namespace MediaBazaarTest
                 double salary = Convert.ToDouble(reader["salary"]);
                 int rank = Convert.ToInt32(reader["rank"]);
                 reader.Close();
-                conn.Close();
-                DepartmentClass dep = null;
-                foreach(DepartmentClass d in this.deps)
+                conn.Close();               
+                foreach(KeyValuePair<string, int> e in this.deps)
                 {
-                    if(d.Id == depId)
+                    if(e.Value == depId)
                     {
-                        dep = d;
+                        string dep = e.Key;
                         u = new User(id, fNname, lName, dep, pos, email, city, zipcode, address, phonenumber, rank, salary, password, startDate, bDate, gender);
                         return u;
                     }
@@ -89,7 +89,15 @@ namespace MediaBazaarTest
 
         public void AddUserToDB(User u)
         {
-            DepartmentClass dep = u.Department;
+            int dep = 0;
+            //Get the appropriate department
+            foreach (KeyValuePair<string, int> e in this.deps)
+            {
+                if (e.Key == u.Department)
+                {
+                    dep = e.Value;                    
+                }
+            }
             MySqlConnection conn = new MySqlConnection(connectionString);
             string addUser = $"INSERT into user( id, firstName, lastName, address, email, password, position, department_id, phone_number, salary, rank, start_date, birth_date, city, zipcode, gender)" +
                 $"VALUES (@id, @firstName, @lastName, @address, @email, @password, @position, @department_id, @phone_number, @salary, @rank, @start_date, @birth_date, @city, @zipcode, @gender)";
@@ -101,7 +109,7 @@ namespace MediaBazaarTest
             cmd.Parameters.AddWithValue("@email", u.Email);
             cmd.Parameters.AddWithValue("@password", u.Password);
             cmd.Parameters.AddWithValue("@position", u.Position.ToString());
-            cmd.Parameters.AddWithValue("@department_id", dep.Id);
+            cmd.Parameters.AddWithValue("@department_id", dep);
             cmd.Parameters.AddWithValue("@phone_number", u.Phone);
             cmd.Parameters.AddWithValue("@salary", u.Salary);
             cmd.Parameters.AddWithValue("@rank", u.Rank);
@@ -143,12 +151,12 @@ namespace MediaBazaarTest
                 DateTime startDate = Convert.ToDateTime(reader["start_date"]);
                 DateTime bDate = Convert.ToDateTime(reader["birth_date"]);
                 string gender = Convert.ToString(reader["gender"]);
-                DepartmentClass dep = null;
-                foreach (DepartmentClass d in this.deps)
+                string dep = "";
+                foreach (KeyValuePair<string, int> e in this.deps)
                 {
-                    if (d.Id == depId)
+                    if (e.Value == depId)
                     {
-                        dep = d;
+                        dep = e.Key;
                     }
                 }
                 users.Add(new User(id, fNname, lName, dep, pos, email, city, zipcode, address, phonenumber, rank, salary, password, startDate, bDate, gender));
@@ -170,12 +178,21 @@ namespace MediaBazaarTest
             conn.Close();
         }
 
-        public void ChangeEmployeeDepartment(int id, DepartmentClass dep)
+        public void ChangeEmployeeDepartment(int id, string dep)
         {
+            int depId = 0;
+            foreach (KeyValuePair<string, int> e in this.deps)
+            {
+                if (e.Key == dep)
+                {
+                    depId = e.Value;
+                }
+            }
+
             MySqlConnection conn = new MySqlConnection(connectionString);
             string ChangeDep = $"UPDATE user SET department_id = @department_id WHERE id = @id";
             MySqlCommand cmd = new MySqlCommand(ChangeDep, conn);
-            cmd.Parameters.AddWithValue("@department_id", dep.Id);
+            cmd.Parameters.AddWithValue("@department_id", depId);
             cmd.Parameters.AddWithValue("@id", id);
             conn.Open();
             cmd.ExecuteNonQuery();

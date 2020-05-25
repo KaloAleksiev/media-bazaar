@@ -11,28 +11,29 @@ using System.Text.RegularExpressions;
 using System.Net;
 using System.Net.Mail;
 using S22.Imap;
-
+using CashierApp;
 
 namespace MediaBazaarTest
 {
     public partial class AddEmployeeForm : Form
     {
         private UserControl uc;
-        private DepartmentControl dc;
-        public AddEmployeeForm(UserControl ucMain, DepartmentControl dcMain)
+        private DepartmentDictionary dd;
+        private Dictionary<string, int> deps;
+        public AddEmployeeForm(UserControl ucMain)
         {
             InitializeComponent();           
             uc = ucMain;
-            dc = dcMain;
+            dd = new DepartmentDictionary();
         }
 
         private void AddEmployeeForm_Load(object sender, EventArgs e)
         {
             //cmbDepartment.DataSource = Enum.GetValues(typeof(Department));
-            foreach(DepartmentClass d in dc.GetDepartments())
+            foreach(KeyValuePair<string, int> i in dd.GetAllDepartmentsFromDB())
             {
-                cmbDepartment.Items.Add(d);
-                cmbDepartmentChange.Items.Add(d);
+                cmbDepartment.Items.Add(i.Key);
+                cmbDepartmentChange.Items.Add(i.Key);
             }
             cmbPosition.DataSource = Enum.GetValues(typeof(Position));
 
@@ -69,7 +70,7 @@ namespace MediaBazaarTest
         {
             string fName = tbFName.Text;
             string lName = tbSName.Text;
-            DepartmentClass dep;
+            string dep;
             Position pos;
             DateTime date = dtpBday.Value.Date;
             string email = tbEmail.Text;
@@ -106,7 +107,7 @@ namespace MediaBazaarTest
                 else
                 {
                     //Enum.TryParse<Department>(cmbDepartment.SelectedValue.ToString(), out dep);
-                    dep = dc.GetDepartmentByName(cmbDepartment.SelectedItem.ToString());
+                    dep = cmbDepartment.SelectedItem.ToString();
 
                     Enum.TryParse<Position>(cmbPosition.SelectedValue.ToString(), out pos);
                     if (uc.CheckEmail(email))
@@ -186,9 +187,9 @@ namespace MediaBazaarTest
         {
             if (cmbDepartmentChange.SelectedItem != null)
             {
-                DepartmentClass dep = null;
+                string dep = "";
                 //Enum.TryParse<Department>(cmbDepartmentChange.SelectedValue.ToString(), out dep);
-                dep = dc.GetDepartmentByName(cmbDepartmentChange.SelectedValue.ToString());
+                dep = cmbDepartmentChange.SelectedValue.ToString();
                 if (uc.ChangeDepartment(id, dep) == false)
                 {
                     MessageBox.Show("Selected employee is a part of this department already!");
@@ -311,7 +312,7 @@ namespace MediaBazaarTest
                     u.FName,
                     u.LName,
                     u.Position.ToString(),
-                    u.Department.Name,
+                    u.Department,
                     u.Rank.ToString(),
                     u.Salary.ToString()
                     });
@@ -326,7 +327,7 @@ namespace MediaBazaarTest
                     u.FName,
                     u.LName,
                     u.Position.ToString(),
-                    u.Department.Name,
+                    u.Department,
                     u.Rank.ToString(),
                     u.Salary.ToString()
                     });

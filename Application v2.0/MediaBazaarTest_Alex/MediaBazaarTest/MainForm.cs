@@ -12,13 +12,11 @@ namespace MediaBazaarTest
 {
     public partial class MainForm : Form
     {
-        UserControl uc;
-        DepartmentControl dc;
+        UserControl uc;        
         public MainForm()
         {
             InitializeComponent();
-            uc = new UserControl();
-            dc = new DepartmentControl();
+            uc = new UserControl();         
             this.Size = new System.Drawing.Size(767, 390);
         }
 
@@ -68,7 +66,7 @@ namespace MediaBazaarTest
 
         private void btnEmployee_Click(object sender, EventArgs e)
         {
-            AddEmployeeForm f = new AddEmployeeForm(uc, this.dc);
+            AddEmployeeForm f = new AddEmployeeForm(uc);
             f.Show();
         }
 
@@ -91,7 +89,7 @@ namespace MediaBazaarTest
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
-            StatisticsForm s = new StatisticsForm(this.dc);
+            StatisticsForm s = new StatisticsForm();
             s.Show();
         }
         private void btnAnnoucement_Click(object sender, EventArgs e)

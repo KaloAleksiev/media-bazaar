@@ -30,11 +30,11 @@ namespace MediaBazaarTest
             return info;
         }
 
-        public double GetAvgSalaryPerDepartment(DepartmentClass dep)
+        public double GetAvgSalaryPerDepartment(int dep)
         {                        
             MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
-            MySqlCommand GetAvarageSalary = new MySqlCommand($" SELECT AVG(salary) AS avarageSalary FROM user WHERE department_id = {dep.Id};", conn);
+            MySqlCommand GetAvarageSalary = new MySqlCommand($" SELECT AVG(salary) AS avarageSalary FROM user WHERE department_id = {dep};", conn);
             MySqlDataReader reader = GetAvarageSalary.ExecuteReader();
             reader.Read();
             double avgSalary = Convert.ToDouble(reader["avarageSalary"]);
@@ -56,7 +56,7 @@ namespace MediaBazaarTest
             return avgSalary;
         }
 
-        public List<int> GetPostitionCountPerDep(DepartmentClass dep)
+        public List<int> GetPostitionCountPerDep(int dep)
         {
             List<int> count = new List<int>();
             List<string> positions = new List<string>{"Administrator", "Manager","DepotWorker","Employee"};
@@ -64,7 +64,7 @@ namespace MediaBazaarTest
             conn.Open();
             foreach(string s in positions)
             {
-                MySqlCommand GetEmployeeCount = new MySqlCommand($"SELECT COUNT(id) AS c FROM user WHERE department_id = {dep.Id} AND position = '{s}';", conn);
+                MySqlCommand GetEmployeeCount = new MySqlCommand($"SELECT COUNT(id) AS c FROM user WHERE department_id = {dep} AND position = '{s}';", conn);
                 MySqlDataReader reader = GetEmployeeCount.ExecuteReader();
                 reader.Read();
                 int empCount = Convert.ToInt32(reader["c"]);

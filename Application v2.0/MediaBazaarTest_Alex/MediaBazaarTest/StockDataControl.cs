@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using CashierApp;
 
 namespace MediaBazaarTest
 {
@@ -13,11 +14,18 @@ namespace MediaBazaarTest
     {
         string connStr;
         MySqlConnection conn;
+        private DepartmentDictionary dd;
+        private Dictionary<string, int> deps;       
 
         public StockDataControl()
         {
             connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            conn = new MySqlConnection(connStr);
+            conn = new MySqlConnection(connStr); dd = new DepartmentDictionary();
+            deps = new Dictionary<string, int>();
+            foreach (KeyValuePair<string, int> entry in dd.GetAllDepartmentsFromDB())
+            {
+                deps.Add(entry.Key, entry.Value);
+            }
         }
 
         public List<Item> GetStockFromDB()
@@ -31,10 +39,18 @@ namespace MediaBazaarTest
                 int id = Convert.ToInt32(reader["item_id"]);
                 string name = reader["name"].ToString();
                 string description = reader["description"].ToString();
-                string department = ((Department)Convert.ToInt32(reader["department_id"])).ToString();
+                int depId = Convert.ToInt32(reader["department_id"]);
                 int amnt = Convert.ToInt32(reader["amount_in_stock"]);
                 bool auto = Convert.ToBoolean(reader["auto_restock"]);
                 int arLimit = Convert.ToInt32(reader["ar_limit"]);
+                string department = "";
+                foreach (KeyValuePair<string, int> e in this.deps)
+                {
+                    if (e.Value == depId)
+                    {
+                        department = e.Key;
+                    }
+                }
                 items.Add(new Item(id, name, description, department, amnt, auto, arLimit));
             }
             reader.Close();

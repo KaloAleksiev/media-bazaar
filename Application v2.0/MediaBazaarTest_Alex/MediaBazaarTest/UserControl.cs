@@ -66,7 +66,7 @@ namespace MediaBazaarTest
             }
             return false;
         }
-        public void AddUser(string fname, string surname, DepartmentClass dep, Position pos, string email, string phone, string city, string zipcode, string address, DateTime bDate, string gender)
+        public void AddUser(string fname, string surname, string dep, Position pos, string email, string phone, string city, string zipcode, string address, DateTime bDate, string gender)
         {
             User sashko = new User(udc.GetMaxId(), fname, surname, dep, pos, email, phone, city, zipcode, address, bDate, gender);
             users.Add(sashko);
@@ -146,7 +146,7 @@ namespace MediaBazaarTest
             return false;
         }
 
-        public bool ChangeDepartment(int id, DepartmentClass dep)
+        public bool ChangeDepartment(int id, string dep)
         {
             if (GetUserByID(id) != null)
             {
