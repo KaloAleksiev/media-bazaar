@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Net;
 using System.Net.Mail;
 using S22.Imap;
-using CashierApp;
+//using CashierApp;
 
 namespace MediaBazaarTest
 {

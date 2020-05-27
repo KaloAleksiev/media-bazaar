@@ -14,23 +14,27 @@ namespace MediaBazaarTest
     {
         DateTime dt;
         Month month;
-        DepartmentClass dc;
         Position pos;
+        KeyValuePair<string, int> dep;
+        DepartmentDictionary dd;
         Dictionary<int, ListBox> listBoxes;
         Dictionary<int, List<int>> usersInShift;
         ShiftDataControl sdc;
         UserControl uc;
 
-        public ShiftForm(DateTime dt, DepartmentClass dc, Position pos)
+        public ShiftForm(DateTime dt, KeyValuePair<string, int> dep, Position pos, ShiftType type)
         {
             InitializeComponent();
             this.dt = dt;
             month = (Month)dt.Month;
-            this.dc = dc;
+            this.dep = dep;
             this.pos = pos;
+            listBoxes = new Dictionary<int, ListBox>();
+            usersInShift = new Dictionary<int, List<int>>();
             sdc = new ShiftDataControl();
             uc = new UserControl();
             CreateListBoxDict();
+            FillOutShifts(type);
         }
 
         public void CreateListBoxDict()
@@ -47,26 +51,27 @@ namespace MediaBazaarTest
             foreach (KeyValuePair<int, ListBox> lb in listBoxes)
             {
                 DateTime shiftDate = dt.AddDays(lb.Key - 1);
-                KeyValuePair<int, int> shiftIdToNr = sdc.GetAmntOfUsersInShift(dt, type, pos, dc.Id);
-                if (shiftIdToNr.Key == 0)
+                KeyValuePair<int, int> shiftIdToNr = sdc.GetAmntOfUsersInShift(shiftDate, type, pos, dep.Value);
+                lb.Value.Items.Add(CreateFirstLine(pos, shiftIdToNr.Value));
+                List<int> indexes = sdc.GetIdOfUsersInShift(shiftIdToNr.Key, shiftIdToNr.Value);
+                foreach (int i in indexes)
                 {
-                    if (pos == Position.Employee)
-                    { lb.Value.Items.Add("0 / 3"); }
-                    else if (pos == Position.DepotWorker)
-                    { lb.Value.Items.Add("0 / 2"); }
-                    else { lb.Value.Items.Add("0 / 1"); }
+                    User u = uc.GetUserByID(i);
+                    lb.Value.Items.Add($"ID: {u.Id}, {u.FName} {u.LName}");
                 }
-                else 
-                {
-                    List<int> indexes = sdc.GetIdOfUsersInShift(shiftIdToNr.Key, shiftIdToNr.Value);
-                    foreach (int i in indexes)
-                    {
-                        User u = uc.GetUserByID(i);
-                        lb.Value.Items.Add($"ID: {u.Id}, {u.FName} {u.LName}");
-                    }
-                    usersInShift.Add(lb.Key, indexes);
-                }
+                usersInShift.Add(lb.Key, indexes);
             }
+        }
+
+        public string CreateFirstLine(Position pos, int n)
+        {
+            string text;
+            if (pos == Position.Employee)
+            { text = $"{n} / 3"; }
+            else if (pos == Position.DepotWorker)
+            { text = $"{n} / 2"; }
+            else { text = $"{n} / 1"; }
+            return text;
         }
     }
 }

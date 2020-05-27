@@ -79,7 +79,9 @@ namespace MediaBazaarTest
         private void btnSchedule_Click(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
-            CreateScheduleForm(uc, dt);
+            dt = dt.AddDays(-dt.Day + 1);
+            ShiftForm frm = new ShiftForm(dt, new KeyValuePair<string, int>("Phones", 1), Position.Employee, ShiftType.Noon);
+            frm.Show();
         }
         public static void CreateScheduleForm(UserControl uc, DateTime dt)
         {

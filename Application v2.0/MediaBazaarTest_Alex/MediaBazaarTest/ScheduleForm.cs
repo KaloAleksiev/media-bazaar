@@ -79,11 +79,11 @@ namespace MediaBazaarTest
                     { st = ShiftType.Evening; }
                     Position pos = Position.Manager;
                     //Find all people in the shift (if there are any)
-                    int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos);
-                    n = amntOfUsers[0];
-                    try
-                    { shiftId = amntOfUsers[1]; }
-                    catch { }
+                    //int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos);
+                    //n = amntOfUsers[0];
+                    //try
+                   // { shiftId = amntOfUsers[1]; }
+                   // catch { }
                     //Button color depends on the amount of people found
                     if (n == 0)
                     { dynamicButton.BackColor = Color.Green; }
@@ -102,11 +102,11 @@ namespace MediaBazaarTest
                     else if (j % 3 == 2)
                     { st = ShiftType.Evening; }
                     Position pos = Position.DepotWorker;
-                    int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos);
-                    n = amntOfUsers[0];
-                    try
-                    { shiftId = amntOfUsers[1]; }
-                    catch { }
+                    //int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos);
+                    //n = amntOfUsers[0];
+                    //try
+                    //{ //shiftId = amntOfUsers[1]; }
+                    //catch { }
                     dynamicButton.Text = n + " / 2";
                     if (n == 0)
                     { dynamicButton.BackColor = Color.Green; }
@@ -133,12 +133,12 @@ namespace MediaBazaarTest
                     else if (j >= 12 && j < b)
                     { dep = Department.TVs; }
                     Position pos = Position.Employee;
-                    int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos, (int)dep);
-                    n = amntOfUsers[0];
-                    try
-                    { shiftId = amntOfUsers[1]; }
-                    catch { }
-                    dynamicButton.Text = n + " / 3";
+                    //int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos, (int)dep);
+                    //n = amntOfUsers[0];
+                    //try
+                    //{ shiftId = amntOfUsers[1]; }
+                    //catch { }
+                    //dynamicButton.Text = n + " / 3";
                     if (n == 0)
                     { dynamicButton.BackColor = Color.Green; }
                     else if (n == 3)
@@ -272,7 +272,7 @@ namespace MediaBazaarTest
             {
                 if (pos == Position.Employee)
                 {
-                    if (emp.Department == dep && emp.Position == pos)
+                    //if (emp.Department == dep && emp.Position == pos)
                     { emps.Add(emp); }
                 }
                 else
