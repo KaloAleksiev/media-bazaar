@@ -18,14 +18,15 @@ namespace MediaBazaarTest
         {
             int id = a.Author.Id;
             MySqlConnection connection = new MySqlConnection(conectionString);
-            string query = $"INSERT INTO announcement( title, author_id, start_date, end_date, text)" +
-                $"VALUES (@title, @author_id, @start_date, @end_date, @text)";
+            string query = $"INSERT INTO announcement( title, author_id, start_date, end_date, text, DeparmentID)" +
+                $"VALUES (@title, @author_id, @start_date, @end_date, @text, @DeparmentID)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", a.Title);
             cmd.Parameters.AddWithValue("@author_id", id);
             cmd.Parameters.AddWithValue("@start_date", a.StartDate);
             cmd.Parameters.AddWithValue("@end_date", a.EndDate);
             cmd.Parameters.AddWithValue("@text", a.Text);
+            cmd.Parameters.AddWithValue("@text", a.DepartmentId);
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
@@ -59,7 +60,7 @@ namespace MediaBazaarTest
         {
             List<Annoucement> annoucements = new List<Annoucement>();
             MySqlConnection connection = new MySqlConnection(conectionString);
-            string query = $"SELECT announcement_id, title, author_id, start_date, end_date, text FROM announcement ";
+            string query = $"SELECT announcement_id, title, author_id, start_date, end_date, text, DeparmentID FROM announcement ";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -72,7 +73,8 @@ namespace MediaBazaarTest
                 DateTime end_date = Convert.ToDateTime(reader["end_date"]);
                 string text = Convert.ToString(reader["text"]);
                 User user = uc.GetUserByID(author_id);
-                Annoucement a = new Annoucement(startDate, end_date, aTitle, text, user);
+                int department = Convert.ToInt32(reader["DeparmentID"]);
+                Annoucement a = new Annoucement(startDate, end_date, aTitle, text, user, department);
                 annoucements.Add(a);
             }
             reader.Close();

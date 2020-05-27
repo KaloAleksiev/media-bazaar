@@ -44,10 +44,22 @@ namespace MediaBazaarTest
         {
             if (tbTitle.TextLength != 0 || rtbAnnoucemntText.Text != String.Empty)
             {
-                Annoucement annoucement = new Annoucement(dtpstart_date.Value, dtpend_picker.Value, tbTitle.Text, rtbAnnoucemntText.Text, uc.GetLoggedIn());
-                dc.AddAnnoucemntToDB(annoucement);
-                list = dc.ReturnAllAnnoucemntFromDB();
-                UpdateList();
+                if(cmDepartment.SelectedIndex > - 1)
+                {
+                    int deparment = cmDepartment.SelectedIndex+1;
+                    Annoucement annoucemen = new Annoucement(dtpstart_date.Value, dtpend_picker.Value, tbTitle.Text, rtbAnnoucemntText.Text, uc.GetLoggedIn(), deparment);
+                    dc.AddAnnoucemntToDB(annoucemen);
+                    list = dc.ReturnAllAnnoucemntFromDB();
+                    UpdateList();
+                }
+                else
+                {
+                    Annoucement annoucement = new Annoucement(dtpstart_date.Value, dtpend_picker.Value, tbTitle.Text, rtbAnnoucemntText.Text, uc.GetLoggedIn(), 0);
+                    dc.AddAnnoucemntToDB(annoucement);
+                    list = dc.ReturnAllAnnoucemntFromDB();
+                    UpdateList();
+                }
+               
             }
             else
             {

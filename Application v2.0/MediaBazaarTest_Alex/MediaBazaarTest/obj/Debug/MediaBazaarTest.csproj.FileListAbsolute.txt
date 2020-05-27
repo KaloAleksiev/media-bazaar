@@ -89,3 +89,4 @@ C:\Users\velja\OneDrive\Desktop\Project\mediabazaarproject\Application v2.0\Medi
 C:\xampp\htdocs\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.EditItemForm.resources
 D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.Annoucemnts.resources
 D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.EditItemForm.resources
+C:\xampp\htdocs\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.ShiftForm.resources

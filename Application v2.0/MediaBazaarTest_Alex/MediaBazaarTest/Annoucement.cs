@@ -16,13 +16,16 @@ namespace MediaBazaarTest
         private string text;
         private int id;
         private int authorId;
-        public Annoucement(DateTime startDate, DateTime endDate, string title, string text, User author)
+        private int departmentId;
+       
+        public Annoucement(DateTime startDate, DateTime endDate, string title, string text, User author, int department)
         {
             this.startDate = startDate;
             this.endDate = endDate;
             this.title = title;
             this.author = author;
             this.text = text;
+            this.departmentId = department;
         }
         public Annoucement(DateTime startDate, DateTime endDate, string title, string text, int authorid, int id)
         {
@@ -49,6 +52,11 @@ namespace MediaBazaarTest
         {
             get { return this.author; }
             private set { this.author = value; }
+        }
+        public int DepartmentId
+        {
+            get { return this.departmentId; }
+            private set { this.departmentId = value; }
         }
         public string Title
         {
