@@ -6,7 +6,7 @@
           <a href="stock.php">Stock</a>
           <a href="profile.php">Profile</a>
           <a href="Home.php">Home</a>
-          <a href="preference.php">Home</a>
+          <a href="preference.php">Preferences</a>
         </div>
       </div>
 </div>
