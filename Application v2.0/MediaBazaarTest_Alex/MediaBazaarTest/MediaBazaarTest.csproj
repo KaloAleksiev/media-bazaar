@@ -109,6 +109,12 @@
     <Compile Include="ShiftForm.Designer.cs">
       <DependentUpon>ShiftForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShiftHubForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShiftHubForm.Designer.cs">
+      <DependentUpon>ShiftHubForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShiftType.cs" />
     <Compile Include="StatisticsForm.cs">
       <SubType>Form</SubType>
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShiftForm.resx">
       <DependentUpon>ShiftForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShiftHubForm.resx">
+      <DependentUpon>ShiftHubForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StatisticsForm.resx">
       <DependentUpon>StatisticsForm.cs</DependentUpon>

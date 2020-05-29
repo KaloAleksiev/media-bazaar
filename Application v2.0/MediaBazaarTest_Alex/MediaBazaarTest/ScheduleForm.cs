@@ -310,14 +310,14 @@ namespace MediaBazaarTest
         private void btnNext_Click(object sender, EventArgs e)
         {
             dt = dt.AddDays(1);
-            MainForm.CreateScheduleForm(uc, dt); ;
+            //MainForm.CreateScheduleForm(uc, dt); ;
             this.Close();
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             dt = dt.AddDays(-1);
-            MainForm.CreateScheduleForm(uc, dt); ;
+            //MainForm.CreateScheduleForm(uc, dt); ;
             this.Close();
         }
 
