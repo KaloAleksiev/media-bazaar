@@ -217,28 +217,6 @@ namespace MediaBazaarTest
                 indexes = sdc.GetIdOfUsersInShift(shiftId, n);
                 for (int i = 0; i < indexes.Count; i++)
                 {
-                    //string sql = "SELECT id, firstName, lastName, email, password, address, position, department_id, salary, rank, start_date, birth_date, phone_number, city, zipcode, gender FROM user WHERE id = '" + indexes[i].ToString() + "'";
-                    //MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    //MySqlDataReader reader = cmd.ExecuteReader();
-                    //reader.Read();
-                    //int id = Convert.ToInt32(reader["id"]);
-                    //string firstname = Convert.ToString(reader["firstName"]);
-                    //string lastname = Convert.ToString(reader["lastName"]);
-                    //string email = Convert.ToString(reader["email"]);
-                    //string address = Convert.ToString(reader["address"]);
-                    //string phonenumber = Convert.ToString(reader["phone_number"]);
-                    //string position = Convert.ToString(reader["position"]);
-                    //string password = Convert.ToString(reader["password"]);
-                    //int department = Convert.ToInt32(reader["department_id"]);
-                    //int rank = Convert.ToInt32(reader["rank"]);
-                    //DateTime startDate = Convert.ToDateTime(reader["start_date"]);
-                    //DateTime bday = Convert.ToDateTime(reader["birth_date"]);
-                    //double salary = Convert.ToDouble(reader["salary"]);
-                    //string city = Convert.ToString(reader["city"]);
-                    //string zipcode = Convert.ToString(reader["zipcode"]);
-                    //string gender = Convert.ToString(reader["gender"]);
-                    ////User u = new User(id, firstname, lastname, department, position, email, city, zipcode, address, phonenumber, rank, salary, password, startDate, bday, gender);
-                    //reader.Close();
                     User u = uc.GetUserByID(indexes[i]);
                     InShift.Add(u); //Add found people to the list for people in shifts.
                     shifts[l].AddUser(u);

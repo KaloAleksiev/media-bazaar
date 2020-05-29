@@ -15,10 +15,12 @@ namespace MediaBazaarTest
         DepartmentDictionary dd;
         Dictionary<string, int> deps;
         Month month;
+        UserControl uc;
 
-        public ShiftHubForm()
+        public ShiftHubForm(UserControl uc)
         {
             InitializeComponent();
+            this.uc = uc;
             dd = new DepartmentDictionary();
             deps = dd.GetAllDepartmentsFromDB();
             FillOutDepCB();
@@ -73,7 +75,7 @@ namespace MediaBazaarTest
             else { type = ShiftType.Morning; }
             DateTime dt = new DateTime(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1, 1);
             KeyValuePair<string, int> dep = new KeyValuePair<string, int>((string)cbDepartment.SelectedItem, cbDepartment.SelectedIndex + 1);
-            ShiftForm frm = new ShiftForm(dt, dep, (Position)(cbPosition.SelectedIndex + 1), type);
+            ShiftForm frm = new ShiftForm(dt, dep, (Position)(cbPosition.SelectedIndex + 1), type, uc);
             frm.Show();
         }
     }

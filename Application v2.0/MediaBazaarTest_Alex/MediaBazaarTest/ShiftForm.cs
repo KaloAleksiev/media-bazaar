@@ -17,6 +17,7 @@ namespace MediaBazaarTest
         int year;
         int days;
         Position pos;
+        ShiftType type;
         KeyValuePair<string, int> dep;
         DepartmentDictionary dd;
         Dictionary<int, ListBox> listBoxes;
@@ -25,7 +26,7 @@ namespace MediaBazaarTest
         ShiftDataControl sdc;
         UserControl uc;
 
-        public ShiftForm(DateTime dt, KeyValuePair<string, int> dep, Position pos, ShiftType type)
+        public ShiftForm(DateTime dt, KeyValuePair<string, int> dep, Position pos, ShiftType type, UserControl uc)
         {
             InitializeComponent();
             this.dt = dt;
@@ -33,12 +34,13 @@ namespace MediaBazaarTest
             year = dt.Year;
             days = DateTime.DaysInMonth(year, (int)month);
             this.dep = dep;
+            this.type = type;
             this.pos = pos;
             listBoxes = new Dictionary<int, ListBox>();
             usersInShift = new Dictionary<int, List<int>>();
             listBoxesToLabels = new Dictionary<ListBox, Label>();
             sdc = new ShiftDataControl();
-            uc = new UserControl();
+            this.uc = uc;
             lblInfo.Text = $"Schedule for {month.ToString()} {year} for {pos.ToString()}s of {dep.Key} department, {type.ToString()} shifts.";
             CreateListBoxDict();
             FillOutShifts(type);
@@ -64,6 +66,7 @@ namespace MediaBazaarTest
                     { listBoxesToLabels.Add(lb.Value, (Label)obj); }
                 }
             }
+            AssignMethodsToLabels();
         }
 
         public void FillOutShifts(ShiftType type)
@@ -80,6 +83,47 @@ namespace MediaBazaarTest
             }
             foreach (KeyValuePair<int, ListBox> lb in listBoxes)
             {
+                DateTime shiftDate = dt.AddDays(lb.Key - 1);
+                KeyValuePair<int, int> shiftIdToNr = sdc.GetAmntOfUsersInShift(shiftDate, type, pos, dep.Value);
+                lb.Value.Items.Add(CreateFirstLine(pos, shiftIdToNr.Value));
+                ChangeLabelColor(pos, shiftIdToNr.Value, lb.Value);
+                List<int> indexes = sdc.GetIdOfUsersInShift(shiftIdToNr.Key, shiftIdToNr.Value);
+                foreach (int i in indexes)
+                {
+                    User u = uc.GetUserByID(i);
+                    lb.Value.Items.Add($"ID: {u.Id}, {u.FName} {u.LName}");
+                }
+                usersInShift.Add(lb.Key, indexes);
+            }
+        }
+
+        public void AssignMethodsToLabels()
+        {
+            foreach (KeyValuePair<ListBox, Label> lbl in listBoxesToLabels)
+            { lbl.Value.Click += new EventHandler(EditShift); }
+        }
+
+        public void EditShift(object sender, EventArgs e)
+        {
+            Label lbl = (Label)sender;
+            DateTime selDT = new DateTime(year, (int)month, Convert.ToInt32(lbl.Text));
+            //ListBox lb = listBoxesToLabels.FirstOrDefault(x => x.Value == lbl).Key;
+            KeyValuePair<int, int> shiftIdToNr = sdc.GetAmntOfUsersInShift(selDT, type, pos, dep.Value);
+            int nrOfPeople = usersInShift[Convert.ToInt32(lbl.Text)].Count;
+            ShiftAssignmentForm frm;
+            if (shiftIdToNr.Key != 0)
+            { frm = new ShiftAssignmentForm(uc, selDT, dep, pos, type, nrOfPeople, shiftIdToNr.Key); }
+            else { frm = new ShiftAssignmentForm(uc, selDT, dep, pos, type, nrOfPeople); }
+            frm.FormClosed += new FormClosedEventHandler(UpdateAllListBoxes);
+            frm.Show();
+        }
+
+        public void UpdateAllListBoxes(object sender, EventArgs e)
+        {
+            usersInShift.Clear();
+            foreach (KeyValuePair<int, ListBox> lb in listBoxes)
+            {
+                lb.Value.Items.Clear();
                 DateTime shiftDate = dt.AddDays(lb.Key - 1);
                 KeyValuePair<int, int> shiftIdToNr = sdc.GetAmntOfUsersInShift(shiftDate, type, pos, dep.Value);
                 lb.Value.Items.Add(CreateFirstLine(pos, shiftIdToNr.Value));

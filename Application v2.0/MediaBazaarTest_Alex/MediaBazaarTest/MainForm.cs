@@ -82,7 +82,7 @@ namespace MediaBazaarTest
             //dt = dt.AddDays(-dt.Day + 1);
             //ShiftForm frm = new ShiftForm(dt, new KeyValuePair<string, int>("Phones", 1), Position.Employee, ShiftType.Noon);
             //frm.Show();
-            ShiftHubForm frm = new ShiftHubForm();
+            ShiftHubForm frm = new ShiftHubForm(uc);
             frm.Show();
         }
 
