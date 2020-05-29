@@ -79,11 +79,11 @@ namespace MediaBazaarTest
                     { st = ShiftType.Evening; }
                     Position pos = Position.Manager;
                     //Find all people in the shift (if there are any)
-                    int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos);
-                    n = amntOfUsers[0];
-                    try
-                    { shiftId = amntOfUsers[1]; }
-                    catch { }
+                    //int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos);
+                    //n = amntOfUsers[0];
+                    //try
+                   // { shiftId = amntOfUsers[1]; }
+                   // catch { }
                     //Button color depends on the amount of people found
                     if (n == 0)
                     { dynamicButton.BackColor = Color.Green; }
@@ -102,11 +102,11 @@ namespace MediaBazaarTest
                     else if (j % 3 == 2)
                     { st = ShiftType.Evening; }
                     Position pos = Position.DepotWorker;
-                    int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos);
-                    n = amntOfUsers[0];
-                    try
-                    { shiftId = amntOfUsers[1]; }
-                    catch { }
+                    //int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos);
+                    //n = amntOfUsers[0];
+                    //try
+                    //{ //shiftId = amntOfUsers[1]; }
+                    //catch { }
                     dynamicButton.Text = n + " / 2";
                     if (n == 0)
                     { dynamicButton.BackColor = Color.Green; }
@@ -133,12 +133,12 @@ namespace MediaBazaarTest
                     else if (j >= 12 && j < b)
                     { dep = Department.TVs; }
                     Position pos = Position.Employee;
-                    int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos, (int)dep);
-                    n = amntOfUsers[0];
-                    try
-                    { shiftId = amntOfUsers[1]; }
-                    catch { }
-                    dynamicButton.Text = n + " / 3";
+                    //int[] amntOfUsers = sdc.GetAmntOfUsersInShift(dt, st, pos, (int)dep);
+                    //n = amntOfUsers[0];
+                    //try
+                    //{ shiftId = amntOfUsers[1]; }
+                    //catch { }
+                    //dynamicButton.Text = n + " / 3";
                     if (n == 0)
                     { dynamicButton.BackColor = Color.Green; }
                     else if (n == 3)
@@ -217,28 +217,6 @@ namespace MediaBazaarTest
                 indexes = sdc.GetIdOfUsersInShift(shiftId, n);
                 for (int i = 0; i < indexes.Count; i++)
                 {
-                    //string sql = "SELECT id, firstName, lastName, email, password, address, position, department_id, salary, rank, start_date, birth_date, phone_number, city, zipcode, gender FROM user WHERE id = '" + indexes[i].ToString() + "'";
-                    //MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    //MySqlDataReader reader = cmd.ExecuteReader();
-                    //reader.Read();
-                    //int id = Convert.ToInt32(reader["id"]);
-                    //string firstname = Convert.ToString(reader["firstName"]);
-                    //string lastname = Convert.ToString(reader["lastName"]);
-                    //string email = Convert.ToString(reader["email"]);
-                    //string address = Convert.ToString(reader["address"]);
-                    //string phonenumber = Convert.ToString(reader["phone_number"]);
-                    //string position = Convert.ToString(reader["position"]);
-                    //string password = Convert.ToString(reader["password"]);
-                    //int department = Convert.ToInt32(reader["department_id"]);
-                    //int rank = Convert.ToInt32(reader["rank"]);
-                    //DateTime startDate = Convert.ToDateTime(reader["start_date"]);
-                    //DateTime bday = Convert.ToDateTime(reader["birth_date"]);
-                    //double salary = Convert.ToDouble(reader["salary"]);
-                    //string city = Convert.ToString(reader["city"]);
-                    //string zipcode = Convert.ToString(reader["zipcode"]);
-                    //string gender = Convert.ToString(reader["gender"]);
-                    ////User u = new User(id, firstname, lastname, department, position, email, city, zipcode, address, phonenumber, rank, salary, password, startDate, bday, gender);
-                    //reader.Close();
                     User u = uc.GetUserByID(indexes[i]);
                     InShift.Add(u); //Add found people to the list for people in shifts.
                     shifts[l].AddUser(u);
@@ -272,7 +250,7 @@ namespace MediaBazaarTest
             {
                 if (pos == Position.Employee)
                 {
-                    if (emp.Department == dep && emp.Position == pos)
+                    //if (emp.Department == dep && emp.Position == pos)
                     { emps.Add(emp); }
                 }
                 else
@@ -310,14 +288,14 @@ namespace MediaBazaarTest
         private void btnNext_Click(object sender, EventArgs e)
         {
             dt = dt.AddDays(1);
-            MainForm.CreateScheduleForm(uc, dt); ;
+            //MainForm.CreateScheduleForm(uc, dt); ;
             this.Close();
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             dt = dt.AddDays(-1);
-            MainForm.CreateScheduleForm(uc, dt); ;
+            //MainForm.CreateScheduleForm(uc, dt); ;
             this.Close();
         }
 

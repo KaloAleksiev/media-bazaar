@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
-namespace CashierApp
+
+namespace MediaBazaarTest
 {
     public class DepartmentDictionary
     {
@@ -30,7 +31,6 @@ namespace CashierApp
                 string name = Convert.ToString(reader["name"]);
                 this.deps.Add(name, id);
             }
-
             reader.Close();
             conn.Close();
             return this.deps;
