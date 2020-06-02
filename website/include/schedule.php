@@ -38,11 +38,11 @@ foreach ($result as $item) {
 }
 */
 
-echo "<br><br><br><br><br><br><br><br><br><br>";
+
 
 function build_calendar($month,$year) {
 
-     $daysOfWeek = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday');
+     $daysOfWeek = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
      $firstDayOfMonth = mktime(0,0,0,$month,1,$year);
      $numberDays = date('t',$firstDayOfMonth);
      $dateComponents = getdate($firstDayOfMonth);
@@ -85,6 +85,8 @@ function build_calendar($month,$year) {
      }
      
      $month = str_pad($month, 2, "0", STR_PAD_LEFT);
+
+     
      while ($currentDay <= $numberDays) {
 
           if ($dayOfWeek == 7) {
@@ -95,19 +97,33 @@ function build_calendar($month,$year) {
           $date = "$year-$month-$currentDayRel";
           
           
-          if (substr($allShifts[0]->getDate(), -2) == (string)$currentDay)
+          foreach ($allShifts as $item) {
+               if (substr($item->getDate(), -2) == (string)$currentDay)
+               {
+                    $shiftType = $item->type;
+                    $shiftDay = true;
+                    break;
+               }
+               else
+               {
+                    $shiftDay = false;
+               }
+          }
+          
+          if ($shiftDay == true)
           {
-               $shiftType = $allShifts[0]->type;
-               $calendar .= "<td class='day' rel='$date'>$currentDay $shiftType</td>"; // here
+               $calendar .= "<td class='day' rel='$date'>$currentDay - $shiftType</td>"; // here
           }
           else
           {
-          $calendar .= "<td class='day' rel='$date'>$currentDay</td>"; // here
+               $calendar .= "<td class='day' rel='$date'>$currentDay</td>"; // here
           }
           
           $currentDay++;
           $dayOfWeek++;
      }
+     
+
 
      if ($dayOfWeek != 7) { 
      
@@ -130,21 +146,17 @@ $year = $dateComponents['year'];
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="../Styles.css">
+    <link rel="stylesheet" type="text/css" href="../scheduleStyles.css">
   </head>
   <body>
     <?php include('Navbar.php'); 
 
-    echo "<br><br><br><br><br><br>";
-    
     echo build_calendar($month,$year);
-    //var_dump(substr($allShifts[0]->date, -2));
     
     ?>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-     
-      <script src="../inputControl.js"></script>
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+     <script src="../inputControl.js"></script>
   </body>
 </html>
