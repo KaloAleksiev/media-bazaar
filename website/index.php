@@ -36,6 +36,8 @@ try
                 $message = '<label>Heey!</label>';
                   $_SESSION['name'] = $result['firstName'];
                   $_SESSION['user_id'] = $result['id'];
+                  $_SESSION['position'] = $result['position'];
+                  $_SESSION['department'] = $result['department_id'];
                   $_SESSION['user_pass'] = $_POST["password"];
                   header('location: include/Home.php');
               }

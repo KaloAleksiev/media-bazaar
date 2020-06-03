@@ -6,6 +6,9 @@ class Shift
     public $date;
     public $type;
     public $position;
+    public $firstName;
+    public $lastName;
+    public $departmentId;
 
     public function __construct($userId, $date, $type, $position)
     {
@@ -18,6 +21,36 @@ class Shift
     public function getDate()
     {
         return $this->date;
+    }
+    
+    public function setFirstName($name)
+    {
+        $this->firstName = $name;
+    }
+
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    public function setLastName($name)
+    {
+        $this->lastName = $name;
+    }
+
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    public function setDepartmentId($depId)
+    {
+        $this->departmentId = $depId;
+    }
+
+    public function getDepartmentId()
+    {
+        return $this->departmentId;
     }
 }
 

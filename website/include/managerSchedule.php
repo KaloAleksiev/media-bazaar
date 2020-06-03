@@ -16,6 +16,8 @@ catch(PDOException $e){
 
 session_start();
 
+
+
 function build_calendar($month,$year) {
 
      $daysOfWeek = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
@@ -27,8 +29,6 @@ function build_calendar($month,$year) {
      $calendar = "<table class='calendar'>";
      $calendar .= "<caption><h1>Schedule - $monthName $year</h1></caption>";
      $calendar .= "<tr>";
-
-     $username = $_SESSION['user_id'];
 
      global $conn;
      $query = $conn->prepare("SELECT
@@ -46,10 +46,10 @@ function build_calendar($month,$year) {
      s.shift_id = su.shift_id
      INNER JOIN USER AS u
      ON
-     su.user_id = u.id
-     WHERE su.user_id = :userId");
+     su.user_id = u.id");
 
-     $query->execute([':userId' => $username]);
+     $username = $_SESSION['user_id'];
+     $query->execute();
     
      $result = $query->fetchAll();
      $allShifts = array();
@@ -76,7 +76,7 @@ function build_calendar($month,$year) {
      
      $month = str_pad($month, 2, "0", STR_PAD_LEFT);
 
-     
+
      for ($i = 1; $i <= $numberDays; $i++) {
           if ($dayOfWeek == 7) {
                $dayOfWeek = 0;
@@ -115,8 +115,6 @@ function build_calendar($month,$year) {
           $currentDay++;
           $dayOfWeek++;
      }
-     
-
 
      if ($dayOfWeek != 7) { 
      
@@ -133,7 +131,6 @@ $dateComponents = getdate();
 $month = $dateComponents['mon']; 			     
 $year = $dateComponents['year'];
 
-
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +142,7 @@ $year = $dateComponents['year'];
     <?php include('Navbar.php'); 
 
     echo build_calendar($month,$year);
-    
+
     ?>
 
      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

@@ -61,13 +61,32 @@ th {
 td {
     padding: 5px;
     border: 5px solid #740c11;
+    width: 14.28571428571429%;
 }
 
 table {
-    margin-left: 25%;
+    margin-left: 10%;
     margin-top: 100px;
-    width: 50%;
+    width: 80%;
     border: 4px double black;
     border-collapse: collapse;
     font: bold 15px Arial;
+}
+
+.shiftCardPhones {
+    padding: 2px;
+    border: 3px solid red;
+    margin: 1px;
+}
+
+.shiftCardComputers {
+    padding: 2px;
+    border: 3px solid green;
+    margin: 1px;
+}
+
+.shiftCardTVs {
+    padding: 2px;
+    border: 3px solid blue;
+    margin: 1px;
 }
