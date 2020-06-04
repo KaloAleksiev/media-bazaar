@@ -37,7 +37,22 @@ namespace MediaBazaarTest
             conn.Close();
             return toReturn;
         }
-        
+
+        public List<int> GetAllShiftsOnDateByDep(int dep, Position pos, DateTime dt)
+        {
+            List<int> indexes = new List<int>();
+            MySqlCommand GetShifts = new MySqlCommand("SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND position = '" + pos.ToString() + "')", conn);
+            conn.Open();
+            MySqlDataReader reader = GetShifts.ExecuteReader();
+            while (reader.Read())
+            { indexes.Add(Convert.ToInt32(reader["shift_id"])); }
+            reader.Close();
+            conn.Close();
+            if (indexes.Count == 0)
+            { return null; }
+            else { return indexes; }
+        }
+
         public List<int> GetIdOfUsersInShift(int shiftId, int n)
         {
             List<int> indexes = new List<int>();
@@ -60,6 +75,14 @@ namespace MediaBazaarTest
             MySqlCommand DeleteShift = new MySqlCommand("DELETE FROM shift WHERE shift_id = '" + shiftId + "'", conn);
             conn.Open();
             int j = DeleteShift.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void DeleteAllPeopleFromShift(int shiftId)
+        {
+            MySqlCommand DeleteShift = new MySqlCommand("DELETE FROM shift_user WHERE shift_id = '" + shiftId + "'", conn);
+            conn.Open();
+            DeleteShift.ExecuteNonQuery();
             conn.Close();
         }
     }

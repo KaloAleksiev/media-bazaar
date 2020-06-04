@@ -43,6 +43,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnAutoSchedule = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cbMonth
@@ -205,12 +206,29 @@
             this.label2.TabIndex = 17;
             this.label2.Text = "Select the parameters for the schedule you wish to view:";
             // 
+            // btnAutoSchedule
+            // 
+            this.btnAutoSchedule.BackColor = System.Drawing.Color.Maroon;
+            this.btnAutoSchedule.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnAutoSchedule.FlatAppearance.BorderSize = 2;
+            this.btnAutoSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAutoSchedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.btnAutoSchedule.ForeColor = System.Drawing.Color.White;
+            this.btnAutoSchedule.Location = new System.Drawing.Point(132, 302);
+            this.btnAutoSchedule.Name = "btnAutoSchedule";
+            this.btnAutoSchedule.Size = new System.Drawing.Size(224, 38);
+            this.btnAutoSchedule.TabIndex = 18;
+            this.btnAutoSchedule.Text = "Auto-create schedule";
+            this.btnAutoSchedule.UseVisualStyleBackColor = false;
+            this.btnAutoSchedule.Click += new System.EventHandler(this.btnAutoSchedule_Click);
+            // 
             // ShiftHubForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(523, 308);
+            this.ClientSize = new System.Drawing.Size(523, 351);
+            this.Controls.Add(this.btnAutoSchedule);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
@@ -250,5 +268,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnAutoSchedule;
     }
 }
