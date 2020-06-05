@@ -21,7 +21,8 @@ namespace MediaBazaarTest
         {
             InitializeComponent();
             sdc = new StatsDataControl();
-            stock = new Stock("Lmao");          
+            stock = new Stock("Lmao");
+            dd = new DepartmentDictionary();
         }
 
         private void StatisticsForm_Load(object sender, EventArgs e)
@@ -52,8 +53,7 @@ namespace MediaBazaarTest
         {
             string dep = null;
             if (cmbDepSalary.SelectedItem != null)
-            {
-                //Enum.TryParse<Department>(cmbDepSalary.SelectedValue.ToString(), out dep);
+            {               
                 dep = cmbDepSalary.SelectedValue.ToString();
                 int depId = dd.GetIdByName(dep);
                 double salary = sdc.GetAvgSalaryPerDepartment(depId);
@@ -129,6 +129,39 @@ namespace MediaBazaarTest
                 ClearItemChart();
             }
         }
+
+        private void btSalesStats_Click(object sender, EventArgs e)
+        {
+            if(pSalesStats.Visible == false)
+            {
+                pSalesStats.Visible = true;
+                pItemStats.Visible = false;
+                pDepStats.Visible = false;
+                //load chart
+                UserControl uc = new UserControl();
+                Dictionary<User, int> users = new Dictionary<User, int>();
+                foreach (KeyValuePair<int, int> pair in sdc.GetBestEmployees())
+                {
+                    users.Add(uc.GetUserByID(pair.Key), pair.Value);
+                }
+                for (int i = 0; i < 5; i++)
+                {
+                    if(users.Count > i)
+                    {
+                        chTopEmpSales.Series["sales"].Points.AddXY($"{users.ElementAt(i).Key.FName} {users.ElementAt(i).Key.LName}",users.ElementAt(i).Value);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                pSalesStats.Visible = false;
+                ClearEmpChart();
+            }
+        }
         #endregion
 
         #region Controls
@@ -143,6 +176,14 @@ namespace MediaBazaarTest
         private void ClearItemChart()
         {
             foreach (var series in chartItems.Series)
+            {
+                series.Points.Clear();
+            }
+        }
+
+        private void ClearEmpChart()
+        {
+            foreach (var series in chTopEmpSales.Series)
             {
                 series.Points.Clear();
             }
@@ -170,6 +211,29 @@ namespace MediaBazaarTest
                 Item i = stock.GetItemByName(lbItemStats.SelectedItem.ToString());
                 MessageBox.Show(sdc.GetItemStats(i));
             }
+        }
+
+        
+
+        private void btShowRevenue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btTopItemsSold_Click(object sender, EventArgs e)
+        {
+            Dictionary<Item, int> topItems = new Dictionary<Item, int>();
+            foreach (KeyValuePair<int, int> pair in sdc.GetBestSellingItems())
+            {
+                topItems.Add(stock.GetItemById(pair.Key), pair.Value);
+            }
+            string info = "";
+            for (int i = 0; i < 5; i++)
+            {               
+                info += $"\n{topItems.ElementAt(i).Key.Name} - amount: {topItems.ElementAt(i).Value}";
+                info += $"\n_____________________________";
+            }
+            MessageBox.Show(info);
         }
     }
 }

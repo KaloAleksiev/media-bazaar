@@ -92,5 +92,38 @@ namespace MediaBazaarTest
             conn.Close();
             return count;
         }
+
+        public List<KeyValuePair<int,int>> GetBestSellingItems()
+        {
+            //the first int in the dictionary is the ITEM_ID, the 2nd one- the quantity.
+            Dictionary<int, int> soldItems = new Dictionary<int, int>();
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            MySqlCommand GetSalesCount = new MySqlCommand($"SELECT item_id, SUM(quantity) AS c FROM sale_item GROUP BY item_id ;", conn);
+            conn.Open();
+            MySqlDataReader reader = GetSalesCount.ExecuteReader();
+            while (reader.Read())
+            {
+                soldItems.Add(Convert.ToInt32(reader["item_id"]), Convert.ToInt32(reader["c"]));
+            }
+            conn.Close();         
+            var list = soldItems.OrderByDescending(d=>d.Value).ToList();           
+            return list;
+        }
+
+        public List<KeyValuePair<int, int>> GetBestEmployees()
+        {
+            Dictionary<int, int> emps = new Dictionary<int, int>();
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            MySqlCommand GetEmpsCount = new MySqlCommand($"SELECT employee_id, COUNT(sale_id) AS c FROM sale GROUP BY employee_id ;", conn);
+            conn.Open();
+            MySqlDataReader reader = GetEmpsCount.ExecuteReader();
+            while (reader.Read())
+            {
+                emps.Add(Convert.ToInt32(reader["employee_id"]), Convert.ToInt32(reader["c"]));
+            }
+            conn.Close();
+            var list = emps.OrderByDescending(d => d.Value).ToList();
+            return list;
+        }
     }
 }
