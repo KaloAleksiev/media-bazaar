@@ -134,6 +134,7 @@ namespace MediaBazaarTest
             {
                 pAddUser.Visible = true;
                 pAllEmployees.Visible = false;
+                btPromoteSelected.Enabled = false;
             }
             else
             {
@@ -162,7 +163,7 @@ namespace MediaBazaarTest
             if (!pPromoteEmployee.Visible && dgvEmployee.SelectedRows.Count > 0)
             {
                 pPromoteEmployee.Visible = true;
-                tbSearch.Text = "";
+                
                 id = Convert.ToInt32(dgvEmployee.SelectedCells[0].Value.ToString());
                 UpdateEmployeeInfoLabel();
             }
@@ -280,7 +281,7 @@ namespace MediaBazaarTest
             pPromoteEmployee.Visible = false;
             pAllEmployees.Visible = true;
 
-            id = 0;
+            this.id = 0;
             lblSelectedEmployeeInfo.Text = "";
             dgvEmployee.ClearSelection();
 
