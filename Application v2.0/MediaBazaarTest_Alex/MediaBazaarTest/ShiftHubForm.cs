@@ -18,11 +18,16 @@ namespace MediaBazaarTest
         UserControl uc;
         ShiftDataControl sdc;
 
+        Dictionary<int, int> shiftTokenDictionary;
+        Dictionary<int, Shift[]> allShifts;
+
         public ShiftHubForm(UserControl uc)
         {
             InitializeComponent();
             this.uc = uc;
             dd = new DepartmentDictionary();
+            shiftTokenDictionary = new Dictionary<int, int>();
+            allShifts = new Dictionary<int, Shift[]>();
             sdc = new ShiftDataControl();
             deps = dd.GetAllDepartments();
             FillOutDepCB();
@@ -104,13 +109,16 @@ namespace MediaBazaarTest
             int shiftsPerPerson = CalculateAmountOfShiftsPerPerson(new DateTime(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1, 1), pos, dep.Key);
 
             //Create dictionary with the user ID as the key and amount of shift "tokens" left as the value.
-            Dictionary<int, int> shiftTokenDictionary = CreateShiftTokenDictionary(pos, dep.Key, shiftsPerPerson);
+            shiftTokenDictionary = CreateShiftTokenDictionary(pos, dep.Key, shiftsPerPerson);
 
             //Create empty shifts for each day of the month.
-            Dictionary<int, Shift> allShifts = CreateAllShifts(pos, dep.Value);
+            allShifts = CreateAllShifts(pos, dep.Value);
 
             //Main repetition segment, where the assigment takes place.
+            CreateSchedule(pos);
 
+            //Show the shchedule.
+            btnAutoSchedule_Click(sender, e);
         }
 
         #region Preparation code for algorithm
@@ -151,39 +159,108 @@ namespace MediaBazaarTest
             return shiftTokenDictionary;
         }
 
-        public Dictionary<int, Shift> CreateAllShifts(Position pos, int dep)
+        public Dictionary<int, Shift[]> CreateAllShifts(Position pos, int dep)
         {
-            Dictionary<int, Shift> allShifts = new Dictionary<int, Shift>();
+            Dictionary<int, Shift[]> allShifts = new Dictionary<int, Shift[]>();
             for (int i = 1; i <= DateTime.DaysInMonth(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1); i++)
             {
-                for (int j = 0; j < 3; j++)
+                allShifts.Add(i, new Shift[3]);
+                for (int j = 0; j <= 2; j++)
                 {
                     ShiftType type = ShiftType.Morning;
                     if (j == 1)
                     { type = ShiftType.Noon; }
-                    else { type = ShiftType.Evening; }
-                    allShifts.Add(i, new Shift(new DateTime(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1, i), type, pos, dep));
+                    else if (j == 2) { type = ShiftType.Evening; }
+                    allShifts[i][j] = new Shift(new DateTime(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1, i), type, pos, dep);
                 }
             }
             return allShifts;
         }
         #endregion
 
-        public void CreateSchedule(Dictionary<int, int> shiftTokenDictionary, Dictionary<int, Shift> allShifts)
+        public void CreateSchedule(Position pos)
         {
+            //Flag that determines on which days the people will be added.
             bool pairityFlag = false;
-            Dictionary<int, int> standInTokens = shiftTokenDictionary;
-            
+
+            Dictionary<int, int> standInTokens = new Dictionary<int, int>();
+
+            foreach (KeyValuePair<int, int> kvp in shiftTokenDictionary)
+            { standInTokens.Add(kvp.Key, kvp.Value); }
+
+            int userLimit = 1;
+            if (pos == Position.Employee)
+            { userLimit = 3; }
+            else if (pos == Position.DepotWorker)
+            { userLimit = 2; }
+            else { userLimit = 1; }
+
+            //For each user, add them to every other day of the month.
             foreach (KeyValuePair<int, int> userToken in standInTokens)
+            { allShifts = CycleThroughMonth(pos, pairityFlag, userLimit, userToken, 0); }
+
+            //Add the new shifts to the data base.
+            AddAllShiftsToDB();
+        }
+
+        public Dictionary<int, Shift[]> CycleThroughMonth(Position pos, bool pairityFlag, int userLimit, KeyValuePair<int, int> userToken, int counter)
+        {
+            //If this is the third recursion, don't do anything.
+            if (counter < 2)
             {
+                //Call the needed method for each day of the month.
                 for (int i = 1; i <= DateTime.DaysInMonth(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1); i++)
                 {
-                    if (i % 2 == Convert.ToInt32(pairityFlag))
+                    Random rnd = new Random();
+                    int rndNum = rnd.Next(0, 3);
+                    allShifts = AddUserToShiftRnd(pos, pairityFlag, userToken, i, rndNum, userLimit, 0);
+                }
+
+                //If the person has not been assigned to the max. allowed amount of shifts, repeat with different pairity flag.
+                if (shiftTokenDictionary[userToken.Key] != 0)
+                { CycleThroughMonth(pos, !pairityFlag, userLimit, userToken, counter++); }
+                return allShifts;
+            }
+            return allShifts;
+        }
+
+        public Dictionary<int, Shift[]> AddUserToShiftRnd( Position pos, bool pairityFlag, KeyValuePair<int, int> userToken, int i, int rndNum, int userLimit, int counter)
+        {
+            counter++;
+            //If this is the fourth recursion, don't do anything.
+            if (counter < 4)
+            {
+                int j = rndNum;
+                //If the number of the day appeals to the flag condition, attempt to add the user to this shift.
+                if (i % 2 == Convert.ToInt32(pairityFlag))
+                {
+                    //If the shift isn't full, add to it. If it is, try the next one.
+                    if (allShifts[i][j].GetAllUsers().Count < userLimit)
                     {
-                        allShifts[i].AddUser(uc.GetUserByID(userToken.Key));
+                        allShifts[i][j].AddUser(uc.GetUserByID(userToken.Key));
                         shiftTokenDictionary[userToken.Key]--;
                     }
+                    else
+                    {
+                        //Go to the next shift on the day and call the method again.
+                        if (j == 0) { j = 1; }
+                        else if (j == 1) { j = 2; }
+                        else if (j == 2) { j = 3; }
+                        allShifts = AddUserToShiftRnd(pos, pairityFlag, userToken, i, j, userLimit, counter);
+                    }
                 }
+                return allShifts;
+            }
+            return allShifts;
+        }
+
+        public void AddAllShiftsToDB()
+        {
+            //Add all the shifts to the database.
+            foreach (KeyValuePair<int, Shift[]> shifts in allShifts)
+            {
+                for (int i = 0; i < 3; i++)
+                { shifts.Value[i].AddShiftToDB(); }
             }
         }
 

@@ -41,7 +41,7 @@ namespace MediaBazaarTest
         public List<int> GetAllShiftsOnDateByDep(int dep, Position pos, DateTime dt)
         {
             List<int> indexes = new List<int>();
-            MySqlCommand GetShifts = new MySqlCommand("SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND position = '" + pos.ToString() + "')", conn);
+            MySqlCommand GetShifts = new MySqlCommand("SELECT shift_id FROM shift WHERE date = '" + dt.ToString("yyyy-MM-dd") + "' AND position = '" + pos.ToString() + "'", conn);
             conn.Open();
             MySqlDataReader reader = GetShifts.ExecuteReader();
             while (reader.Read())
