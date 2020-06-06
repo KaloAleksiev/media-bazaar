@@ -19,7 +19,6 @@ namespace MediaBazaarTest
     {
         private UserControl uc;
         private DepartmentDictionary dd;
-        private Dictionary<string, int> deps;
         public AddEmployeeForm(UserControl ucMain)
         {
             InitializeComponent();           
@@ -30,7 +29,7 @@ namespace MediaBazaarTest
         private void AddEmployeeForm_Load(object sender, EventArgs e)
         {
             //cmbDepartment.DataSource = Enum.GetValues(typeof(Department));
-            foreach(KeyValuePair<string, int> i in dd.GetAllDepartmentsFromDB())
+            foreach(KeyValuePair<string, int> i in dd.GetAllDepartments())
             {
                 cmbDepartment.Items.Add(i.Key);
                 cmbDepartmentChange.Items.Add(i.Key);

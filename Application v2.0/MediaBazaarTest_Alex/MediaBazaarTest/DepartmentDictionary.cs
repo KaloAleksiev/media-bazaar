@@ -16,9 +16,10 @@ namespace MediaBazaarTest
         public DepartmentDictionary()
         {
             deps = new Dictionary<string, int>();
+            GetAllDepartmentsFromDB();
         }
 
-        public Dictionary<string, int> GetAllDepartmentsFromDB()
+        public void GetAllDepartmentsFromDB()
         {
             string connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
             MySqlConnection conn = new MySqlConnection(connStr);
@@ -32,13 +33,17 @@ namespace MediaBazaarTest
                 this.deps.Add(name, id);
             }
             reader.Close();
-            conn.Close();
+            conn.Close();          
+        }
+
+        public Dictionary<string, int> GetAllDepartments()
+        {
             return this.deps;
         }
 
         public int GetIdByName(string demo)
         {
-            foreach(KeyValuePair<string, int> e in GetAllDepartmentsFromDB())
+            foreach(KeyValuePair<string, int> e in this.deps)
             {
                 if(e.Key == demo)
                 {

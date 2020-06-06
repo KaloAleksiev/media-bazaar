@@ -18,7 +18,7 @@ namespace MediaBazaarTest
         {
             dd = new DepartmentDictionary();
             deps = new Dictionary<string, int>();
-            foreach(KeyValuePair<string, int> entry in dd.GetAllDepartmentsFromDB())
+            foreach(KeyValuePair<string, int> entry in dd.GetAllDepartments())
             {
                 deps.Add(entry.Key,entry.Value);
             }

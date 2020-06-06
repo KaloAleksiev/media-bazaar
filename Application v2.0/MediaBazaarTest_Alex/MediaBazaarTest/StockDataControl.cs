@@ -22,7 +22,7 @@ namespace MediaBazaarTest
             connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
             conn = new MySqlConnection(connStr); dd = new DepartmentDictionary();
             deps = new Dictionary<string, int>();
-            foreach (KeyValuePair<string, int> entry in dd.GetAllDepartmentsFromDB())
+            foreach (KeyValuePair<string, int> entry in dd.GetAllDepartments())
             {
                 deps.Add(entry.Key, entry.Value);
             }
@@ -31,7 +31,7 @@ namespace MediaBazaarTest
         public List<Item> GetStockFromDB()
         {
             List<Item> items = new List<Item>();
-            MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id, name, description, department_id, amount_in_stock, auto_restock, ar_limit FROM item", conn);
+            MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id, name, description, department_id, amount_in_stock, auto_restock, ar_limit, selling_price FROM item", conn);
             conn.Open();
             MySqlDataReader reader = GetAllItems.ExecuteReader();
             while (reader.Read())
@@ -43,6 +43,7 @@ namespace MediaBazaarTest
                 int amnt = Convert.ToInt32(reader["amount_in_stock"]);
                 bool auto = Convert.ToBoolean(reader["auto_restock"]);
                 int arLimit = Convert.ToInt32(reader["ar_limit"]);
+                double price = Convert.ToDouble(reader["selling_price"]);
                 string department = "";
                 foreach (KeyValuePair<string, int> e in this.deps)
                 {
@@ -51,7 +52,7 @@ namespace MediaBazaarTest
                         department = e.Key;
                     }
                 }
-                items.Add(new Item(id, name, description, department, amnt, auto, arLimit));
+                items.Add(new Item(id, name, description, department, amnt, auto, arLimit, price));
             }
             reader.Close();
             conn.Close();

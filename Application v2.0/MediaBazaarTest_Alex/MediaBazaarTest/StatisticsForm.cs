@@ -30,10 +30,11 @@ namespace MediaBazaarTest
             //Add data to the CMBs
             //cmbDepSalary.DataSource = Enum.GetValues(typeof(Department));
             //cmbDepCount.DataSource = Enum.GetValues(typeof(Department));
-            foreach(KeyValuePair<string, int> d in dd.GetAllDepartmentsFromDB())
+            foreach(KeyValuePair<string, int> d in dd.GetAllDepartments())
             {
                 cmbDepCount.Items.Add(d.Key);
                 cmbDepSalary.Items.Add(d.Key);
+                cmbDepSalesStats.Items.Add(d.Key);
             }
 
             //Empty the CMBs
@@ -200,6 +201,7 @@ namespace MediaBazaarTest
 
         #endregion
 
+        #region SaleStats
         private void btShowItemStats_Click(object sender, EventArgs e)
         {
             if(lbItemStats.SelectedItem == null)
@@ -216,8 +218,18 @@ namespace MediaBazaarTest
         
 
         private void btShowRevenue_Click(object sender, EventArgs e)
-        {
-
+        {           
+            if (cmbDepSalesStats.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a department!");
+            }
+            else
+            {
+                string dep = cmbDepSalesStats.SelectedItem.ToString();
+                int depId = dd.GetIdByName(dep);
+                string info = $"Revenue for {dep} department is {(sdc.GetRevenuePerDep(depId)).ToString("C2")}";
+                MessageBox.Show(info);
+            }
         }
 
         private void btTopItemsSold_Click(object sender, EventArgs e)
@@ -235,5 +247,6 @@ namespace MediaBazaarTest
             }
             MessageBox.Show(info);
         }
+        #endregion
     }
 }

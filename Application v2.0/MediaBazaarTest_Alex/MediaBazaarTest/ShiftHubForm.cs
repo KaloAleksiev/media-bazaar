@@ -24,7 +24,7 @@ namespace MediaBazaarTest
             this.uc = uc;
             dd = new DepartmentDictionary();
             sdc = new ShiftDataControl();
-            deps = dd.GetAllDepartmentsFromDB();
+            deps = dd.GetAllDepartments();
             FillOutDepCB();
             AppendEvents();
         }
