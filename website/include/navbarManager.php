@@ -7,6 +7,7 @@
           <a href="profile.php">Profile</a>
           <a href="Home.php">Home</a>
           <a href="preference.php">Preferences</a>
+          <a href="managerSearch.php">Search Employee</a>
         </div>
       </div>
 </div>
