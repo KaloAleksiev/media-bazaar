@@ -118,7 +118,7 @@ namespace MediaBazaarTest
             CreateSchedule(pos);
 
             //Show the shchedule.
-            btnAutoSchedule_Click(sender, e);
+            btnViewSchedule_Click(sender, e);
         }
 
         #region Preparation code for algorithm
