@@ -245,7 +245,7 @@ namespace MediaBazaarTest
                         //Go to the next shift on the day and call the method again.
                         if (j == 0) { j = 1; }
                         else if (j == 1) { j = 2; }
-                        else if (j == 2) { j = 3; }
+                        else if (j == 2) { j = 0; }
                         allShifts = AddUserToShiftRnd(pos, pairityFlag, userToken, i, j, userLimit, counter);
                     }
                 }
