@@ -156,7 +156,7 @@ namespace MediaBazaarTest
             
             foreach(KeyValuePair<Item, int> i in items)
             {
-                revenue += i.Key.Price * i.Value;
+                revenue += i.Key.Sprice * i.Value;
             }
 
             return revenue;

@@ -16,6 +16,7 @@ namespace MediaBazaarTest
         Stock s;
         StockDataControl sdc;
         User currentUser;
+        DepartmentDictionary dd;
 
         public EditItemForm(Item i, Stock s, User u)
         {
@@ -24,7 +25,14 @@ namespace MediaBazaarTest
             this.s = s;
             currentUser = u;
             sdc = new StockDataControl();
+            dd = new DepartmentDictionary();
+            //Set the departments in the comboBox
+            foreach(KeyValuePair<string, int> p in dd.GetAllDepartments())
+            {
+                cbDep.Items.Add(p.Key);
+            }
 
+            //determine where u update the item of create a new one
             if (item == null)
             {
                 lbTitle.Text = $"Adding a new item...";
@@ -40,19 +48,30 @@ namespace MediaBazaarTest
                 tbItemName.Text = item.Name;
                 rtbItemDesc.Text = item.Description;
                 cbDep.SelectedItem = item.Department;
+                tbSellingPrice.Text = this.item.Sprice.ToString();
+                tbRestockPrice.Text = this.item.Rprice.ToString();
             }
         }
 
         private void btnSaveItem_Click(object sender, EventArgs e)
         {
-            Item newItem = sdc.AddItemToDB(tbItemName.Text, rtbItemDesc.Text, cbDep.SelectedIndex + 1);
-            if (newItem != null)
+            try
             {
-                MessageBox.Show("Item successfully saved!");
-                s.AddItem(newItem);
-                this.Close();
+                Item newItem = sdc.AddItemToDB(tbItemName.Text, rtbItemDesc.Text, cbDep.SelectedIndex + 1, Convert.ToDouble(tbSellingPrice.Text), Convert.ToDouble(tbRestockPrice.Text));
+                if (newItem != null)
+                {
+                    MessageBox.Show("Item successfully saved!");
+                    s.AddItem(newItem);
+                    this.Close();
+                }
+                else { MessageBox.Show("Something went wrong!"); }
             }
-            else { MessageBox.Show("Something went wrong!"); }
+            catch(FormatException ex)
+            {
+                MessageBox.Show("The prices should be numeric values!");
+            }
+            
+           
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -60,13 +79,20 @@ namespace MediaBazaarTest
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
-            if (sdc.EditItem(item.Id, tbItemName.Text, rtbItemDesc.Text, cbDep.SelectedIndex + 1))
+            try
             {
-                item.UpdateItem(tbItemName.Text, rtbItemDesc.Text, ((Department)cbDep.SelectedIndex + 1).ToString());
-                MessageBox.Show("Changes successfully saved!");
-                this.Close();
+                if (sdc.EditItem(item.Id, tbItemName.Text, rtbItemDesc.Text, cbDep.SelectedIndex + 1, Convert.ToDouble(tbSellingPrice.Text), Convert.ToDouble(tbRestockPrice.Text)))
+                {
+                    item.UpdateItem(tbItemName.Text, rtbItemDesc.Text, cbDep.SelectedItem.ToString());
+                    MessageBox.Show("Changes successfully saved!");
+                    this.Close();
+                }
+                else { MessageBox.Show("Something went wrong!"); }
+            }            
+            catch (FormatException ex)
+            {
+                MessageBox.Show("The prices should be numeric values!");
             }
-            else { MessageBox.Show("Something went wrong!"); }
         }
     }
 }

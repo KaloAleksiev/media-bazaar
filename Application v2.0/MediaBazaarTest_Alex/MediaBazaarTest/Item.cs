@@ -16,6 +16,7 @@ namespace MediaBazaarTest
         private bool autoRestock;
         private int arLimit;
         private double sellingPrice;
+        private double restockPrice;
 
         public int Id
         {
@@ -44,7 +45,7 @@ namespace MediaBazaarTest
         public int AmountInStock
         {
             get { return amountInStock; }
-            private set { amountInStock = value; }
+            set { amountInStock = value; }
         }
 
         public bool AutoRestock
@@ -58,10 +59,11 @@ namespace MediaBazaarTest
             private set { arLimit = value; }
         }
 
-        public double Price { get { return this.sellingPrice; } }
+        public double Sprice { get { return this.sellingPrice; } }
+        public double Rprice{ get { return this.restockPrice; }}
 
 
-        public Item(int id, string name, string description, string department, int amountInStock, bool autoRestock, int arLimit, double sellingPrice)
+        public Item(int id, string name, string description, string department, int amountInStock, bool autoRestock, int arLimit, double sellingPrice, double restockPrice)
         {
             this.Id = id;
             this.Name = name;
@@ -71,6 +73,7 @@ namespace MediaBazaarTest
             this.autoRestock = autoRestock;
             this.ARLimit = arLimit;
             this.sellingPrice = sellingPrice;
+            this.restockPrice = restockPrice;
         }
         public Item(int id, string name, string description, string department, int amountInStock, bool autoRestock, int arLimit)
         {

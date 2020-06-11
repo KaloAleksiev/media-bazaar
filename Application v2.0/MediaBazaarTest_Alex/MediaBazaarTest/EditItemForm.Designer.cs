@@ -38,13 +38,18 @@
             this.lbTitle = new System.Windows.Forms.Label();
             this.rtbItemDesc = new System.Windows.Forms.RichTextBox();
             this.tbItemName = new System.Windows.Forms.TextBox();
+            this.tbRestockPrice = new System.Windows.Forms.TextBox();
+            this.tbSellingPrice = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(149, 331);
+            this.btnCancel.Location = new System.Drawing.Point(109, 343);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(155, 27);
+            this.btnCancel.Size = new System.Drawing.Size(116, 22);
             this.btnCancel.TabIndex = 20;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -52,9 +57,10 @@
             // 
             // btnSaveChanges
             // 
-            this.btnSaveChanges.Location = new System.Drawing.Point(149, 302);
+            this.btnSaveChanges.Location = new System.Drawing.Point(109, 319);
+            this.btnSaveChanges.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveChanges.Name = "btnSaveChanges";
-            this.btnSaveChanges.Size = new System.Drawing.Size(155, 27);
+            this.btnSaveChanges.Size = new System.Drawing.Size(116, 22);
             this.btnSaveChanges.TabIndex = 19;
             this.btnSaveChanges.Text = "Save changes";
             this.btnSaveChanges.UseVisualStyleBackColor = true;
@@ -62,9 +68,10 @@
             // 
             // btnSaveItem
             // 
-            this.btnSaveItem.Location = new System.Drawing.Point(149, 273);
+            this.btnSaveItem.Location = new System.Drawing.Point(109, 296);
+            this.btnSaveItem.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveItem.Name = "btnSaveItem";
-            this.btnSaveItem.Size = new System.Drawing.Size(155, 27);
+            this.btnSaveItem.Size = new System.Drawing.Size(116, 22);
             this.btnSaveItem.TabIndex = 18;
             this.btnSaveItem.Text = "Save item";
             this.btnSaveItem.UseVisualStyleBackColor = true;
@@ -73,72 +80,113 @@
             // cbDep
             // 
             this.cbDep.FormattingEnabled = true;
-            this.cbDep.Items.AddRange(new object[] {
-            "Phones",
-            "Computers             ",
-            "TVs"});
-            this.cbDep.Location = new System.Drawing.Point(132, 226);
+            this.cbDep.Location = new System.Drawing.Point(99, 184);
+            this.cbDep.Margin = new System.Windows.Forms.Padding(2);
             this.cbDep.Name = "cbDep";
-            this.cbDep.Size = new System.Drawing.Size(293, 24);
+            this.cbDep.Size = new System.Drawing.Size(221, 21);
             this.cbDep.TabIndex = 17;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 229);
+            this.label4.Location = new System.Drawing.Point(9, 186);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 17);
+            this.label4.Size = new System.Drawing.Size(86, 13);
             this.label4.TabIndex = 16;
             this.label4.Text = "Item department:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 115);
+            this.label3.Location = new System.Drawing.Point(11, 93);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 17);
+            this.label3.Size = new System.Drawing.Size(84, 13);
             this.label3.TabIndex = 15;
             this.label3.Text = "Item description:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 72);
+            this.label2.Location = new System.Drawing.Point(37, 58);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 17);
+            this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 14;
             this.label2.Text = "Item name:";
             // 
             // lbTitle
             // 
             this.lbTitle.AutoSize = true;
-            this.lbTitle.Location = new System.Drawing.Point(49, 25);
+            this.lbTitle.Location = new System.Drawing.Point(37, 20);
+            this.lbTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(46, 17);
+            this.lbTitle.Size = new System.Drawing.Size(35, 13);
             this.lbTitle.TabIndex = 13;
             this.lbTitle.Text = "lbTitle";
             // 
             // rtbItemDesc
             // 
-            this.rtbItemDesc.Location = new System.Drawing.Point(132, 115);
+            this.rtbItemDesc.Location = new System.Drawing.Point(99, 93);
+            this.rtbItemDesc.Margin = new System.Windows.Forms.Padding(2);
             this.rtbItemDesc.Name = "rtbItemDesc";
             this.rtbItemDesc.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbItemDesc.Size = new System.Drawing.Size(293, 96);
+            this.rtbItemDesc.Size = new System.Drawing.Size(221, 79);
             this.rtbItemDesc.TabIndex = 12;
             this.rtbItemDesc.Text = "";
             // 
             // tbItemName
             // 
-            this.tbItemName.Location = new System.Drawing.Point(132, 69);
+            this.tbItemName.Location = new System.Drawing.Point(99, 56);
+            this.tbItemName.Margin = new System.Windows.Forms.Padding(2);
             this.tbItemName.Name = "tbItemName";
-            this.tbItemName.Size = new System.Drawing.Size(293, 22);
+            this.tbItemName.Size = new System.Drawing.Size(221, 20);
             this.tbItemName.TabIndex = 11;
+            // 
+            // tbRestockPrice
+            // 
+            this.tbRestockPrice.Location = new System.Drawing.Point(183, 251);
+            this.tbRestockPrice.Name = "tbRestockPrice";
+            this.tbRestockPrice.Size = new System.Drawing.Size(137, 20);
+            this.tbRestockPrice.TabIndex = 21;
+            // 
+            // tbSellingPrice
+            // 
+            this.tbSellingPrice.Location = new System.Drawing.Point(183, 225);
+            this.tbSellingPrice.Name = "tbSellingPrice";
+            this.tbSellingPrice.Size = new System.Drawing.Size(137, 20);
+            this.tbSellingPrice.TabIndex = 22;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(106, 228);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 13);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Selling price:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(102, 254);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Restock price:";
             // 
             // EditItemForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 385);
+            this.ClientSize = new System.Drawing.Size(338, 377);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tbSellingPrice);
+            this.Controls.Add(this.tbRestockPrice);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSaveChanges);
             this.Controls.Add(this.btnSaveItem);
@@ -149,6 +197,7 @@
             this.Controls.Add(this.lbTitle);
             this.Controls.Add(this.rtbItemDesc);
             this.Controls.Add(this.tbItemName);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "EditItemForm";
             this.Text = "EditItemForm";
             this.ResumeLayout(false);
@@ -168,5 +217,9 @@
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.RichTextBox rtbItemDesc;
         private System.Windows.Forms.TextBox tbItemName;
+        private System.Windows.Forms.TextBox tbRestockPrice;
+        private System.Windows.Forms.TextBox tbSellingPrice;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label5;
     }
 }
