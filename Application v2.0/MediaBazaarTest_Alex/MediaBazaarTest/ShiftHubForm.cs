@@ -167,6 +167,7 @@ namespace MediaBazaarTest
                 allShifts.Add(i, new Shift[3]);
                 for (int j = 0; j <= 2; j++)
                 {
+                    //Maybe a morning shift is not created  at all ????????? //Alex
                     ShiftType type = ShiftType.Morning;
                     if (j == 1)
                     { type = ShiftType.Noon; }
@@ -230,6 +231,7 @@ namespace MediaBazaarTest
             //If this is the fourth recursion, don't do anything.
             if (counter < 4)
             {
+                //There might be a problem with the random ?? //Alex
                 int j = rndNum;
                 //If the number of the day appeals to the flag condition, attempt to add the user to this shift.
                 if (i % 2 == Convert.ToInt32(pairityFlag))
