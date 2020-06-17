@@ -32,12 +32,20 @@ namespace MediaBazaarTest
             deps = dd.GetAllDepartments();
             FillOutDepCB();
             AppendEvents();
+            PrepareWindow();
         }
 
         public void FillOutDepCB()
         {
             foreach (KeyValuePair<string, int> dep in deps)
             { cbDepartment.Items.Add(dep.Key); }
+        }
+
+        public void PrepareWindow()
+        {
+            if (DateTime.Now.Day < 15)
+            { cbMonth.SelectedIndex = DateTime.Now.Month + 1; }
+            else { cbMonth.SelectedIndex = DateTime.Now.Month + 2; }
         }
 
         public void UpdateInfoLabel(object sender, EventArgs e)
@@ -218,9 +226,18 @@ namespace MediaBazaarTest
                 }
 
                 //If the person has not been assigned to the max. allowed amount of shifts, repeat with different pairity flag.
-                if (shiftTokenDictionary[userToken.Key] != 0)
-                { CycleThroughMonth(pos, !pairityFlag, userLimit, userToken, counter++); }
-                return allShifts;
+                if (counter == 1)
+                {
+                    if (shiftTokenDictionary[userToken.Key] != 0)
+                    { CycleThroughMonth(pos, !pairityFlag, userLimit, userToken, 2); }
+                    return allShifts;
+                }
+                else
+                {
+                    if (shiftTokenDictionary[userToken.Key] != 0)
+                    { CycleThroughMonth(pos, !pairityFlag, userLimit, userToken, 1); }
+                    return allShifts;
+                }
             }
             return allShifts;
         }
