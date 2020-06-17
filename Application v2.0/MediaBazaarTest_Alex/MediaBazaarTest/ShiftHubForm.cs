@@ -17,6 +17,7 @@ namespace MediaBazaarTest
         Month month;
         UserControl uc;
         ShiftDataControl sdc;
+        LoadInfoForm frm;
 
         Dictionary<int, int> shiftTokenDictionary;
         Dictionary<int, Shift[]> allShifts;
@@ -44,8 +45,9 @@ namespace MediaBazaarTest
         public void PrepareWindow()
         {
             if (DateTime.Now.Day < 15)
-            { cbMonth.SelectedIndex = DateTime.Now.Month + 1; }
-            else { cbMonth.SelectedIndex = DateTime.Now.Month + 2; }
+            { cbMonth.SelectedIndex = DateTime.Now.Month - 1; }
+            else { cbMonth.SelectedIndex = DateTime.Now.Month; }
+            tbYear.Text = DateTime.Now.Year.ToString();
         }
 
         public void UpdateInfoLabel(object sender, EventArgs e)
@@ -95,194 +97,25 @@ namespace MediaBazaarTest
             frm.Show();
         }
 
-
-        #region Shift Automatic Creation Algorithm 
-
         private void btnAutoSchedule_Click(object sender, EventArgs e)
         {
-            Position pos = (Position)(cbPosition.SelectedIndex + 1);
-            KeyValuePair<string, int> dep = new KeyValuePair<string, int>((string)cbDepartment.SelectedItem, cbDepartment.SelectedIndex + 1);
-
-            //Clear all shifts in month.
-            for (int i = 1; i <= DateTime.DaysInMonth(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1); i++)
-            {
-                DateTime dt = new DateTime(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1, i);
-                
-                //Get all shifts from the database
-                List<int> indexes = sdc.GetAllShiftsOnDateByDep(dep.Value, pos, dt);
-                DeleteShift(indexes);
-            }
-
-            //Calculate the amount of shifts an emplyee has to do in a month.
-            int shiftsPerPerson = CalculateAmountOfShiftsPerPerson(new DateTime(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1, 1), pos, dep.Key);
-
-            //Create dictionary with the user ID as the key and amount of shift "tokens" left as the value.
-            shiftTokenDictionary = CreateShiftTokenDictionary(pos, dep.Key, shiftsPerPerson);
-
-            //Create empty shifts for each day of the month.
-            allShifts = CreateAllShifts(pos, dep.Value);
-
-            //Main repetition segment, where the assigment takes place.
-            CreateSchedule(pos);
-
-            //Show the shchedule.
-            btnViewSchedule_Click(sender, e);
+            CreateStatusForm();
         }
 
-        #region Preparation code for algorithm
-        public void DeleteShift(List<int> indexes)
+        public void CreateStatusForm()
         {
-            if (indexes != null)
-            {
-                foreach (int j in indexes)
-                {
-                    //Delete all people from the shift and then delete the shift itself.
-                    sdc.DeleteAllPeopleFromShift(j);
-                    sdc.DeleteShift(j);
-                }
-            }
+            ShiftType type;
+            if (rbMorning.Checked)
+            { type = ShiftType.Morning; }
+            else if (rbNoon.Checked)
+            { type = ShiftType.Noon; }
+            else { type = ShiftType.Evening; }
+
+            frm = new LoadInfoForm(sdc, uc, (Month)cbMonth.SelectedIndex + 1, Convert.ToInt32(tbYear.Text),
+                (string)cbDepartment.SelectedItem, cbDepartment.SelectedIndex + 1, type, (Position)(cbPosition.SelectedIndex + 1));
+            frm.Show(this);
+
+            frm.FormClosed += new FormClosedEventHandler(btnViewSchedule_Click);
         }
-
-        public int CalculateAmountOfShiftsPerPerson(DateTime dt, Position pos, string dep)
-        {
-            int totalShiftCount = DateTime.DaysInMonth(dt.Year, dt.Month) * 3;
-            List<User> users = new List<User>();
-            foreach (User u in uc.GetUsers())
-            {
-                if (u.Position == pos && u.Department == dep)
-                { users.Add(u); }
-            }
-            int shiftsPerPerson = totalShiftCount / users.Count;
-            return shiftsPerPerson;
-        }
-
-        public Dictionary<int, int> CreateShiftTokenDictionary(Position pos, string dep, int shiftsPerPerson)
-        {
-            Dictionary<int, int> shiftTokenDictionary = new Dictionary<int, int>();
-            foreach (User u in uc.GetUsers())
-            {
-                if (u.Position == pos && u.Department == dep)
-                { shiftTokenDictionary.Add(u.Id, shiftsPerPerson); }
-            }
-            return shiftTokenDictionary;
-        }
-
-        public Dictionary<int, Shift[]> CreateAllShifts(Position pos, int dep)
-        {
-            Dictionary<int, Shift[]> allShifts = new Dictionary<int, Shift[]>();
-            for (int i = 1; i <= DateTime.DaysInMonth(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1); i++)
-            {
-                allShifts.Add(i, new Shift[3]);
-                for (int j = 0; j <= 2; j++)
-                {
-                    //Maybe a morning shift is not created  at all ????????? //Alex
-                    ShiftType type = ShiftType.Morning;
-                    if (j == 1)
-                    { type = ShiftType.Noon; }
-                    else if (j == 2) { type = ShiftType.Evening; }
-                    allShifts[i][j] = new Shift(new DateTime(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1, i), type, pos, dep);
-                }
-            }
-            return allShifts;
-        }
-        #endregion
-
-        public void CreateSchedule(Position pos)
-        {
-            //Flag that determines on which days the people will be added.
-            bool pairityFlag = false;
-
-            Dictionary<int, int> standInTokens = new Dictionary<int, int>();
-
-            foreach (KeyValuePair<int, int> kvp in shiftTokenDictionary)
-            { standInTokens.Add(kvp.Key, kvp.Value); }
-
-            int userLimit = 1;
-            if (pos == Position.Employee)
-            { userLimit = 3; }
-            else if (pos == Position.DepotWorker)
-            { userLimit = 2; }
-            else { userLimit = 1; }
-
-            //For each user, add them to every other day of the month.
-            foreach (KeyValuePair<int, int> userToken in standInTokens)
-            { allShifts = CycleThroughMonth(pos, pairityFlag, userLimit, userToken, 0); }
-
-            //Add the new shifts to the data base.
-            AddAllShiftsToDB();
-        }
-
-        public Dictionary<int, Shift[]> CycleThroughMonth(Position pos, bool pairityFlag, int userLimit, KeyValuePair<int, int> userToken, int counter)
-        {
-            //If this is the third recursion, don't do anything.
-            if (counter < 2)
-            {
-                //Call the needed method for each day of the month.
-                for (int i = 1; i <= DateTime.DaysInMonth(Convert.ToInt32(tbYear.Text), cbMonth.SelectedIndex + 1); i++)
-                {
-                    Random rnd = new Random();
-                    int rndNum = rnd.Next(0, 3);
-                    allShifts = AddUserToShiftRnd(pos, pairityFlag, userToken, i, rndNum, userLimit, 0);
-                }
-
-                //If the person has not been assigned to the max. allowed amount of shifts, repeat with different pairity flag.
-                if (counter == 1)
-                {
-                    if (shiftTokenDictionary[userToken.Key] != 0)
-                    { CycleThroughMonth(pos, !pairityFlag, userLimit, userToken, 2); }
-                    return allShifts;
-                }
-                else
-                {
-                    if (shiftTokenDictionary[userToken.Key] != 0)
-                    { CycleThroughMonth(pos, !pairityFlag, userLimit, userToken, 1); }
-                    return allShifts;
-                }
-            }
-            return allShifts;
-        }
-
-        public Dictionary<int, Shift[]> AddUserToShiftRnd( Position pos, bool pairityFlag, KeyValuePair<int, int> userToken, int i, int rndNum, int userLimit, int counter)
-        {
-            counter++;
-            //If this is the fourth recursion, don't do anything.
-            if (counter < 4)
-            {
-                //There might be a problem with the random ?? //Alex
-                int j = rndNum;
-                //If the number of the day appeals to the flag condition, attempt to add the user to this shift.
-                if (i % 2 == Convert.ToInt32(pairityFlag))
-                {
-                    //If the shift isn't full, add to it. If it is, try the next one.
-                    if (allShifts[i][j].GetAllUsers().Count < userLimit)
-                    {
-                        allShifts[i][j].AddUser(uc.GetUserByID(userToken.Key));
-                        shiftTokenDictionary[userToken.Key]--;
-                    }
-                    else
-                    {
-                        //Go to the next shift on the day and call the method again.
-                        if (j == 0) { j = 1; }
-                        else if (j == 1) { j = 2; }
-                        else if (j == 2) { j = 0; }
-                        allShifts = AddUserToShiftRnd(pos, pairityFlag, userToken, i, j, userLimit, counter);
-                    }
-                }
-                return allShifts;
-            }
-            return allShifts;
-        }
-
-        public void AddAllShiftsToDB()
-        {
-            //Add all the shifts to the database.
-            foreach (KeyValuePair<int, Shift[]> shifts in allShifts)
-            {
-                for (int i = 0; i < 3; i++)
-                { shifts.Value[i].AddShiftToDB(); }
-            }
-        }
-
-        #endregion
     }
 }

@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace MediaBazaarTest
 {
-    class ShiftDataControl
+    public class ShiftDataControl
     {
         string connStr;
         MySqlConnection conn;

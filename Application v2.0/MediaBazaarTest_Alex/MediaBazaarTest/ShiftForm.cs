@@ -73,7 +73,7 @@ namespace MediaBazaarTest
         {
             if (days < listBoxes.Count)
             {
-                for (int i = days; i <= listBoxes.Count; i++)
+                for (int i = days + 1; i <= listBoxes.Count; i++)
                 { 
                     listBoxes[i].Visible = false;
                     listBoxes[i].Enabled = false;
