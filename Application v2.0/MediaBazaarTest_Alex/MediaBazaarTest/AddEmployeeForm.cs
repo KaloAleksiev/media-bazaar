@@ -80,15 +80,15 @@ namespace MediaBazaarTest
 
             //GetGender
             string gender = "";
-            if (cbMale.Checked)
+            if (rbtMale.Checked)
             {
                 gender = "Male";
             }
-            else if (cbFemale.Checked)
+            else if (rbtFemale.Checked)
             {
                 gender = "Female";
             }
-            else if (cbOtherGender.Checked)
+            else if (rbtOther.Checked)
             {
                 gender = tbOtherGender.Text;
             }
@@ -362,10 +362,10 @@ namespace MediaBazaarTest
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
-
-        private void cbOtherGender_CheckedChanged(object sender, EventArgs e)
+        
+        private void rbtOther_CheckedChanged(object sender, EventArgs e)
         {
-            if(tbOtherGender.Visible == false)
+            if (tbOtherGender.Visible == false)
             {
                 tbOtherGender.Visible = true;
             }
@@ -373,8 +373,8 @@ namespace MediaBazaarTest
             {
                 tbOtherGender.Visible = false;
             }
-           
         }
+
 
         private void ClearInfoAddUser()
         {
@@ -402,8 +402,12 @@ namespace MediaBazaarTest
         }
 
 
+
+
         #endregion
 
-       
+        
+
+        
     }
 }

@@ -79,3 +79,4 @@ C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaar
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.csproj.CopyComplete
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.exe
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.pdb
+D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.LoadInfoForm.resources
