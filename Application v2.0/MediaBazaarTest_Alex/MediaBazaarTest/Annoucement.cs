@@ -17,7 +17,6 @@ namespace MediaBazaarTest
         private int id;
         private int authorId;
         private int departmentId;
-       
         public Annoucement(DateTime startDate, DateTime endDate, string title, string text, User author, int department)
         {
             this.startDate = startDate;
@@ -27,7 +26,7 @@ namespace MediaBazaarTest
             this.text = text;
             this.departmentId = department;
         }
-        public Annoucement(DateTime startDate, DateTime endDate, string title, string text, int authorid, int id)
+        public Annoucement(DateTime startDate, DateTime endDate, string title, string text, int authorid, int id, int department)
         {
             this.startDate = startDate;
             this.endDate = endDate;
@@ -35,6 +34,7 @@ namespace MediaBazaarTest
             this.authorId = authorid;
             this.text = text;
             this.id = id;
+            this.departmentId = department;
         }
         public DateTime StartDate
         {
@@ -95,7 +95,11 @@ namespace MediaBazaarTest
         {
             this.EndDate = end;
         }
-       
+        public void ChangeDepartment(int departmentId)
+        {
+            this.departmentId = departmentId;
+        }
+
 
 
         public string ToString()

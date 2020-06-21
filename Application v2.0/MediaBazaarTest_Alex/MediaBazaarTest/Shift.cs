@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace MediaBazaarTest
 {
-    class Shift
+    public class Shift
     {
         //Variables
         private int shiftId;
@@ -33,6 +33,19 @@ namespace MediaBazaarTest
             this.Type = type;
             this.Position = pos;
             this.Department = dep;
+            users = new List<User>();
+        }
+
+        public Shift(DateTime date, ShiftType type, Position pos, int dep)
+        {
+            this.date = date;
+            this.Type = type;
+            this.Position = pos;
+            this.Department = dep;
+            users = new List<User>();
+        }
+
+        public Shift() {
             users = new List<User>();
         }
 
@@ -147,7 +160,7 @@ namespace MediaBazaarTest
                 //If the shift doesn't exist, create it.
                 MySqlCommand AddShiftToDB = new MySqlCommand("INSERT INTO shift (date, type, department_id, position) VALUES (@date, @type, @department, @position)", conn);
                 AddShiftToDB.Parameters.AddWithValue("@date", this.date.ToString("yyyy-MM-dd"));
-                AddShiftToDB.Parameters.AddWithValue("@type", this.Type);
+                AddShiftToDB.Parameters.AddWithValue("@type", this.Type.ToString());
                 if (this.Department == 0)
                 { AddShiftToDB.Parameters.AddWithValue("@department", null); }
                 else { AddShiftToDB.Parameters.AddWithValue("@department", this.Department); }

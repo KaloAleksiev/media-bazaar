@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatisticsForm));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pDepStats = new System.Windows.Forms.Panel();
             this.btAvgSalaryOverall = new System.Windows.Forms.Button();
             this.chartEmployees = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -45,6 +48,7 @@
             this.cmbDepSalary = new System.Windows.Forms.ComboBox();
             this.cmbDepCount = new System.Windows.Forms.ComboBox();
             this.pItemStats = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lbItemStats = new System.Windows.Forms.ListBox();
             this.btShowItemStats = new System.Windows.Forms.Button();
             this.chartItems = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -55,12 +59,22 @@
             this.btDepartmentStats = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pSalesStats = new System.Windows.Forms.Panel();
+            this.btSalesStats = new System.Windows.Forms.Button();
+            this.cmbDepSalesStats = new System.Windows.Forms.ComboBox();
+            this.btShowRevenue = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btTopItemsSold = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.chTopEmpSales = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pDepStats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartEmployees)).BeginInit();
             this.pItemStats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pSalesStats.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chTopEmpSales)).BeginInit();
             this.SuspendLayout();
             // 
             // pDepStats
@@ -95,18 +109,18 @@
             // 
             // chartEmployees
             // 
-            chartArea9.Name = "ChartArea1";
-            this.chartEmployees.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.chartEmployees.Legends.Add(legend9);
+            chartArea1.Name = "ChartArea1";
+            this.chartEmployees.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartEmployees.Legends.Add(legend1);
             this.chartEmployees.Location = new System.Drawing.Point(3, 121);
             this.chartEmployees.Name = "chartEmployees";
-            series9.ChartArea = "ChartArea1";
-            series9.IsVisibleInLegend = false;
-            series9.Legend = "Legend1";
-            series9.Name = "Employee count";
-            series9.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
-            this.chartEmployees.Series.Add(series9);
+            series1.ChartArea = "ChartArea1";
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Employee count";
+            series1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
+            this.chartEmployees.Series.Add(series1);
             this.chartEmployees.Size = new System.Drawing.Size(415, 300);
             this.chartEmployees.TabIndex = 40;
             this.chartEmployees.Text = "chart1";
@@ -193,6 +207,14 @@
             this.pItemStats.Size = new System.Drawing.Size(866, 450);
             this.pItemStats.TabIndex = 42;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Maroon;
+            this.panel1.Location = new System.Drawing.Point(428, -2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(10, 455);
+            this.panel1.TabIndex = 43;
+            // 
             // lbItemStats
             // 
             this.lbItemStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -219,18 +241,18 @@
             // 
             // chartItems
             // 
-            chartArea10.Name = "ChartArea1";
-            this.chartItems.ChartAreas.Add(chartArea10);
-            legend10.Name = "Legend1";
-            this.chartItems.Legends.Add(legend10);
+            chartArea2.Name = "ChartArea1";
+            this.chartItems.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartItems.Legends.Add(legend2);
             this.chartItems.Location = new System.Drawing.Point(3, 121);
             this.chartItems.Name = "chartItems";
-            series10.ChartArea = "ChartArea1";
-            series10.IsVisibleInLegend = false;
-            series10.Legend = "Legend1";
-            series10.Name = "count";
-            series10.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
-            this.chartItems.Series.Add(series10);
+            series2.ChartArea = "ChartArea1";
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "count";
+            series2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
+            this.chartItems.Series.Add(series2);
             this.chartItems.Size = new System.Drawing.Size(415, 300);
             this.chartItems.TabIndex = 40;
             this.chartItems.Text = "chart1";
@@ -319,13 +341,123 @@
             this.panel2.Size = new System.Drawing.Size(10, 455);
             this.panel2.TabIndex = 42;
             // 
-            // panel1
+            // pSalesStats
             // 
-            this.panel1.BackColor = System.Drawing.Color.Maroon;
-            this.panel1.Location = new System.Drawing.Point(428, -2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(10, 455);
-            this.panel1.TabIndex = 43;
+            this.pSalesStats.BackColor = System.Drawing.Color.White;
+            this.pSalesStats.Controls.Add(this.chTopEmpSales);
+            this.pSalesStats.Controls.Add(this.label7);
+            this.pSalesStats.Controls.Add(this.btTopItemsSold);
+            this.pSalesStats.Controls.Add(this.label6);
+            this.pSalesStats.Controls.Add(this.label5);
+            this.pSalesStats.Controls.Add(this.btShowRevenue);
+            this.pSalesStats.Controls.Add(this.cmbDepSalesStats);
+            this.pSalesStats.Location = new System.Drawing.Point(154, 80);
+            this.pSalesStats.Name = "pSalesStats";
+            this.pSalesStats.Size = new System.Drawing.Size(866, 450);
+            this.pSalesStats.TabIndex = 43;
+            this.pSalesStats.Visible = false;
+            // 
+            // btSalesStats
+            // 
+            this.btSalesStats.BackColor = System.Drawing.Color.Maroon;
+            this.btSalesStats.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btSalesStats.ForeColor = System.Drawing.Color.White;
+            this.btSalesStats.Location = new System.Drawing.Point(9, 240);
+            this.btSalesStats.Name = "btSalesStats";
+            this.btSalesStats.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btSalesStats.Size = new System.Drawing.Size(140, 74);
+            this.btSalesStats.TabIndex = 44;
+            this.btSalesStats.Text = "Sales statistics";
+            this.btSalesStats.UseVisualStyleBackColor = false;
+            this.btSalesStats.Click += new System.EventHandler(this.btSalesStats_Click);
+            // 
+            // cmbDepSalesStats
+            // 
+            this.cmbDepSalesStats.FormattingEnabled = true;
+            this.cmbDepSalesStats.Location = new System.Drawing.Point(93, 94);
+            this.cmbDepSalesStats.Name = "cmbDepSalesStats";
+            this.cmbDepSalesStats.Size = new System.Drawing.Size(153, 21);
+            this.cmbDepSalesStats.TabIndex = 0;
+            // 
+            // btShowRevenue
+            // 
+            this.btShowRevenue.BackColor = System.Drawing.Color.Maroon;
+            this.btShowRevenue.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btShowRevenue.ForeColor = System.Drawing.Color.White;
+            this.btShowRevenue.Location = new System.Drawing.Point(93, 138);
+            this.btShowRevenue.Name = "btShowRevenue";
+            this.btShowRevenue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btShowRevenue.Size = new System.Drawing.Size(152, 69);
+            this.btShowRevenue.TabIndex = 45;
+            this.btShowRevenue.Text = "Show Revenue";
+            this.btShowRevenue.UseVisualStyleBackColor = false;
+            this.btShowRevenue.Click += new System.EventHandler(this.btShowRevenue_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(39, 29);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(288, 32);
+            this.label5.TabIndex = 45;
+            this.label5.Text = "Revenue per department";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(62, 252);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(216, 32);
+            this.label6.TabIndex = 46;
+            this.label6.Text = "Top 5 selling items";
+            // 
+            // btTopItemsSold
+            // 
+            this.btTopItemsSold.BackColor = System.Drawing.Color.Maroon;
+            this.btTopItemsSold.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btTopItemsSold.ForeColor = System.Drawing.Color.White;
+            this.btTopItemsSold.Location = new System.Drawing.Point(93, 314);
+            this.btTopItemsSold.Name = "btTopItemsSold";
+            this.btTopItemsSold.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btTopItemsSold.Size = new System.Drawing.Size(152, 50);
+            this.btTopItemsSold.TabIndex = 47;
+            this.btTopItemsSold.Text = "Show Items";
+            this.btTopItemsSold.UseVisualStyleBackColor = false;
+            this.btTopItemsSold.Click += new System.EventHandler(this.btTopItemsSold_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(483, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(362, 32);
+            this.label7.TabIndex = 48;
+            this.label7.Text = "Top 5 employees based on sales";
+            // 
+            // chTopEmpSales
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.chTopEmpSales.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chTopEmpSales.Legends.Add(legend3);
+            this.chTopEmpSales.Location = new System.Drawing.Point(523, 108);
+            this.chTopEmpSales.Name = "chTopEmpSales";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "sales";
+            this.chTopEmpSales.Series.Add(series3);
+            this.chTopEmpSales.Size = new System.Drawing.Size(277, 255);
+            this.chTopEmpSales.TabIndex = 49;
+            this.chTopEmpSales.Text = "chart1";
             // 
             // StatisticsForm
             // 
@@ -333,6 +465,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1023, 534);
+            this.Controls.Add(this.btSalesStats);
+            this.Controls.Add(this.pSalesStats);
             this.Controls.Add(this.pItemStats);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pDepStats);
@@ -350,6 +484,9 @@
             this.pItemStats.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.pSalesStats.ResumeLayout(false);
+            this.pSalesStats.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chTopEmpSales)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -378,5 +515,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pSalesStats;
+        private System.Windows.Forms.ComboBox cmbDepSalesStats;
+        private System.Windows.Forms.Button btSalesStats;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btShowRevenue;
+        private System.Windows.Forms.Button btTopItemsSold;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chTopEmpSales;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Net;
 using System.Net.Mail;
 using S22.Imap;
-using CashierApp;
+//using CashierApp;
 
 namespace MediaBazaarTest
 {
@@ -19,7 +19,6 @@ namespace MediaBazaarTest
     {
         private UserControl uc;
         private DepartmentDictionary dd;
-        private Dictionary<string, int> deps;
         public AddEmployeeForm(UserControl ucMain)
         {
             InitializeComponent();           
@@ -30,7 +29,7 @@ namespace MediaBazaarTest
         private void AddEmployeeForm_Load(object sender, EventArgs e)
         {
             //cmbDepartment.DataSource = Enum.GetValues(typeof(Department));
-            foreach(KeyValuePair<string, int> i in dd.GetAllDepartmentsFromDB())
+            foreach(KeyValuePair<string, int> i in dd.GetAllDepartments())
             {
                 cmbDepartment.Items.Add(i.Key);
                 cmbDepartmentChange.Items.Add(i.Key);
@@ -81,15 +80,15 @@ namespace MediaBazaarTest
 
             //GetGender
             string gender = "";
-            if (cbMale.Checked)
+            if (rbtMale.Checked)
             {
                 gender = "Male";
             }
-            else if (cbFemale.Checked)
+            else if (rbtFemale.Checked)
             {
                 gender = "Female";
             }
-            else if (cbOtherGender.Checked)
+            else if (rbtOther.Checked)
             {
                 gender = tbOtherGender.Text;
             }
@@ -134,6 +133,7 @@ namespace MediaBazaarTest
             {
                 pAddUser.Visible = true;
                 pAllEmployees.Visible = false;
+                btPromoteSelected.Enabled = false;
             }
             else
             {
@@ -162,7 +162,7 @@ namespace MediaBazaarTest
             if (!pPromoteEmployee.Visible && dgvEmployee.SelectedRows.Count > 0)
             {
                 pPromoteEmployee.Visible = true;
-                tbSearch.Text = "";
+                
                 id = Convert.ToInt32(dgvEmployee.SelectedCells[0].Value.ToString());
                 UpdateEmployeeInfoLabel();
             }
@@ -280,7 +280,7 @@ namespace MediaBazaarTest
             pPromoteEmployee.Visible = false;
             pAllEmployees.Visible = true;
 
-            id = 0;
+            this.id = 0;
             lblSelectedEmployeeInfo.Text = "";
             dgvEmployee.ClearSelection();
 
@@ -362,10 +362,10 @@ namespace MediaBazaarTest
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
-
-        private void cbOtherGender_CheckedChanged(object sender, EventArgs e)
+        
+        private void rbtOther_CheckedChanged(object sender, EventArgs e)
         {
-            if(tbOtherGender.Visible == false)
+            if (tbOtherGender.Visible == false)
             {
                 tbOtherGender.Visible = true;
             }
@@ -373,8 +373,8 @@ namespace MediaBazaarTest
             {
                 tbOtherGender.Visible = false;
             }
-           
         }
+
 
         private void ClearInfoAddUser()
         {
@@ -402,8 +402,12 @@ namespace MediaBazaarTest
         }
 
 
+
+
         #endregion
 
-       
+        
+
+        
     }
 }

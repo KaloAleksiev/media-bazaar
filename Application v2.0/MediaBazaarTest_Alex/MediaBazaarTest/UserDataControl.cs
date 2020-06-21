@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CashierApp;
+//using CashierApp;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -18,7 +18,7 @@ namespace MediaBazaarTest
         {
             dd = new DepartmentDictionary();
             deps = new Dictionary<string, int>();
-            foreach(KeyValuePair<string, int> entry in dd.GetAllDepartmentsFromDB())
+            foreach(KeyValuePair<string, int> entry in dd.GetAllDepartments())
             {
                 deps.Add(entry.Key,entry.Value);
             }

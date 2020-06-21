@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
-using CashierApp;
+//using CashierApp;
 
 namespace MediaBazaarTest
 {
@@ -20,9 +20,10 @@ namespace MediaBazaarTest
         public StockDataControl()
         {
             connStr = @"Server=studmysql01.fhict.local; Uid=dbi427262; Database=dbi427262; Pwd=parola1234";
-            conn = new MySqlConnection(connStr); dd = new DepartmentDictionary();
+            conn = new MySqlConnection(connStr);
+            dd = new DepartmentDictionary();
             deps = new Dictionary<string, int>();
-            foreach (KeyValuePair<string, int> entry in dd.GetAllDepartmentsFromDB())
+            foreach (KeyValuePair<string, int> entry in dd.GetAllDepartments())
             {
                 deps.Add(entry.Key, entry.Value);
             }
@@ -31,7 +32,7 @@ namespace MediaBazaarTest
         public List<Item> GetStockFromDB()
         {
             List<Item> items = new List<Item>();
-            MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id, name, description, department_id, amount_in_stock, auto_restock, ar_limit FROM item", conn);
+            MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id, name, description, department_id, amount_in_stock, auto_restock, ar_limit, selling_price, restock_price FROM item", conn);
             conn.Open();
             MySqlDataReader reader = GetAllItems.ExecuteReader();
             while (reader.Read())
@@ -43,6 +44,8 @@ namespace MediaBazaarTest
                 int amnt = Convert.ToInt32(reader["amount_in_stock"]);
                 bool auto = Convert.ToBoolean(reader["auto_restock"]);
                 int arLimit = Convert.ToInt32(reader["ar_limit"]);
+                double sPrice = Convert.ToDouble(reader["selling_price"]);
+                double rPrice = Convert.ToDouble(reader["restock_price"]);
                 string department = "";
                 foreach (KeyValuePair<string, int> e in this.deps)
                 {
@@ -51,7 +54,7 @@ namespace MediaBazaarTest
                         department = e.Key;
                     }
                 }
-                items.Add(new Item(id, name, description, department, amnt, auto, arLimit));
+                items.Add(new Item(id, name, description, department, amnt, auto, arLimit, sPrice, rPrice));
             }
             reader.Close();
             conn.Close();
@@ -88,24 +91,33 @@ namespace MediaBazaarTest
             conn.Open();
             int k = CreateRequest.ExecuteNonQuery();
             conn.Close();
+            MySqlCommand ChangeAmount = new MySqlCommand("UPDATE item SET amount_in_stock = @newAmount WHERE item_id = @id", conn);
+            ChangeAmount.Parameters.AddWithValue("@newAmount", rr.Amount+rr.Item.AmountInStock);
+            ChangeAmount.Parameters.AddWithValue("@id", rr.Item.Id);
+            conn.Open();
+            ChangeAmount.ExecuteNonQuery();
+            conn.Close();
+            rr.Item.AmountInStock = rr.Amount + rr.Item.AmountInStock;
             if (k > 0)
             { return true; }
             else { return false; }
         }
 
-        public Item AddItemToDB(string name, string desc, int depId)
+        public Item AddItemToDB(string name, string desc, int depId, double sellPrice, double restockPrice)
         {
-            MySqlCommand CreateItem = new MySqlCommand("INSERT INTO item (name, description, department_id, amount_in_stock, auto_restock, ar_limit) VALUES (@name, @description, @depId, 0, 0, 3)", conn);
+            MySqlCommand CreateItem = new MySqlCommand("INSERT INTO item (name, description, department_id, amount_in_stock, auto_restock, ar_limit, selling_price, restock_price) VALUES (@name, @description, @depId, 10, 0, 3, @sell, @restock)", conn);
             CreateItem.Parameters.AddWithValue("@name", name);
             CreateItem.Parameters.AddWithValue("@description", desc);
             CreateItem.Parameters.AddWithValue("@depId", depId);
+            CreateItem.Parameters.AddWithValue("@sell", sellPrice);
+            CreateItem.Parameters.AddWithValue("@restock", restockPrice);
             conn.Open();
             int k = CreateItem.ExecuteNonQuery();
 
             if (k > 0)
             {
                 Item newItem;
-                MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id, name, description, department_id, amount_in_stock, auto_restock, ar_limit FROM item WHERE item_id = (SELECT MAX(item_id) FROM item)", conn);
+                MySqlCommand GetAllItems = new MySqlCommand("SELECT item_id, name, description, department_id, amount_in_stock, auto_restock, ar_limit, selling_price, restock_price FROM item WHERE item_id = (SELECT MAX(item_id) FROM item)", conn);
                 MySqlDataReader reader = GetAllItems.ExecuteReader();
                 reader.Read();
                 int id = Convert.ToInt32(reader["item_id"]);
@@ -115,7 +127,10 @@ namespace MediaBazaarTest
                 int amnt = Convert.ToInt32(reader["amount_in_stock"]);
                 bool auto = Convert.ToBoolean(reader["auto_restock"]);
                 int arLimit = Convert.ToInt32(reader["ar_limit"]);
-                newItem = new Item(id, name1, description, department, amnt, auto, arLimit);
+                double sPrice = Convert.ToDouble(reader["selling_price"]);
+                double rPrice = Convert.ToDouble(reader["restock_price"]);
+
+                newItem = new Item(id, name1, description, department, amnt, auto, arLimit, sPrice, rPrice);
                 conn.Close();
                 return newItem;
             }
@@ -126,14 +141,16 @@ namespace MediaBazaarTest
             }
         }
 
-        public bool EditItem(int id, string name, string desc, int depId)
+        public bool EditItem(int id, string name, string desc, int depId, double sell, double restock)
         {
             conn.Open();
-            MySqlCommand CreateItem = new MySqlCommand("UPDATE item SET name = @name, description = @description, department_id = @deptId WHERE item_id = @itemid", conn);
+            MySqlCommand CreateItem = new MySqlCommand("UPDATE item SET name = @name, description = @description, department_id = @deptId, selling_price = @sell, restock_price = @restock WHERE item_id = @itemid", conn);
             CreateItem.Parameters.AddWithValue("@name", name);
             CreateItem.Parameters.AddWithValue("@description", desc);
             CreateItem.Parameters.AddWithValue("@deptId", depId);
             CreateItem.Parameters.AddWithValue("@itemid", id);
+            CreateItem.Parameters.AddWithValue("@sell", sell);
+            CreateItem.Parameters.AddWithValue("@restock", restock);
             int k = CreateItem.ExecuteNonQuery();
             conn.Close();
             return Convert.ToBoolean(k);

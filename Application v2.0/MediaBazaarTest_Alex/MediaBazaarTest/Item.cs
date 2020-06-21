@@ -15,6 +15,8 @@ namespace MediaBazaarTest
         private int amountInStock;
         private bool autoRestock;
         private int arLimit;
+        private double sellingPrice;
+        private double restockPrice;
 
         public int Id
         {
@@ -43,7 +45,7 @@ namespace MediaBazaarTest
         public int AmountInStock
         {
             get { return amountInStock; }
-            private set { amountInStock = value; }
+            set { amountInStock = value; }
         }
 
         public bool AutoRestock
@@ -57,17 +59,11 @@ namespace MediaBazaarTest
             private set { arLimit = value; }
         }
 
-        //public Item(int id, string name, string description, int amountInStock, bool autoRestock, int arLimit)
-        //{
-        //    this.name = name;
-        //    this.description = description;
-        //    this.amountInStock = amountInStock;
-        //    this.autoRestock = autoRestock;
-        //    this.arLimit = arLimit;
-        //    this.Id = id;
-        //}
+        public double Sprice { get { return this.sellingPrice; } }
+        public double Rprice{ get { return this.restockPrice; }}
 
-        public Item(int id, string name, string description, string department, int amountInStock, bool autoRestock, int arLimit)
+
+        public Item(int id, string name, string description, string department, int amountInStock, bool autoRestock, int arLimit, double sellingPrice, double restockPrice)
         {
             this.Id = id;
             this.Name = name;
@@ -76,6 +72,18 @@ namespace MediaBazaarTest
             this.Department = department;
             this.autoRestock = autoRestock;
             this.ARLimit = arLimit;
+            this.sellingPrice = sellingPrice;
+            this.restockPrice = restockPrice;
+        }
+        public Item(int id, string name, string description, string department, int amountInStock, bool autoRestock, int arLimit)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Description = description;
+            this.AmountInStock = amountInStock;
+            this.Department = department;
+            this.autoRestock = autoRestock;
+            this.ARLimit = arLimit;            
         }
 
         public string GetInfo()

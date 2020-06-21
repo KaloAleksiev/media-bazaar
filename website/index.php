@@ -9,7 +9,7 @@ $database = "website";
 $message = "";
 try
 {
-    //conection to database
+ //conection to database
   $connect = new PDO("mysql:host=studmysql01.fhict.local;dbname=dbi427262", $username,  $password);
   //handling exeptions
   $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -37,6 +37,7 @@ try
                   $_SESSION['name'] = $result['firstName'];
                   $_SESSION['user_id'] = $result['id'];
                   $_SESSION['position'] = $result['position'];
+                  $_SESSION['department'] = $result['department_id'];
                   $_SESSION['user_pass'] = $_POST["password"];
                   header('location: include/Home.php');
               }
@@ -87,16 +88,16 @@ catch(PDOException $error)
                     <div class="i">
                     </div>
                     <div class="div">
-                        <h5>Username</h5>
-                        <input type="text" class="form-control" name="username" >
+                        <label1>Username</label1>
+                        <input type="text" class="form-control"  name="username" >
                     </div>
                 </div>
                 <div class="input-div pass">
                     <div class="i">
                     </div>
                     <div class="div">
-                        <h5>Password</h5>
-                        <input type="password" class="form-control" name="password" >
+                        <label1>Password</label1>
+                        <input type="password" class="form-control"  name="password" >
                     </div>
                 </div>
                
@@ -108,25 +109,5 @@ catch(PDOException $error)
 </body>
 </html>
 
-<script>
-const inputs = document.querySelectorAll(".form-control");
 
 
-function addcl(){
-	let parent = this.parentNode.parentNode;
-	parent.classList.add("focus");
-}
-
-function remcl(){
-	let parent = this.parentNode.parentNode;
-	if(this.value == ""){
-		parent.classList.remove("focus");
-	}
-}
-
-
-inputs.forEach(input => {
-	input.addEventListener("focus", addcl);
-	input.addEventListener("blur", remcl);
-});
-</script>

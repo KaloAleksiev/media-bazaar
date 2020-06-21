@@ -72,6 +72,22 @@
             this.btnStocks = new System.Windows.Forms.Button();
             this.btnSchedule = new System.Windows.Forms.Button();
             this.btnAnnoucement = new System.Windows.Forms.Button();
+            this.btSettings = new System.Windows.Forms.Button();
+            this.pSettings = new System.Windows.Forms.Panel();
+            this.btDeleteDep = new System.Windows.Forms.Button();
+            this.btChangeDepName = new System.Windows.Forms.Button();
+            this.btAddDep = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbChangeDepName = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbNewDep = new System.Windows.Forms.TextBox();
+            this.btBackSettings = new System.Windows.Forms.Button();
+            this.v = new System.Windows.Forms.Label();
+            this.cbDepSettings = new System.Windows.Forms.ComboBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
             this.pLogin.SuspendLayout();
             this.pForgottenPass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -81,6 +97,7 @@
             this.pStocksInfo.SuspendLayout();
             this.pStatsInfo.SuspendLayout();
             this.pnAnnoucemnts.SuspendLayout();
+            this.pSettings.SuspendLayout();
             this.SuspendLayout();
             // 
             // pLogin
@@ -340,7 +357,7 @@
             this.btnLogOut.Location = new System.Drawing.Point(862, 19);
             this.btnLogOut.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogOut.Padding = new System.Windows.Forms.Padding(2);
             this.btnLogOut.Size = new System.Drawing.Size(121, 41);
             this.btnLogOut.TabIndex = 8;
             this.btnLogOut.Text = "Log Out";
@@ -514,7 +531,7 @@
             this.btnEmployee.Location = new System.Drawing.Point(67, 140);
             this.btnEmployee.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.btnEmployee.Name = "btnEmployee";
-            this.btnEmployee.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEmployee.Padding = new System.Windows.Forms.Padding(2);
             this.btnEmployee.Size = new System.Drawing.Size(139, 131);
             this.btnEmployee.TabIndex = 4;
             this.btnEmployee.Text = "Employee";
@@ -533,7 +550,7 @@
             this.btnStatistics.Location = new System.Drawing.Point(524, 332);
             this.btnStatistics.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnStatistics.Name = "btnStatistics";
-            this.btnStatistics.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnStatistics.Padding = new System.Windows.Forms.Padding(1);
             this.btnStatistics.Size = new System.Drawing.Size(139, 131);
             this.btnStatistics.TabIndex = 20;
             this.btnStatistics.Text = "Statistics";
@@ -552,7 +569,7 @@
             this.btnStocks.Location = new System.Drawing.Point(524, 140);
             this.btnStocks.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnStocks.Name = "btnStocks";
-            this.btnStocks.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnStocks.Padding = new System.Windows.Forms.Padding(1);
             this.btnStocks.Size = new System.Drawing.Size(139, 131);
             this.btnStocks.TabIndex = 19;
             this.btnStocks.Text = "Stocks";
@@ -571,7 +588,7 @@
             this.btnSchedule.Location = new System.Drawing.Point(67, 332);
             this.btnSchedule.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnSchedule.Name = "btnSchedule";
-            this.btnSchedule.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnSchedule.Padding = new System.Windows.Forms.Padding(1);
             this.btnSchedule.Size = new System.Drawing.Size(139, 131);
             this.btnSchedule.TabIndex = 18;
             this.btnSchedule.Text = "Schedule";
@@ -587,7 +604,7 @@
             this.btnAnnoucement.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.btnAnnoucement.ForeColor = System.Drawing.Color.Snow;
             this.btnAnnoucement.Location = new System.Drawing.Point(525, 332);
-            this.btnAnnoucement.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAnnoucement.Margin = new System.Windows.Forms.Padding(2);
             this.btnAnnoucement.Name = "btnAnnoucement";
             this.btnAnnoucement.Size = new System.Drawing.Size(138, 131);
             this.btnAnnoucement.TabIndex = 30;
@@ -598,6 +615,190 @@
             this.btnAnnoucement.MouseLeave += new System.EventHandler(this.btnAnnoucement_MouseLeave);
             this.btnAnnoucement.MouseHover += new System.EventHandler(this.btnAnnoucement_MouseHover);
             // 
+            // btSettings
+            // 
+            this.btSettings.BackColor = System.Drawing.Color.Maroon;
+            this.btSettings.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSettings.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btSettings.Location = new System.Drawing.Point(862, 66);
+            this.btSettings.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.btSettings.Name = "btSettings";
+            this.btSettings.Padding = new System.Windows.Forms.Padding(2);
+            this.btSettings.Size = new System.Drawing.Size(121, 41);
+            this.btSettings.TabIndex = 31;
+            this.btSettings.Text = "Settings";
+            this.btSettings.UseVisualStyleBackColor = false;
+            this.btSettings.Visible = false;
+            this.btSettings.Click += new System.EventHandler(this.btSettings_Click);
+            // 
+            // pSettings
+            // 
+            this.pSettings.BackColor = System.Drawing.Color.Maroon;
+            this.pSettings.Controls.Add(this.panel13);
+            this.pSettings.Controls.Add(this.panel12);
+            this.pSettings.Controls.Add(this.panel11);
+            this.pSettings.Controls.Add(this.panel10);
+            this.pSettings.Controls.Add(this.btDeleteDep);
+            this.pSettings.Controls.Add(this.btChangeDepName);
+            this.pSettings.Controls.Add(this.btAddDep);
+            this.pSettings.Controls.Add(this.label10);
+            this.pSettings.Controls.Add(this.tbChangeDepName);
+            this.pSettings.Controls.Add(this.label9);
+            this.pSettings.Controls.Add(this.tbNewDep);
+            this.pSettings.Controls.Add(this.btBackSettings);
+            this.pSettings.Controls.Add(this.v);
+            this.pSettings.Controls.Add(this.cbDepSettings);
+            this.pSettings.Location = new System.Drawing.Point(281, 110);
+            this.pSettings.Name = "pSettings";
+            this.pSettings.Size = new System.Drawing.Size(444, 276);
+            this.pSettings.TabIndex = 32;
+            this.pSettings.Visible = false;
+            // 
+            // btDeleteDep
+            // 
+            this.btDeleteDep.BackColor = System.Drawing.Color.Maroon;
+            this.btDeleteDep.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btDeleteDep.ForeColor = System.Drawing.SystemColors.Control;
+            this.btDeleteDep.Location = new System.Drawing.Point(140, 74);
+            this.btDeleteDep.Name = "btDeleteDep";
+            this.btDeleteDep.Size = new System.Drawing.Size(146, 40);
+            this.btDeleteDep.TabIndex = 39;
+            this.btDeleteDep.Text = "Delete";
+            this.btDeleteDep.UseVisualStyleBackColor = false;
+            this.btDeleteDep.Click += new System.EventHandler(this.btDeleteDep_Click);
+            // 
+            // btChangeDepName
+            // 
+            this.btChangeDepName.BackColor = System.Drawing.Color.Maroon;
+            this.btChangeDepName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btChangeDepName.ForeColor = System.Drawing.SystemColors.Control;
+            this.btChangeDepName.Location = new System.Drawing.Point(243, 202);
+            this.btChangeDepName.Name = "btChangeDepName";
+            this.btChangeDepName.Size = new System.Drawing.Size(150, 40);
+            this.btChangeDepName.TabIndex = 38;
+            this.btChangeDepName.Text = "Change";
+            this.btChangeDepName.UseVisualStyleBackColor = false;
+            this.btChangeDepName.Click += new System.EventHandler(this.btChangeDepName_Click);
+            // 
+            // btAddDep
+            // 
+            this.btAddDep.BackColor = System.Drawing.Color.Maroon;
+            this.btAddDep.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAddDep.ForeColor = System.Drawing.SystemColors.Control;
+            this.btAddDep.Location = new System.Drawing.Point(33, 202);
+            this.btAddDep.Name = "btAddDep";
+            this.btAddDep.Size = new System.Drawing.Size(146, 40);
+            this.btAddDep.TabIndex = 37;
+            this.btAddDep.Text = "Add";
+            this.btAddDep.UseVisualStyleBackColor = false;
+            this.btAddDep.Click += new System.EventHandler(this.btAddDep_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(248, 138);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(136, 25);
+            this.label10.TabIndex = 36;
+            this.label10.Text = "Change name";
+            // 
+            // tbChangeDepName
+            // 
+            this.tbChangeDepName.Location = new System.Drawing.Point(243, 166);
+            this.tbChangeDepName.Name = "tbChangeDepName";
+            this.tbChangeDepName.Size = new System.Drawing.Size(150, 20);
+            this.tbChangeDepName.TabIndex = 35;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(28, 138);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(151, 25);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "Add department";
+            // 
+            // tbNewDep
+            // 
+            this.tbNewDep.Location = new System.Drawing.Point(29, 166);
+            this.tbNewDep.Name = "tbNewDep";
+            this.tbNewDep.Size = new System.Drawing.Size(150, 20);
+            this.tbNewDep.TabIndex = 33;
+            // 
+            // btBackSettings
+            // 
+            this.btBackSettings.BackColor = System.Drawing.Color.Maroon;
+            this.btBackSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBackSettings.ForeColor = System.Drawing.SystemColors.Control;
+            this.btBackSettings.Location = new System.Drawing.Point(361, 21);
+            this.btBackSettings.Name = "btBackSettings";
+            this.btBackSettings.Size = new System.Drawing.Size(64, 33);
+            this.btBackSettings.TabIndex = 32;
+            this.btBackSettings.Text = "<<<";
+            this.btBackSettings.UseVisualStyleBackColor = false;
+            this.btBackSettings.Click += new System.EventHandler(this.btBackSettings_Click);
+            // 
+            // v
+            // 
+            this.v.AutoSize = true;
+            this.v.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.v.ForeColor = System.Drawing.Color.White;
+            this.v.Location = new System.Drawing.Point(68, 30);
+            this.v.Name = "v";
+            this.v.Size = new System.Drawing.Size(123, 25);
+            this.v.TabIndex = 31;
+            this.v.Text = "Departments";
+            // 
+            // cbDepSettings
+            // 
+            this.cbDepSettings.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDepSettings.FormattingEnabled = true;
+            this.cbDepSettings.Location = new System.Drawing.Point(196, 32);
+            this.cbDepSettings.Name = "cbDepSettings";
+            this.cbDepSettings.Size = new System.Drawing.Size(143, 21);
+            this.cbDepSettings.TabIndex = 0;
+            this.cbDepSettings.SelectedIndexChanged += new System.EventHandler(this.cbDepSettings_SelectedIndexChanged);
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(7, 276);
+            this.panel10.TabIndex = 40;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.White;
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel11.Location = new System.Drawing.Point(437, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(7, 276);
+            this.panel11.TabIndex = 41;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(7, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(430, 7);
+            this.panel12.TabIndex = 42;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.White;
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel13.Location = new System.Drawing.Point(7, 269);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(430, 7);
+            this.panel13.TabIndex = 43;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.btnLogIn;
@@ -605,6 +806,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1006, 513);
+            this.Controls.Add(this.pSettings);
+            this.Controls.Add(this.btSettings);
             this.Controls.Add(this.pnAnnoucemnts);
             this.Controls.Add(this.pLogin);
             this.Controls.Add(this.btnAnnoucement);
@@ -644,6 +847,8 @@
             this.pStatsInfo.PerformLayout();
             this.pnAnnoucemnts.ResumeLayout(false);
             this.pnAnnoucemnts.PerformLayout();
+            this.pSettings.ResumeLayout(false);
+            this.pSettings.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -693,5 +898,21 @@
         private System.Windows.Forms.Button btnAnnoucement;
         private System.Windows.Forms.Panel pnAnnoucemnts;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btSettings;
+        private System.Windows.Forms.Panel pSettings;
+        private System.Windows.Forms.Button btChangeDepName;
+        private System.Windows.Forms.Button btAddDep;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbChangeDepName;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tbNewDep;
+        private System.Windows.Forms.Button btBackSettings;
+        private System.Windows.Forms.Label v;
+        private System.Windows.Forms.ComboBox cbDepSettings;
+        private System.Windows.Forms.Button btDeleteDep;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel10;
     }
 }

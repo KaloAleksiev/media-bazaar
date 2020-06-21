@@ -4,7 +4,7 @@ $username = "dbi427262";
 $password = "parola1234";
  if(isset($_SESSION['name']))  
  {  
-      echo '<h3>Login Success, Welcome - ' . $_SESSION['name'] . '</h3>';  
+      echo '<h3>Login Success, Welcome - ' . $_SESSION['name'] . '</h3>';
  }  
  ?> 
 <!DOCTYPE html>

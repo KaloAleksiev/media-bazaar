@@ -12,12 +12,16 @@ namespace MediaBazaarTest
 {
     public partial class MainForm : Form
     {
-        UserControl uc;        
+        UserControl uc;
+        DepartmentDictionary dd;
         public MainForm()
         {
             InitializeComponent();
             uc = new UserControl();         
             this.Size = new System.Drawing.Size(767, 390);
+            //Has to do with the Departments
+            dd = new DepartmentDictionary();
+            UpdateCBs();
         }
 
         private void btnLogIn_Click(object sender, EventArgs e)
@@ -28,36 +32,44 @@ namespace MediaBazaarTest
             }
             else
             {
-                if(uc.Login(tbPassword.Text, tbEmail.Text) == true)
-                {                    
-                    switch (uc.GetLoggedIn().Position)
+                if (uc.CheckEmail(tbEmail.Text))
+                {
+                    if (uc.Login(tbPassword.Text, tbEmail.Text) == true)
                     {
-                        case Position.Administrator:
-                            ButtonsForAdmin();
-                            break;
-                        case Position.Manager:
-                            ButtonsForManager();
-                            break;
-                        default:
-                            ButtonsForEmpDepWorker();
-                            break;
-                    }
+                        switch (uc.GetLoggedIn().Position)
+                        {
+                            case Position.Administrator:
+                                ButtonsForAdmin();
+                                break;
+                            case Position.Manager:
+                                ButtonsForManager();
+                                break;
+                            default:
+                                ButtonsForEmpDepWorker();
+                                break;
+                        }
 
-                    //Clear tbs
-                    tbEmail.Text = "";
-                    tbPassword.Text = "";
-                    lblForgottenPass.Visible = false;
-                    lblLoggedIn.Visible = true;
-                    pLogin.Visible = false;
-                    this.Size = new System.Drawing.Size(1022, 552);
-                    UpdateLabels();                    
-                    
+                        //Clear tbs
+                        tbEmail.Text = "";
+                        tbPassword.Text = "";
+                        lblForgottenPass.Visible = false;
+                        lblLoggedIn.Visible = true;
+                        pLogin.Visible = false;
+                        this.Size = new System.Drawing.Size(1022, 552);
+                        UpdateLabels();
+
+                    }
+                    else
+                    {
+                        lblLoggedIn.Visible = true;
+                        lblForgottenPass.Visible = true;
+                    }
                 }
                 else
                 {
-                    lblLoggedIn.Visible = true;
-                    lblForgottenPass.Visible = true;                   
+                    MessageBox.Show("Email should be in this format: user@gmail.com");
                 }
+                
             }
         }
 
@@ -78,12 +90,11 @@ namespace MediaBazaarTest
 
         private void btnSchedule_Click(object sender, EventArgs e)
         {
-            DateTime dt = DateTime.Now;
-            CreateScheduleForm(uc, dt);
-        }
-        public static void CreateScheduleForm(UserControl uc, DateTime dt)
-        {
-            ScheduleForm frm = new ScheduleForm(uc, dt);
+            //DateTime dt = DateTime.Now;
+            //dt = dt.AddDays(-dt.Day + 1);
+            //ShiftForm frm = new ShiftForm(dt, new KeyValuePair<string, int>("Phones", 1), Position.Employee, ShiftType.Noon);
+            //frm.Show();
+            ShiftHubForm frm = new ShiftHubForm(uc);
             frm.Show();
         }
 
@@ -119,6 +130,7 @@ namespace MediaBazaarTest
 
         private void ButtonsForAdmin()
         {
+            btSettings.Visible = true;
             btnEmployee.Visible = true;
             btnSchedule.Visible = true;
             btnStatistics.Visible = true;
@@ -202,6 +214,15 @@ namespace MediaBazaarTest
             btnStatistics.BackColor = System.Drawing.Color.Maroon;
         }
 
+        private void UpdateCBs()
+        {
+            cbDepSettings.Items.Clear();
+            foreach (KeyValuePair<string, int> p in dd.GetAllDepartments())
+            {
+                cbDepSettings.Items.Add(p.Key);
+            }
+        }
+
         #endregion
 
         #region ForgottenPass
@@ -253,8 +274,87 @@ namespace MediaBazaarTest
         }
 
 
+
         #endregion
 
-       
+        #region DepartmentControl
+        private void btSettings_Click(object sender, EventArgs e)
+        {
+            if(pSettings.Visible == false)
+            {
+                pSettings.Visible = true;
+            }
+            else
+            {
+                pSettings.Visible = false;
+            }
+           
+        }
+
+
+        private void btAddDep_Click(object sender, EventArgs e)
+        {
+            if(tbNewDep.Text != "")
+            {
+                dd.AddDepartment(tbNewDep.Text);
+                UpdateCBs();
+                tbNewDep.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Please fill in the textbox!");
+            }
+            
+        }
+
+        private void btChangeDepName_Click(object sender, EventArgs e)
+        {
+            if(cbDepSettings.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a department!");
+            }
+            else
+            {
+                int id = dd.GetIdByName(cbDepSettings.SelectedItem.ToString());
+                string name = tbChangeDepName.Text;
+                dd.ChangeName(id, name);
+                MessageBox.Show("Name changed");
+                UpdateCBs();
+                tbChangeDepName.Text = "";
+                cbDepSettings.SelectedItem = null;
+            }
+        }
+        
+        private void btBackSettings_Click(object sender, EventArgs e)
+        {
+            pSettings.Visible = false;
+        }
+        
+        private void cbDepSettings_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbChangeDepName.Text = cbDepSettings.SelectedItem.ToString();
+        }
+
+        private void btDeleteDep_Click(object sender, EventArgs e)
+        {
+            if (cbDepSettings.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a department!");
+
+            }
+            else
+            {
+                int id = dd.GetIdByName(cbDepSettings.SelectedItem.ToString());
+                dd.DeleteDepartment(id);
+                MessageBox.Show("Department deleted successfully!");
+                UpdateCBs();
+                tbChangeDepName.Text = "";
+            }
+        }
+        #endregion
+
+        
+
+
     }
 }

@@ -62,11 +62,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pAddUser = new System.Windows.Forms.Panel();
+            this.rbtOther = new System.Windows.Forms.RadioButton();
+            this.rbtFemale = new System.Windows.Forms.RadioButton();
+            this.rbtMale = new System.Windows.Forms.RadioButton();
             this.tbOtherGender = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.cbOtherGender = new System.Windows.Forms.CheckBox();
-            this.cbFemale = new System.Windows.Forms.CheckBox();
-            this.cbMale = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.tbZipcode = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -442,11 +442,11 @@
             // pAddUser
             // 
             this.pAddUser.BackColor = System.Drawing.Color.White;
+            this.pAddUser.Controls.Add(this.rbtOther);
+            this.pAddUser.Controls.Add(this.rbtFemale);
+            this.pAddUser.Controls.Add(this.rbtMale);
             this.pAddUser.Controls.Add(this.tbOtherGender);
             this.pAddUser.Controls.Add(this.label17);
-            this.pAddUser.Controls.Add(this.cbOtherGender);
-            this.pAddUser.Controls.Add(this.cbFemale);
-            this.pAddUser.Controls.Add(this.cbMale);
             this.pAddUser.Controls.Add(this.label16);
             this.pAddUser.Controls.Add(this.tbZipcode);
             this.pAddUser.Controls.Add(this.label15);
@@ -473,6 +473,43 @@
             this.pAddUser.Size = new System.Drawing.Size(697, 450);
             this.pAddUser.TabIndex = 24;
             // 
+            // rbtOther
+            // 
+            this.rbtOther.AutoSize = true;
+            this.rbtOther.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
+            this.rbtOther.Location = new System.Drawing.Point(325, 295);
+            this.rbtOther.Name = "rbtOther";
+            this.rbtOther.Size = new System.Drawing.Size(62, 20);
+            this.rbtOther.TabIndex = 28;
+            this.rbtOther.TabStop = true;
+            this.rbtOther.Text = "Other";
+            this.rbtOther.UseVisualStyleBackColor = true;
+            this.rbtOther.CheckedChanged += new System.EventHandler(this.rbtOther_CheckedChanged);
+            // 
+            // rbtFemale
+            // 
+            this.rbtFemale.AutoSize = true;
+            this.rbtFemale.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
+            this.rbtFemale.Location = new System.Drawing.Point(325, 267);
+            this.rbtFemale.Name = "rbtFemale";
+            this.rbtFemale.Size = new System.Drawing.Size(72, 20);
+            this.rbtFemale.TabIndex = 28;
+            this.rbtFemale.TabStop = true;
+            this.rbtFemale.Text = "Female";
+            this.rbtFemale.UseVisualStyleBackColor = true;
+            // 
+            // rbtMale
+            // 
+            this.rbtMale.AutoSize = true;
+            this.rbtMale.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
+            this.rbtMale.Location = new System.Drawing.Point(325, 240);
+            this.rbtMale.Name = "rbtMale";
+            this.rbtMale.Size = new System.Drawing.Size(58, 20);
+            this.rbtMale.TabIndex = 27;
+            this.rbtMale.TabStop = true;
+            this.rbtMale.Text = "Male";
+            this.rbtMale.UseVisualStyleBackColor = true;
+            // 
             // tbOtherGender
             // 
             this.tbOtherGender.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
@@ -492,40 +529,6 @@
             this.label17.Size = new System.Drawing.Size(59, 16);
             this.label17.TabIndex = 25;
             this.label17.Text = "Gender:";
-            // 
-            // cbOtherGender
-            // 
-            this.cbOtherGender.AutoSize = true;
-            this.cbOtherGender.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
-            this.cbOtherGender.Location = new System.Drawing.Point(350, 295);
-            this.cbOtherGender.Name = "cbOtherGender";
-            this.cbOtherGender.Size = new System.Drawing.Size(63, 20);
-            this.cbOtherGender.TabIndex = 24;
-            this.cbOtherGender.Text = "Other";
-            this.cbOtherGender.UseVisualStyleBackColor = true;
-            this.cbOtherGender.CheckedChanged += new System.EventHandler(this.cbOtherGender_CheckedChanged);
-            // 
-            // cbFemale
-            // 
-            this.cbFemale.AutoSize = true;
-            this.cbFemale.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
-            this.cbFemale.Location = new System.Drawing.Point(350, 269);
-            this.cbFemale.Name = "cbFemale";
-            this.cbFemale.Size = new System.Drawing.Size(73, 20);
-            this.cbFemale.TabIndex = 23;
-            this.cbFemale.Text = "Female";
-            this.cbFemale.UseVisualStyleBackColor = true;
-            // 
-            // cbMale
-            // 
-            this.cbMale.AutoSize = true;
-            this.cbMale.Font = new System.Drawing.Font("Mongolian Baiti", 12F);
-            this.cbMale.Location = new System.Drawing.Point(350, 243);
-            this.cbMale.Name = "cbMale";
-            this.cbMale.Size = new System.Drawing.Size(59, 20);
-            this.cbMale.TabIndex = 22;
-            this.cbMale.Text = "Male";
-            this.cbMale.UseVisualStyleBackColor = true;
             // 
             // label16
             // 
@@ -737,9 +740,9 @@
             this.Controls.Add(this.btCreateUserPanel);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pPromoteEmployee);
             this.Controls.Add(this.pAddUser);
             this.Controls.Add(this.pAllEmployees);
-            this.Controls.Add(this.pPromoteEmployee);
             this.Name = "AddEmployeeForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.AddEmployeeForm_Load);
@@ -810,13 +813,13 @@
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.TextBox tbOtherGender;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.CheckBox cbOtherGender;
-        private System.Windows.Forms.CheckBox cbFemale;
-        private System.Windows.Forms.CheckBox cbMale;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox tbZipcode;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tbCity;
+        private System.Windows.Forms.RadioButton rbtOther;
+        private System.Windows.Forms.RadioButton rbtFemale;
+        private System.Windows.Forms.RadioButton rbtMale;
     }
 }
 
