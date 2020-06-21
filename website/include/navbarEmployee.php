@@ -7,6 +7,7 @@
           <a href="profile.php">Profile</a>
           <a href="Home.php">Home</a>
           <a href="preference.php">Preferences</a>
+          <a href="leave.php">Request a leave</a>
         </div>
       </div>
 </div>

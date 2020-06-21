@@ -16,7 +16,9 @@ catch(PDOException $e){
 
 session_start();
 
-
+$dateComponents = getdate();
+$month = $dateComponents['mon']; 			     
+$year = $dateComponents['year'];
 
 function build_calendar($month,$year) {
 
@@ -88,24 +90,42 @@ function build_calendar($month,$year) {
           $calendar .= "<td class='day' rel='$date'><h2>$currentDay</h2>";
 
           foreach ($allShifts as $item) {
-               if (substr($item->getDate(), -2) == (string)$currentDay)
+               if (substr($item->getDate(), -10, 4) == $year)
                {
-                    $shiftType = $item->type;
-                    $shiftFirstName = $item->firstName;
-                    $shiftLastName = $item->lastName;
-                    $shiftPosition = $item->position;
-                    $shiftDepartment = $item->departmentId;
-                    if ($shiftDepartment == 1)
+                    if (substr($item->getDate(), -5, 2) == $month)
                     {
-                         $calendar .= "<div class='shiftCardPhones'>$shiftFirstName $shiftLastName - $shiftType</div>";
-                    }
-                    else if ($shiftDepartment == 2)
-                    {
-                         $calendar .= "<div class='shiftCardComputers'>$shiftFirstName $shiftLastName - $shiftType</div>";
-                    }
-                    else
-                    {
-                         $calendar .= "<div class='shiftCardTVs'>$shiftFirstName $shiftLastName - $shiftType</div>";
+                         if (substr($item->getDate(), -2) == (string)$currentDay)
+                         {
+                              $shiftType = $item->type;
+                              $shiftFirstName = $item->firstName;
+                              $shiftLastName = $item->lastName;
+                              $shiftPosition = $item->position;
+                              $shiftDepartment = $item->departmentId;
+                              if ($shiftDepartment == 1)
+                              {
+                                   $calendar .= "<div class='shiftCardPhones'>$shiftFirstName $shiftLastName - $shiftType</div>";
+                              }
+                              else if ($shiftDepartment == 2)
+                              {
+                                   $calendar .= "<div class='shiftCardComputers'>$shiftFirstName $shiftLastName - $shiftType</div>";
+                              }
+                              else if ($shiftDepartment == 3)
+                              {
+                                   $calendar .= "<div class='shiftCardTVs'>$shiftFirstName $shiftLastName - $shiftType</div>";
+                              }
+                              else if ($shiftDepartment == 4)
+                              {
+                                   $calendar .= "<div class='shiftCardPhotography'>$shiftFirstName $shiftLastName - $shiftType</div>";
+                              }
+                              else if ($shiftDepartment == 5)
+                              {
+                                   $calendar .= "<div class='shiftCardHome'>$shiftFirstName $shiftLastName - $shiftType</div>";
+                              }
+                              else
+                              {
+                                   $calendar .= "<div class='shiftCardOther'>$shiftFirstName $shiftLastName - $shiftType</div>";
+                              }
+                         }
                     }
                }
           }
@@ -126,10 +146,6 @@ function build_calendar($month,$year) {
      $calendar .= "</table>";
      return $calendar;
 }
-
-$dateComponents = getdate();
-$month = $dateComponents['mon']; 			     
-$year = $dateComponents['year'];
 
 ?>
 

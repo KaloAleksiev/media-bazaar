@@ -64,7 +64,9 @@ $( document ).ready((function() {
             $('#addressTB').after('<br><span class="text-danger">Address required!</span>');
         }     
     });
+    
 }));
+
 
 
 

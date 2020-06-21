@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $username = "dbi427262";
     $password = "parola1234"; 
     $conn = new PDO("mysql:host=studmysql01.fhict.local;dbname=dbi427262", $username,  $password);

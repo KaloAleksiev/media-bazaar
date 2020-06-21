@@ -1,70 +1,77 @@
-*{
+* {
     margin-top: 0;
     margin-left: 0;
     margin-bottom: 0;
     margin-left: 0;
-    }
-    h3{
-        padding: 7px;
-        margin-top: 50px;
-        font-size: 15;
-        text-align: center;
-    }
-    h4{
-        padding: 5px;
-        margin-top: 10px;
-        font-size: 18px;
-        text-align: center;
-    }
-    body{
-      width: 100%;
-      height: 100%;
-      font-size: 12px;
-      font-weight: normal;
-      font-family: 'Roboto', sans-serif;
-    }
-    .navbar{
-        opacity: 100%;
-      
-      
-      }
-      .logo{
-        position: fixed;
-        overflow: visible;
-        top:0;
-        left: 50px;
-        width: 100px;
-        z-index: 999999; 
-        padding-top: 5px;
-      }
-/* Style the links inside the navigation bar */
-.topnav a {
+}
 
+h3 {
+    padding: 7px;
+    margin-top: 50px;
+    font-size: 15;
+    text-align: center;
+}
+
+h4 {
+    padding: 5px;
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    opacity: 100%;
+}
+
+.logo {
+    position: fixed;
+    overflow: visible;
+    top: 0;
+    left: 50px;
+    width: 100px;
+    z-index: 999999;
+    padding-top: 5px;
+}
+
+/* Style the links inside the navigation bar */
+
+.topnav a {
     float: right;
-    color:  rgb(250, 250, 250);
+    color: rgb(250, 250, 250);
     text-align: left;
     padding: 14px 50px;
-    text-decoration:none;
+    text-decoration: none;
     font: bold 20px Arial;
-    position:relative;
-    
-  }
-  
-  /* Add a red background color to the top navigation */
-  .topnav {
+    position: relative;
+}
+
+/* Add a red background color to the top navigation */
+
+.topnav {
     background-color: rgb(165, 16, 16);
     position: fixed;
     overflow: visible;
-    top:0;
+    top: 0;
     width: 100%;
-    z-index: 99999; 
-  }
-  /* Add a semitransparent hover */
- .topnav a:hover {
+    z-index: 99999;
+}
+
+/* Add a semitransparent hover */
+
+.topnav a:hover {
     color: rgb(12, 0, 0);
-    opacity:0.7;
-  }
-  .topnav a:after {
+    opacity: 0.7;
+}
+
+.topnav a:after {
     display: block;
     position: absolute;
     top: 0;
@@ -78,42 +85,48 @@
     color: transparent;
     background: rgb(241, 241, 241);
     visibility: none;
-    opacity:0 ;
+    opacity: 0;
     z-index: -1;
-  }
-  .topnav a:hover:after {
+}
+
+.topnav a:hover:after {
     opacity: 1;
     visibility: visible;
     height: 100%;
-  }
-  * {box-sizing:border-box}
-  
-  /* position the headers   */
-  .nextShift, .annoucements{
+}
+
+* {
+    box-sizing: border-box
+}
+
+/* position the headers   */
+
+.nextShift, .annoucements {
     text-align: center;
-  }
-  .nextShift h1{
-    background-color:rgb(151, 150, 150);
+}
+
+.nextShift h1 {
+    background-color: rgb(151, 150, 150);
     padding: 100px;
-  }
-
-
+}
 
 /* loggin   */
 
-  * {
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+
 /* the logo on login form */
-.loginLogo
-{
+
+.loginLogo {
     position: fixed;
-        overflow: visible;
-        width: 600px;
-        padding-top: 150px;
+    overflow: visible;
+    width: 600px;
+    padding-top: 150px;
 }
+
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -177,29 +190,37 @@ form {
 }
 
 /*---------Stock--------*/
+
 /* Styling for the stock table. */
-table { 
+
+table {
     margin-top: 20px;
     width: 100%;
     border: 4px double black;
     border-collapse: collapse;
     font: bold 15px Arial;
 }
-table tr:nth-child(even){background-color: #f2f2f2;}
-th { 
-    text-align: left; 
-    background: #740c11; 
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    text-align: left;
+    background: #740c11;
     color: white;
     padding: 5px;
-    border: 1px solid black; 
-} 
-td { 
-    padding: 5px; 
+    border: 1px solid black;
+}
+
+td {
+    padding: 5px;
     border: 1px solid #740c11;
 }
 
 /* Styling for the stock searchbar. */
-.who{
+
+.who {
     margin-top: 70px;
     /*margin-left: 88%;*/
     position: relative;
@@ -212,34 +233,34 @@ td {
     padding: 0 5px;
     border: none;
     font: bold 20px Arial;
- }
+}
 
- .searchResult{
-     background: #FFF;
-     border: 1px #ccc solid;
-     width: 100px;
-     border-radius: 4px;
-     max-height:100px;
-     overflow-y:scroll;
-     display:none;
- }
+.searchResult {
+    background: #FFF;
+    border: 1px #ccc solid;
+    width: 100px;
+    border-radius: 4px;
+    max-height: 100px;
+    overflow-y: scroll;
+    display: none;
+}
 
- .search_result li
- {
+.search_result li {
     list-style: none;
     padding: 5px 10px;
     margin: 0 0 0 -40px;
     color: #0896D3;
     border-bottom: 1px #ccc solid;
     cursor: pointer;
-    transition:0.3s;
+    transition: 0.3s;
 }
-.search_result li:hover
-{
+
+.search_result li:hover {
     background: #F9FF00;
 }
 
 /*----------------------*/
+
 .i i {
     transition: .3s;
 }
@@ -259,8 +280,7 @@ td {
     transition: .3s;
 }
 
-.input-div:before,
-.input-div:after {
+.input-div:before, .input-div:after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -278,8 +298,7 @@ td {
     left: 50%;
 }
 
-.input-div.focus:before,
-.input-div.focus:after {
+.input-div.focus:before, .input-div.focus:after {
     width: 50%;
 }
 
@@ -291,13 +310,15 @@ td {
 .input-div.focus>.i>i {
     color: #5a0b0b;
 }
- .textbox{
+
+.textbox {
     background-color: #eee;
-	border: none;
-	padding: 12px 15px;
-	margin: 8px 40px;
-	width:80%;
- }
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 40px;
+    width: 80%;
+}
+
 .input-div>div>input {
     position: absolute;
     left: 0;
@@ -353,40 +374,40 @@ a:hover {
 }
 
 /*----------------------*/
-.changeAddressForm{
+
+.changeAddressForm {
     text-align: center;
     width: 500px;
     height: 400px;
     border: #740e0e solid 1px;
     font-size: x-large;
-    display:block;
+    display: block;
     padding: 20px;
     float: right;
-    margin: auto;   
+    margin: auto;
 }
 
-.changePassForm{
+.changePassForm {
     text-align: center;
     width: 500px;
     height: 400px;
-    float:left;
+    float: left;
     border: #740e0e solid 1px;
-    font-size: x-large;    
-    display:block;
+    font-size: x-large;
+    display: block;
     padding: 20px;
     margin: auto;
-    
 }
 
-#containerChangeInfo{
+#containerChangeInfo {
     margin: auto;
     width: 70%;
     padding-top: 200px;
-
 }
+
 /*Code for the preferences */
 
-.preferenceForm{
+.preferenceForm {
     width: 50%;
     padding: 40px;
     position: absolute;
@@ -397,10 +418,22 @@ a:hover {
     font-size: large;
 }
 
-label{
+label {
     font-size: x-large;
 }
 
-select{
+select {
     font-size: x-large;
+}
+
+.leaveRequest {
+    text-align: center;
+}
+
+.startPicker {
+    margin-bottom: 20px;
+}
+
+.endPicker {
+    margin-bottom: 20px;
 }
