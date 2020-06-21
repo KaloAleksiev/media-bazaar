@@ -65,24 +65,32 @@ namespace CashierApp
             }
             else
             {
-                if (cc.Login(tbPassword.Text, tbEmail.Text) == true)
+                if (cc.CheckEmail(tbEmail.Text))
                 {
+                    if (cc.Login(tbPassword.Text, tbEmail.Text) == true)
+                    {
 
-                    //Clear tbs
-                    tbEmail.Text = "";
-                    tbPassword.Text = "";
-                    lblForgottenPass.Visible = false;
-                    lblLoggedIn.Visible = true;
-                    pLogin.Visible = false;
-                    Cashier c = cc.GetLoggedIn();
-                    lbGreetings.Text = $"Hello, {c.Name} {c.Surname}";
-                    this.Size = new System.Drawing.Size(1200, 650);
+                        //Clear tbs
+                        tbEmail.Text = "";
+                        tbPassword.Text = "";
+                        lblForgottenPass.Visible = false;
+                        lblLoggedIn.Visible = true;
+                        pLogin.Visible = false;
+                        Cashier c = cc.GetLoggedIn();
+                        lbGreetings.Text = $"Hello, {c.Name} {c.Surname}";
+                        this.Size = new System.Drawing.Size(1200, 650);
+                    }
+                    else
+                    {
+                        lblLoggedIn.Visible = true;
+                        lblForgottenPass.Visible = true;
+                    }
                 }
                 else
                 {
-                    lblLoggedIn.Visible = true;
-                    lblForgottenPass.Visible = true;
+                    MessageBox.Show("Email should be in this format: user@gmail.com");
                 }
+                
             }
         }
 

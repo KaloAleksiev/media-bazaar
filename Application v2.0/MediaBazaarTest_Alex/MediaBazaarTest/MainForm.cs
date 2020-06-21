@@ -32,36 +32,44 @@ namespace MediaBazaarTest
             }
             else
             {
-                if(uc.Login(tbPassword.Text, tbEmail.Text) == true)
-                {                    
-                    switch (uc.GetLoggedIn().Position)
+                if (uc.CheckEmail(tbEmail.Text))
+                {
+                    if (uc.Login(tbPassword.Text, tbEmail.Text) == true)
                     {
-                        case Position.Administrator:
-                            ButtonsForAdmin();
-                            break;
-                        case Position.Manager:
-                            ButtonsForManager();
-                            break;
-                        default:
-                            ButtonsForEmpDepWorker();
-                            break;
-                    }
+                        switch (uc.GetLoggedIn().Position)
+                        {
+                            case Position.Administrator:
+                                ButtonsForAdmin();
+                                break;
+                            case Position.Manager:
+                                ButtonsForManager();
+                                break;
+                            default:
+                                ButtonsForEmpDepWorker();
+                                break;
+                        }
 
-                    //Clear tbs
-                    tbEmail.Text = "";
-                    tbPassword.Text = "";
-                    lblForgottenPass.Visible = false;
-                    lblLoggedIn.Visible = true;
-                    pLogin.Visible = false;
-                    this.Size = new System.Drawing.Size(1022, 552);
-                    UpdateLabels();                    
-                    
+                        //Clear tbs
+                        tbEmail.Text = "";
+                        tbPassword.Text = "";
+                        lblForgottenPass.Visible = false;
+                        lblLoggedIn.Visible = true;
+                        pLogin.Visible = false;
+                        this.Size = new System.Drawing.Size(1022, 552);
+                        UpdateLabels();
+
+                    }
+                    else
+                    {
+                        lblLoggedIn.Visible = true;
+                        lblForgottenPass.Visible = true;
+                    }
                 }
                 else
                 {
-                    lblLoggedIn.Visible = true;
-                    lblForgottenPass.Visible = true;                   
+                    MessageBox.Show("Email should be in this format: user@gmail.com");
                 }
+                
             }
         }
 

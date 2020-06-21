@@ -61,17 +61,24 @@
             this.nudAmount = new System.Windows.Forms.NumericUpDown();
             this.btAddItemToSale = new System.Windows.Forms.Button();
             this.lblSelected = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lbGreetings = new System.Windows.Forms.Label();
             this.lbCurrentlyInOrder = new System.Windows.Forms.ListBox();
             this.btRemoveItemFromSale = new System.Windows.Forms.Button();
             this.btCompleteSale = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.lbGreetings = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pLogin.SuspendLayout();
@@ -80,6 +87,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel15.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -439,42 +448,6 @@
             this.lblSelected.TabIndex = 45;
             this.lblSelected.Text = "No item selected";
             // 
-            // lbCurrentlyInOrder
-            // 
-            this.lbCurrentlyInOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCurrentlyInOrder.FormattingEnabled = true;
-            this.lbCurrentlyInOrder.ItemHeight = 20;
-            this.lbCurrentlyInOrder.Location = new System.Drawing.Point(748, 131);
-            this.lbCurrentlyInOrder.Name = "lbCurrentlyInOrder";
-            this.lbCurrentlyInOrder.Size = new System.Drawing.Size(401, 284);
-            this.lbCurrentlyInOrder.TabIndex = 46;
-            // 
-            // btRemoveItemFromSale
-            // 
-            this.btRemoveItemFromSale.BackColor = System.Drawing.Color.Maroon;
-            this.btRemoveItemFromSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRemoveItemFromSale.ForeColor = System.Drawing.SystemColors.Control;
-            this.btRemoveItemFromSale.Location = new System.Drawing.Point(748, 449);
-            this.btRemoveItemFromSale.Name = "btRemoveItemFromSale";
-            this.btRemoveItemFromSale.Size = new System.Drawing.Size(157, 40);
-            this.btRemoveItemFromSale.TabIndex = 47;
-            this.btRemoveItemFromSale.Text = "Remove item";
-            this.btRemoveItemFromSale.UseVisualStyleBackColor = false;
-            this.btRemoveItemFromSale.Click += new System.EventHandler(this.btRemoveItemFromSale_Click);
-            // 
-            // btCompleteSale
-            // 
-            this.btCompleteSale.BackColor = System.Drawing.Color.Maroon;
-            this.btCompleteSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btCompleteSale.ForeColor = System.Drawing.SystemColors.Control;
-            this.btCompleteSale.Location = new System.Drawing.Point(992, 449);
-            this.btCompleteSale.Name = "btCompleteSale";
-            this.btCompleteSale.Size = new System.Drawing.Size(157, 40);
-            this.btCompleteSale.TabIndex = 48;
-            this.btCompleteSale.Text = "Complete sale";
-            this.btCompleteSale.UseVisualStyleBackColor = false;
-            this.btCompleteSale.Click += new System.EventHandler(this.btCompleteSale_Click);
-            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.panel10);
@@ -490,10 +463,61 @@
             this.panel5.Controls.Add(this.nudAmount);
             this.panel5.Controls.Add(this.btAddItemToSale);
             this.panel5.Controls.Add(this.dgvStock);
-            this.panel5.Location = new System.Drawing.Point(23, 95);
+            this.panel5.Location = new System.Drawing.Point(13, 95);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(689, 493);
+            this.panel5.Size = new System.Drawing.Size(699, 493);
             this.panel5.TabIndex = 49;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel10.Location = new System.Drawing.Point(0, 3);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(3, 487);
+            this.panel10.TabIndex = 51;
+            this.panel10.TabStop = true;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel9.Location = new System.Drawing.Point(696, 3);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(3, 487);
+            this.panel9.TabIndex = 50;
+            this.panel9.TabStop = true;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel8.Location = new System.Drawing.Point(0, 490);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(699, 3);
+            this.panel8.TabIndex = 49;
+            this.panel8.TabStop = true;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Controls.Add(this.panel7);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(699, 3);
+            this.panel6.TabIndex = 47;
+            this.panel6.TabStop = true;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(699, 3);
+            this.panel7.TabIndex = 48;
+            this.panel7.TabStop = true;
             // 
             // label4
             // 
@@ -506,57 +530,6 @@
             this.label4.TabIndex = 46;
             this.label4.Text = "Amount:";
             // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Controls.Add(this.panel7);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(689, 3);
-            this.panel6.TabIndex = 47;
-            this.panel6.TabStop = true;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.White;
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(689, 3);
-            this.panel7.TabIndex = 48;
-            this.panel7.TabStop = true;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.White;
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel8.Location = new System.Drawing.Point(0, 490);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(689, 3);
-            this.panel8.TabIndex = 49;
-            this.panel8.TabStop = true;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(686, 3);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(3, 487);
-            this.panel9.TabIndex = 50;
-            this.panel9.TabStop = true;
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.White;
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel10.Location = new System.Drawing.Point(0, 3);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(3, 487);
-            this.panel10.TabIndex = 51;
-            this.panel10.TabStop = true;
-            // 
             // lbGreetings
             // 
             this.lbGreetings.AutoSize = true;
@@ -568,20 +541,131 @@
             this.lbGreetings.TabIndex = 50;
             this.lbGreetings.Text = "Hui";
             // 
+            // lbCurrentlyInOrder
+            // 
+            this.lbCurrentlyInOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCurrentlyInOrder.FormattingEnabled = true;
+            this.lbCurrentlyInOrder.ItemHeight = 20;
+            this.lbCurrentlyInOrder.Location = new System.Drawing.Point(21, 104);
+            this.lbCurrentlyInOrder.Name = "lbCurrentlyInOrder";
+            this.lbCurrentlyInOrder.Size = new System.Drawing.Size(401, 284);
+            this.lbCurrentlyInOrder.TabIndex = 46;
+            // 
+            // btRemoveItemFromSale
+            // 
+            this.btRemoveItemFromSale.BackColor = System.Drawing.Color.Maroon;
+            this.btRemoveItemFromSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRemoveItemFromSale.ForeColor = System.Drawing.SystemColors.Control;
+            this.btRemoveItemFromSale.Location = new System.Drawing.Point(32, 416);
+            this.btRemoveItemFromSale.Name = "btRemoveItemFromSale";
+            this.btRemoveItemFromSale.Size = new System.Drawing.Size(157, 40);
+            this.btRemoveItemFromSale.TabIndex = 47;
+            this.btRemoveItemFromSale.Text = "Remove item";
+            this.btRemoveItemFromSale.UseVisualStyleBackColor = false;
+            this.btRemoveItemFromSale.Click += new System.EventHandler(this.btRemoveItemFromSale_Click);
+            // 
+            // btCompleteSale
+            // 
+            this.btCompleteSale.BackColor = System.Drawing.Color.Maroon;
+            this.btCompleteSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btCompleteSale.ForeColor = System.Drawing.SystemColors.Control;
+            this.btCompleteSale.Location = new System.Drawing.Point(276, 416);
+            this.btCompleteSale.Name = "btCompleteSale";
+            this.btCompleteSale.Size = new System.Drawing.Size(157, 40);
+            this.btCompleteSale.TabIndex = 48;
+            this.btCompleteSale.Text = "Complete sale";
+            this.btCompleteSale.UseVisualStyleBackColor = false;
+            this.btCompleteSale.Click += new System.EventHandler(this.btCompleteSale_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(126, 23);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(195, 37);
+            this.label5.TabIndex = 51;
+            this.label5.Text = "Current Order:";
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.panel12);
+            this.panel11.Controls.Add(this.label5);
+            this.panel11.Controls.Add(this.panel13);
+            this.panel11.Controls.Add(this.btCompleteSale);
+            this.panel11.Controls.Add(this.panel14);
+            this.panel11.Controls.Add(this.btRemoveItemFromSale);
+            this.panel11.Controls.Add(this.panel15);
+            this.panel11.Controls.Add(this.lbCurrentlyInOrder);
+            this.panel11.Location = new System.Drawing.Point(718, 95);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(454, 493);
+            this.panel11.TabIndex = 52;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel12.Location = new System.Drawing.Point(0, 3);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(3, 487);
+            this.panel12.TabIndex = 51;
+            this.panel12.TabStop = true;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.White;
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel13.Location = new System.Drawing.Point(451, 3);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(3, 487);
+            this.panel13.TabIndex = 50;
+            this.panel13.TabStop = true;
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.White;
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel14.Location = new System.Drawing.Point(0, 490);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(454, 3);
+            this.panel14.TabIndex = 49;
+            this.panel14.TabStop = true;
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.White;
+            this.panel15.Controls.Add(this.panel16);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel15.Location = new System.Drawing.Point(0, 0);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(454, 3);
+            this.panel15.TabIndex = 47;
+            this.panel15.TabStop = true;
+            // 
+            // panel16
+            // 
+            this.panel16.BackColor = System.Drawing.Color.White;
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel16.Location = new System.Drawing.Point(0, 0);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(454, 3);
+            this.panel16.TabIndex = 48;
+            this.panel16.TabStop = true;
+            // 
             // CashierApp
             // 
             this.AcceptButton = this.btnLogIn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(1184, 611);
-            this.Controls.Add(this.btCompleteSale);
-            this.Controls.Add(this.btRemoveItemFromSale);
-            this.Controls.Add(this.lbCurrentlyInOrder);
+            this.ClientSize = new System.Drawing.Size(1184, 600);
             this.Controls.Add(this.pLogin);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.lbGreetings);
+            this.Controls.Add(this.panel11);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CashierApp";
             this.Text = "Cashier";
@@ -597,6 +681,9 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.panel15.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -636,9 +723,6 @@
         private System.Windows.Forms.NumericUpDown nudAmount;
         private System.Windows.Forms.Button btAddItemToSale;
         private System.Windows.Forms.Label lblSelected;
-        private System.Windows.Forms.ListBox lbCurrentlyInOrder;
-        private System.Windows.Forms.Button btRemoveItemFromSale;
-        private System.Windows.Forms.Button btCompleteSale;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
@@ -647,6 +731,16 @@
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label lbGreetings;
+        private System.Windows.Forms.ListBox lbCurrentlyInOrder;
+        private System.Windows.Forms.Button btRemoveItemFromSale;
+        private System.Windows.Forms.Button btCompleteSale;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Panel panel16;
     }
 }
 

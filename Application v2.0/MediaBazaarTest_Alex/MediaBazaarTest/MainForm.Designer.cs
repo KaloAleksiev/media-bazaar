@@ -74,6 +74,7 @@
             this.btnAnnoucement = new System.Windows.Forms.Button();
             this.btSettings = new System.Windows.Forms.Button();
             this.pSettings = new System.Windows.Forms.Panel();
+            this.btDeleteDep = new System.Windows.Forms.Button();
             this.btChangeDepName = new System.Windows.Forms.Button();
             this.btAddDep = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -83,7 +84,10 @@
             this.btBackSettings = new System.Windows.Forms.Button();
             this.v = new System.Windows.Forms.Label();
             this.cbDepSettings = new System.Windows.Forms.ComboBox();
-            this.btDeleteDep = new System.Windows.Forms.Button();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
             this.pLogin.SuspendLayout();
             this.pForgottenPass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -630,6 +634,10 @@
             // pSettings
             // 
             this.pSettings.BackColor = System.Drawing.Color.Maroon;
+            this.pSettings.Controls.Add(this.panel13);
+            this.pSettings.Controls.Add(this.panel12);
+            this.pSettings.Controls.Add(this.panel11);
+            this.pSettings.Controls.Add(this.panel10);
             this.pSettings.Controls.Add(this.btDeleteDep);
             this.pSettings.Controls.Add(this.btChangeDepName);
             this.pSettings.Controls.Add(this.btAddDep);
@@ -640,18 +648,31 @@
             this.pSettings.Controls.Add(this.btBackSettings);
             this.pSettings.Controls.Add(this.v);
             this.pSettings.Controls.Add(this.cbDepSettings);
-            this.pSettings.Location = new System.Drawing.Point(328, 113);
+            this.pSettings.Location = new System.Drawing.Point(281, 110);
             this.pSettings.Name = "pSettings";
-            this.pSettings.Size = new System.Drawing.Size(444, 267);
+            this.pSettings.Size = new System.Drawing.Size(444, 276);
             this.pSettings.TabIndex = 32;
             this.pSettings.Visible = false;
+            // 
+            // btDeleteDep
+            // 
+            this.btDeleteDep.BackColor = System.Drawing.Color.Maroon;
+            this.btDeleteDep.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btDeleteDep.ForeColor = System.Drawing.SystemColors.Control;
+            this.btDeleteDep.Location = new System.Drawing.Point(140, 74);
+            this.btDeleteDep.Name = "btDeleteDep";
+            this.btDeleteDep.Size = new System.Drawing.Size(146, 40);
+            this.btDeleteDep.TabIndex = 39;
+            this.btDeleteDep.Text = "Delete";
+            this.btDeleteDep.UseVisualStyleBackColor = false;
+            this.btDeleteDep.Click += new System.EventHandler(this.btDeleteDep_Click);
             // 
             // btChangeDepName
             // 
             this.btChangeDepName.BackColor = System.Drawing.Color.Maroon;
             this.btChangeDepName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btChangeDepName.ForeColor = System.Drawing.SystemColors.Control;
-            this.btChangeDepName.Location = new System.Drawing.Point(250, 190);
+            this.btChangeDepName.Location = new System.Drawing.Point(243, 202);
             this.btChangeDepName.Name = "btChangeDepName";
             this.btChangeDepName.Size = new System.Drawing.Size(150, 40);
             this.btChangeDepName.TabIndex = 38;
@@ -664,7 +685,7 @@
             this.btAddDep.BackColor = System.Drawing.Color.Maroon;
             this.btAddDep.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btAddDep.ForeColor = System.Drawing.SystemColors.Control;
-            this.btAddDep.Location = new System.Drawing.Point(40, 190);
+            this.btAddDep.Location = new System.Drawing.Point(33, 202);
             this.btAddDep.Name = "btAddDep";
             this.btAddDep.Size = new System.Drawing.Size(146, 40);
             this.btAddDep.TabIndex = 37;
@@ -677,7 +698,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(255, 126);
+            this.label10.Location = new System.Drawing.Point(248, 138);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(136, 25);
             this.label10.TabIndex = 36;
@@ -685,7 +706,7 @@
             // 
             // tbChangeDepName
             // 
-            this.tbChangeDepName.Location = new System.Drawing.Point(250, 154);
+            this.tbChangeDepName.Location = new System.Drawing.Point(243, 166);
             this.tbChangeDepName.Name = "tbChangeDepName";
             this.tbChangeDepName.Size = new System.Drawing.Size(150, 20);
             this.tbChangeDepName.TabIndex = 35;
@@ -695,7 +716,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(35, 126);
+            this.label9.Location = new System.Drawing.Point(28, 138);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(151, 25);
             this.label9.TabIndex = 34;
@@ -703,7 +724,7 @@
             // 
             // tbNewDep
             // 
-            this.tbNewDep.Location = new System.Drawing.Point(36, 154);
+            this.tbNewDep.Location = new System.Drawing.Point(29, 166);
             this.tbNewDep.Name = "tbNewDep";
             this.tbNewDep.Size = new System.Drawing.Size(150, 20);
             this.tbNewDep.TabIndex = 33;
@@ -713,7 +734,7 @@
             this.btBackSettings.BackColor = System.Drawing.Color.Maroon;
             this.btBackSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btBackSettings.ForeColor = System.Drawing.SystemColors.Control;
-            this.btBackSettings.Location = new System.Drawing.Point(368, 9);
+            this.btBackSettings.Location = new System.Drawing.Point(361, 21);
             this.btBackSettings.Name = "btBackSettings";
             this.btBackSettings.Size = new System.Drawing.Size(64, 33);
             this.btBackSettings.TabIndex = 32;
@@ -726,7 +747,7 @@
             this.v.AutoSize = true;
             this.v.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.v.ForeColor = System.Drawing.Color.White;
-            this.v.Location = new System.Drawing.Point(75, 18);
+            this.v.Location = new System.Drawing.Point(68, 30);
             this.v.Name = "v";
             this.v.Size = new System.Drawing.Size(123, 25);
             this.v.TabIndex = 31;
@@ -736,24 +757,47 @@
             // 
             this.cbDepSettings.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepSettings.FormattingEnabled = true;
-            this.cbDepSettings.Location = new System.Drawing.Point(203, 20);
+            this.cbDepSettings.Location = new System.Drawing.Point(196, 32);
             this.cbDepSettings.Name = "cbDepSettings";
             this.cbDepSettings.Size = new System.Drawing.Size(143, 21);
             this.cbDepSettings.TabIndex = 0;
             this.cbDepSettings.SelectedIndexChanged += new System.EventHandler(this.cbDepSettings_SelectedIndexChanged);
             // 
-            // btDeleteDep
+            // panel10
             // 
-            this.btDeleteDep.BackColor = System.Drawing.Color.Maroon;
-            this.btDeleteDep.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDeleteDep.ForeColor = System.Drawing.SystemColors.Control;
-            this.btDeleteDep.Location = new System.Drawing.Point(147, 62);
-            this.btDeleteDep.Name = "btDeleteDep";
-            this.btDeleteDep.Size = new System.Drawing.Size(146, 40);
-            this.btDeleteDep.TabIndex = 39;
-            this.btDeleteDep.Text = "Delete";
-            this.btDeleteDep.UseVisualStyleBackColor = false;
-            this.btDeleteDep.Click += new System.EventHandler(this.btDeleteDep_Click);
+            this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(7, 276);
+            this.panel10.TabIndex = 40;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.White;
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel11.Location = new System.Drawing.Point(437, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(7, 276);
+            this.panel11.TabIndex = 41;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(7, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(430, 7);
+            this.panel12.TabIndex = 42;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.White;
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel13.Location = new System.Drawing.Point(7, 269);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(430, 7);
+            this.panel13.TabIndex = 43;
             // 
             // MainForm
             // 
@@ -866,5 +910,9 @@
         private System.Windows.Forms.Label v;
         private System.Windows.Forms.ComboBox cbDepSettings;
         private System.Windows.Forms.Button btDeleteDep;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel10;
     }
 }

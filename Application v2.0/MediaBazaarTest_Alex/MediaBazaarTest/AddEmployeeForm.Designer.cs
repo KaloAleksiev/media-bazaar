@@ -740,9 +740,9 @@
             this.Controls.Add(this.btCreateUserPanel);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pPromoteEmployee);
             this.Controls.Add(this.pAddUser);
             this.Controls.Add(this.pAllEmployees);
-            this.Controls.Add(this.pPromoteEmployee);
             this.Name = "AddEmployeeForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.AddEmployeeForm_Load);

@@ -78,7 +78,7 @@ namespace CashierApp
         #region LOGIN
         public bool Login(string password, string email)
         {
-            if (cdc.CheckCredentials(password, email) == null)
+            if (cdc.CheckCredentials(password, email) == null && CheckEmail(email))
             {
                 return false;
             }
