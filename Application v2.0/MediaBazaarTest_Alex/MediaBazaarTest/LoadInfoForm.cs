@@ -71,6 +71,7 @@ namespace MediaBazaarTest
             //{
             BackgroundWorker bw = sender as BackgroundWorker;
             e.Result = CreateScheduleForMonth(bw);
+            
             //}
             //catch(Exception ex)
             //{ MessageBox.Show(ex.Message, "Oops!", MessageBoxButtons.OK); }
@@ -120,6 +121,10 @@ namespace MediaBazaarTest
             //Calculate the amount of shifts an emplyee has to do in a month.
             bw.ReportProgress(38);
             int shiftsPerPerson = CalculateAmountOfShiftsPerPerson(new DateTime(year, (int)month, 1), pos, dep.Key);
+            if (shiftsPerPerson == 0)
+            {
+                goto NoUsers;
+            }
 
             //Create dictionary with the user ID as the key and amount of shift "tokens" left as the value.
             shiftTokenDictionary = CreateShiftTokenDictionary(pos, dep.Key, shiftsPerPerson);
@@ -134,7 +139,10 @@ namespace MediaBazaarTest
 
             bw.ReportProgress(100);
             return 1;
+
+        NoUsers: return 0;
         }
+
 
         public void DeleteShift(List<int> indexes)
         {
@@ -165,7 +173,16 @@ namespace MediaBazaarTest
                 if (u.Position == pos && u.Department == dep)
                 { users.Add(u); }
             }
-            int shiftsPerPerson = totalShiftCount / users.Count;
+            int shiftsPerPerson = 0;
+            if (users.Count != 0)
+            {
+                shiftsPerPerson = totalShiftCount / users.Count;
+            }
+            else
+            {
+                MessageBox.Show("There are no users in this department.");
+                return 0;
+            }
             return shiftsPerPerson;
         }
 
