@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\bin\Debug\MediaBazaarTest.exe.config
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\bin\Debug\MediaBazaarTest.exe
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\bin\Debug\MediaBazaarTest.pdb
@@ -28,7 +27,6 @@ C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\M
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.csproj.CopyComplete
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.exe
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.pdb
-=======
 D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.csprojAssemblyReference.cache
 D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.AddEmployeeForm.resources
 D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.Annoucemnts.resources
@@ -110,4 +108,3 @@ C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaar
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.exe
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.pdb
 D:\FONTYS\Semester_2\PROJECT\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.LoadInfoForm.resources
->>>>>>> a5e7638947838a9412fb7a4a179aa788e3fe6278
