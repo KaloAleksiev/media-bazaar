@@ -285,7 +285,7 @@ namespace MediaBazaarTest
         {
             MySqlConnection conn = new MySqlConnection(connectionString);
             List<LeaveRequest> requests = new List<LeaveRequest>();
-            MySqlCommand GetAllRequests = new MySqlCommand("SELECT * FROM leaverequest", conn);
+            MySqlCommand GetAllRequests = new MySqlCommand("SELECT id, user_id, start_date, end_date, accepted FROM leaverequest", conn);
             conn.Open();
             MySqlDataReader reader = GetAllRequests.ExecuteReader();
             while (reader.Read())

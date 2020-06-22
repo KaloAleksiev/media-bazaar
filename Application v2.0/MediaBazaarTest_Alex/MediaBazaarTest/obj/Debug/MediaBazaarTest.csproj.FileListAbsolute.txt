@@ -17,7 +17,6 @@ C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\M
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.MainForm.resources
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.Properties.Resources.resources
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.RestockForm.resources
-C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.ScheduleForm.resources
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.ShiftAssignmentForm.resources
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.ShiftForm.resources
 C:\Users\Verg\Desktop\mediabazaarproject\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.ShiftHubForm.resources

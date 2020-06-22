@@ -26,7 +26,7 @@ namespace MediaBazaarTest
             
             foreach (User u in udc.GetAllUsers())
             {
-                //users.Add(u);
+                users.Add(u);
             }
         }
 

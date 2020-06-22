@@ -35,7 +35,7 @@
             this.btnDeny = new System.Windows.Forms.Button();
             this.btnAccept = new System.Windows.Forms.Button();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.user = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.startDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.endDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accepted = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,13 +60,13 @@
             this.dgvLeaveRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLeaveRequests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.userId,
+            this.user,
             this.startDate,
             this.endDate,
             this.accepted});
             this.dgvLeaveRequests.Location = new System.Drawing.Point(11, 94);
             this.dgvLeaveRequests.Name = "dgvLeaveRequests";
-            this.dgvLeaveRequests.Size = new System.Drawing.Size(497, 233);
+            this.dgvLeaveRequests.Size = new System.Drawing.Size(485, 233);
             this.dgvLeaveRequests.TabIndex = 27;
             // 
             // pictureBox1
@@ -83,7 +83,7 @@
             // 
             // btnDeny
             // 
-            this.btnDeny.Location = new System.Drawing.Point(290, 340);
+            this.btnDeny.Location = new System.Drawing.Point(274, 340);
             this.btnDeny.Name = "btnDeny";
             this.btnDeny.Size = new System.Drawing.Size(106, 23);
             this.btnDeny.TabIndex = 28;
@@ -93,7 +93,7 @@
             // 
             // btnAccept
             // 
-            this.btnAccept.Location = new System.Drawing.Point(402, 340);
+            this.btnAccept.Location = new System.Drawing.Point(386, 340);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(106, 23);
             this.btnAccept.TabIndex = 29;
@@ -107,11 +107,11 @@
             this.id.Name = "id";
             this.id.Width = 85;
             // 
-            // userId
+            // user
             // 
-            this.userId.HeaderText = "UserID";
-            this.userId.Name = "userId";
-            this.userId.Width = 85;
+            this.user.HeaderText = "User";
+            this.user.Name = "user";
+            this.user.Width = 85;
             // 
             // startDate
             // 
@@ -133,7 +133,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(520, 375);
+            this.ClientSize = new System.Drawing.Size(504, 375);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.btnDeny);
             this.Controls.Add(this.dgvLeaveRequests);
@@ -156,7 +156,7 @@
         private System.Windows.Forms.Button btnDeny;
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn user;
         private System.Windows.Forms.DataGridViewTextBoxColumn startDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn endDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn accepted;

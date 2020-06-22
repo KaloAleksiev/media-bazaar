@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace MediaBazaarTest
 {
@@ -40,7 +42,7 @@ namespace MediaBazaarTest
                 LeaveRequest request = requests[i];
                 dgvLeaveRequests.Rows.Add(new object[]
                                       {   request.Id,
-                                          uc.GetUserByID(request.UserId).FName,
+                                          uc.GetUserByID(request.UserId).FName + "\n" + uc.GetUserByID(request.UserId).LName,
                                           request.StartDate,
                                           request.EndDate,
                                           request.Accepted
