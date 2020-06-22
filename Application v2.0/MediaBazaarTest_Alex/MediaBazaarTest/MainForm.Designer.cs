@@ -74,6 +74,10 @@
             this.btnAnnoucement = new System.Windows.Forms.Button();
             this.btSettings = new System.Windows.Forms.Button();
             this.pSettings = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
             this.btDeleteDep = new System.Windows.Forms.Button();
             this.btChangeDepName = new System.Windows.Forms.Button();
             this.btAddDep = new System.Windows.Forms.Button();
@@ -84,10 +88,7 @@
             this.btBackSettings = new System.Windows.Forms.Button();
             this.v = new System.Windows.Forms.Label();
             this.cbDepSettings = new System.Windows.Forms.ComboBox();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
+            this.btnLeaveRequests = new System.Windows.Forms.Button();
             this.pLogin.SuspendLayout();
             this.pForgottenPass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -358,7 +359,7 @@
             this.btnLogOut.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Padding = new System.Windows.Forms.Padding(2);
-            this.btnLogOut.Size = new System.Drawing.Size(121, 41);
+            this.btnLogOut.Size = new System.Drawing.Size(121, 44);
             this.btnLogOut.TabIndex = 8;
             this.btnLogOut.Text = "Log Out";
             this.btnLogOut.UseVisualStyleBackColor = false;
@@ -654,6 +655,42 @@
             this.pSettings.TabIndex = 32;
             this.pSettings.Visible = false;
             // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.White;
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel13.Location = new System.Drawing.Point(7, 269);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(430, 7);
+            this.panel13.TabIndex = 43;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(7, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(430, 7);
+            this.panel12.TabIndex = 42;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.White;
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel11.Location = new System.Drawing.Point(437, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(7, 276);
+            this.panel11.TabIndex = 41;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(7, 276);
+            this.panel10.TabIndex = 40;
+            // 
             // btDeleteDep
             // 
             this.btDeleteDep.BackColor = System.Drawing.Color.Maroon;
@@ -763,41 +800,21 @@
             this.cbDepSettings.TabIndex = 0;
             this.cbDepSettings.SelectedIndexChanged += new System.EventHandler(this.cbDepSettings_SelectedIndexChanged);
             // 
-            // panel10
+            // btnLeaveRequests
             // 
-            this.panel10.BackColor = System.Drawing.Color.White;
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel10.Location = new System.Drawing.Point(0, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(7, 276);
-            this.panel10.TabIndex = 40;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.White;
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel11.Location = new System.Drawing.Point(437, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(7, 276);
-            this.panel11.TabIndex = 41;
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.Color.White;
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(7, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(430, 7);
-            this.panel12.TabIndex = 42;
-            // 
-            // panel13
-            // 
-            this.panel13.BackColor = System.Drawing.Color.White;
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel13.Location = new System.Drawing.Point(7, 269);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(430, 7);
-            this.panel13.TabIndex = 43;
+            this.btnLeaveRequests.BackColor = System.Drawing.Color.Maroon;
+            this.btnLeaveRequests.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeaveRequests.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLeaveRequests.Location = new System.Drawing.Point(862, 113);
+            this.btnLeaveRequests.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.btnLeaveRequests.Name = "btnLeaveRequests";
+            this.btnLeaveRequests.Padding = new System.Windows.Forms.Padding(2);
+            this.btnLeaveRequests.Size = new System.Drawing.Size(121, 41);
+            this.btnLeaveRequests.TabIndex = 33;
+            this.btnLeaveRequests.Text = "Requests";
+            this.btnLeaveRequests.UseVisualStyleBackColor = false;
+            this.btnLeaveRequests.Visible = false;
+            this.btnLeaveRequests.Click += new System.EventHandler(this.btnLeaveRequests_Click);
             // 
             // MainForm
             // 
@@ -806,6 +823,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1006, 513);
+            this.Controls.Add(this.btnLeaveRequests);
             this.Controls.Add(this.pSettings);
             this.Controls.Add(this.btSettings);
             this.Controls.Add(this.pnAnnoucemnts);
@@ -914,5 +932,6 @@
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Button btnLeaveRequests;
     }
 }

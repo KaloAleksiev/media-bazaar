@@ -38,7 +38,7 @@
       <HintPath>C:\Program Files (x86)\MySQL\Connector NET 8.0\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="S22.Imap">
-      <HintPath>C:\Users\alexander\Desktop\DLLs\S22.Imap.dll</HintPath>
+      <HintPath>..\..\..\..\S22.Imap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -78,6 +78,13 @@
       <DependentUpon>EditItemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Item.cs" />
+    <Compile Include="LeaveRequest.cs" />
+    <Compile Include="LeaveRequestsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LeaveRequestsForm.Designer.cs">
+      <DependentUpon>LeaveRequestsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditItemForm.resx">
       <DependentUpon>EditItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeaveRequestsForm.resx">
+      <DependentUpon>LeaveRequestsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadInfoForm.resx">
       <DependentUpon>LoadInfoForm.cs</DependentUpon>

@@ -26,7 +26,7 @@ namespace MediaBazaarTest
             
             foreach (User u in udc.GetAllUsers())
             {
-                users.Add(u);
+                //users.Add(u);
             }
         }
 
@@ -295,6 +295,64 @@ namespace MediaBazaarTest
                 message.Body = $"Greetings, {fName}, \n your password is: \n {pass} " +
 
                     $"\n Kind ragards,"+
+                    $"\n Alexa.";
+                using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    mailer.Credentials = new NetworkCredential("mediabazaar.management@gmail.com", "MediaB420");
+                    mailer.EnableSsl = true;
+                    mailer.Send(message);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public bool AcceptLeaveRequest(LeaveRequest request)
+        {
+            User user = this.GetUserByID(request.UserId);
+            int userId = user.Id;
+            if (GetUserByID(userId) != null)
+            {
+                request.AcceptRequest();
+                udc.AcceptLeaveRequest(request);
+                //Send an email about it
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("mediabazaar.management@gmail.com");
+                message.To.Add(user.Email);
+
+                message.Subject = "Leave Request Accepted";
+                message.Body = $"Greetings, {user.FName}, \n the management would like to inform you that your leave request starting on {request.StartDate} and ending on {request.EndDate} has been ACCEPTED." +
+
+                    $"\n Kind ragards," +
+                    $"\n Alexa.";
+                using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    mailer.Credentials = new NetworkCredential("mediabazaar.management@gmail.com", "MediaB420");
+                    mailer.EnableSsl = true;
+                    mailer.Send(message);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public bool DenyLeaveRequest(LeaveRequest request)
+        {
+            User user = this.GetUserByID(request.UserId);
+            int userId = user.Id;
+            if (GetUserByID(userId) != null)
+            {
+                request.DenyRequest();
+                udc.DenyLeaveRequest(request);
+                //Send an email about it
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("mediabazaar.management@gmail.com");
+                message.To.Add(user.Email);
+
+                message.Subject = "Leave Request Denied";
+                message.Body = $"Greetings, {user.FName}, \n the management would like to inform you that your leave request starting on {request.StartDate} and ending on {request.EndDate} has unfortunately been DENIED." +
+
+                    $"\n Kind ragards," +
                     $"\n Alexa.";
                 using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
                 {

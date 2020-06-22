@@ -136,6 +136,7 @@ namespace MediaBazaarTest
             btnStatistics.Visible = true;
             btnStocks.Visible = true;
             btnAnnoucement.Visible = false;
+            btnLeaveRequests.Visible = true;
         }
 
         private void ButtonsForManager()
@@ -145,6 +146,7 @@ namespace MediaBazaarTest
             btnStatistics.Visible = false;
             btnStocks.Visible = true;
             btnAnnoucement.Visible = true;
+            btnLeaveRequests.Visible = false;
         }
 
         private void ButtonsForEmpDepWorker()
@@ -154,6 +156,7 @@ namespace MediaBazaarTest
             btnStatistics.Visible = false;
             btnStocks.Visible = true;
             btnAnnoucement.Visible = false;
+            btnLeaveRequests.Visible = false;
         }
      
         private void btnAnnoucement_MouseHover(object sender, EventArgs e)
@@ -351,10 +354,15 @@ namespace MediaBazaarTest
                 tbChangeDepName.Text = "";
             }
         }
+
+
+
         #endregion
 
-        
-
-
+        private void btnLeaveRequests_Click(object sender, EventArgs e)
+        {
+            LeaveRequestsForm f = new LeaveRequestsForm(uc);
+            f.Show();
+        }
     }
 }

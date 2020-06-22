@@ -18,9 +18,9 @@ namespace MediaBazaarTest
         {
             dd = new DepartmentDictionary();
             deps = new Dictionary<string, int>();
-            foreach(KeyValuePair<string, int> entry in dd.GetAllDepartments())
+            foreach (KeyValuePair<string, int> entry in dd.GetAllDepartments())
             {
-                deps.Add(entry.Key,entry.Value);
+                deps.Add(entry.Key, entry.Value);
             }
         }
 
@@ -37,7 +37,7 @@ namespace MediaBazaarTest
                 int id = Convert.ToInt32(reader["id"]);
                 string fNname = Convert.ToString(reader["firstName"]);
                 string lName = Convert.ToString(reader["lastName"]);
-                DateTime startDate = Convert.ToDateTime(reader["start_date"]);               
+                DateTime startDate = Convert.ToDateTime(reader["start_date"]);
                 DateTime bDate = Convert.ToDateTime(reader["birth_date"]);
                 int depId = Convert.ToInt32(reader["department_id"]);
                 string pos = Convert.ToString(reader["position"]);
@@ -49,16 +49,16 @@ namespace MediaBazaarTest
                 double salary = Convert.ToDouble(reader["salary"]);
                 int rank = Convert.ToInt32(reader["rank"]);
                 reader.Close();
-                conn.Close();               
-                foreach(KeyValuePair<string, int> e in this.deps)
+                conn.Close();
+                foreach (KeyValuePair<string, int> e in this.deps)
                 {
-                    if(e.Value == depId)
+                    if (e.Value == depId)
                     {
                         string dep = e.Key;
                         u = new User(id, fNname, lName, dep, pos, email, city, zipcode, address, phonenumber, rank, salary, password, startDate, bDate, gender);
                         return u;
                     }
-                }      
+                }
             }
             reader.Close();
             conn.Close();
@@ -95,7 +95,7 @@ namespace MediaBazaarTest
             {
                 if (e.Key == u.Department)
                 {
-                    dep = e.Value;                    
+                    dep = e.Value;
                 }
             }
             MySqlConnection conn = new MySqlConnection(connectionString);
@@ -250,11 +250,56 @@ namespace MediaBazaarTest
                 reader.Close();
                 conn.Close();
                 return pass;
-                
-            }            
+
+            }
             reader.Close();
             conn.Close();
-            return pass;      
+            return pass;
+        }
+
+        public void AcceptLeaveRequest(LeaveRequest request)
+        {
+            int id = request.Id;
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            string acceptRequest = $"UPDATE leaverequest SET accepted = true WHERE id = @id";
+            MySqlCommand cmd = new MySqlCommand(acceptRequest, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void DenyLeaveRequest(LeaveRequest request)
+        {
+            int id = request.Id;
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            string denyRequest = $"UPDATE leaverequest SET accepted = false WHERE id = @id";
+            MySqlCommand cmd = new MySqlCommand(denyRequest, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public List<LeaveRequest> GetLeaveRequestsFromDB()
+        {
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            List<LeaveRequest> requests = new List<LeaveRequest>();
+            MySqlCommand GetAllRequests = new MySqlCommand("SELECT * FROM leaverequest", conn);
+            conn.Open();
+            MySqlDataReader reader = GetAllRequests.ExecuteReader();
+            while (reader.Read())
+            {
+                int requestId = Convert.ToInt32(reader["id"]);
+                int userId = Convert.ToInt32(reader["user_id"]);
+                DateTime startDate = Convert.ToDateTime(reader["start_date"]);
+                DateTime endDate = Convert.ToDateTime(reader["end_date"]);
+                bool accepted = Convert.ToBoolean(reader["accepted"]);
+                requests.Add(new LeaveRequest(requestId, userId, startDate, endDate, accepted));
+            }
+            reader.Close();
+            conn.Close();
+            return requests;
         }
     }
 }
