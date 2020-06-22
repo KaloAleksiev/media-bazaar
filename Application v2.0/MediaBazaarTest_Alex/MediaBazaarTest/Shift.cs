@@ -109,50 +109,21 @@ namespace MediaBazaarTest
                 }
                 reader3.Close();
                 conn.Close();
-                //List<int> toDelete = new List<int>();
-                if (n > users.Count)
+                foreach (int i in indexe)
                 {
-                    for (int i = 0; i < indexe.Count; i++)
-                    {
-                        bool flag = true;
-                        for (int j = 0; j < users.Count; j++)
-                        {
-                            if (users[j].Id == indexe[i])
-                            {
-                                flag = false;
-                            }
-                        }
-                        if (flag)
-                        {
-                            MySqlCommand DeleteShift = new MySqlCommand("DELETE FROM shift_user WHERE user_id = '" + indexe[i].ToString() + "'", conn);
-                            conn.Open();
-                            int j = DeleteShift.ExecuteNonQuery();
-                            conn.Close();
-                        }
-                    }
+                    MySqlCommand DeleteShift = new MySqlCommand("DELETE FROM shift_user WHERE user_id = '" + i.ToString() + "' AND shift_id = '" + this.shiftId + "'", conn);
+                    conn.Open();
+                    int j = DeleteShift.ExecuteNonQuery();
+                    conn.Close();
                 }
-                else
+                foreach (User u in users)
                 {
-                    for (int i = 0; i < users.Count; i++)
-                    {
-                        bool flag = true;
-                        for (int j = 0; j < indexe.Count; j++)
-                        {
-                            if (users[i].Id == indexe[j])
-                            {
-                                flag = false;
-                            }
-                        }
-                        if (flag)
-                        {
-                            MySqlCommand AddPersonToShiftDB = new MySqlCommand("INSERT INTO shift_user (user_id, shift_id) VALUES (@user_id, @shift_id)", conn);
-                            AddPersonToShiftDB.Parameters.AddWithValue("@user_id", users[i].Id.ToString());
-                            AddPersonToShiftDB.Parameters.AddWithValue("@shift_id", this.shiftId);
-                            conn.Open();
-                            int k = AddPersonToShiftDB.ExecuteNonQuery();
-                            conn.Close();
-                        }
-                    }
+                    MySqlCommand AddPersonToShiftDB = new MySqlCommand("INSERT INTO shift_user (user_id, shift_id) VALUES (@user_id, @shift_id)", conn);
+                    AddPersonToShiftDB.Parameters.AddWithValue("@user_id", u.Id.ToString());
+                    AddPersonToShiftDB.Parameters.AddWithValue("@shift_id", this.shiftId);
+                    conn.Open();
+                    int k = AddPersonToShiftDB.ExecuteNonQuery();
+                    conn.Close();
                 }
             }
             else

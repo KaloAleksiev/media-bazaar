@@ -91,6 +91,7 @@
             this.lbDay25 = new System.Windows.Forms.ListBox();
             this.lblDay25 = new System.Windows.Forms.Label();
             this.lblInfo = new System.Windows.Forms.Label();
+            this.btnPreference = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblDay1
@@ -113,7 +114,7 @@
             this.lbDay1.ItemHeight = 16;
             this.lbDay1.Location = new System.Drawing.Point(12, 94);
             this.lbDay1.Name = "lbDay1";
-            this.lbDay1.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay1.Size = new System.Drawing.Size(150, 132);
             this.lbDay1.TabIndex = 27;
             // 
@@ -124,7 +125,7 @@
             this.lbDay9.ItemHeight = 16;
             this.lbDay9.Location = new System.Drawing.Point(12, 259);
             this.lbDay9.Name = "lbDay9";
-            this.lbDay9.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay9.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay9.Size = new System.Drawing.Size(150, 132);
             this.lbDay9.TabIndex = 52;
             // 
@@ -148,7 +149,7 @@
             this.lbDay10.ItemHeight = 16;
             this.lbDay10.Location = new System.Drawing.Point(168, 259);
             this.lbDay10.Name = "lbDay10";
-            this.lbDay10.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay10.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay10.Size = new System.Drawing.Size(150, 132);
             this.lbDay10.TabIndex = 54;
             // 
@@ -172,7 +173,7 @@
             this.lbDay5.ItemHeight = 16;
             this.lbDay5.Location = new System.Drawing.Point(636, 94);
             this.lbDay5.Name = "lbDay5";
-            this.lbDay5.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay5.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay5.Size = new System.Drawing.Size(150, 132);
             this.lbDay5.TabIndex = 56;
             // 
@@ -196,7 +197,7 @@
             this.lbDay4.ItemHeight = 16;
             this.lbDay4.Location = new System.Drawing.Point(480, 94);
             this.lbDay4.Name = "lbDay4";
-            this.lbDay4.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay4.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay4.Size = new System.Drawing.Size(150, 132);
             this.lbDay4.TabIndex = 58;
             // 
@@ -220,7 +221,7 @@
             this.lbDay3.ItemHeight = 16;
             this.lbDay3.Location = new System.Drawing.Point(324, 94);
             this.lbDay3.Name = "lbDay3";
-            this.lbDay3.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay3.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay3.Size = new System.Drawing.Size(150, 132);
             this.lbDay3.TabIndex = 60;
             // 
@@ -244,7 +245,7 @@
             this.lbDay2.ItemHeight = 16;
             this.lbDay2.Location = new System.Drawing.Point(168, 94);
             this.lbDay2.Name = "lbDay2";
-            this.lbDay2.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay2.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay2.Size = new System.Drawing.Size(150, 132);
             this.lbDay2.TabIndex = 62;
             // 
@@ -268,7 +269,7 @@
             this.lbDay11.ItemHeight = 16;
             this.lbDay11.Location = new System.Drawing.Point(324, 259);
             this.lbDay11.Name = "lbDay11";
-            this.lbDay11.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay11.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay11.Size = new System.Drawing.Size(150, 132);
             this.lbDay11.TabIndex = 64;
             // 
@@ -292,7 +293,7 @@
             this.lbDay12.ItemHeight = 16;
             this.lbDay12.Location = new System.Drawing.Point(480, 259);
             this.lbDay12.Name = "lbDay12";
-            this.lbDay12.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay12.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay12.Size = new System.Drawing.Size(150, 132);
             this.lbDay12.TabIndex = 66;
             // 
@@ -316,7 +317,7 @@
             this.lbDay13.ItemHeight = 16;
             this.lbDay13.Location = new System.Drawing.Point(636, 259);
             this.lbDay13.Name = "lbDay13";
-            this.lbDay13.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay13.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay13.Size = new System.Drawing.Size(150, 132);
             this.lbDay13.TabIndex = 68;
             // 
@@ -340,7 +341,7 @@
             this.lbDay17.ItemHeight = 16;
             this.lbDay17.Location = new System.Drawing.Point(12, 424);
             this.lbDay17.Name = "lbDay17";
-            this.lbDay17.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay17.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay17.Size = new System.Drawing.Size(150, 132);
             this.lbDay17.TabIndex = 70;
             // 
@@ -364,7 +365,7 @@
             this.lbDay18.ItemHeight = 16;
             this.lbDay18.Location = new System.Drawing.Point(168, 424);
             this.lbDay18.Name = "lbDay18";
-            this.lbDay18.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay18.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay18.Size = new System.Drawing.Size(150, 132);
             this.lbDay18.TabIndex = 72;
             // 
@@ -388,7 +389,7 @@
             this.lbDay19.ItemHeight = 16;
             this.lbDay19.Location = new System.Drawing.Point(324, 424);
             this.lbDay19.Name = "lbDay19";
-            this.lbDay19.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay19.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay19.Size = new System.Drawing.Size(150, 132);
             this.lbDay19.TabIndex = 74;
             // 
@@ -412,7 +413,7 @@
             this.lbDay20.ItemHeight = 16;
             this.lbDay20.Location = new System.Drawing.Point(480, 424);
             this.lbDay20.Name = "lbDay20";
-            this.lbDay20.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay20.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay20.Size = new System.Drawing.Size(150, 132);
             this.lbDay20.TabIndex = 76;
             // 
@@ -436,7 +437,7 @@
             this.lbDay21.ItemHeight = 16;
             this.lbDay21.Location = new System.Drawing.Point(636, 424);
             this.lbDay21.Name = "lbDay21";
-            this.lbDay21.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay21.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay21.Size = new System.Drawing.Size(150, 132);
             this.lbDay21.TabIndex = 78;
             // 
@@ -460,7 +461,7 @@
             this.lbDay6.ItemHeight = 16;
             this.lbDay6.Location = new System.Drawing.Point(792, 94);
             this.lbDay6.Name = "lbDay6";
-            this.lbDay6.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay6.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay6.Size = new System.Drawing.Size(150, 132);
             this.lbDay6.TabIndex = 80;
             // 
@@ -484,7 +485,7 @@
             this.lbDay14.ItemHeight = 16;
             this.lbDay14.Location = new System.Drawing.Point(792, 259);
             this.lbDay14.Name = "lbDay14";
-            this.lbDay14.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay14.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay14.Size = new System.Drawing.Size(150, 132);
             this.lbDay14.TabIndex = 82;
             // 
@@ -508,7 +509,7 @@
             this.lbDay22.ItemHeight = 16;
             this.lbDay22.Location = new System.Drawing.Point(792, 424);
             this.lbDay22.Name = "lbDay22";
-            this.lbDay22.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay22.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay22.Size = new System.Drawing.Size(150, 132);
             this.lbDay22.TabIndex = 84;
             // 
@@ -532,7 +533,7 @@
             this.lbDay7.ItemHeight = 16;
             this.lbDay7.Location = new System.Drawing.Point(948, 94);
             this.lbDay7.Name = "lbDay7";
-            this.lbDay7.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay7.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay7.Size = new System.Drawing.Size(150, 132);
             this.lbDay7.TabIndex = 86;
             // 
@@ -556,7 +557,7 @@
             this.lbDay15.ItemHeight = 16;
             this.lbDay15.Location = new System.Drawing.Point(948, 259);
             this.lbDay15.Name = "lbDay15";
-            this.lbDay15.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay15.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay15.Size = new System.Drawing.Size(150, 132);
             this.lbDay15.TabIndex = 88;
             // 
@@ -580,7 +581,7 @@
             this.lbDay23.ItemHeight = 16;
             this.lbDay23.Location = new System.Drawing.Point(948, 424);
             this.lbDay23.Name = "lbDay23";
-            this.lbDay23.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay23.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay23.Size = new System.Drawing.Size(150, 132);
             this.lbDay23.TabIndex = 90;
             // 
@@ -604,7 +605,7 @@
             this.lbDay8.ItemHeight = 16;
             this.lbDay8.Location = new System.Drawing.Point(1104, 94);
             this.lbDay8.Name = "lbDay8";
-            this.lbDay8.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay8.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay8.Size = new System.Drawing.Size(150, 132);
             this.lbDay8.TabIndex = 92;
             // 
@@ -628,7 +629,7 @@
             this.lbDay16.ItemHeight = 16;
             this.lbDay16.Location = new System.Drawing.Point(1104, 259);
             this.lbDay16.Name = "lbDay16";
-            this.lbDay16.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay16.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay16.Size = new System.Drawing.Size(150, 132);
             this.lbDay16.TabIndex = 94;
             // 
@@ -652,7 +653,7 @@
             this.lbDay24.ItemHeight = 16;
             this.lbDay24.Location = new System.Drawing.Point(1104, 424);
             this.lbDay24.Name = "lbDay24";
-            this.lbDay24.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay24.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay24.Size = new System.Drawing.Size(150, 132);
             this.lbDay24.TabIndex = 96;
             // 
@@ -676,7 +677,7 @@
             this.lbDay31.ItemHeight = 16;
             this.lbDay31.Location = new System.Drawing.Point(948, 589);
             this.lbDay31.Name = "lbDay31";
-            this.lbDay31.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay31.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay31.Size = new System.Drawing.Size(150, 132);
             this.lbDay31.TabIndex = 110;
             // 
@@ -700,7 +701,7 @@
             this.lbDay30.ItemHeight = 16;
             this.lbDay30.Location = new System.Drawing.Point(792, 589);
             this.lbDay30.Name = "lbDay30";
-            this.lbDay30.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay30.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay30.Size = new System.Drawing.Size(150, 132);
             this.lbDay30.TabIndex = 108;
             // 
@@ -724,7 +725,7 @@
             this.lbDay29.ItemHeight = 16;
             this.lbDay29.Location = new System.Drawing.Point(636, 589);
             this.lbDay29.Name = "lbDay29";
-            this.lbDay29.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay29.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay29.Size = new System.Drawing.Size(150, 132);
             this.lbDay29.TabIndex = 106;
             // 
@@ -748,7 +749,7 @@
             this.lbDay28.ItemHeight = 16;
             this.lbDay28.Location = new System.Drawing.Point(480, 589);
             this.lbDay28.Name = "lbDay28";
-            this.lbDay28.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay28.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay28.Size = new System.Drawing.Size(150, 132);
             this.lbDay28.TabIndex = 104;
             // 
@@ -772,7 +773,7 @@
             this.lbDay27.ItemHeight = 16;
             this.lbDay27.Location = new System.Drawing.Point(324, 589);
             this.lbDay27.Name = "lbDay27";
-            this.lbDay27.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay27.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay27.Size = new System.Drawing.Size(150, 132);
             this.lbDay27.TabIndex = 102;
             // 
@@ -796,7 +797,7 @@
             this.lbDay26.ItemHeight = 16;
             this.lbDay26.Location = new System.Drawing.Point(168, 589);
             this.lbDay26.Name = "lbDay26";
-            this.lbDay26.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay26.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay26.Size = new System.Drawing.Size(150, 132);
             this.lbDay26.TabIndex = 100;
             // 
@@ -820,7 +821,7 @@
             this.lbDay25.ItemHeight = 16;
             this.lbDay25.Location = new System.Drawing.Point(12, 589);
             this.lbDay25.Name = "lbDay25";
-            this.lbDay25.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbDay25.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbDay25.Size = new System.Drawing.Size(150, 132);
             this.lbDay25.TabIndex = 98;
             // 
@@ -849,11 +850,28 @@
             this.lblInfo.Size = new System.Drawing.Size(2, 26);
             this.lblInfo.TabIndex = 111;
             // 
+            // btnPreference
+            // 
+            this.btnPreference.BackColor = System.Drawing.Color.Maroon;
+            this.btnPreference.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnPreference.FlatAppearance.BorderSize = 2;
+            this.btnPreference.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPreference.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.btnPreference.ForeColor = System.Drawing.Color.White;
+            this.btnPreference.Location = new System.Drawing.Point(944, 12);
+            this.btnPreference.Name = "btnPreference";
+            this.btnPreference.Size = new System.Drawing.Size(309, 38);
+            this.btnPreference.TabIndex = 112;
+            this.btnPreference.Text = "Check for Preference conflicts";
+            this.btnPreference.UseVisualStyleBackColor = false;
+            this.btnPreference.Click += new System.EventHandler(this.btnPreference_Click);
+            // 
             // ShiftForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1265, 728);
+            this.Controls.Add(this.btnPreference);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.lbDay31);
             this.Controls.Add(this.lblDay31);
@@ -919,6 +937,7 @@
             this.Controls.Add(this.lblDay1);
             this.Name = "ShiftForm";
             this.Text = "ShiftForm";
+//            this.Load += new System.EventHandler(this.ShiftForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -989,5 +1008,6 @@
         private System.Windows.Forms.ListBox lbDay25;
         private System.Windows.Forms.Label lblDay25;
         private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.Button btnPreference;
     }
 }

@@ -25,6 +25,8 @@ namespace MediaBazaarTest
         Dictionary<ListBox, Label> listBoxesToLabels;
         ShiftDataControl sdc;
         UserControl uc;
+        PreferenceControl pc;
+        DateTime selDT;
 
         public ShiftForm(DateTime dt, KeyValuePair<string, int> dep, Position pos, ShiftType type, UserControl uc)
         {
@@ -40,6 +42,7 @@ namespace MediaBazaarTest
             usersInShift = new Dictionary<int, List<int>>();
             listBoxesToLabels = new Dictionary<ListBox, Label>();
             sdc = new ShiftDataControl();
+            pc = new PreferenceControl();
             this.uc = uc;
             lblInfo.Text = $"Schedule for {month.ToString()} {year} for {pos.ToString()}s of {dep.Key} department, {type.ToString()} shifts.";
             CreateListBoxDict();
@@ -63,7 +66,10 @@ namespace MediaBazaarTest
                 foreach (Control obj in Controls)
                 {
                     if (obj is Label && obj.Name.TrimStart("lblDay".ToCharArray()) == lb.Value.Name.TrimStart("lbDay".ToCharArray()))
-                    { listBoxesToLabels.Add(lb.Value, (Label)obj); }
+                    { 
+                        listBoxesToLabels.Add(lb.Value, (Label)obj);
+                        obj.Text += "-" + new DateTime(year, (int)month, lb.Key).DayOfWeek.ToString();
+                    }
                 }
             }
             AssignMethodsToLabels();
@@ -106,10 +112,17 @@ namespace MediaBazaarTest
         public void EditShift(object sender, EventArgs e)
         {
             Label lbl = (Label)sender;
-            DateTime selDT = new DateTime(year, (int)month, Convert.ToInt32(lbl.Text));
+            string day = "";
+            foreach (char c in lbl.Text.ToCharArray())
+            {
+                if (c == '-')
+                { break; }
+                else { day += c; } 
+            }
+            selDT = new DateTime(year, (int)month, Convert.ToInt32(day));
             //ListBox lb = listBoxesToLabels.FirstOrDefault(x => x.Value == lbl).Key;
             KeyValuePair<int, int> shiftIdToNr = sdc.GetAmntOfUsersInShift(selDT, type, pos, dep.Value);
-            int nrOfPeople = usersInShift[Convert.ToInt32(lbl.Text)].Count;
+            int nrOfPeople = usersInShift[Convert.ToInt32(day)].Count;
             ShiftAssignmentForm frm;
             if (shiftIdToNr.Key != 0)
             { frm = new ShiftAssignmentForm(uc, selDT, dep, pos, type, nrOfPeople, shiftIdToNr.Key); }
@@ -120,21 +133,24 @@ namespace MediaBazaarTest
 
         public void UpdateAllListBoxes(object sender, EventArgs e)
         {
-            usersInShift.Clear();
             foreach (KeyValuePair<int, ListBox> lb in listBoxes)
             {
-                lb.Value.Items.Clear();
-                DateTime shiftDate = dt.AddDays(lb.Key - 1);
-                KeyValuePair<int, int> shiftIdToNr = sdc.GetAmntOfUsersInShift(shiftDate, type, pos, dep.Value);
-                lb.Value.Items.Add(CreateFirstLine(pos, shiftIdToNr.Value));
-                ChangeLabelColor(pos, shiftIdToNr.Value, lb.Value);
-                List<int> indexes = sdc.GetIdOfUsersInShift(shiftIdToNr.Key, shiftIdToNr.Value);
-                foreach (int i in indexes)
+                if (lb.Key == selDT.Day)
                 {
-                    User u = uc.GetUserByID(i);
-                    lb.Value.Items.Add($"ID: {u.Id}, {u.FName} {u.LName}");
+                    lb.Value.Items.Clear();
+                    DateTime shiftDate = dt.AddDays(lb.Key - 1);
+                    KeyValuePair<int, int> shiftIdToNr = sdc.GetAmntOfUsersInShift(shiftDate, type, pos, dep.Value);
+                    lb.Value.Items.Add(CreateFirstLine(pos, shiftIdToNr.Value));
+                    ChangeLabelColor(pos, shiftIdToNr.Value, lb.Value);
+                    List<int> indexes = sdc.GetIdOfUsersInShift(shiftIdToNr.Key, shiftIdToNr.Value);
+                    foreach (int i in indexes)
+                    {
+                        User u = uc.GetUserByID(i);
+                        lb.Value.Items.Add($"ID: {u.Id}, {u.FName} {u.LName}");
+                    }
+                    usersInShift.Remove(lb.Key);
+                    usersInShift.Add(lb.Key, indexes);
                 }
-                usersInShift.Add(lb.Key, indexes);
             }
         }
 
@@ -175,5 +191,26 @@ namespace MediaBazaarTest
                     break;
             }
         }
+
+        private void btnPreference_Click(object sender, EventArgs e)
+        {
+            int confCounter = 0;
+            foreach (KeyValuePair<int, ListBox> kvp in listBoxes)
+            {
+                for (int i = 0; i < usersInShift[kvp.Key].Count; i++)
+                {
+                    if (pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]) != null)
+                    {
+                        if (pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]).Days.Contains(new DateTime(year, (int)month, kvp.Key).DayOfWeek.ToString())
+                            || (type.ToString() != pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]).Type && pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]).Type != ""))
+                        {
+                            kvp.Value.SelectedIndex = i + 1;
+                            confCounter++;
+                        }
+                    }
+                }
+            }
+            MessageBox.Show($"Conflicts found: {confCounter}. \nConflicts highlighted in the user lists.", "Conflicts", MessageBoxButtons.OK);
+        }   
     }
 }

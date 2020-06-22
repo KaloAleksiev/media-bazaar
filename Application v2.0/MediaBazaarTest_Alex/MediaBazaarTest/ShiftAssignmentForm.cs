@@ -18,7 +18,7 @@ namespace MediaBazaarTest
         Shift shift;
         int nrOfPeople;
         Position pos;
-        DateTime dt;
+        public DateTime dt;
         KeyValuePair<string, int> dep;
         int currentShiftId = 0;
         //Lists for types of workers (all in the db)
@@ -58,10 +58,11 @@ namespace MediaBazaarTest
                     AllEmps.RemoveAt(lbAllPpl.SelectedIndex);
                     lbAllPpl.Items.Clear();
                     foreach (User emp in AllEmps)
-                    { lbAllPpl.Items.Add(emp.GetInfo()); } //Refresh the AllPpl listbox
+                    { 
+                        lbAllPpl.Items.Add(emp.GetInfo()); } //Refresh the AllPpl listbox
 
                     shift.AddUser(u);
-
+                    MessageBox.Show(shift.GetAllUsers().Count.ToString());
                     FillChosenShift(); //Refresh the InShift listbox.
                 }
                 catch
@@ -76,7 +77,8 @@ namespace MediaBazaarTest
             //Fill listbox with people selected for the shift. 
             lbInShift.Items.Clear();
             foreach (User u in InShift)
-            { lbInShift.Items.Add(u.GetInfo()); }
+            { 
+                lbInShift.Items.Add(u.GetInfo()); }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -145,8 +147,17 @@ namespace MediaBazaarTest
                 }
                 foreach (int i in foundIndexes)
                 { InShift.Add(AllEmps[i]); }
-                for (int i = foundIndexes.Count - 1; i >= 0; i--)
-                { AllEmps.Remove(AllEmps[i]); }
+                foreach (User u in InShift)
+                {
+                    try
+                    {
+                        AllEmps.Remove(u);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
             }
             foreach (User u in AllEmps)
             { lbAllPpl.Items.Add(u.GetInfo()); }
