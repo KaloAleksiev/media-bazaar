@@ -261,7 +261,7 @@ namespace MediaBazaarTest
         {
             int id = request.Id;
             MySqlConnection conn = new MySqlConnection(connectionString);
-            string acceptRequest = $"UPDATE leaverequest SET accepted = true WHERE id = @id";
+            string acceptRequest = $"UPDATE leaverequest SET accepted = 1 WHERE id = @id";
             MySqlCommand cmd = new MySqlCommand(acceptRequest, conn);
             cmd.Parameters.AddWithValue("@id", id);
             conn.Open();
@@ -273,7 +273,7 @@ namespace MediaBazaarTest
         {
             int id = request.Id;
             MySqlConnection conn = new MySqlConnection(connectionString);
-            string denyRequest = $"UPDATE leaverequest SET accepted = false WHERE id = @id";
+            string denyRequest = $"UPDATE leaverequest SET accepted = 0 WHERE id = @id";
             MySqlCommand cmd = new MySqlCommand(denyRequest, conn);
             cmd.Parameters.AddWithValue("@id", id);
             conn.Open();

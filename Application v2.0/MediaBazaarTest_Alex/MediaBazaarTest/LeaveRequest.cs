@@ -76,6 +76,7 @@ namespace MediaBazaarTest
 
         public LeaveRequest(int id, int userId, DateTime startDate, DateTime endDate, bool accepted)
         {
+            this.Id = id;
             this.UserId = userId;
             this.StartDate = startDate;
             this.EndDate = endDate;

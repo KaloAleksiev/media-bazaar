@@ -327,8 +327,10 @@ namespace MediaBazaarTest
                     $"\n Alexa.";
                 using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
                 {
+                    mailer.UseDefaultCredentials = false;
                     mailer.Credentials = new NetworkCredential("mediabazaar.management@gmail.com", "MediaB420");
                     mailer.EnableSsl = true;
+                    mailer.DeliveryMethod = SmtpDeliveryMethod.Network;
                     mailer.Send(message);
                 }
                 return true;
@@ -356,8 +358,10 @@ namespace MediaBazaarTest
                     $"\n Alexa.";
                 using (SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587))
                 {
+                    mailer.UseDefaultCredentials = false;
                     mailer.Credentials = new NetworkCredential("mediabazaar.management@gmail.com", "MediaB420");
                     mailer.EnableSsl = true;
+                    mailer.DeliveryMethod = SmtpDeliveryMethod.Network;
                     mailer.Send(message);
                 }
                 return true;
