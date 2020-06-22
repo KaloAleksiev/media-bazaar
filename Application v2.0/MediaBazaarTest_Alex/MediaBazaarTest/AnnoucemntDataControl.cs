@@ -18,23 +18,25 @@ namespace MediaBazaarTest
         {
             int id = a.Author.Id;
             MySqlConnection connection = new MySqlConnection(conectionString);
-            string query = $"INSERT INTO announcement( title, author_id, start_date, end_date, text)" +
-                $"VALUES (@title, @author_id, @start_date, @end_date, @text)";
+            string query = $"INSERT INTO announcement( title, author_id, start_date, end_date, text, DeparmentID)" +
+                  $"VALUES (@title, @author_id, @start_date, @end_date, @text, @DeparmentID)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", a.Title);
             cmd.Parameters.AddWithValue("@author_id", id);
             cmd.Parameters.AddWithValue("@start_date", a.StartDate);
             cmd.Parameters.AddWithValue("@end_date", a.EndDate);
             cmd.Parameters.AddWithValue("@text", a.Text);
+            cmd.Parameters.AddWithValue("@DeparmentID", a.DepartmentId);
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+
         }
         public Annoucement ReturnAnnoucemntFromDB(string title)
         {
             Annoucement a;
             MySqlConnection connection = new MySqlConnection(conectionString);
-            MySqlCommand cmd = new MySqlCommand($"SELECT announcement_id, title, author_id, start_date, end_date, text  FROM announcement WHERE title = '{title}' ;", connection);
+            MySqlCommand cmd = new MySqlCommand($"SELECT announcement_id, title, author_id, start_date, end_date, text, DeparmentID  FROM announcement WHERE title = '{title}' ;", connection);
             connection.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
@@ -46,20 +48,22 @@ namespace MediaBazaarTest
                 DateTime startDate = Convert.ToDateTime(reader["start_date"]);
                 DateTime end_date = Convert.ToDateTime(reader["end_date"]);
                 string text = Convert.ToString(reader["text"]);
+                int department = Convert.ToInt32(reader["DeparmentID"]);
                 reader.Close();
                 connection.Close();
-                a = new Annoucement(startDate, end_date, aTitle, text, author_id, id);
+                a = new Annoucement(startDate, end_date, aTitle, text, author_id, id, department);
                 return a;
             }
             reader.Close();
             connection.Close();
             return null;
+
         }
         public List<Annoucement> ReturnAllAnnoucemntFromDB()
         {
             List<Annoucement> annoucements = new List<Annoucement>();
             MySqlConnection connection = new MySqlConnection(conectionString);
-            string query = $"SELECT announcement_id, title, author_id, start_date, end_date, text FROM announcement ";
+            string query = $"SELECT announcement_id, title, author_id, start_date, end_date, text, DeparmentID FROM announcement ";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -72,18 +76,20 @@ namespace MediaBazaarTest
                 DateTime end_date = Convert.ToDateTime(reader["end_date"]);
                 string text = Convert.ToString(reader["text"]);
                 User user = uc.GetUserByID(author_id);
-                Annoucement a = new Annoucement(startDate, end_date, aTitle, text, user);
+                int department = Convert.ToInt32(reader["DeparmentID"]);
+                Annoucement a = new Annoucement(startDate, end_date, aTitle, text, user, department);
                 annoucements.Add(a);
             }
             reader.Close();
             connection.Close();
             return annoucements;
+
         }
 
         public void UpdateAnnoucemnt(Annoucement a)
         {
             MySqlConnection conn = new MySqlConnection(conectionString);
-            string update = $"UPDATE announcement SET title = @title, author_id = @authorid, start_date = @startdate, end_date = @enddate, text = @text WHERE announcement_id = @id";
+            string update = $"UPDATE announcement SET title = @title, author_id = @authorid, start_date = @startdate, end_date = @enddate, text = @text, DeparmentID = @department  WHERE announcement_id = @id";
             MySqlCommand cmd = new MySqlCommand(update, conn);
             cmd.Parameters.AddWithValue("@title", a.Title);
             cmd.Parameters.AddWithValue("@authorid", a.AuthorID);
@@ -91,9 +97,11 @@ namespace MediaBazaarTest
             cmd.Parameters.AddWithValue("@enddate", a.EndDate);
             cmd.Parameters.AddWithValue("@text", a.Text);
             cmd.Parameters.AddWithValue("@id", a.ID);
+            cmd.Parameters.AddWithValue("@department", a.DepartmentId);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
+
         }
 
         public void DeleteAnnoucement(string title)

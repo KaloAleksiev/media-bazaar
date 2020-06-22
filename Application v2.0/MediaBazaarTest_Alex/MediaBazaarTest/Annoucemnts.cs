@@ -12,15 +12,15 @@ namespace MediaBazaarTest
 {
     public partial class Annoucemnts : Form
     {
+        AnnoucementControl ac;
         UserControl uc;
-        AnnoucemntDataControl dc = new AnnoucemntDataControl();
-        List<Annoucement> list = new List<Annoucement>();
-        Annoucement toedit;
+        List<Annoucement> list;
+
         public Annoucemnts(UserControl uc)
         {
+            ac = new AnnoucementControl();
             InitializeComponent();
             this.uc = uc; 
-            list = dc.ReturnAllAnnoucemntFromDB();
             dgvANnoucemnts.AutoGenerateColumns = false;
             dgvANnoucemnts.RowHeadersVisible = false;
             dgvANnoucemnts.MultiSelect = false;
@@ -33,6 +33,7 @@ namespace MediaBazaarTest
         }
         private void UpdateList()
         {
+            List<Annoucement> list = ac.GetAllAnnoucemnts();
             dgvANnoucemnts.Rows.Clear();
             foreach (var item in list)
             {
@@ -44,10 +45,18 @@ namespace MediaBazaarTest
         {
             if (tbTitle.TextLength != 0 || rtbAnnoucemntText.Text != String.Empty)
             {
-                Annoucement annoucement = new Annoucement(dtpstart_date.Value, dtpend_picker.Value, tbTitle.Text, rtbAnnoucemntText.Text, uc.GetLoggedIn());
-                dc.AddAnnoucemntToDB(annoucement);
-                list = dc.ReturnAllAnnoucemntFromDB();
-                UpdateList();
+                if (cmDepartment.SelectedIndex > -1)
+                {
+                    int department = cmDepartment.SelectedIndex + 1;
+                    ac.NewAnnoucement(dtpstart_date.Value, dtpend_picker.Value, tbTitle.Text, rtbAnnoucemntText.Text, uc.GetLoggedIn(), department);
+                    UpdateList();
+                }
+                else
+                {
+                    int department = 0;
+                    ac.NewAnnoucement(dtpstart_date.Value, dtpend_picker.Value, tbTitle.Text, rtbAnnoucemntText.Text, uc.GetLoggedIn(), department);
+                    UpdateList();
+                }
             }
             else
             {
@@ -60,38 +69,49 @@ namespace MediaBazaarTest
             if (this.dgvANnoucemnts.SelectedRows.Count > 0)
             {
                 string title = dgvANnoucemnts.SelectedCells[0].Value.ToString();
-                dc.DeleteAnnoucement(title);
+                ac.DeleteAnnoucemnt(title);
                 dgvANnoucemnts.Rows.RemoveAt(this.dgvANnoucemnts.SelectedRows[0].Index);
-                MessageBox.Show($"The annoucement {toedit.Title} was edited succesfully!");
+                MessageBox.Show($"The annoucement {ac.GetToEditTitle()} was edited succesfully!");
             }
             else
             {
                 MessageBox.Show($"Make sure you choose the annoucement from the list!");
             }
-            
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            toedit.ChangeTitle(tbTitle.Text);
-            toedit.ChangeText(rtbAnnoucemntText.Text);
-            toedit.ChangeStartDate(dtpstart_date.Value);
-            toedit.ChangeEndDate(dtpend_picker.Value);
-            dc.UpdateAnnoucemnt(toedit);
-
-            MessageBox.Show($"The annoucement '{toedit.Title}' was edited succesfully!");
-            list = dc.ReturnAllAnnoucemntFromDB();
+            ac.EditAnnoucement(tbTitle.Text, rtbAnnoucemntText.Text, dtpstart_date.Value, dtpend_picker.Value, cmDepartment.SelectedIndex + 1);
+            MessageBox.Show($"The annoucement '{ac.GetToEditTitle()}' was edited succesfully!");
             UpdateList();
         }
 
         private void btAnnoucemntToBeUpdated_Click(object sender, EventArgs e)
         {
             string title = dgvANnoucemnts.SelectedCells[0].Value.ToString();
-            toedit = dc.ReturnAnnoucemntFromDB(title);
+            Annoucement toedit = ac.GetToBeEditedAnnoucemnt(title);
             tbTitle.Text = toedit.Title;
             rtbAnnoucemntText.Text = toedit.Text;
             dtpstart_date.Value = toedit.StartDate;
             dtpend_picker.Value = toedit.EndDate;
+            cmDepartment.Text = "";
+            int department = toedit.DepartmentId;
+            if (department == 1)
+            {
+                cmDepartment.Text = "Phones";
+                UpdateList();
+            }
+            else if (department == 2)
+            {
+                cmDepartment.Text = "Computers";
+                UpdateList();
+            }
+            else if (department == 3)
+            {
+                cmDepartment.Text = "TVs";
+                UpdateList();
+            }
         }
     }
 }

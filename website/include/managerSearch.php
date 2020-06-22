@@ -35,6 +35,8 @@
           <th> ID </th>
           <th> First Name </th>
           <th> Last Name </th>
+          <th> Position </th>
+          <th> Phone Number </th>
         </tr>
         ";
         foreach ($result as $row)
@@ -44,6 +46,8 @@
           <div class=\"tableCell\"><td> " . $row['id'] . "</td></div>
           <div class=\"tableCell\"><td> " . $row['firstName'] . " </td></div>
           <div class=\"tableCell\"><td> " . $row['lastName'] . " </td></div>
+          <div class=\"tableCell\"><td> " . $row['position'] . " </td></div>
+          <div class=\"tableCell\"><td> " . $row['phone_number'] . " </td></div>
           </tr>
         ";
         }

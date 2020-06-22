@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Annoucement.cs" />
+    <Compile Include="AnnoucementControl.cs" />
     <Compile Include="AnnoucemntDataControl.cs" />
     <Compile Include="Annoucemnts.cs">
       <SubType>Form</SubType>
