@@ -69,7 +69,6 @@ C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaar
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.MainForm.resources
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.Properties.Resources.resources
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.RestockForm.resources
-C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.ScheduleForm.resources
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.ShiftAssignmentForm.resources
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.ShiftForm.resources
 C:\Users\velja\OneDrive\Desktop\Project\mediabazaar\Application v2.0\MediaBazaarTest_Alex\MediaBazaarTest\obj\Debug\MediaBazaarTest.ShiftHubForm.resources
