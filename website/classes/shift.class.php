@@ -15,7 +15,7 @@ class Shift
         $this->userId = $userId;
         $this->date = $date;
         $this->type = $type;
-        $this->position = $position; 
+        $this->position = $position;
     }
 
     public function getDate()

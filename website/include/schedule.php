@@ -1,6 +1,7 @@
 <?php
 
 require "../classes/shift.class.php";
+require "../classes/department.class.php";
 
 $servername = 'studmysql01.fhict.local';
 $uid = 'dbi427262';
@@ -34,7 +35,9 @@ function build_calendar($month,$year) {
 
      $username = $_SESSION['user_id'];
 
+     $dc = new DepartmentControl();
      global $conn;
+
      $query = $conn->prepare("SELECT
      s.date,
      s.type,
@@ -103,30 +106,8 @@ function build_calendar($month,$year) {
                               $shiftLastName = $item->lastName;
                               $shiftPosition = $item->position;
                               $shiftDepartment = $item->departmentId;
-                              if ($shiftDepartment == 1)
-                              {
-                                   $calendar .= "<div class='shiftCardPhones'>$shiftFirstName $shiftLastName - $shiftType</div>";
-                              }
-                              else if ($shiftDepartment == 2)
-                              {
-                                   $calendar .= "<div class='shiftCardComputers'>$shiftFirstName $shiftLastName - $shiftType</div>";
-                              }
-                              else if ($shiftDepartment == 3)
-                              {
-                                   $calendar .= "<div class='shiftCardTVs'>$shiftFirstName $shiftLastName - $shiftType</div>";
-                              }
-                              else if ($shiftDepartment == 4)
-                              {
-                                   $calendar .= "<div class='shiftCardPhotography'>$shiftFirstName $shiftLastName - $shiftType</div>";
-                              }
-                              else if ($shiftDepartment == 5)
-                              {
-                                   $calendar .= "<div class='shiftCardHome'>$shiftFirstName $shiftLastName - $shiftType</div>";
-                              }
-                              else
-                              {
-                                   $calendar .= "<div class='shiftCardOther'>$shiftFirstName $shiftLastName - $shiftType</div>";
-                              }
+
+                              $calendar .= "<div class='shiftCard' style='border: 3px solid ".$dc->getDepartmentById($shiftDepartment)->getDepartmentColor()."'>$shiftFirstName $shiftLastName - $shiftType</div>";
                          }
                     }
                }
@@ -148,6 +129,17 @@ function build_calendar($month,$year) {
      
      $calendar .= "</tr>";
      $calendar .= "</table>";
+
+     $calendar .= "<br><br>";
+     $calendar .= "<div class='legend'>";
+
+     foreach ($dc->getDepartments() as $dep)
+     {
+          $calendar .= "<h3 class='legendDep' style='color: ".$dep->getDepartmentColor()."'>$dep->departmentName</h3>";
+     }
+
+     $calendar .= "</div>";
+
      return $calendar;
 }
 
@@ -163,7 +155,9 @@ function build_calendar($month,$year) {
   <body>
     <?php include('Navbar.php'); 
 
+    echo "<br><br><br>";
     echo build_calendar($month,$year);
+    echo "<br><br><br>";
     
     ?>
 

@@ -88,7 +88,7 @@ catch(PDOException $error)
                     <div class="i">
                     </div>
                     <div class="div">
-                        <label1>Username</label1>
+                        <h5>Username</h5>
                         <input type="text" class="form-control" name="username" >
                     </div>
                 </div>
@@ -96,7 +96,7 @@ catch(PDOException $error)
                     <div class="i">
                     </div>
                     <div class="div">
-                        <label1>Password</label1>
+                        <h5>Password</h5>
                         <input type="password" class="form-control" name="password" >
                     </div>
                 </div>
@@ -109,3 +109,25 @@ catch(PDOException $error)
 </body>
 </html>
 
+<script>
+const inputs = document.querySelectorAll(".form-control");
+
+
+function addcl(){
+	let parent = this.parentNode.parentNode;
+	parent.classList.add("focus");
+}
+
+function remcl(){
+	let parent = this.parentNode.parentNode;
+	if(this.value == ""){
+		parent.classList.remove("focus");
+	}
+}
+
+
+inputs.forEach(input => {
+	input.addEventListener("focus", addcl);
+	input.addEventListener("blur", remcl);
+});
+</script>

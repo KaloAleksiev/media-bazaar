@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\include"
   ],
+  "SelectedNode": "\\include\\schedule.php",
   "PreviewInSolutionExplorer": false
 }

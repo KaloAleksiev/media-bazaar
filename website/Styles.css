@@ -421,17 +421,6 @@ a:hover {
 label {
     font-size: x-large;
 }
-.label1{
-    position: absolute;
-    top:0;
-    left:0;
-    height: 30px;
-    line-height: 30px;
-    color:#ccc;
-    cursor:text;
-    transition: all 200ms ease-out;
-    z-index:10;
-}
 
 select {
     font-size: x-large;

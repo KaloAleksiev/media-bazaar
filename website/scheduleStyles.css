@@ -80,38 +80,19 @@ table {
     font: bold 15px Arial;
 }
 
-.shiftCardPhones {
+.shiftCard {
     padding: 2px;
-    border: 3px solid red;
     margin: 1px;
+    margin-bottom: 1px;
 }
 
-.shiftCardComputers {
-    padding: 2px;
-    border: 3px solid green;
-    margin: 1px;
+.legend {
+    border: 2px solid #740c11;
+    width: 10%;
+    text-align: center;
+    margin-left: 10%;
 }
 
-.shiftCardTVs {
-    padding: 2px;
-    border: 3px solid blue;
-    margin: 1px;
-}
-
-.shiftCardPhotography {
-    padding: 2px;
-    border: 3px solid purple;
-    margin: 1px;
-}
-
-.shiftCardHome {
-    padding: 2px;
-    border: 3px solid brown;
-    margin: 1px;
-}
-
-.shiftCardOther {
-    padding: 2px;
-    border: 3px solid orange;
-    margin: 1px;
+.legendDep {
+    font: bold 20px Arial;
 }
