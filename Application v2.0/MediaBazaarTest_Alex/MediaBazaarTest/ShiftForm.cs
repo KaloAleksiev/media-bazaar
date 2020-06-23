@@ -68,7 +68,11 @@ namespace MediaBazaarTest
                     if (obj is Label && obj.Name.TrimStart("lblDay".ToCharArray()) == lb.Value.Name.TrimStart("lbDay".ToCharArray()))
                     { 
                         listBoxesToLabels.Add(lb.Value, (Label)obj);
-                        obj.Text += "-" + new DateTime(year, (int)month, lb.Key).DayOfWeek.ToString();
+                        try
+                        {
+                            obj.Text += "-" + new DateTime(year, (int)month, lb.Key).DayOfWeek.ToString();
+                        }
+                        catch { }
                     }
                 }
             }
