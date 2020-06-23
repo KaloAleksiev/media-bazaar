@@ -62,7 +62,7 @@ namespace MediaBazaarTest
                         lbAllPpl.Items.Add(emp.GetInfo()); } //Refresh the AllPpl listbox
 
                     shift.AddUser(u);
-                    MessageBox.Show(shift.GetAllUsers().Count.ToString());
+                    //MessageBox.Show(shift.GetAllUsers().Count.ToString());
                     FillChosenShift(); //Refresh the InShift listbox.
                 }
                 catch
@@ -92,7 +92,7 @@ namespace MediaBazaarTest
 
                 InShift.RemoveAt(lbInShift.SelectedIndex);
                 lbAllPpl.Items.Clear();
-                MessageBox.Show(shift.GetAllUsers().Count.ToString());
+                //MessageBox.Show(shift.GetAllUsers().Count.ToString());
                 foreach (User emp in AllEmps)
                 {
                     lbAllPpl.Items.Add(emp.GetInfo());
