@@ -56,6 +56,7 @@ namespace MediaBazaarTest
             { 
                 lblFinalInfo.Text = "";
                 btnViewSchedule.Enabled = false;
+                btnAutoSchedule.Enabled = false;
             }
             else {
                 string type;
@@ -69,6 +70,7 @@ namespace MediaBazaarTest
                                     $"\n of {cbDepartment.SelectedItem} department," +
                                     $" {type} shifts.";
                 btnViewSchedule.Enabled = true;
+                btnAutoSchedule.Enabled = true;
             }
         }
 

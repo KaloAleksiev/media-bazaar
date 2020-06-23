@@ -88,7 +88,7 @@ namespace MediaBazaarTest
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
             Item selectedItem = GetSelectedItem();
-            DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete {selectedItem.Name}?", "Sure", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete {selectedItem.Name}?", "Are you sure?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 if (sdc.DeleteItem(GetSelectedItem()))

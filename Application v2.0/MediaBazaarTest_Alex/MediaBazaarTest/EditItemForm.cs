@@ -57,21 +57,23 @@ namespace MediaBazaarTest
         {
             try
             {
-                Item newItem = sdc.AddItemToDB(tbItemName.Text, rtbItemDesc.Text, cbDep.SelectedIndex + 1, Convert.ToDouble(tbSellingPrice.Text), Convert.ToDouble(tbRestockPrice.Text));
-                if (newItem != null)
+                if (tbItemName.Text != "" && rtbItemDesc.Text != "" && cbDep.SelectedIndex > -1)
                 {
-                    MessageBox.Show("Item successfully saved!");
-                    s.AddItem(newItem);
-                    this.Close();
+                    Item newItem = sdc.AddItemToDB(tbItemName.Text, rtbItemDesc.Text, cbDep.SelectedIndex + 1, Convert.ToDouble(tbSellingPrice.Text), Convert.ToDouble(tbRestockPrice.Text));
+                    if (newItem != null)
+                    {
+                        MessageBox.Show("Item successfully saved!");
+                        s.AddItem(newItem);
+                        this.Close();
+                    }
+                    else { MessageBox.Show("Something went wrong!"); }
                 }
-                else { MessageBox.Show("Something went wrong!"); }
+                else { MessageBox.Show("Please fill out all the fields!"); }
             }
             catch(FormatException ex)
             {
                 MessageBox.Show("The prices should be numeric values!");
             }
-            
-           
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -81,13 +83,17 @@ namespace MediaBazaarTest
         {
             try
             {
-                if (sdc.EditItem(item.Id, tbItemName.Text, rtbItemDesc.Text, cbDep.SelectedIndex + 1, Convert.ToDouble(tbSellingPrice.Text), Convert.ToDouble(tbRestockPrice.Text)))
+                if (tbItemName.Text != "" && rtbItemDesc.Text != "" && cbDep.SelectedIndex > -1)
                 {
-                    item.UpdateItem(tbItemName.Text, rtbItemDesc.Text, cbDep.SelectedItem.ToString());
-                    MessageBox.Show("Changes successfully saved!");
-                    this.Close();
+                    if (sdc.EditItem(item.Id, tbItemName.Text, rtbItemDesc.Text, cbDep.SelectedIndex + 1, Convert.ToDouble(tbSellingPrice.Text), Convert.ToDouble(tbRestockPrice.Text)))
+                    {
+                        item.UpdateItem(tbItemName.Text, rtbItemDesc.Text, cbDep.SelectedItem.ToString());
+                        MessageBox.Show("Changes successfully saved!");
+                        this.Close();
+                    }
+                    else { MessageBox.Show("Something went wrong!"); }
                 }
-                else { MessageBox.Show("Something went wrong!"); }
+                else { MessageBox.Show("Please fill out all the fields!"); }
             }            
             catch (FormatException ex)
             {
