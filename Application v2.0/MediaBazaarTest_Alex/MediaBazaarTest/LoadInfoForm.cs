@@ -287,8 +287,8 @@ namespace MediaBazaarTest
                         {
                             allShifts[i][j].AddUser(uc.GetUserByID(userToken.Key));
                             shiftTokenDictionary[userToken.Key]--;
-                            if (userToken.Key == 23)
-                            { MessageBox.Show(shiftTokenDictionary[userToken.Key].ToString()); }
+                            //if (userToken.Key == 23)
+                            //{ MessageBox.Show(shiftTokenDictionary[userToken.Key].ToString()); }
                         }
                         else
                         {
