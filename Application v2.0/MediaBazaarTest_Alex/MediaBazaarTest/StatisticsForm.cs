@@ -55,7 +55,7 @@ namespace MediaBazaarTest
             string dep = null;
             if (cmbDepSalary.SelectedItem != null)
             {               
-                dep = cmbDepSalary.SelectedValue.ToString();
+                dep = cmbDepSalary.SelectedItem.ToString();
                 int depId = dd.GetIdByName(dep);
                 double salary = sdc.GetAvgSalaryPerDepartment(depId);
                 MessageBox.Show($"Avarage salary for {dep} department is {salary.ToString("C2")}");
@@ -80,7 +80,7 @@ namespace MediaBazaarTest
             if (cmbDepCount.SelectedItem != null)
             {
                 //Enum.TryParse<Department>(cmbDepCount.SelectedValue.ToString(), out dep);
-                dep =cmbDepCount.SelectedValue.ToString();
+                dep =cmbDepCount.SelectedItem.ToString();
                 int depId = dd.GetIdByName(dep);
                 List<int> count = sdc.GetPostitionCountPerDep(depId);
                 chartEmployees.Series["Employee count"].Points.AddXY("Administrator", count[0]);
