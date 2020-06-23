@@ -95,22 +95,35 @@ namespace MediaBazaarTest
             {
                 DateTime shiftDate = dt.AddDays(lb.Key - 1);
                 KeyValuePair<int, int> shiftIdToNr = sdc.GetAmntOfUsersInShift(shiftDate, type, pos, dep.Value);
-                lb.Value.Items.Add(CreateFirstLine(pos, shiftIdToNr.Value));
+                lb.Value.Items.Add(CreateFirstLine(pos, shiftIdToNr.Value, shiftDate));
                 ChangeLabelColor(pos, shiftIdToNr.Value, lb.Value);
                 List<int> indexes = sdc.GetIdOfUsersInShift(shiftIdToNr.Key, shiftIdToNr.Value);
-                foreach (int i in indexes)
+                if (shiftDate.DayOfWeek != DayOfWeek.Sunday)
                 {
-                    User u = uc.GetUserByID(i);
-                    lb.Value.Items.Add($"ID: {u.Id}, {u.FName} {u.LName}");
+                    foreach (int i in indexes)
+                    {
+                        User u = uc.GetUserByID(i);
+                        lb.Value.Items.Add($"ID: {u.Id}, {u.FName} {u.LName}");
+                    }
+                    usersInShift.Add(lb.Key, indexes);
                 }
-                usersInShift.Add(lb.Key, indexes);
             }
         }
 
         public void AssignMethodsToLabels()
         {
             foreach (KeyValuePair<ListBox, Label> lbl in listBoxesToLabels)
-            { lbl.Value.Click += new EventHandler(EditShift); }
+            {
+                string day = "";
+                foreach (char c in lbl.Value.Text.ToCharArray())
+                {
+                    if (c == '-')
+                    { break; }
+                    else { day += c; }
+                }
+                if (new DateTime(year, (int)month, Convert.ToInt32(day)).DayOfWeek != DayOfWeek.Sunday)
+                { lbl.Value.Click += new EventHandler(EditShift); }
+            }
         }
 
         public void EditShift(object sender, EventArgs e)
@@ -144,13 +157,16 @@ namespace MediaBazaarTest
                     lb.Value.Items.Clear();
                     DateTime shiftDate = dt.AddDays(lb.Key - 1);
                     KeyValuePair<int, int> shiftIdToNr = sdc.GetAmntOfUsersInShift(shiftDate, type, pos, dep.Value);
-                    lb.Value.Items.Add(CreateFirstLine(pos, shiftIdToNr.Value));
+                    lb.Value.Items.Add(CreateFirstLine(pos, shiftIdToNr.Value, shiftDate));
                     ChangeLabelColor(pos, shiftIdToNr.Value, lb.Value);
                     List<int> indexes = sdc.GetIdOfUsersInShift(shiftIdToNr.Key, shiftIdToNr.Value);
-                    foreach (int i in indexes)
+                    if (shiftDate.DayOfWeek != DayOfWeek.Sunday)
                     {
-                        User u = uc.GetUserByID(i);
-                        lb.Value.Items.Add($"ID: {u.Id}, {u.FName} {u.LName}");
+                        foreach (int i in indexes)
+                        {
+                            User u = uc.GetUserByID(i);
+                            lb.Value.Items.Add($"ID: {u.Id}, {u.FName} {u.LName}");
+                        }
                     }
                     usersInShift.Remove(lb.Key);
                     usersInShift.Add(lb.Key, indexes);
@@ -158,42 +174,62 @@ namespace MediaBazaarTest
             }
         }
 
-        public string CreateFirstLine(Position pos, int n)
+        public string CreateFirstLine(Position pos, int n, DateTime d)
         {
             string text;
-            if (pos == Position.Employee)
-            { text = $"{n} / 3"; }
-            else if (pos == Position.DepotWorker)
-            { text = $"{n} / 2"; }
-            else { text = $"{n} / 1"; }
-            return text;
+            if (d.DayOfWeek != DayOfWeek.Sunday)
+            {
+                if (pos == Position.Employee)
+                { text = $"{n} / 3"; }
+                else if (pos == Position.DepotWorker)
+                { text = $"{n} / 2"; }
+                else { text = $"{n} / 1"; }
+                return text;
+            }
+            else 
+            { 
+                text = $"No work on sundays!";
+                return text;
+            }
         }
 
         public void ChangeLabelColor(Position pos, int n, ListBox lb)
         {
             Label lbl = listBoxesToLabels[lb];
-            switch(pos)
+            string day = "";
+            foreach (char c in lbl.Text.ToCharArray())
             {
-                case Position.Employee:
-                    if (n == 0)
-                    { lbl.BackColor = Color.LimeGreen; }
-                    else if (n == 3)
-                    { lbl.BackColor = Color.Red; }
-                    else { lbl.BackColor = Color.Yellow; }
-                    break;
-                case Position.DepotWorker:
-                    if (n == 0)
-                    { lbl.BackColor = Color.LimeGreen; }
-                    else if (n == 2)
-                    { lbl.BackColor = Color.Red; }
-                    else { lbl.BackColor = Color.Yellow; }
-                    break;
-                default:
-                    if (n == 0)
-                    { lbl.BackColor = Color.LimeGreen; }
-                    else { lbl.BackColor = Color.Red; }
-                    break;
+                if (c == '-')
+                { break; }
+                else { day += c; }
             }
+
+            if (new DateTime(year, (int)month, Convert.ToInt32(day)).DayOfWeek != DayOfWeek.Sunday)
+            {
+                switch (pos)
+                {
+                    case Position.Employee:
+                        if (n == 0)
+                        { lbl.BackColor = Color.LimeGreen; }
+                        else if (n == 3)
+                        { lbl.BackColor = Color.Red; }
+                        else { lbl.BackColor = Color.Yellow; }
+                        break;
+                    case Position.DepotWorker:
+                        if (n == 0)
+                        { lbl.BackColor = Color.LimeGreen; }
+                        else if (n == 2)
+                        { lbl.BackColor = Color.Red; }
+                        else { lbl.BackColor = Color.Yellow; }
+                        break;
+                    default:
+                        if (n == 0)
+                        { lbl.BackColor = Color.LimeGreen; }
+                        else { lbl.BackColor = Color.Red; }
+                        break;
+                }
+            }
+            else { lbl.BackColor = Color.Gray; }
         }
 
         private void btnPreference_Click(object sender, EventArgs e)
@@ -201,18 +237,22 @@ namespace MediaBazaarTest
             int confCounter = 0;
             foreach (KeyValuePair<int, ListBox> kvp in listBoxes)
             {
-                for (int i = 0; i < usersInShift[kvp.Key].Count; i++)
+                try
                 {
-                    if (pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]) != null)
+                    for (int i = 0; i < usersInShift[kvp.Key].Count; i++)
                     {
-                        if (pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]).Days.Contains(new DateTime(year, (int)month, kvp.Key).DayOfWeek.ToString())
-                            || (type.ToString() != pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]).Type && pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]).Type != ""))
+                        if (pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]) != null)
                         {
-                            kvp.Value.SelectedIndex = i + 1;
-                            confCounter++;
+                            if (pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]).Days.Contains(new DateTime(year, (int)month, kvp.Key).DayOfWeek.ToString())
+                                || (type.ToString() != pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]).Type && pc.GetPreferenceByUserId(usersInShift[kvp.Key][i]).Type != ""))
+                            {
+                                kvp.Value.SelectedIndex = i + 1;
+                                confCounter++;
+                            }
                         }
                     }
                 }
+                catch { }
             }
             MessageBox.Show($"Conflicts found: {confCounter}. \nConflicts highlighted in the user lists.", "Conflicts", MessageBoxButtons.OK);
         }   

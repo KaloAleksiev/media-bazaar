@@ -17,6 +17,7 @@ namespace MediaBazaarTest
         int year;
         Month month;
         ShiftType type;
+        bool pairityFlag;
         ShiftDataControl sdc;
         UserControl uc;
         Random rnd;
@@ -31,6 +32,7 @@ namespace MediaBazaarTest
             //pbStatus.Value = 1;
             //pbStatus.Step = 1;
             this.pos = pos;
+            pairityFlag = true;
             this.dep = new KeyValuePair<string, int>(depText, depId);
             this.year = year;
             this.month = month;
@@ -166,7 +168,7 @@ namespace MediaBazaarTest
             { userLimit = 2; }
             else { userLimit = 1; }
 
-            int totalShiftCount = DateTime.DaysInMonth(dt.Year, dt.Month) * 3 * userLimit;
+            int totalShiftCount = (DateTime.DaysInMonth(dt.Year, dt.Month) - 5) * 3 * userLimit;
             List<User> users = new List<User>();
             foreach (User u in uc.GetUsers())
             {
@@ -205,7 +207,6 @@ namespace MediaBazaarTest
                 allShifts.Add(i, new Shift[3]);
                 for (int j = 0; j <= 2; j++)
                 {
-                    //Maybe a morning shift is not created  at all ????????? //Alex
                     ShiftType type = ShiftType.Morning;
                     if (j == 1)
                     { type = ShiftType.Noon; }
@@ -218,8 +219,7 @@ namespace MediaBazaarTest
 
         public void CreateSchedule(Position pos)
         {
-            //Flag that determines on which days the people will be added.
-            bool pairityFlag = false;
+            //bool pairityFlag - flag that determines on which days the people will be added.
 
             Dictionary<int, int> standInTokens = new Dictionary<int, int>();
 
@@ -237,6 +237,7 @@ namespace MediaBazaarTest
             backgroundWorker.ReportProgress(74);
             foreach (KeyValuePair<int, int> userToken in standInTokens)
             { allShifts = CycleThroughMonth(pos, pairityFlag, userLimit, userToken, 0); }
+            pairityFlag = !pairityFlag;
 
             //Add the new shifts to the data base.
             backgroundWorker.ReportProgress(75);
@@ -246,40 +247,24 @@ namespace MediaBazaarTest
         public Dictionary<int, Shift[]> CycleThroughMonth(Position pos, bool pairityFlag, int userLimit, KeyValuePair<int, int> userToken, int counter)
         {
             //If this is the third recursion, don't do anything.
-            if (counter < 4)
+            if (counter < 3)
             {
                 //Call the needed method for each day of the month.
                 for (int i = 1; i <= DateTime.DaysInMonth(year, (int)month); i++)
                 {
-                    int rndNum = rnd.Next(0, 3);
-                    allShifts = AddUserToShiftRnd(pos, pairityFlag, userToken, i, rndNum, userLimit, 0);
+                    DateTime date = new DateTime(year, (int)month, i);
+                    if (date.DayOfWeek != DayOfWeek.Sunday)
+                    {
+                        int rndNum = rnd.Next(0, 3);
+                        allShifts = AddUserToShiftRnd(pos, pairityFlag, userToken, i, rndNum, userLimit, 0);
+                    }
                 }
 
                 //If the person has not been assigned to the max. allowed amount of shifts, repeat with different pairity flag.
-                if (counter == 1)
-                {
-                    if (shiftTokenDictionary[userToken.Key] != 0)
-                    { CycleThroughMonth(pos, !pairityFlag, userLimit, userToken, 2); }
-                    return allShifts;
-                }
-                else if (counter == 2)
-                {
-                    if (shiftTokenDictionary[userToken.Key] != 0)
-                    { CycleThroughMonth(pos, !pairityFlag, userLimit, userToken, 3); }
-                    return allShifts;
-                }
-                else if (counter == 3)
-                {
-                    if (shiftTokenDictionary[userToken.Key] != 0)
-                    { CycleThroughMonth(pos, !pairityFlag, userLimit, userToken, 4); }
-                    return allShifts;
-                }
-                else
-                {
-                    if (shiftTokenDictionary[userToken.Key] != 0)
-                    { CycleThroughMonth(pos, !pairityFlag, userLimit, userToken, 1); }
-                    return allShifts;
-                }
+                counter++;
+                if (shiftTokenDictionary[userToken.Key] > 0)
+                { CycleThroughMonth(pos, !pairityFlag, userLimit, userToken, counter); }
+                return allShifts;
             }
             return allShifts;
         }
@@ -296,18 +281,23 @@ namespace MediaBazaarTest
                 if (i % 2 == Convert.ToInt32(pairityFlag))
                 {
                     //If the shift isn't full, add to it. If it is, try the next one.
-                    if (allShifts[i][j].GetAllUsers().Count < userLimit)
+                    if (shiftTokenDictionary[userToken.Key] > 0)
                     {
-                        allShifts[i][j].AddUser(uc.GetUserByID(userToken.Key));
-                        shiftTokenDictionary[userToken.Key]--;
-                    }
-                    else
-                    {
-                        //Go to the next shift on the day and call the method again.
-                        if (j == 0) { j = 1; }
-                        else if (j == 1) { j = 2; }
-                        else if (j == 2) { j = 0; }
-                        allShifts = AddUserToShiftRnd(pos, pairityFlag, userToken, i, j, userLimit, counter1);
+                        if (allShifts[i][j].GetAllUsers().Count < userLimit)
+                        {
+                            allShifts[i][j].AddUser(uc.GetUserByID(userToken.Key));
+                            shiftTokenDictionary[userToken.Key]--;
+                            if (userToken.Key == 23)
+                            { MessageBox.Show(shiftTokenDictionary[userToken.Key].ToString()); }
+                        }
+                        else
+                        {
+                            //Go to the next shift on the day and call the method again.
+                            if (j == 0) { j = 1; }
+                            else if (j == 1) { j = 2; }
+                            else if (j == 2) { j = 0; }
+                            allShifts = AddUserToShiftRnd(pos, pairityFlag, userToken, i, j, userLimit, counter1);
+                        }
                     }
                 }
                 return allShifts;
