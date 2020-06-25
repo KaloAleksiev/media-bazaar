@@ -121,8 +121,16 @@ namespace MediaBazaarTest
                     { break; }
                     else { day += c; }
                 }
-                if (new DateTime(year, (int)month, Convert.ToInt32(day)).DayOfWeek != DayOfWeek.Sunday)
-                { lbl.Value.Click += new EventHandler(EditShift); }
+                try
+                {
+                    if (new DateTime(year, (int)month, Convert.ToInt32(day)).DayOfWeek != DayOfWeek.Sunday)
+                    { lbl.Value.Click += new EventHandler(EditShift); }
+                }
+                catch
+                {
+                    
+                }
+                
             }
         }
 
@@ -204,32 +212,40 @@ namespace MediaBazaarTest
                 else { day += c; }
             }
 
-            if (new DateTime(year, (int)month, Convert.ToInt32(day)).DayOfWeek != DayOfWeek.Sunday)
+            if (Convert.ToInt32(day) > days)
             {
-                switch (pos)
-                {
-                    case Position.Employee:
-                        if (n == 0)
-                        { lbl.BackColor = Color.LimeGreen; }
-                        else if (n == 3)
-                        { lbl.BackColor = Color.Red; }
-                        else { lbl.BackColor = Color.Yellow; }
-                        break;
-                    case Position.DepotWorker:
-                        if (n == 0)
-                        { lbl.BackColor = Color.LimeGreen; }
-                        else if (n == 2)
-                        { lbl.BackColor = Color.Red; }
-                        else { lbl.BackColor = Color.Yellow; }
-                        break;
-                    default:
-                        if (n == 0)
-                        { lbl.BackColor = Color.LimeGreen; }
-                        else { lbl.BackColor = Color.Red; }
-                        break;
-                }
+
             }
-            else { lbl.BackColor = Color.Gray; }
+            else
+            {
+                if (new DateTime(year, (int)month, Convert.ToInt32(day)).DayOfWeek != DayOfWeek.Sunday)
+                {
+                    switch (pos)
+                    {
+                        case Position.Employee:
+                            if (n == 0)
+                            { lbl.BackColor = Color.LimeGreen; }
+                            else if (n == 3)
+                            { lbl.BackColor = Color.Red; }
+                            else { lbl.BackColor = Color.Yellow; }
+                            break;
+                        case Position.DepotWorker:
+                            if (n == 0)
+                            { lbl.BackColor = Color.LimeGreen; }
+                            else if (n == 2)
+                            { lbl.BackColor = Color.Red; }
+                            else { lbl.BackColor = Color.Yellow; }
+                            break;
+                        default:
+                            if (n == 0)
+                            { lbl.BackColor = Color.LimeGreen; }
+                            else { lbl.BackColor = Color.Red; }
+                            break;
+                    }
+                }
+                else { lbl.BackColor = Color.Gray; }
+            }
+            
         }
 
         private void btnPreference_Click(object sender, EventArgs e)
